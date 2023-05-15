@@ -1,0 +1,249 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #363B42;
+    color: rgba(255,255,255,0.85);
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    font-family: inherit;
+}
+
+.container {
+    padding: 10px;
+    width: 100%;
+}
+
+nav .top {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+    padding: 10px;
+    margin-bottom: 10px;    
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: space-between;    
+}
+
+.top h1 {
+    align-self: flex-end;
+    margin: 0;
+}
+
+.advertise {
+    padding: 5px 10px;
+}
+
+.advertise a {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;    /* To align the input box and button towards the center (vertically) */
+    border-radius: 70px;    /* To round the corners of the larger form */
+    padding: 5px 10px;     /* To give the form a bigger body */
+    background-color: #697382;       
+}
+
+.search-bar input {
+    background-color: transparent;
+    flex: 1;    /* To fill the width of the form */
+    border: 0px;
+    outline: none;      /* To Remove the border and outline of the input box */
+    color: rgba(255,255,255,0.85); 
+    font-size: 1rem;
+}
+
+::placeholder {
+    color: rgba(255,255,255,0.85);  /* Makes the placeholder white and makes it slightly transparent */
+    font-size: 1rem;
+}
+
+.search-bar button img{
+    width: 15px;
+}
+.search-bar button {
+    padding: 10px;
+    border-radius: 50%; /* To round the button */
+    background: rgba(255, 255, 255, 0.4);    
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    outline: 1px solid rgba(0, 0, 0, 0.6);    
+}
+
+.filters-ammenities-and-preferences {
+    display: none;
+}
+
+.filters-ammenities-and-preferences {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.4);
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.filters-ammenities-and-preferences {
+    display: none;
+}
+
+.optional-ammenities, .optional-preferences {
+    padding: 0;
+    padding-bottom: 10px;
+}
+
+.optional-ammenities h4, .optional-preferences h4 {
+    margin-top: 0; 
+}
+
+input, label {
+    margin: 0;
+}
+
+input {
+    margin-left: 10px;
+}
+
+h5 {
+    margin: 10px;
+}
+
+.optional-ammenities, .optional-preferences {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+
+section {
+    margin-top: 10px;    
+}
+
+section select, button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: #697382;
+    color: rgba(255,255,255,0.85); 
+}
+
+main {
+    margin-top: 10px;
+}
+
+.template {
+    background-color: transparent;
+    border: 0;
+    text-decoration: none;
+    background-color: #363B42;
+    color: rgba(255,255,255,0.85);
+}
+
+.template img {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
+}
+
+
+.rental-1, .rental-2, .rental-3, .rental-4 {
+    display: flex;
+    flex-direction: column; 
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);    
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+main img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+main h3 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+main h4 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+main p {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+main button {
+    padding: 5px 10px;
+    align-self: center;  
+    font-size: 0.9rem;
+    background-color: #697382;
+    color: rgba(255,255,255,0.85);  
+}
+
+@media (min-width: 576px) {
+    
+    .container {
+        max-width: 1000px;
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5); 
+        margin: auto;       
+    }
+
+    .actual-filters {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid;
+        margin-bottom: 10px;    
+    }
+
+    .optional-ammenities, .optional-preferences {
+        border: 0;
+    }
+
+    .optional-ammenities {
+        border-right: 1px solid;
+        padding-right: 5px;
+    }
+
+
+    .optional-ammenities, .optional-preferences {
+        flex-basis: 50%;
+        margin: 10px;
+    }
+    
+    .rental-1, .rental-2, .rental-3, .rental-4 {
+        flex-direction: row;                
+    }
+
+    .image {
+        flex-basis: 40%;
+        margin-right: 15px;                
+    }
+
+    .image img {
+        margin-bottom: 0;        
+        height: 100%;
+    }
+    
+    .description {
+        flex-basis: 60%;
+    }
+
+}

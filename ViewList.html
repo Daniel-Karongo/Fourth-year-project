@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style-viewlist.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
+    <script src="viewlist.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="top">
+                <h1>HousesearchKE.com</h1>
+                <button class="advertise"><a href="./create-Account.html">Advertise</a></button>
+            </div>
+            <form action="" method="get" class="search-bar">
+                <input type="text" placeholder="Search location">
+                <button><img src="./Images/search.png" alt=""></button>
+            </form>
+        </nav>
+        <section>
+            <select class="order-by" name="order-by" id="order-by">
+                <option value="price-low-high">Price: Low - High</option>
+                <option value="price-low-high">Price: Low - High</option>                               
+            </select>
+            <button onclick="showFilters()" class="button-filters">More Filters+</button>
+            <div class="filters-ammenities-and-preferences">
+                <div class="actual-filters">
+                    <form action="" class="optional-ammenities">
+                        <h4>Ammenities</h4>
+                        
+                        <input type="checkbox"  name="clean-water" id="clean-water">
+                        <label for="clean-water"> Clean Tap Water/ Water Reserves (Tanks and/or Borehole)</label>
+            
+                        <h5>Electricity</h5>
+                        <input type="checkbox" name="token" id="token">
+                        <label for="token"> Individual Token</label>
+                        <input type="checkbox" name="meter" id="meter">
+                        <label for="meter"> Shared Meter</label>
+            
+                        <h5>Security</h5>
+                        <input type="checkbox" name="security-guard" id="security-guard">
+                        <label for="security-guard"> Security Guard</label>
+                        <input type="checkbox" name="cctv" id="cctv">
+                        <label for="cctv"> CCTV</label>
+                        <input type="checkbox" name="security-lights" id="security-lights">
+                        <label for="security-lights"> Security Lights</label>
+            
+                        <h5>Toilets</h5>
+                        <input type="checkbox" name="pit-latrine" id="pit-latrine">
+                        <label for="pit-latrine"> Communal Pit Latrine</label>
+                        <input type="checkbox" name="automatic-toilet" id="automatic-toilet">
+                        <label for="automatic-toilet"> Communal Automatic Toilets</label>
+            
+                        <h5>Cleaning</h5>
+                        <input type="checkbox" name="garbage-collection" id="garbage-collection">
+                        <label for="garbage-collection"> Garbage Collection</label>
+                        <input type="checkbox" name="cleaner" id="cleaner">
+                        <label for="cleaner"> Cleaner for the shared spaces (e.g toilets/ablution block)</label>
+                        <input type="checkbox" name="sink" id="sink">
+                        <label for="sink"> Sink</label>
+            
+                        <h5>Accessibility</h5>
+                        <input type="checkbox" name="handicap-access" id="handicap-access">
+                        <label for="handicap-access"></label>Handicap/ WheelChair Access</label>
+                        <input type="checkbox" name="packing" id="packing">
+                        <label for="packing"></label>Packing</label>
+            
+                        <h5> Finishing</h5>
+                        <input type="checkbox" name="tiles" id="tiles">
+                        <label for="tiles" class="tiles"> Tiles</label>
+                        <input type="checkbox" class="ceiling" name="ceiling" id="ceiling">
+                        <label for="ceiling"> Ceiling</label>
+                        <input type="checkbox" name="balcony" id="balcony">
+                        <label for="balcony"></label>Balcony</label>
+            
+                        <h5>luxury</h5>
+                        <input type="checkbox" name="wi-fi" id="wi-fi">
+                        <label for="wi-fi"> Wi-Fi</label>
+                        <input type="checkbox" name="joint-tv-subscription" id="joint-tv-subscription">
+                        <label for="joint-tv-subscription"> Joint TV Subscription</label>
+                        <input type="checkbox"  name="air-conditioning" id="air-conditioning">
+                        <label for="air-conditioning"></label>Air Conditioning</label>
+                        <input type="checkbox" name="furnished" id="furnished">
+                        <label for="furnished"></label>Furnished</label>
+                        <input type="checkbox" name="swimming-pool" id="swimming-pool">
+                        <label for="swimming-pool"></label>Swimming Pool</label>
+                        <input type="checkbox" name="gym" id="gym">
+                        <label for="gym"></label>Gym</label>
+                    </form> 
+            
+                    <form action="" class="optional-preferences">
+                        <h4>Preferred sorts of tenants</h4>
+                            
+                        <h5>Gender</h5>
+                        <input type="radio" name="male" id="male">
+                        <label for="male">Males</label>
+                        <input type="radio" name="female" id="female">
+                        <label for="female">Females</label>
+                        <input type="radio" name="any-gender" id="any-gender">
+                        <label for="any-gender">Any gender</label>
+            
+                        <h5>Students: </h5>
+                        <input type="radio" name="no-students" id="no-students">
+                        <label for="students">No Students</label>
+                        <input type="radio" name="students-welcome" id="students-welcome">
+                        <label for="students">Students Welcome</label>
+            
+                        <h5>Families that are welcome: </h5>                        
+                        <input type="radio" name="no-children" id="no-children">
+                        <label for="no-children">Without small childen</label>
+                        <input type="radio" name="any-welcome" id="any-welcome">
+                        <label for="any-welcome">Any Family</label>
+            
+                        <h5>Driving: </h5>
+                        <input type="radio" name="having-vehicles" id="having-vehicles">
+                        <label for="having-vehicles">Having Vehicles</label>
+                        <input type="radio" name="not-having-vehicles" id="not-having-vehicles">
+                        <label for="not-having-vehicles">Not having vehicles (No packing)</label>
+            
+                        <h5> Practicing members of:</h5>
+                        <input type="checkbox" name="Christianity" id="christianity">
+                        <label for="christianity">Christianity</label>
+                        <input type="checkbox" name="islam" id="islam">
+                        <label for="islam">Islam</label>
+                        <input type="checkbox" name="hinduism" id="hinduism">
+                        <label for="hinduism">Hinduism</label>
+                        <input type="checkbox" name="any-religion" id="any-religion">
+                        <label for="any-religion">Any Religion</label>
+            
+                    </form>
+                </div>                
+                <button onclick="hideFilters()" type="submit"> Filter </button>
+            </div>                       
+        </section>
+        <main>
+            <a href="" class="template">
+                <div class="rental-1">
+                    <div class="image">
+                        <img src="/Images/cheap-accommodation-kerikeri.jpg" alt="Rental-1">              
+                    </div>                    
+                    <div class="description">
+                        <h3>Ksh. 1200</h3>
+                        <h4>Per Night</h4>
+                        <p> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                    <button>More details</button>
+                    </div>                            
+                </div>
+            </a>
+            
+            <a href="" class="template">
+                <div class="rental-2">
+                    <div class="image">
+                        <img src="/Images/motel2.webp" alt="Rental-2">              
+                    </div> 
+                    <div class="description">
+                        <h3>Ksh. 3000</h3>
+                        <h4>Per Night</h4>
+                        <p> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                        <button>More details</button>
+                    </div>                        
+                </div>        
+            </a>
+            
+            <a href="" class="template">
+                <div class="rental-3">
+                    <div class="image">
+                        <img src="/Images/mud-house.jpg" alt="Rental-3">              
+                    </div>
+                    <div class="description">
+                        <h3>Ksh. 3500</h3>
+                        <h4>Per Month</h4>
+                        <p> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                    <button>More details</button>
+                    </div>                           
+                </div>        
+            </a>
+            
+            <a href="" class="template">
+                <div class="rental-4">
+                    <div class="image">
+                        <img src="/Images/Plot Construction.jpg" alt="Rental-4">              
+                    </div>
+                    <div class="description">
+                        <h3>Ksh. 5500</h3>
+                        <h4>Per Year</h4>
+                        <p> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                    <button>More details</button>
+                    </div>                           
+                </div>
+            </a>            
+        </main>
+    </div>    
+</body>
+</html>

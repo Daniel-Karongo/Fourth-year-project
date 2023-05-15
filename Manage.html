@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href= "style-manage.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
+    <script src="manage.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <h3>User Name</h3>
+            <button type="submit"><a href="/index.html">Sign Out</a></button>
+        </nav>
+        <div class="main-body">
+            <div class="buttons">
+                <button><a href="./Upload.html">Advertise a new Rental</a></button>
+                <button>Settings</button>
+            </div>
+            <div class="panel">
+                <div class="panel-buttons">
+                    <button onclick="myRentals()"> My Rentals</button>
+                    <button onclick="myContactInformation()"> My Contact Information</button>
+                </div>                
+                <div class="my-rentals">
+                    <div class="rental-template">
+                        <img src="/Images/cheap-accommodation-kerikeri.jpg" alt="Rental-1">
+                        <p> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                        <div class="template-buttons">
+                            <button>Remove Rental</button> 
+                            <button>Edit Rental Details</button> 
+                        </div>  
+                    </div>
+                    <div class="rental-template">
+                        <img src="./Images/cheap-accommodation-kerikeri.jpg" alt="Rental-2">
+                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                        <div class="template-buttons">
+                            <button>Remove Rental</button> 
+                            <button>Edit Rental Details</button> 
+                        </div>                        
+                    </div>
+                </div>
+                <div class="contact-information">
+                    <form action="">
+                        <label for="first-name">First Name:</label>
+                        <input type="text" id="first-name">
+
+                        <label for="last-name">Last Name:</label>
+                        <input type="text" id="last-name">
+
+                        <label for="phone">Phone Number:</label>
+                        <input type="text" id="phone">
+
+                        <label for="email">Email Address:</label>
+                        <input type="text" id="email">
+
+                        <label for="password">Create a Password:</label>
+                        <input type="password" id="password">
+
+                        <input type="checkbox" id="show-pass">
+                        <label for="show-pass">Show Password</label>
+
+                        <div class="submit-confirm">
+                            <button type="submit">Confirm Details</button>
+                        </div>                       
+                    </form>                       
+                </div>                
+            </div>            
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+* {
+    margin: 0;      /*To start everything at the corner */
+    padding: 0;     
+    box-sizing: border-box;     /*To ensure grows larger than its container*/
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.container {        /*The larger container containing everything*/
+    width: 100%;    /*To ensure everything fits perfectly along the whole width*/
+    min-height: 100vh;      /*To ensure everything is distributed along the whole height of the page bein viewed*/
+    padding: 2%;        /*To leave some space at the at the edges of the page*/ 
+    position: relative;     /*So that the navbar(child) can be declared as absolute*/
+    display: flex;          
+    align-items: center;
+    justify-content: center;        /*To bring the search bar to the center of the page*/
+    animation: animate 30s ease-in infinite;    /*To change the background image*/
+    background-position: center;
+    background-size: cover;     /*To ensure the background image fills the pages*/
+    background-repeat: no-repeat;
+}
+
+@keyframes animate {    /*To configure the animation*/
+    0%,100%{    /*The first and last image*/
+        background-image: linear-gradient(rgba(53, 74, 119, 0.8), rgba(53, 74, 119, 0.6)), url(/Images/apartment-housing-tripoli-lebanon-ATHN9J.jpg);
+    }
+    25%{
+        background-image: linear-gradient(rgba(53, 74, 119, 0.8), rgba(53, 74, 119, 0.6)), url(/Images/cheap-accommodation-kerikeri.jpg);
+    }
+    50%{
+        background-image: linear-gradient(rgba(53, 74, 119, 0.8), rgba(53, 74, 119, 0.6)), url(/Images/mud-house.jpg);
+    }
+    75%{
+        background-image: linear-gradient(rgba(53, 74, 119, 0.8), rgba(53, 74, 119, 0.6)), url(/Images/slums-and-high-rise-apartments-mumbai-bombay-maharashtra-india-F3GHPY.jpg);
+    }
+}
+
+#navigation-bar {
+    position: absolute;
+    top: 0;
+    left:0;
+    padding: 10px;
+    width: 100%;    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    flex-wrap: wrap;    /*To force the "advertise" button drop once the screen becomes smaller, rather than overflow*/
+}
+
+#navigation-bar h1 {
+    font-size: 1.7rem;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.advertise {
+    border-radius: 10px;    /* To round the corners*/
+    padding: 5px 20px;     /* To give the button a bigger body: 5px more in the upwards and downwards directions and 20px more in the left and right directions*/
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.introduction {
+    position: absolute;
+    top: 80px;
+    text-align: center;    
+}
+
+.introduction h1 {
+    font-size: 1.5rem;
+}
+
+.introduction p {
+    font-size: 1rem;
+}
+
+.search-bar {
+    width: 90%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;    /* To align the input box and button towards the center (vertically) */
+    border-radius: 60px;    /* To round the corners of the larger form */
+    padding: 10px 20px;     /* To give the form a bigger body */
+    backdrop-filter: blur(2px) saturate(120%);
+}
+
+.search-bar input {
+    background-color: transparent;
+    flex: 1;    /* To fill the width of the form */
+    border: 0px;
+    outline: none;      /* To Remove the border and outline of the input box */
+    color: white;
+    font-size: 1.2rem;
+}
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.8); /* Makes the placeholder white and makes it slightly transparent */
+    font-size: 1.2rem;
+}
+
+.search-bar button img{
+    width: 20px;
+}
+.search-bar button {
+    padding: 10px;
+    border-radius: 50%; /* To round the button */
+    border: 0;
+    background: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 1);;
+    width: auto;
+    height: auto;
+    cursor: pointer; 
+    font-size: 1.2rem;
+}

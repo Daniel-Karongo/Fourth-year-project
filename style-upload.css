@@ -1,0 +1,213 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: inherit;
+    font-family: inherit;
+}
+
+body{
+    background-color: #2C3036;
+    color: rgba(255,255,255,0.85);
+}
+
+form input,select, textarea {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255,255,255,0.85);
+    font-size: 1rem;
+}
+
+button {
+    background-color: #591B10;
+    border-color: #F03E1F;
+    color: rgba(255,255,255,0.85);
+}
+
+textarea::placeholder {
+    color: rgba(255,255,255,0.70);    
+}
+
+.container {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+    width: 100%;
+}
+
+.main-body {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+nav button {
+    padding: 5px 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.buttons button {
+    margin-right: 1px;
+    padding: 5px 10px;
+}
+
+.basic-information
+{
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 15px;     
+}
+
+.basic-information form {
+    display: flex;
+    flex-direction: column;
+}
+
+.basic-information form label {
+    margin-bottom: 7px;
+}
+
+.basic-information form input, select, textarea {
+    margin-bottom: 20px;
+    padding: 7px;
+}
+
+#images-upload {
+    display: none;     
+}
+
+.upload-photographs {
+    align-self: center;
+    margin-top: 5px;
+    margin-bottom: 10px;         
+}
+
+.upload-photographs label {
+    padding: 5px 15px;
+    border: 1px solid;
+    background-color: #591B10;
+    border-color: #F03E1F;
+    color: rgba(255,255,255,0.85);     
+}
+
+.type-of-business-premise, .number-of-apartment-bedrooms, .number-of-house-bedrooms {
+    display: none;
+}
+
+.optional-information {
+    display: none;
+}
+
+.ammenities {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;          
+}
+
+.ammenities h4,h5 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h4 {
+    align-self: center;
+}
+
+.ammenities .clean-water, .electricity-token, .electricity-meter, .security-guard, .cctv, .security-lights, .pit-latrine, .automatic-toilet, .garbage-collection, .cleaner, .sink, .handicap-access, .packing, .tiles,  .ceiling, .balcony, .wi-fi, .joint-tv-subscription, .air-conditioning, .furnished, .swimming-pool, .gym {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.ammenities #clean-water, #token, #meter, #security-guard, #cctv, #security-lights, #pit-latrine, #automatic-toilet, #garbage-collection, #cleaner, #sink, #handicap-access, #packing, #tiles, #ceiling, #balcony, #wi-fi, #joint-tv-subscription, #air-conditioning, #furnished, #swimming-pool, #gym {
+    margin-right: 5px;
+}
+
+.preferences {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 15px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.preferences .gender, .students, .families, .driving, .religion {
+    display: flex;
+    flex-direction: column;
+}
+
+.male, .female, .any-gender, .no-students, .students-welcome, .no-children, .children-allowed, .having-vehicles, .not-having-vehicles, .christianity, .islam, .hinduism, .any-religion {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.gender #male ,#female ,#any-gender, #no-students, #students-welcome, #no-children, #any-welcome, #having-vehicles, #not-having-vehicles, #christianity, #islam, #hinduism, #any-religion {
+    margin-right: 5px;
+}
+
+.rules {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.rules h4, p {
+    margin-bottom: 15px;
+}
+
+.rules .upload-rules #rules-upload {
+    display: none;
+}
+
+.rules .upload-rules label {
+    padding: 5px 15px;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    background-color: #591B10;
+    border-color: #F03E1F;
+    color: rgba(255,255,255,0.85); 
+}
+
+.submit-entry {
+    text-align: center;    
+}
+
+.submit-entry button {
+    padding: 5px 15px;
+    margin-top: 10px;   
+}
+
+a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.85);
+}
+
+
+@media (min-width: 576px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        max-width: 700px;
+    }
+}
