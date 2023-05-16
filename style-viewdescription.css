@@ -1,0 +1,199 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #363B42;
+    color: rgba(255,255,255,0.85);
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    font-family: inherit;
+}
+
+.container {
+    padding: 10px;
+    width: 100%;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding : 10px;
+}
+
+nav h1,button {
+    margin: 0;
+}
+
+nav button {
+    padding: 5px 15px;
+    background-color: rgba(255, 255, 255 , 0.2);
+}
+
+nav a {
+    text-decoration: none;
+    color:rgba(255, 255, 255 , 0.85);
+    font-size: 1rem;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+    padding: 5px;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);    
+}
+
+section .images {
+    flex: 1; 
+    z-index: 1;   
+}
+
+section .left {
+    position: absolute;
+    z-index: 2;
+}
+
+.left button {
+    background-color: rgba(255, 255, 255 , 0.2);
+    border: none;
+}
+
+.right button {
+    background-color: rgba(255, 255, 255 , 0.2);
+    border: none;
+}
+
+.left button img {
+    width: 50px;
+}
+
+.right button img{
+    width: 50px;
+}
+
+section .right {
+    position: absolute;
+    z-index: 2;
+    right: 15px;         
+}
+
+.images img {
+    width: 100%;
+    min-height: 200px;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2)
+}
+
+.rental-description, .contact-information {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rental-description h2 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    align-self: center;
+}
+
+.rental-description h3 {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.rental-description h4 {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.rental-description p {
+    margin-top: 10px;
+}
+
+.contact-information h2 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    align-self: center;
+}
+
+.contact-information form {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-information form input {
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255 , 0.2);
+    color: rgba(255, 255, 255 , 0.85);
+}
+
+.contact-information form label {
+    margin-bottom: 5px;
+}
+
+@media (min-width: 576px){
+    .container {
+        max-width: 900px;
+        margin: auto;
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    }
+
+    .images {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .images img {
+        max-height: 500px;        
+    }
+    
+    section .left {
+        position: relative;                      
+    }
+
+    section .right {
+        position: relative;
+        right: 0;        
+    } 
+
+    main {
+        display: flex;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+        padding: 10px;  
+    }
+
+    .rental-description, .contact-information {
+        flex-basis: 50%;
+        box-shadow: none;
+    }
+
+    .rental-description {
+        padding-right: 10px;
+        border-right: 1px solid;
+    }
+
+    .contact-information {
+        padding-left: 20px;        
+    }
+}
