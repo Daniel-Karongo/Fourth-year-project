@@ -7,7 +7,7 @@ html {
     color: rgba(255,255,255,0.85);    
 }
 
-*, *:before, *:after {
+* {
     margin: inherit;
     box-sizing: inherit;
 }
@@ -36,13 +36,21 @@ nav {
     border-bottom: 1px solid;    
 }
 
-nav a {
-    text-decoration: none;
-    color: rgba(255,255,255,0.85);
+nav .sign-out-button button {
+    margin: 0;
 }
 
 .main-body {
     padding: 10px;
+}
+
+.sign-out-button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+    align-self: flex-start;    
 }
 
 .buttons {

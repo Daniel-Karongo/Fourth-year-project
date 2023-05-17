@@ -1,0 +1,166 @@
+html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+}
+
+* {
+    box-sizing: inherit;
+    font-family: inherit;
+}
+
+body {
+    background-color: #282B30;
+    color: rgba(255,255,255,0.85);
+    margin: 0;
+}
+
+.container {
+    background-color: #1D2024;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+nav {
+    flex-basis: 15%;
+    display: flex;
+    flex-direction: row;    
+    border-bottom: 1px solid;        
+}
+
+nav a {
+    color: #0077FF;
+}
+
+.no-account {
+    display: none;
+}
+
+.lower {
+    flex-basis: 85%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+}
+
+main {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    border-radius: 40px;
+    width: 100%;
+    max-width: 400px;
+    justify-self: flex-start;    
+    height: fit-content;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;    
+}
+
+main form {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.no-account-b {    
+    text-align: center;
+    margin: 0;       
+}
+
+main form h2 {
+    align-self: center;
+    margin-top: 0;    
+}
+
+main form label {
+    margin-bottom: 7px;
+
+}
+
+main form input {
+    margin-bottom: 20px;   
+    padding: 5px 10px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255,255,255,0.85);
+}
+
+.remember {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;    
+}
+
+.remember input {
+    margin-right: 5px;
+}
+
+main form button {
+    align-self: center;
+    padding: 5px 20px;
+    font-size: 1rem;
+    margin-top: 7px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid;
+    background-color: transparent;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+    letter-spacing: 0.05rem;
+}
+
+@media (min-width: 576px) {
+    
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);        
+    }
+
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px;
+        border-bottom: 1px solid;           
+    }
+
+    nav h1 {
+        margin: 0;
+    }
+
+    .no-account {
+        display: flex;
+        flex-direction: column;
+        align-items: center;        
+    }
+
+    .no-account p {
+        margin-bottom: 5px;
+        margin-top: 0;
+    }
+
+    .no-account-b {
+        display: none;
+    }
+    
+    main {
+        flex-basis: 60%;
+        justify-self: flex-; 
+    }
+}

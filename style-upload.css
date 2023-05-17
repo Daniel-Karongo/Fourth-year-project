@@ -6,9 +6,8 @@ html {
     font-family: 'PT Sans', sans-serif;
 }
 
-*, *:before, *:after {
+* {
     box-sizing: inherit;
-    margin: inherit;
     font-family: inherit;
 }
 
@@ -116,7 +115,8 @@ nav button {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
     padding: 15px;
     display: flex;
-    flex-direction: column;          
+    flex-direction: column;
+    margin-bottom: 10px;          
 }
 
 .ammenities h4,h5 {
@@ -137,6 +137,7 @@ h4 {
 
 .ammenities #clean-water, #token, #meter, #security-guard, #cctv, #security-lights, #pit-latrine, #automatic-toilet, #garbage-collection, #cleaner, #sink, #handicap-access, #packing, #tiles, #ceiling, #balcony, #wi-fi, #joint-tv-subscription, #air-conditioning, #furnished, #swimming-pool, #gym {
     margin-right: 5px;
+    margin-bottom: 15px;
 }
 
 .preferences {
@@ -144,6 +145,7 @@ h4 {
     padding: 15px; 
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 }
 
 .preferences .gender, .students, .families, .driving, .religion {
@@ -159,22 +161,34 @@ h4 {
 
 .gender #male ,#female ,#any-gender, #no-students, #students-welcome, #no-children, #any-welcome, #having-vehicles, #not-having-vehicles, #christianity, #islam, #hinduism, #any-religion {
     margin-right: 5px;
+    margin-bottom: 15px;
 }
 
 .rules {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
-    padding: 15px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center; 
+    margin-bottom: 10px;
 }
 
-.rules h4, p {
-    margin-bottom: 15px;
+.rules h4 {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.rules p {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.rules .upload-rules {
+    margin-top: 0;
 }
 
 .rules .upload-rules #rules-upload {
-    display: none;
+    display: none;    
 }
 
 .rules .upload-rules label {
@@ -191,7 +205,8 @@ h4 {
 
 .submit-entry button {
     padding: 5px 15px;
-    margin-top: 10px;   
+    margin-top: 10px;
+    font-size: 1rem;   
 }
 
 a {
