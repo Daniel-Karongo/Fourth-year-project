@@ -9,7 +9,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background-color: #363B42;
+    background-color: #282B30;
     color: rgba(255,255,255,0.85);
 }
 
@@ -21,6 +21,7 @@ body {
 .container {
     padding: 10px;
     width: 100%;
+    background-color: #1D2024;
 }
 
 nav .top {
@@ -138,7 +139,7 @@ section {
 }
 
 section select, button {
-    padding: 5px 10px;
+    padding: 7px 15px;
     font-size: 0.9rem;
     background-color: #697382;
     color: rgba(255,255,255,0.85); 

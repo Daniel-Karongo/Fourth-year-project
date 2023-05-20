@@ -35,6 +35,7 @@ nav {
 
 nav a {
     color: #0077FF;
+    font-size: 0.9rem;
 }
 
 .no-account {
@@ -74,7 +75,12 @@ main form {
 
 .no-account-b {    
     text-align: center;
-    margin: 0;       
+    margin: 0;         
+}
+
+.no-account-b a {
+    color: #0077FF;
+    font-size: 0.9rem; 
 }
 
 main form h2 {
@@ -89,10 +95,12 @@ main form label {
 
 main form input {
     margin-bottom: 20px;   
-    padding: 5px 10px;
+    padding: 7px 10px;
     font-size: 1rem;
     background-color: rgba(255, 255, 255, 0.2);
     color: rgba(255,255,255,0.85);
+    border: 0;
+    border-radius: 1px;
 }
 
 .remember {
@@ -117,6 +125,14 @@ main form button {
     color: rgba(255,255,255,0.85);
     font-weight: 400;
     letter-spacing: 0.05rem;
+}
+
+main form a {
+    align-self: center;
+    margin-top: 7px;
+    margin-bottom: 10px;
+    color: #0077FF;
+    font-size: 0.9rem;
 }
 
 @media (min-width: 576px) {
@@ -162,5 +178,9 @@ main form button {
     main {
         flex-basis: 60%;
         justify-self: flex-; 
+    }
+
+    main form a {
+        margin-bottom: 0;        
     }
 }

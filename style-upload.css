@@ -12,7 +12,7 @@ html {
 }
 
 body{
-    background-color: #2C3036;
+    background-color: #282B30;
     color: rgba(255,255,255,0.85);
 }
 
@@ -22,9 +22,13 @@ form input,select, textarea {
     font-size: 1rem;
 }
 
+form option {
+    color: black;
+}
 button {
-    background-color: #591B10;
-    border-color: #F03E1F;
+    background-color: transparent;
+    border-color: #2C18DE;
+    font-size: 0.9rem;
     color: rgba(255,255,255,0.85);
 }
 
@@ -34,6 +38,7 @@ textarea::placeholder {
 
 .container {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    background-color: #1D2024;
     padding: 10px;
     width: 100%;
 }
@@ -51,7 +56,8 @@ nav {
 }
 
 nav button {
-    padding: 5px 10px;
+    padding: 7px 10px;
+    align-self: center;
 }
 
 .buttons {
@@ -96,14 +102,14 @@ nav button {
 }
 
 .upload-photographs label {
-    padding: 5px 15px;
+    padding: 7px 15px;
     border: 1px solid;
-    background-color: #591B10;
-    border-color: #F03E1F;
+    background-color: transparent;
+    border-color: #2C18DE;
     color: rgba(255,255,255,0.85);     
 }
 
-.type-of-business-premise, .number-of-apartment-bedrooms, .number-of-house-bedrooms {
+.type-of-business-premise, .number-of-apartment-bedrooms, .number-of-house-bedrooms, .more-house-bedrooms, .more-apartment-bedrooms, .number-of-available-rentals {
     display: none;
 }
 
@@ -192,11 +198,11 @@ h4 {
 }
 
 .rules .upload-rules label {
-    padding: 5px 15px;
-    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
-    background-color: #591B10;
-    border-color: #F03E1F;
-    color: rgba(255,255,255,0.85); 
+    padding: 7px 15px;    
+    color: rgba(255,255,255,0.85);
+    background-color: transparent;
+    border: 2px solid;
+    border-color: #2C18DE; 
 }
 
 .submit-entry {
@@ -223,6 +229,6 @@ a {
     }
 
     .container {
-        max-width: 700px;
+        max-width: 900px;
     }
 }

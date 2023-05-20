@@ -6,11 +6,16 @@
     font-family: 'PT Sans', sans-serif;
 }
 
+body {
+    background-color: #1D2024;
+}
+
 .container {        /*The larger container containing everything*/
     width: 100%;    /*To ensure everything fits perfectly along the whole width*/
-    min-height: 100vh;      /*To ensure everything is distributed along the whole height of the page bein viewed*/
+    min-height: 100vh;      /*To ensure everything is distributed along the whole height of the page bein viewed*/    
     padding: 2%;        /*To leave some space at the at the edges of the page*/ 
     position: relative;     /*So that the navbar(child) can be declared as absolute*/
+    margin: auto;
     display: flex;          
     align-items: center;
     justify-content: center;        /*To bring the search bar to the center of the page*/
@@ -22,16 +27,16 @@
 
 @keyframes animate {    /*To configure the animation*/
     0%,100%{    /*The first and last image*/
-        background-image: linear-gradient(rgba(53, 74, 119, 0.8), rgba(53, 74, 119, 0.6)), url(/Images/apartment-housing-tripoli-lebanon-ATHN9J.jpg);
+        background-image: linear-gradient(rgba(53, 74, 119, 1), rgba(53, 74, 119, 0.6)), url(/Images/apartment-housing-tripoli-lebanon-ATHN9J.jpg);
     }
     25%{
-        background-image: linear-gradient(rgba(53, 74, 119, 0.8), rgba(53, 74, 119, 0.6)), url(/Images/cheap-accommodation-kerikeri.jpg);
+        background-image: linear-gradient(rgba(53, 74, 119, 1), rgba(53, 74, 119, 0.6)), url(/Images/cheap-accommodation-kerikeri.jpg);
     }
     50%{
-        background-image: linear-gradient(rgba(53, 74, 119, 0.8), rgba(53, 74, 119, 0.6)), url(/Images/mud-house.jpg);
+        background-image: linear-gradient(rgba(53, 74, 119, 1), rgba(53, 74, 119, 0.6)), url(/Images/mud-house.jpg);
     }
     75%{
-        background-image: linear-gradient(rgba(53, 74, 119, 0.8), rgba(53, 74, 119, 0.6)), url(/Images/slums-and-high-rise-apartments-mumbai-bombay-maharashtra-india-F3GHPY.jpg);
+        background-image: linear-gradient(rgba(53, 74, 119, 1), rgba(53, 74, 119, 0.6)), url(/Images/slums-and-high-rise-apartments-mumbai-bombay-maharashtra-india-F3GHPY.jpg);
     }
 }
 
@@ -39,37 +44,42 @@
     position: absolute;
     top: 0;
     left:0;
-    padding: 10px;
+    padding: 20px;
     width: 100%;    
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 1);
+    align-items: baseline;
+    background-color: transparent;
     flex-wrap: wrap;    /*To force the "advertise" button drop once the screen becomes smaller, rather than overflow*/
+    color: rgba(255,255,255,0.85);
+    border-bottom: 1px solid;
 }
 
 #navigation-bar h1 {
     font-size: 1.7rem;
     margin-right: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px;    
 }
 
 .advertise {
+    border: 1px solid white;
     border-radius: 10px;    /* To round the corners*/
-    padding: 5px 20px;     /* To give the button a bigger body: 5px more in the upwards and downwards directions and 20px more in the left and right directions*/
+    padding: 10px 20px;     /* To give the button a bigger body: 5px more in the upwards and downwards directions and 20px more in the left and right directions*/
     outline: none;
     font-size: 1.2rem;
     font-weight: bold;
+    background-color: transparent;
 }
 a {
     text-decoration: none;
-    color: black;
+    color: rgba(255,255,255,0.85);
 }
 
 .introduction {
     position: absolute;
-    top: 80px;
-    text-align: center;    
+    top: 150px;
+    text-align: center;
+    color: rgba(245,245,245,0.80);   
 }
 
 .introduction h1 {
@@ -77,18 +87,18 @@ a {
 }
 
 .introduction p {
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .search-bar {
     width: 90%;
     max-width: 700px;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;    /* To align the input box and button towards the center (vertically) */
     border-radius: 60px;    /* To round the corners of the larger form */
     padding: 10px 20px;     /* To give the form a bigger body */
-    backdrop-filter: blur(2px) saturate(120%);
+    backdrop-filter: blur(4px) saturate(120%);
 }
 
 .search-bar input {
@@ -101,7 +111,7 @@ a {
 }
 
 ::placeholder {
-    color: rgba(255, 255, 255, 0.8); /* Makes the placeholder white and makes it slightly transparent */
+    color: rgba(255, 255, 255, 0.6); /* Makes the placeholder white and makes it slightly transparent */
     font-size: 1.2rem;
 }
 
@@ -118,4 +128,15 @@ a {
     height: auto;
     cursor: pointer; 
     font-size: 1.2rem;
+}
+
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 80vw;
+    }
+    
+    .introduction {
+        top: 120px;          
+    }
 }

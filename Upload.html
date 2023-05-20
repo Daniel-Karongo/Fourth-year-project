@@ -25,54 +25,59 @@
             <div class="basic-information">
                 <form action="">
                     <label class="type-of-rental" for="type-of-rental">Type of Rental</label>
-                    <select class="type-of-rental" name="type-of-rental" id="type-of-rental">
-                        <option value="hostel">Hostel</option>
+                    <select class="type-of-rental" name="type-of-rental" id="type-of-rental" onchange="viewNumberofRentals()">
+                        <option value="no-value">Please choose the kind of rental you want to advertise </option>
+                        <option value="Hostel">Hostel</option>
                         <option value="Single Room">Single Room</option>
-                        <option value="bedsitter">Bedsitter</option>
-                        <option value="apartment">Apartment</option>
-                        <option value="business Premise">Business Premise</option>
-                        <option value="house">House</option> 
-                        <option value="suite">Suite</option>
+                        <option value="Bedsitter">Bedsitter</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Business Premise">Business Premise</option>
+                        <option value="House">House</option> 
+                        <option value="Suite">Suite</option>
                     </select>
                     
                     <label class="number-of-apartment-bedrooms" id="label-number-of-apartment-bedrooms" for="number-of-apartment-bedrooms">Number of Bedrooms</label>
-                    <select class="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms" id="number-of-apartment-bedrooms">
+                    <select class="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms" id="number-of-apartment-bedrooms" onchange="moreApartmentBedrooms()">
+                        <option value="no-value">Please specify the number of bedrooms available in the Apartment you want to advertise</option>
                         <option value="1-bedroom">1 Bedroom</option>
                         <option value="2-bedroom">2 Bedrooms</option>
                         <option value="3-bedroom">3 Bedrooms</option>
                         <option value="more">More </option>                                              
                     </select>
-                    <label class="number-of-apartment-bedrooms" for="more-apartment-bedrooms">How many?</label>
-                    <input class="number-of-apartment-bedrooms" type="number" name="more-apartment-bedrooms" id="more-apartment-bedrooms">
+                    <label class="more-apartment-bedrooms" for="more-apartment-bedrooms">How many?</label>
+                    <input class="more-apartment-bedrooms" type="number" name="more-apartment-bedrooms" id="more-apartment-bedrooms" onchange="displayTheNumberOfApartments()">
                     
                     <label class="type-of-business-premise" id="label-type-of-premise" for="type-of-premise">Type of business Premise</label>
-                    <select class="type-of-business-premise" name="type-of-premise" id="type-of-premise">
-                        <option value="stall">Stall</option>
-                        <option value="shop">Shop</option>
-                        <option value="event Hall">Event Hall</option>
-                        <option value="warehouse">Warehouse</option>
-                        <option value="office">Office</option>
-                        <option value="industrial">Industrial</option>
+                    <select class="type-of-business-premise" name="type-of-premise" id="type-of-premise" onchange="viewNumberofBusinessPremises()">
+                        <option value="no-value">Please specify the type of busness premise you want to advertise</option>
+                        <option value="Stall">Stall</option>
+                        <option value="Shop">Shop</option>
+                        <option value="Event Hall">Event Hall</option>
+                        <option value="Warehouse">Warehouse</option>
+                        <option value="Office">Office</option>
+                        <option value="Industrial">Industrial</option>
                     </select>
 
                     <label class="number-of-house-bedrooms" id="label-number-of-house-bedrooms" for="number-of-house-bedrooms">Number of Bedrooms</label>
-                    <select class="number-of-house-bedrooms" name="number-of-house-bedrooms" id="number-of-house-bedrooms">
+                    <select class="number-of-house-bedrooms" name="number-of-house-bedrooms" id="number-of-house-bedrooms" onchange="moreHouseBedrooms()">
+                        <option value="no-value">Please specify the number of bedrooms available in the House you want to advertise</option>
                         <option value="1-bedroom">1 Bedroom</option>
                         <option value="2-bedroom">2 Bedrooms</option>
                         <option value="3-bedroom">3 Bedrooms</option>
                         <option value="more">More </option>                                              
                     </select>
-                    <label class="number-of-house-bedrooms" for="more-house-bedrooms">How many?</label>
-                    <input class="number-of-house-bedrooms" type="number" name="more-house-bedrooms" id="more-house-bedrooms">
+                    <label class="more-house-bedrooms" for="more-house-bedrooms">How many?</label>
+                    <input class="more-house-bedrooms" type="number" name="more-house-bedrooms" id="more-house-bedrooms" onchange="displayTheNumberOfHouses()">
 
-                    <label class="number-of-available-rentals" for="number-of-available-rentals">Number of Available Rentals</label>
-                    <input class="number-of-available-rentals" type="number" name="number-of-available-rentals" id="number-of-available-rentals">
+                    <label class="number-of-available-rentals" for="number-of-available-rentals">Number of Available </label>
+                    <input type="number" class="number-of-available-rentals" name="number-of-available-rentals" id="number-of-available-rentals">
 
                     <label class="location" for="location">Location</label>
                     <input class="location" type="url" name="location" id="location">
 
                     <label class="rental-term" for="rental-term">Rental Term</label>
                     <select class="rental-term" name="rental-term" id="rental-term">
+                        <option value="no-value"></option>
                         <option value="daily">Daily</option>
                         <option value="monthly">Monthly</option>
                         <option value="yearly">Yearly</option>
@@ -84,7 +89,7 @@
                     <input class="rent" type="number" name="rent" id="rent">
 
                     <label class="description" for="description">Description</label>
-                    <textarea id="description" name="description" placeholder="Write anything you want to pitch your rental to potential tenants"></textarea>
+                    <textarea id="description" name="description" placeholder="Write anything you want to pitch your to potential tenants"></textarea>
 
                     <div class="upload-photographs">
                         <label for="images-upload"> Upload Photographs</label>
