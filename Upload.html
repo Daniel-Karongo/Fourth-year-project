@@ -19,13 +19,13 @@
         </nav>
         <div class="main-body">
             <div class="buttons">
-                <button onClick="basicInformation()">Basic Information</button>
-                <button onClick="optionalInformation()">Optional Information</button>
+                <button onClick="wrapperFunction('.basic-information', '.optional-information', 'input')">Basic Information</button>
+                <button onClick="wrapperFunction('.optional-information', '.basic-information', null)">Optional Information</button>
             </div>
             <div class="basic-information">
                 <form action="">
                     <label class="type-of-rental" for="type-of-rental">Type of Rental</label>
-                    <select class="type-of-rental" name="type-of-rental" id="type-of-rental" onchange="viewNumberofRentals()">
+                    <select class="type-of-rental" name="type-of-rental" id="type-of-rental" onchange="viewNumberofRentalsSectionOfEachType()">
                         <option value="no-value">Please choose the kind of rental you want to advertise </option>
                         <option value="Hostel">Hostel</option>
                         <option value="Single Room">Single Room</option>
@@ -37,7 +37,7 @@
                     </select>
                     
                     <label class="number-of-apartment-bedrooms" id="label-number-of-apartment-bedrooms" for="number-of-apartment-bedrooms">Number of Bedrooms</label>
-                    <select class="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms" id="number-of-apartment-bedrooms" onchange="moreApartmentBedrooms()">
+                    <select class="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms" id="number-of-apartment-bedrooms" onchange="viewNumberOfSpecificApartmentBedrooms()">
                         <option value="no-value">Please specify the number of bedrooms available in the Apartment you want to advertise</option>
                         <option value="1-bedroom">1 Bedroom</option>
                         <option value="2-bedroom">2 Bedrooms</option>
@@ -45,10 +45,10 @@
                         <option value="more">More </option>                                              
                     </select>
                     <label class="more-apartment-bedrooms" for="more-apartment-bedrooms">How many?</label>
-                    <input class="more-apartment-bedrooms" type="number" name="more-apartment-bedrooms" id="more-apartment-bedrooms" onchange="displayTheNumberOfApartments()">
+                    <input class="more-apartment-bedrooms" type="number" name="more-apartment-bedrooms" id="more-apartment-bedrooms" onchange="specifyTheFinalTheNumberOfApartments()">
                     
                     <label class="type-of-business-premise" id="label-type-of-premise" for="type-of-premise">Type of business Premise</label>
-                    <select class="type-of-business-premise" name="type-of-premise" id="type-of-premise" onchange="viewNumberofBusinessPremises()">
+                    <select class="type-of-business-premise" name="type-of-premise" id="type-of-premise" onchange="viewNumberofSpecificBusinessPremises()">
                         <option value="no-value">Please specify the type of busness premise you want to advertise</option>
                         <option value="Stall">Stall</option>
                         <option value="Shop">Shop</option>
@@ -59,7 +59,7 @@
                     </select>
 
                     <label class="number-of-house-bedrooms" id="label-number-of-house-bedrooms" for="number-of-house-bedrooms">Number of Bedrooms</label>
-                    <select class="number-of-house-bedrooms" name="number-of-house-bedrooms" id="number-of-house-bedrooms" onchange="moreHouseBedrooms()">
+                    <select class="number-of-house-bedrooms" name="number-of-house-bedrooms" id="number-of-house-bedrooms" onchange="viewNumberofSpecificHouseBedrooms()">
                         <option value="no-value">Please specify the number of bedrooms available in the House you want to advertise</option>
                         <option value="1-bedroom">1 Bedroom</option>
                         <option value="2-bedroom">2 Bedrooms</option>
@@ -67,7 +67,7 @@
                         <option value="more">More </option>                                              
                     </select>
                     <label class="more-house-bedrooms" for="more-house-bedrooms">How many?</label>
-                    <input class="more-house-bedrooms" type="number" name="more-house-bedrooms" id="more-house-bedrooms" onchange="displayTheNumberOfHouses()">
+                    <input class="more-house-bedrooms" type="number" name="more-house-bedrooms" id="more-house-bedrooms" onchange="specifyTheFinalTheNumberOfHouses()">
 
                     <label class="number-of-available-rentals" for="number-of-available-rentals">Number of Available </label>
                     <input type="number" class="number-of-available-rentals" name="number-of-available-rentals" id="number-of-available-rentals">

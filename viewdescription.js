@@ -1,13 +1,18 @@
+function findCurrentImage(arrayOfImages) {
+    for(let i=0; i<arrayOfImages.length; i++) {
+        if(window.getComputedStyle(arrayOfImages[i]).display === "inline") {
+            currentImage = arrayOfImages[i];
+            return currentImage;            
+        }
+    }
+}
+
 function viewLeft() {
     let images = document.querySelectorAll('img.viewimage');
     let currentImage; 
     let paragraph = document.querySelector('#tally-paragraph');   
 
-    for(let i=0; i<images.length; i++) {
-        if(window.getComputedStyle(images[i]).display === "inline") {
-            currentImage = images[i];            
-        }
-    }
+    currentImage = findCurrentImage(images);
 
     for(let i=0; i<images.length; i++) {
         let imageId = images[i].id;
@@ -31,11 +36,7 @@ function viewRight() {
     let currentImage;
     let paragraph = document.querySelector('#tally-paragraph');     
 
-    for(let i=0; i<images.length; i++) {
-        if(window.getComputedStyle(images[i]).display === "inline") {
-            currentImage = images[i];            
-        }
-    }
+    currentImage = findCurrentImage(images);
 
     for(let i=0; i<images.length; i++) {
         let imageId = images[i].id;
