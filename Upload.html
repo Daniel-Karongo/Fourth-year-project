@@ -5,25 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style-upload.css">
+    <link href="./style-upload.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
-    <script src="upload.js"></script>
+    <script src="./upload.js"></script>
 </head>
 <body>
     <div class="container">
         <nav>
             <h3>User Name</h3>
-            <button type="submit"><a href="/index.html">Sign Out</a></button>
+            <button type="submit"><a href="./index.html">Sign Out</a></button>
         </nav>
-        <div class="main-body">
+        <form class="main-body" action="./UploadRental.php">
             <div class="buttons">
-                <button onClick="wrapperFunction('.basic-information', '.optional-information', 'input')">Basic Information</button>
-                <button onClick="wrapperFunction('.optional-information', '.basic-information', null)">Optional Information</button>
+                <button onClick="wrapperFunction('.basic-information', 'flex', '.optional-information', 'input')" type="button">Basic Information</button>
+                <button onClick="wrapperFunction('.optional-information', 'block', '.basic-information', null)" type="button">Optional Information</button>
             </div>
             <div class="basic-information">
-                <form action="">
                     <label class="type-of-rental" for="type-of-rental">Type of Rental</label>
                     <select class="type-of-rental" name="type-of-rental" id="type-of-rental" onchange="viewNumberofRentalsSectionOfEachType()">
                         <option value="no-value">Please choose the kind of rental you want to advertise </option>
@@ -93,9 +92,8 @@
 
                     <div class="upload-photographs">
                         <label for="images-upload"> Upload Photographs</label>
-                        <input type="file" name="images-upload" id="images-upload" multiple>                        
-                    </div>                    
-                </form>
+                        <input type="file" name="images-upload" id="images-upload" accept="image/*" multiple>                        
+                    </div>
             </div>
             <div class="optional-information">
                 <div class="ammenities">
@@ -304,9 +302,9 @@
                 </div>
             </div>
             <div class="submit-entry">
-                <button type="submit"><a href="./ViewList.html">Submit</a></button>
+                <button type="submit">Submit</button>
             </div>            
-        </div>
+        </form>
     </div>
 </body>
 </html>

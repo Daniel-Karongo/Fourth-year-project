@@ -3,13 +3,16 @@ function clearText(tag) {
     text.forEach((input) => {input.value = ""});    // Works for everything except the checkbox
 }
 
-function toViewAndHide(view, hide) {
-    document.querySelector(view).style.display = 'block';
-    document.querySelector(hide).style.display = 'none';   
+function toViewAndHide(view, hide, displaytype) {
+    document.querySelector(view).style.display = displaytype;
+    document.querySelector(hide).style.display = 'none';
+    if(displaytype === "flex") {
+        document.querySelector(view).style.flexDirection = "column";
+    }   
 }
 
-function wrapperFunction(view, hide, tag) {
-    toViewAndHide(view, hide);
+function wrapperFunction(view, displaytype, hide, tag) {
+    toViewAndHide(view, hide, displaytype);
     if(tag != null){
         clearText(tag);    
     }    
