@@ -105,7 +105,7 @@ nav button {
     color: rgba(255,255,255,0.85);     
 }
 
-.type-of-business-premise, .number-of-apartment-bedrooms, .number-of-house-bedrooms, .more-house-bedrooms, .more-apartment-bedrooms, .number-of-available-rentals {
+.type-of-business-premise, .number-of-apartment-bedrooms, .number-of-house-bedrooms, .more-house-bedrooms, .more-apartment-bedrooms, .number-of-available-rentals, .maximum-occupants {
     display: none;
 }
 

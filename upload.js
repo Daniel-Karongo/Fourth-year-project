@@ -42,29 +42,39 @@ function viewNumberofRentalsSectionOfEachType() {
     if (selectedOption !== 'no-value') {
         if ((selectedOption !== 'Apartment') && (selectedOption !== 'Business Premise') && (selectedOption !== 'House'))    // If the option selected is not "Apartment", "Business Premise" or "House" 
         {
-            toViewAndHideMultiplesections(('.type-of-business-premise, .number-of-house-bedrooms, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-apartment-bedrooms'), '.number-of-available-rentals'); 
-            numberofAvailableLabel.innerHTML = "";  // Clear whatever is on the "Number of Available Rentals" label
-            numberofAvailableLabel.innerHTML += ("Number of Available " + selectedOption + "s");    // Replace the text of the "Number of Available Rentals" label with "Number of Available ..."            
+            toViewAndHideMultiplesections(('.type-of-business-premise, .number-of-house-bedrooms, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-apartment-bedrooms'), ('.number-of-available-rentals, .maximum-occupants'));
+            
+            if(selectedOption === "Suite") {
+                document.querySelector('.maximum-occupants').innerHTML = "";
+                document.querySelector('.maximum-occupants').innerHTML += ("Number of Beds Available In Each Suite"); 
+            } else {
+                document.querySelector('.maximum-occupants').innerHTML = "";
+                document.querySelector('.maximum-occupants').innerHTML += ("Preferred Maximum Number of Occupants For Each " + selectedOption);
+            }
+
+            clearLabel(numberofAvailableLabel, selectedOption, "s");
+            // Clear whatever is on the "Number of Available Rentals" label
+            // Replace the text of the "Number of Available Rentals" label with "Number of Available ..."            
 
         } else if (selectedOption === 'Apartment') // If the option chosen is "Apartment"
         {
-            toViewAndHideMultiplesections(('.type-of-business-premise, .number-of-house-bedrooms, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-available-rentals'), '.number-of-apartment-bedrooms');    // Hide whatever other sections (Business Premise or House) that may be displayed
+            toViewAndHideMultiplesections(('.type-of-business-premise, .number-of-house-bedrooms, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-available-rentals, .maximum-occupants'), '.number-of-apartment-bedrooms');    // Hide whatever other sections (Business Premise or House) that may be displayed
             // Unhide the section where the user specifies the number of bedrooms in the apartment.              
 
         } else if (selectedOption === 'Business Premise') // If the option choses is "Business Premise"
         {
-            toViewAndHideMultiplesections(('.number-of-apartment-bedrooms,.number-of-house-bedrooms, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-available-rentals'), '.type-of-business-premise');
+            toViewAndHideMultiplesections(('.number-of-apartment-bedrooms,.number-of-house-bedrooms, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-available-rentals, .maximum-occupants'), '.type-of-business-premise');
             // Hide whatever other sections (Apartment or House) that may be displayed
             // Unhide the section where the user specifies the type of business premise.            
 
         } else if (selectedOption === 'House') {
-            toViewAndHideMultiplesections(('.number-of-apartment-bedrooms, .type-of-business-premise, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-available-rentals'), '.number-of-house-bedrooms'); 
+            toViewAndHideMultiplesections(('.number-of-apartment-bedrooms, .type-of-business-premise, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-available-rentals, .maximum-occupants'), '.number-of-house-bedrooms'); 
             // Unhide the section where the user specifies the number of bedrooms in the house.
 
         }
                
     } else {
-        toViewAndHideMultiplesections('.number-of-available-rentals', null);
+        toViewAndHideMultiplesections('.number-of-available-rentals, .maximum-occupants', null);
         // Hide the "Number of Available Rentals" section if the default option is what is selected.
 
     }
