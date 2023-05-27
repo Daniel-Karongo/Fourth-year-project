@@ -21,7 +21,7 @@ function wrapperFunction(view, displaytype, hide, tag) {
 function toViewAndHideMultiplesections(toHideArg, toViewArg) {
     toHide = document.querySelectorAll(toHideArg);
     toHide.forEach((element) => {
-        element.style.display = 'none';     
+        element.style.display = 'none';
         element.selectedIndex = 0; 
     });
     toView = document.querySelectorAll(toViewArg);            
@@ -76,7 +76,7 @@ function viewNumberofRentalsSectionOfEachType() {
         }
                
     } else {
-        toViewAndHideMultiplesections('.apartmentBedrooms, .moreApartmentBedrooms, .businessPremiseType, .houseBedrooms, .moreHouseBedrooms, .numberOfAvailableRentals, .maximumNumberOfOccupants, .error', null);
+        toViewAndHideMultiplesections('.apartmentBedrooms, .moreApartmentBedrooms, .businessPremiseType, .houseBedrooms, .moreHouseBedrooms, .numberOfAvailableRentals, .maximumNumberOfOccupants', null);
         // Hide the "Number of Available Rentals" section if the default option is what is selected.
 
     }
