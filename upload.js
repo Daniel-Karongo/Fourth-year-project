@@ -26,7 +26,9 @@ function toViewAndHideMultiplesections(toHideArg, toViewArg) {
     });
     toView = document.querySelectorAll(toViewArg);            
     toView.forEach((element) => {
-        element.style.display = 'block';    
+        element.style.display = 'flex';
+        element.style.flexDirection = "column";
+
     });
 }
 
@@ -42,7 +44,7 @@ function viewNumberofRentalsSectionOfEachType() {
     if (selectedOption !== 'no-value') {
         if ((selectedOption !== 'Apartment') && (selectedOption !== 'Business Premise') && (selectedOption !== 'House'))    // If the option selected is not "Apartment", "Business Premise" or "House" 
         {
-            toViewAndHideMultiplesections(('.type-of-business-premise, .number-of-house-bedrooms, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-apartment-bedrooms'), ('.number-of-available-rentals, .maximum-occupants'));
+            toViewAndHideMultiplesections(('.businessPremiseType, .houseBedrooms, .moreHouseBedrooms, .apartmentBedrooms, .moreApartmentBedrooms'), ('.numberOfAvailableRentals, .maximumNumberOfOccupants'));
             
             if(selectedOption === "Suite") {
                 document.querySelector('.maximum-occupants').innerHTML = "";
@@ -58,23 +60,23 @@ function viewNumberofRentalsSectionOfEachType() {
 
         } else if (selectedOption === 'Apartment') // If the option chosen is "Apartment"
         {
-            toViewAndHideMultiplesections(('.type-of-business-premise, .number-of-house-bedrooms, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-available-rentals, .maximum-occupants'), '.number-of-apartment-bedrooms');    // Hide whatever other sections (Business Premise or House) that may be displayed
+            toViewAndHideMultiplesections(('.businessPremiseType, .houseBedrooms, .moreApartmentBedrooms, .moreHouseBedrooms, .numberOfAvailableRentals, .maximumNumberOfOccupants'), '.apartmentBedrooms');    // Hide whatever other sections (Business Premise or House) that may be displayed
             // Unhide the section where the user specifies the number of bedrooms in the apartment.              
 
         } else if (selectedOption === 'Business Premise') // If the option choses is "Business Premise"
         {
-            toViewAndHideMultiplesections(('.number-of-apartment-bedrooms,.number-of-house-bedrooms, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-available-rentals, .maximum-occupants'), '.type-of-business-premise');
+            toViewAndHideMultiplesections(('.apartmentBedrooms, .houseBedrooms, .moreApartmentBedrooms, .moreHouseBedrooms, .numberOfAvailableRentals, .maximumNumberOfOccupants'), '.businessPremiseType');
             // Hide whatever other sections (Apartment or House) that may be displayed
             // Unhide the section where the user specifies the type of business premise.            
 
         } else if (selectedOption === 'House') {
-            toViewAndHideMultiplesections(('.number-of-apartment-bedrooms, .type-of-business-premise, .more-apartment-bedrooms, .more-house-bedrooms, .number-of-available-rentals, .maximum-occupants'), '.number-of-house-bedrooms'); 
+            toViewAndHideMultiplesections(('.apartmentBedrooms, .businessPremiseType, .moreApartmentBedrooms, .moreHouseBedrooms, .numberOfAvailableRentals, .maximumNumberOfOccupants'), '.houseBedrooms'); 
             // Unhide the section where the user specifies the number of bedrooms in the house.
 
         }
                
     } else {
-        toViewAndHideMultiplesections('.number-of-available-rentals, .maximum-occupants', null);
+        toViewAndHideMultiplesections('.apartmentBedrooms, .moreApartmentBedrooms, .businessPremiseType, .houseBedrooms, .moreHouseBedrooms, .numberOfAvailableRentals, .maximumNumberOfOccupants, .error', null);
         // Hide the "Number of Available Rentals" section if the default option is what is selected.
 
     }
@@ -87,13 +89,13 @@ function viewNumberOfSpecificApartmentBedrooms() {
       
     if (selectedOption !== 'no-value') {    // If no option is selected
         if (selectedOption === 'more') {    // For "more" bedrooms
-            toViewAndHideMultiplesections('.number-of-available-rentals', '.more-apartment-bedrooms');
+            toViewAndHideMultiplesections('.numberOfAvailableRentals', '.moreApartmentBedrooms');
             // Display the section that specifies how many bedrooms are in the apartment.             
             // Hide the section (final) where the user specifies the total number of rentals available of the chosen type.
             clearLabel(document.querySelector('.number-of-available-rentals'), selectedOption, " Apartments");
 
         } else {    // If some option is chosen that is not the default not the "more" values.
-            toViewAndHideMultiplesections('.more-apartment-bedrooms', '.number-of-available-rentals');
+            toViewAndHideMultiplesections('.moreApartmentBedrooms', '.numberOfAvailableRentals');
             // Hide the section where the user specifies the number of bedrooms if greater than 3.          
             // Display the section (final) where the user specifies the total number of rentals available of the chosen type.                  
             
@@ -102,8 +104,8 @@ function viewNumberOfSpecificApartmentBedrooms() {
 
         }
     } else {    // If no option is chosen by the user.
-        toViewAndHideMultiplesections(('.more-apartment-bedrooms', 
-        '.number-of-available-rentals'), null); 
+        toViewAndHideMultiplesections(('.moreApartmentBedrooms', 
+        '.numberOfAvailableRentals'), null); 
         // Hide the section (final) where the user specifies the total number of rentals available of the chosen type.           
         // Hide the section where the user specifies the number of bedrooms if greater than 3.          
         
@@ -117,13 +119,13 @@ function viewNumberofSpecificHouseBedrooms() {
         
     if (selectedOption !== 'no-value') {    // If no option is selected
         if (selectedOption === 'more') {    // For "more" bedrooms
-            toViewAndHideMultiplesections('.number-of-available-rentals', '.more-house-bedrooms');
+            toViewAndHideMultiplesections('.numberOfAvailableRentals', '.moreHouseBedrooms');
             // Display the section that specifies how many bedrooms are in the house.             
             // Hide the section (final) where the user specifies the total number of rentals available of the chosen type.
             clearLabel(document.querySelector('.number-of-available-rentals'), selectedOption, " Houses");           
             
         } else {    // If some option is chosen that is not the default and not the "more" values.
-            toViewAndHideMultiplesections('.more-house-bedrooms', '.number-of-available-rentals');
+            toViewAndHideMultiplesections('.moreHouseBedrooms', '.numberOfAvailableRentals');
             // Hide the section where the user specifies the number of bedrooms if greater than 3.          
             // Display the section (final) where the user specifies the total number of rentals available of the chosen type.
             clearLabel(document.querySelector('.number-of-available-rentals'), selectedOption, " Houses");
@@ -131,8 +133,8 @@ function viewNumberofSpecificHouseBedrooms() {
 
         }
     } else {    // If no option is chosen by the user. 
-        toViewAndHideMultiplesections(('.more-house-bedrooms', 
-        '.number-of-available-rentals'), null);
+        toViewAndHideMultiplesections(('.moreHouseBedrooms', 
+        '.numberOfAvailableRentals'), null);
         // Hide the section (final) where the user specifies the total number of rentals available of the chosen type.           
         // Hide the section where the user specifies the number of bedrooms if greater than 3.          
         document.querySelector('#more-house-bedrooms').value = null;    // Clear whatever value may have been entered into the "How many" section of the apartment.
@@ -144,7 +146,7 @@ function viewNumberofSpecificBusinessPremises() {
     
     if (selectedOption !== 'no-value')      // If no option is selected
     {    
-        toViewAndHideMultiplesections(null, '.number-of-available-rentals');
+        toViewAndHideMultiplesections(null, '.numberOfAvailableRentals');
         // Display the section (final) where the user specifies the total number of rentals available of the chosen type.
 
         if (selectedOption !== 'Industrial') {
@@ -154,7 +156,7 @@ function viewNumberofSpecificBusinessPremises() {
         }        
 
     } else {    // If no option is chosen by the user. 
-        toViewAndHideMultiplesections('.number-of-available-rentals', null);
+        toViewAndHideMultiplesections('.numberOfAvailableRentals', null);
        // Hide the section (final) where the user specifies the total number of rentals available of the chosen type.
     }
 
@@ -165,12 +167,12 @@ function specifyTheFinalTheNumberOfApartments() {
         
     if (enteredValue !== "")      // If some value is entered
     {    
-        toViewAndHideMultiplesections(null, '.number-of-available-rentals'); 
+        toViewAndHideMultiplesections(null, '.numberOfAvailableRentals'); 
         // Display the section (final) where the user specifies the total number of rentals available of the chosen type.
         clearLabel(document.querySelector('.number-of-available-rentals'), enteredValue, "-Bedroom Apartments");
 
     } else {    // If no value has beeen entered by the user. 
-        toViewAndHideMultiplesections('.number-of-available-rentals', null);
+        toViewAndHideMultiplesections('.numberOfAvailableRentals', null);
         // Hide the section (final) where the user specifies the total number of rentals available of the chosen type.
 
     }
@@ -178,17 +180,149 @@ function specifyTheFinalTheNumberOfApartments() {
 
 function specifyTheFinalTheNumberOfHouses() {
     let enteredValue = document.querySelector('#more-house-bedrooms').value;     // The number of bedrooms manualy added.
-    let numberofAvailableLabel = document.querySelector('.number-of-available-rentals');    // The "Number of Avalable Rentals" section
-    let numberofRentalsInput = document.querySelectorAll('.number-of-available-rentals');       // The label of the section above ("Number of Avalable Rentals")  
-    
+        
     if (enteredValue !== "")      // If some value is entered
     {    
-        toViewAndHideMultiplesections(null, '.number-of-available-rentals'); 
+        toViewAndHideMultiplesections(null, '.numberOfAvailableRentals'); 
         // Display the section (final) where the user specifies the total number of rentals available of the chosen type.        
         clearLabel(document.querySelector('.number-of-available-rentals'), enteredValue, "-Bedroom Houses");
                                  
     } else {    // If no value has beeen entered by the user. 
-        toViewAndHideMultiplesections('.number-of-available-rentals', null); 
+        toViewAndHideMultiplesections('.numberOfAvailableRentals', null); 
         // Hide the section (final) where the user specifies the total number of rentals available of the chosen type.
     }
 }
+
+
+function validateForm(event) {
+    event.preventDefault();
+
+    // const form = document.getElementById('form');
+    const rentalType = document.getElementById('type-of-rental');
+
+    const apartmentBedrooms = document.getElementById('number-of-apartment-bedrooms');
+    const moreApartmentBedrooms = document.getElementById('more-apartment-bedrooms');
+
+    const moreHouseBedrooms = document.getElementById('more-house-bedrooms');
+    const houseBedrooms = document.getElementById('number-of-house-bedrooms');
+
+    const businessPremise = document.getElementById('type-of-premise');
+
+    const numberOfRentals = document.getElementById('number-of-available-rentals');
+    const location = document.getElementById('location');
+    const rentalTerm = document.getElementById('rental-term');
+    const amountOfRent = document.getElementById('rent');
+    const images = document.getElementById('images-upload');
+    const imagesLabel = document.querySelector('.upload-photographs');
+
+    formValidator();
+
+    function displayError(element, errorMessage) {
+        let parentDiv = element.parentElement;
+        let error = parentDiv.querySelector('.error');
+        error.innerHTML = errorMessage;        
+        parentDiv.classList.add('error');
+        parentDiv.classList.remove('success');             
+    }
+
+    function successfulEntry(element) {
+        let parentDiv = element.parentElement;
+        let error = parentDiv.querySelector('.error');
+        error.innerHTML = '';
+        parentDiv.classList.add('success');
+        parentDiv.classList.remove('error'); 
+    }
+
+    function formValidator() {
+        const rentalTypeValue = rentalType.value;
+        const numberOfRentalsValue = numberOfRentals.value;
+        const locationValue = location.value;
+        const rentalTermValue = rentalTerm.value;
+        const amountOfRentValue = amountOfRent.value;
+        const imagesValue = images.files;
+
+        const apartmentBedroomsValue = apartmentBedrooms.value;
+        const moreApartmentBedroomsValue = moreApartmentBedrooms.value;
+
+        const houseBedroomsValue = houseBedrooms.value;
+        const moreHouseBedroomsValue = moreHouseBedrooms.value;
+
+        const businessPremiseValue = businessPremise.value;
+        
+              
+        
+
+        if(rentalTypeValue === 'no-value') {
+            displayError(rentalType, "Please Choose A Type of Rental");
+        } else if ((rentalTypeValue === 'Hostel') || (rentalTypeValue === 'Bedsitter') || 
+        (rentalTypeValue === 'Single Room') || 
+        (rentalTypeValue === 'Suite')) {
+            if (numberOfRentalsValue === '') {
+                displayError(numberOfRentals, "Please Specify the Number of " + rentalTypeValue + "s"); 
+                successfulEntry(rentalType);
+            } else {
+                successfulEntry(numberOfRentals);
+            }
+        } else if (rentalTypeValue === 'Apartment') {
+            if (apartmentBedroomsValue === 'no-value') {
+                displayError(apartmentBedrooms, "Please Specify the Number of Bedrooms in Each " + rentalTypeValue);                
+            } else if (apartmentBedroomsValue === 'more') {
+                if (moreApartmentBedroomsValue === '') {
+                    displayError(moreApartmentBedrooms, "Please Specify the Number of Bedrooms in Each " + rentalTypeValue);
+                } else {
+                    successfulEntry(moreApartmentBedrooms);
+                }
+            } else {
+                successfulEntry(apartmentBedrooms);
+            }
+        } else if (rentalTypeValue === 'Business Premise') {
+            if (businessPremiseValue === 'no-value') {
+                displayError(businessPremise, "Please Specify the Type Of Business Premise");                
+            } else {
+                successfulEntry(businessPremise);
+            }
+        } else {
+            // const houseBedroomsValue = houseBedrooms.value;
+            // const moreHouseBedroomsValue = moreHouseBedrooms.value;
+            if (houseBedroomsValue === 'no-value') {
+                displayError(houseBedrooms, "Please Specify the Number of Bedrooms in Each " + rentalTypeValue);                
+            } else if (houseBedroomsValue === 'more') {
+                if (moreHouseBedroomsValue === '') {
+                    displayError(moreHouseBedrooms, "Please Specify the Number of Bedrooms in Each " + rentalTypeValue);
+                } else {
+                    successfulEntry(moreHouseBedrooms);
+                }
+            } else {
+                successfulEntry(houseBedrooms);
+            }
+        }
+
+        
+
+        if(locationValue === '') {
+            displayError(location, "Please Specify a location");
+        } else {
+            successfulEntry(location);
+        }
+
+        if(rentalTermValue === 'no-value') {
+            displayError(rentalTerm, "Please Specify How Often The Rent Should Be Paid");
+        } else {
+            successfulEntry(rentalTerm);
+        }
+
+        if(amountOfRentValue === '') {
+            displayError(amountOfRent, "Please Specify How Much Rent Should Be Paid For Each Term");
+        } else {
+            successfulEntry(amountOfRent);
+        }
+
+        if(imagesValue.length === 0) {
+            displayError(imagesLabel, "Please Upload Photographs of the " + rentalTermValue + "s");
+        } else {
+            successfulEntry(imagesLabel);
+        }
+
+    }
+}
+

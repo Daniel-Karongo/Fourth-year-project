@@ -83,8 +83,49 @@ nav button {
 }
 
 .basic-information input, select, textarea {
-    margin-bottom: 20px;
     padding: 7px;
+}
+
+.basic-information div {
+    margin-bottom: 13px;
+}
+
+.basic-information div {
+    display: flex;
+    flex-direction: column;
+}
+
+.basic-information div input:focus, select:focus {
+    border: 0;
+    outline: 2px solid #2C18DE;
+}
+
+.basic-information div.success select {
+    border-color: #09c372;    
+}
+
+.basic-information div.success input {
+    border-color: #09c372;    
+}
+
+.basic-information div.error select {
+    border-color: #ff3860;    
+}
+
+.basic-information div.error input {
+    border-color: #ff3860;    
+}
+
+.basic-information div .error {
+    color: #ff3860;
+    font-size: 0.9rem;
+    margin-top: 7px;
+    margin-bottom: 0;
+}
+
+.imagesDiv {
+    align-self: center;
+    margin-bottom: 0 !important;    
 }
 
 #images-upload {
@@ -94,7 +135,7 @@ nav button {
 .upload-photographs {
     align-self: center;
     margin-top: 5px;
-    margin-bottom: 10px;         
+    margin-bottom: 0;             
 }
 
 .upload-photographs label {
@@ -102,10 +143,17 @@ nav button {
     border: 1px solid;
     background-color: transparent;
     border-color: #2C18DE;
-    color: rgba(255,255,255,0.85);     
+    color: rgba(255,255,255,0.85); 
+    margin-bottom: 0;    
 }
 
-.type-of-business-premise, .number-of-apartment-bedrooms, .number-of-house-bedrooms, .more-house-bedrooms, .more-apartment-bedrooms, .number-of-available-rentals, .maximum-occupants {
+#imageError {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+#businessPremiseType, #apartmentBedrooms, #houseBedrooms, #moreHouseBedrooms, #moreApartmentBedrooms, #numberOfAvailableRentals, #maximumNumberOfOccupants {
     display: none;
 }
 
