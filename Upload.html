@@ -25,7 +25,8 @@
             <div class="basic-information">
                     <div class="rentalType" id="rentalType">
                         <label class="type-of-rental" for="type-of-rental">Type of Rental</label>
-                        <select class="type-of-rental" name="type-of-rental" id="type-of-rental" onblur="forRentalType()">
+                        <select class="type-of-rental" name="type-of-rental" id="type-of-rental" onchange="forRentalType()"
+                        onblur="forRentalType2()">
                             <option value="no-value">Please choose the kind of rental you want to advertise </option>
                             <option value="Hostel">Hostel</option>
                             <option value="Single Room">Single Room</option>
@@ -90,13 +91,13 @@
 
                     <div class="numberOfAvailableRentals" id="numberOfAvailableRentals">
                         <label class="number-of-available-rentals"for="number-of-available-rentals">Number of Available </label>
-                        <input type="number" class="number-of-available-rentals" name="number-of-available-rentals" id="number-of-available-rentals" onblur="forFinalNumberOfRentals()">
+                        <input type="number" class="number-of-available-rentals"name="number-of-available-rentals" id="number-of-available-rentals" onblur="forFinalNumberOfRentals()">
                         <div class="error"></div>
                     </div>
 
                     <div class="maximumNumberOfOccupants" id="maximumNumberOfOccupants">
                         <label class="maximum-occupants" for="maximum-occupants">Preferred Maximum Number of Occupants For Each</label>
-                        <input class="maximum-occupants" type="number" name="maximum-occupants" id="maximum-occupants" onblur="forHostelsBedsittersSuitesAndSingleRooms()">
+                        <input class="maximum-occupants" type="number" name="maximum-occupants" id="maximum-occupants" onblur="forMaximumNumberOfOccupants()">
                         <div class="error"></div>
                     </div>
 

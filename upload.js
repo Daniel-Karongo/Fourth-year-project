@@ -69,7 +69,7 @@ function viewNumberofRentalsSectionOfEachType() {
 
             clearLabel(numberofAvailableLabel, selectedOption, "s");
             // Clear whatever is on the "Number of Available Rentals" label
-            // Replace the text of the "Number of Available Rentals" label with "Number of Available ..."            
+            // Replace the text of the "Number of Available Rentals" label with "Number of Available ..."                       
 
         } else if (selectedOption === 'Apartment') // If the option chosen is "Apartment"
         {
@@ -161,6 +161,7 @@ function viewNumberofSpecificBusinessPremises() {
     {    
         toViewAndHideMultiplesections(null, '.numberOfAvailableRentals');
         // Display the section (final) where the user specifies the total number of rentals available of the chosen type.
+        nullifySuccessOrFailure(document.getElementById('number-of-available-rentals'));
 
         if (selectedOption !== 'Industrial') {
             clearLabel(document.querySelector('.number-of-available-rentals'), selectedOption, "s");             
@@ -189,6 +190,8 @@ function specifyTheFinalTheNumberOfApartments() {
         // Hide the section (final) where the user specifies the total number of rentals available of the chosen type.
 
     }
+    nullifySuccessOrFailure(document.getElementById('number-of-available-rentals'));
+    document.getElementById('number-of-available-rentals').focus();
 }
 
 function specifyTheFinalTheNumberOfHouses() {
@@ -204,6 +207,8 @@ function specifyTheFinalTheNumberOfHouses() {
         toViewAndHideMultiplesections('.numberOfAvailableRentals', null); 
         // Hide the section (final) where the user specifies the total number of rentals available of the chosen type.
     }
+    nullifySuccessOrFailure(document.getElementById('number-of-available-rentals'));
+    document.getElementById('number-of-available-rentals').focus();
 }
 
 function triggerFileInput(event) {
@@ -257,6 +262,14 @@ function successfulEntry(element) {
     parentDiv.classList.add('success');
     parentDiv.classList.remove('error'); 
 }
+
+function nullifySuccessOrFailure(element) {
+    let parentDiv = element.parentElement;
+    let error = parentDiv.querySelector('.error');
+    error.innerHTML = '';
+    parentDiv.classList.remove('success');
+    parentDiv.classList.remove('error'); 
+} 
 
 function validateForm(event) {
     event.preventDefault();
@@ -450,6 +463,16 @@ function validateForm(event) {
 function forRentalType() {
     RentalTypeSuccessOrFailure();
     viewNumberofRentalsSectionOfEachType();
+    nullifySuccessOrFailure(document.getElementById('type-of-rental'));
+    nullifySuccessOrFailure(document.getElementById('maximum-occupants'));
+    
+    nullifySuccessOrFailure(document.getElementById('number-of-available-rentals'));    
+}
+
+function forRentalType2() {
+    RentalTypeSuccessOrFailure();
+    viewNumberofRentalsSectionOfEachType();
+    document.getElementById('number-of-available-rentals').focus();
 }
 
 function RentalTypeSuccessOrFailure() {
@@ -462,39 +485,6 @@ function RentalTypeSuccessOrFailure() {
         displayError(rentalType, "Please Choose A Type of Rental")
     }    
 }
-
-// function forHostelsBedsittersSuitesAndSingleRooms() {
-//     const rentalType = document.getElementById
-//     ('type-of-rental');
-//     const numberOfRentals = document.getElementById
-//     ('number-of-available-rentals');
-//     const maximumNumberOfOccupants = document.getElementById
-//     ('maximum-occupants');
-    
-//     const rentalTypeValue = rentalType.value;
-//     const maximumNumberOfOccupantsValue = 
-//     maximumNumberOfOccupants.value;
-//     const numberOfRentalsValue = numberOfRentals.value;
-
-//     if (numberOfRentalsValue === '') {
-//         displayError(numberOfRentals, "Please Specify the Number of " + rentalTypeValue + "s"); 
-//         successfulEntry(rentalType);
-//         if (maximumNumberOfOccupantsValue === '') {
-//             displayError(maximumNumberOfOccupants, "Please Specify the Maximum Number of Occupants For Each " + rentalTypeValue);                  
-//         } else {                    
-//             successfulEntry(maximumNumberOfOccupants);
-//         }
-
-//     } else {
-//         successfulEntry(rentalType);
-//         successfulEntry(numberOfRentals);
-//         if (maximumNumberOfOccupantsValue === '') {
-//             displayError(maximumNumberOfOccupants, "Please Specify the Maximum Number of Occupants For Each " + rentalTypeValue);                  
-//         } else {                    
-//             successfulEntry(maximumNumberOfOccupants);
-//         }
-//     }
-// }
 
 function locationSuccessOrFailure() {
     const location = document.getElementById('location');
@@ -575,16 +565,61 @@ function forFinalNumberOfRentals() {
     const numberOfRentalsValue = numberOfRentals.value;
     const rentalType = document.getElementById('type-of-rental');
     const rentalTypeValue = rentalType.value;
-    // const apartmentBedroomsValue = apartmentBedrooms.value;
-    // const moreApartmentBedroomsValue = moreApartmentBedrooms.value;
-    // const houseBedroomsValue = houseBedrooms.value;
-    // const moreHouseBedroomsValue = moreHouseBedrooms.value;
-    // const businessPremiseValue = businessPremise.value;
+    const apartmentBedrooms = document.getElementById('number-of-apartment-bedrooms');
+    const apartmentBedroomsValue = apartmentBedrooms.value;
+    const moreApartmentBedrooms = document.getElementById('more-apartment-bedrooms');
+    const moreApartmentBedroomsValue = moreApartmentBedrooms.value;
+    const businessPremise = document.getElementById('type-of-premise');
+    const businessPremiseValue = businessPremise.value;
+    const houseBedrooms = document.getElementById('number-of-house-bedrooms');
+    const moreHouseBedrooms = document.getElementById('more-house-bedrooms');
+    const houseBedroomsValue = houseBedrooms.value;
+    const moreHouseBedroomsValue = moreHouseBedrooms.value;
 
-    if (numberOfRentalsValue === '') {    // No Value is Entered
-        displayError(numberOfRentals, "Please Specify the Number of " +rentalTypeValue + "s Available");                        
-    } else {     
-        successfulEntry(numberOfRentals);        
+    if((rentalTypeValue === 'Hostel') || (rentalTypeValue === 'Bedsitter') || (rentalTypeValue === 'Suite') || (rentalTypeValue === 'Single Room')) {
+        if (numberOfRentalsValue === '') {    // No Value is Entered
+            displayError(numberOfRentals, "Please Specify the Number of " + rentalTypeValue + "s Available");                        
+        } else {     
+            successfulEntry(numberOfRentals);        
+        }
+    } else if (rentalTypeValue === 'Apartment') {
+        if((apartmentBedroomsValue !== 'no-value') && (apartmentBedroomsValue !== 'more')) {
+            if (numberOfRentalsValue === '') {    // No Value is Entered
+                displayError(numberOfRentals, "Please Specify the Number of " + apartmentBedroomsValue + " Apartments Available");                        
+            } else {     
+                successfulEntry(numberOfRentals);        
+            }
+        } else {
+            if (numberOfRentalsValue === '') {    // No Value is Entered
+                displayError(numberOfRentals, "Please Specify the Number of " + moreApartmentBedroomsValue + "-Bedroom Apartments Available");                        
+            } else {     
+                successfulEntry(numberOfRentals);        
+            }
+        }
+    } else if (rentalTypeValue === 'Business Premise') {
+        if (numberOfRentalsValue === '') {    // No Value is Entered
+            if (businessPremiseValue === "Industrial") {
+                displayError(numberOfRentals, "Please Specify the Number of " + businessPremiseValue + " Premises Available");
+            } else {
+                displayError(numberOfRentals, "Please Specify the Number of " + businessPremiseValue + "s Available");
+            }                                    
+        } else {     
+            successfulEntry(numberOfRentals);        
+        }
+    } else if (rentalTypeValue === 'House') {
+        if((houseBedroomsValue !== 'no-value') && (houseBedroomsValue !== 'more')) {
+            if (numberOfRentalsValue === '') {    // No Value is Entered
+                displayError(numberOfRentals, "Please Specify the Number of " + houseBedroomsValue + " Houses Available");                        
+            } else {     
+                successfulEntry(numberOfRentals);        
+            }
+        } else {
+            if (numberOfRentalsValue === '') {    // No Value is Entered
+                displayError(numberOfRentals, "Please Specify the Number of " + moreHouseBedroomsValue + "-Bedroom Houses Available");                        
+            } else {     
+                successfulEntry(numberOfRentals);        
+            }
+        }
     }
 }
 
@@ -618,5 +653,17 @@ function forMoreHouseBedrooms() {
         displayError(moreHouseBedrooms, "Please Specify the Number of Bedrooms in Each House");                        
     } else {     
         successfulEntry(moreHouseBedrooms);        
+    }
+}
+
+function forMaximumNumberOfOccupants() {
+    const maximumNumberOfOccupants = document.getElementById('maximum-occupants');
+    const maximumNumberOfOccupantsValue = maximumNumberOfOccupants.value;
+    const rentalTypeValue = document.getElementById('type-of-rental').value;
+
+    if (maximumNumberOfOccupantsValue === '') {    // No Value is Entered
+        displayError(maximumNumberOfOccupants, "Please Specify the Maxuimum Number of Occupants You Would Allow For Each " + rentalTypeValue + " Available");                        
+    } else {     
+        successfulEntry(maximumNumberOfOccupants);        
     }
 }
