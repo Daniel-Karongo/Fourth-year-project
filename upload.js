@@ -464,6 +464,9 @@ function forRentalType() {
     RentalTypeSuccessOrFailure();
     viewNumberofRentalsSectionOfEachType();
     nullifySuccessOrFailure(document.getElementById('type-of-rental'));
+    nullifySuccessOrFailure(document.getElementById('number-of-apartment-bedrooms'));
+    nullifySuccessOrFailure(document.getElementById('type-of-premise'));
+    nullifySuccessOrFailure(document.getElementById('number-of-house-bedrooms'));
     nullifySuccessOrFailure(document.getElementById('maximum-occupants'));    
     nullifySuccessOrFailure(document.getElementById('number-of-available-rentals'));
     nullifySuccessOrFailure(document.getElementById('location'));
