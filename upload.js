@@ -464,9 +464,12 @@ function forRentalType() {
     RentalTypeSuccessOrFailure();
     viewNumberofRentalsSectionOfEachType();
     nullifySuccessOrFailure(document.getElementById('type-of-rental'));
-    nullifySuccessOrFailure(document.getElementById('maximum-occupants'));
-    
-    nullifySuccessOrFailure(document.getElementById('number-of-available-rentals'));    
+    nullifySuccessOrFailure(document.getElementById('maximum-occupants'));    
+    nullifySuccessOrFailure(document.getElementById('number-of-available-rentals'));
+    nullifySuccessOrFailure(document.getElementById('location'));
+    nullifySuccessOrFailure(document.getElementById('rental-term'));    
+    nullifySuccessOrFailure(document.getElementById('rent'));
+    nullifySuccessOrFailure(document.querySelector('.upload-photographs'));     
 }
 
 function forRentalType2() {
