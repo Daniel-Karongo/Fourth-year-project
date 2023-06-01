@@ -15,7 +15,7 @@
     <div class="container">
         <nav>
             <h3>User Name</h3>
-            <button type="submit"><a href="./index.html">Sign Out</a></button>
+            <button type="submit"><a href="./index.html" tabindex="-1">Sign Out</a></button>
         </nav>
         <form class="main-body" id="form" action="./ViewList.html" onsubmit="validateForm(event)">
             <div class="buttons">
@@ -25,7 +25,7 @@
             <div class="basic-information">
                     <div class="rentalType" id="rentalType">
                         <label class="type-of-rental" for="type-of-rental">Type of Rental</label>
-                        <select class="type-of-rental" name="type-of-rental" id="type-of-rental" onchange="viewNumberofRentalsSectionOfEachType()">
+                        <select class="type-of-rental" name="type-of-rental" id="type-of-rental" onblur="forRentalType()">
                             <option value="no-value">Please choose the kind of rental you want to advertise </option>
                             <option value="Hostel">Hostel</option>
                             <option value="Single Room">Single Room</option>
@@ -40,7 +40,7 @@
                     
                     <div class="apartmentBedrooms" id="apartmentBedrooms">
                         <label class="number-of-apartment-bedrooms" id="label-number-of-apartment-bedrooms" for="number-of-apartment-bedrooms">Number of Bedrooms</label>
-                        <select class="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms" id="number-of-apartment-bedrooms" onchange="viewNumberOfSpecificApartmentBedrooms()">
+                        <select class="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms" id="number-of-apartment-bedrooms" onchange="viewNumberOfSpecificApartmentBedrooms()" onblur="forApartmentBedrooms()">
                             <option value="no-value">Please specify the number of bedrooms available in the Apartment you want to advertise</option>
                             <option value="1-bedroom">1 Bedroom</option>
                             <option value="2-bedroom">2 Bedrooms</option>
@@ -52,13 +52,13 @@
                     
                     <div class="moreApartmentBedrooms" id="moreApartmentBedrooms">
                         <label class="more-apartment-bedrooms" for="more-apartment-bedrooms">How many?</label>
-                        <input class="more-apartment-bedrooms" type="number" name="more-apartment-bedrooms" id="more-apartment-bedrooms" onchange="specifyTheFinalTheNumberOfApartments()">
+                        <input class="more-apartment-bedrooms" type="number" name="more-apartment-bedrooms" id="more-apartment-bedrooms" onchange="specifyTheFinalTheNumberOfApartments()" onblur="forMoreApartmentBedrooms()">
                         <div class="error"></div>
                     </div>
                     
                     <div class="businessPremiseType" id="businessPremiseType">
                         <label class="type-of-business-premise" id="label-type-of-premise" for="type-of-premise">Type of business Premise</label>
-                        <select class="type-of-business-premise" name="type-of-premise" id="type-of-premise" onchange="viewNumberofSpecificBusinessPremises()">
+                        <select class="type-of-business-premise" name="type-of-premise" id="type-of-premise" onchange="viewNumberofSpecificBusinessPremises()" onblur="forBusinessPremises()">
                             <option value="no-value">Please specify the type of business premise you want to advertise</option>
                             <option value="Stall">Stall</option>
                             <option value="Shop">Shop</option>
@@ -72,7 +72,7 @@
                     
                     <div class="houseBedrooms" id="houseBedrooms">
                         <label class="number-of-house-bedrooms" id="label-number-of-house-bedrooms" for="number-of-house-bedrooms">Number of Bedrooms</label>
-                        <select class="number-of-house-bedrooms" name="number-of-house-bedrooms" id="number-of-house-bedrooms" onchange="viewNumberofSpecificHouseBedrooms()">
+                        <select class="number-of-house-bedrooms" name="number-of-house-bedrooms" id="number-of-house-bedrooms" onchange="viewNumberofSpecificHouseBedrooms()" onblur="forHouseBedrooms() ">
                             <option value="no-value">Please specify the number of bedrooms available in the House you want to advertise</option>
                             <option value="1-bedroom">1 Bedroom</option>
                             <option value="2-bedroom">2 Bedrooms</option>
@@ -84,31 +84,31 @@
                     
                     <div class="moreHouseBedrooms" id="moreHouseBedrooms">
                         <label class="more-house-bedrooms" for="more-house-bedrooms">How many?</label>
-                        <input class="more-house-bedrooms" type="number" name="more-house-bedrooms" id="more-house-bedrooms" onchange="specifyTheFinalTheNumberOfHouses()">
+                        <input class="more-house-bedrooms" type="number" name="more-house-bedrooms" id="more-house-bedrooms" onchange="specifyTheFinalTheNumberOfHouses()" onblur="forMoreHouseBedrooms()">
                         <div class="error"></div>
                     </div>
 
                     <div class="numberOfAvailableRentals" id="numberOfAvailableRentals">
-                        <label class="number-of-available-rentals" for="number-of-available-rentals">Number of Available </label>
-                        <input type="number" class="number-of-available-rentals" name="number-of-available-rentals" id="number-of-available-rentals">
+                        <label class="number-of-available-rentals"for="number-of-available-rentals">Number of Available </label>
+                        <input type="number" class="number-of-available-rentals" name="number-of-available-rentals" id="number-of-available-rentals" onblur="forFinalNumberOfRentals()">
                         <div class="error"></div>
                     </div>
 
                     <div class="maximumNumberOfOccupants" id="maximumNumberOfOccupants">
                         <label class="maximum-occupants" for="maximum-occupants">Preferred Maximum Number of Occupants For Each</label>
-                        <input class="maximum-occupants" type="number" name="maximum-occupants" id="maximum-occupants">
+                        <input class="maximum-occupants" type="number" name="maximum-occupants" id="maximum-occupants" onblur="forHostelsBedsittersSuitesAndSingleRooms()">
                         <div class="error"></div>
                     </div>
 
                     <div class="locationDiv" id="locationDiv">
                         <label class="location" for="location">Location</label>
-                        <input class="location" type="text" name="location" id="location">
+                        <input class="location" type="text" name="location" id="location" onblur="locationSuccessOrFailure()">
                         <div class="error"></div>
                     </div>                    
 
                     <div class="rentalTerm" id="rentalTerm">
                         <label class="rental-term" for="rental-term">Rental Term</label>
-                        <select class="rental-term" name="rental-term" id="rental-term">
+                        <select class="rental-term" name="rental-term" id="rental-term" onblur="rentalTermSuccessorFailure()">
                             <option value="no-value"></option>
                             <option value="daily">Daily</option>
                             <option value="monthly">Monthly</option>
@@ -121,7 +121,7 @@
 
                     <div class="rentDiv" id="rentDiv">
                         <label class="rent" for="rent">Amount of Rent</label>
-                        <input class="rent" type="number" name="rent" id="rent">
+                        <input class="rent" type="number" name="rent" id="rent" onblur="amountOfRentSuccessOrFailure()">
                         <div class="error"></div>
                     </div>
 
@@ -132,8 +132,8 @@
                     </div>
 
                     <div class="imagesDiv" id="imagesDiv">
-                        <div class="upload-photographs">
-                            <label for="images-upload"> Upload Photographs</label>
+                        <div class="upload-photographs" tabindex="0" onkeydown="triggerFileInput(event)" onblur="imagesSuccessOrFailure()">
+                            <label for="images-upload"> Upload Photographs</label>                          
                             <input type="file" name="images-upload" id="images-upload" accept="image/*" multiple>                        
                         </div>
                         <div class="error" id="imageError"></div>
@@ -263,15 +263,15 @@
 
                     <div class="gender">
                         <div class="male">
-                            <input type="radio" name="male" id="male">
+                            <input type="radio" name="gender" value="Males" id="male">
                             <label for="male">Males</label>
                         </div>
                         <div class="female">
-                            <input type="radio" name="female" id="female">
+                            <input type="radio" name="gender" value="Females" id="female">
                             <label for="female">Females</label>
                         </div>
                         <div class="any-gender">
-                            <input type="radio" name="any-gender" id="any-gender">
+                            <input type="radio" name="gender" value="Any Gender" id="any-gender">
                             <label for="any-gender">Any gender</label>
                         </div>                  
                     </div>
@@ -280,11 +280,11 @@
 
                     <div class="students">
                         <div class="no-students">
-                            <input type="radio" name="no-students" id="no-students">
+                            <input type="radio" name="students" value="No Students" id="no-students">
                             <label for="students">No Students</label>
                         </div>
                         <div class="students-welcome">
-                            <input type="radio" name="students-welcome" id="students-welcome">
+                            <input type="radio" name="students" value="Students Welcome" id="students-welcome">
                             <label for="students">Students Welcome</label>
                         </div>                  
                     </div>
@@ -293,11 +293,11 @@
 
                     <div class="families">
                         <div class="no-children">
-                            <input type="radio" name="no-children" id="no-children">
+                            <input type="radio" name="family" value="No Children" id="no-children">
                             <label for="no-children">Without small childen</label>
                         </div>
                         <div class="children-allowed">
-                            <input type="radio" name="any-welcome" id="any-welcome">
+                            <input type="radio" name="family" name="Any Family Welcome" id="any-welcome">
                             <label for="any-welcome">Any Family</label>
                         </div>                  
                     </div>
@@ -306,11 +306,11 @@
 
                     <div class="driving">
                         <div class="having-vehicles">
-                            <input type="radio" name="having-vehicles" id="having-vehicles">
+                            <input type="radio" name="vehicles" value="Vehicles Allowed" id="having-vehicles">
                             <label for="having-vehicles">Having Vehicles</label>
                         </div>
                         <div class="not-having-vehicles">
-                            <input type="radio" name="not-having-vehicles" id="not-having-vehicles">
+                            <input type="radio" name="vehicles" value="Vehicles Not Allowed" id="not-having-vehicles">
                             <label for="not-having-vehicles">Not having vehicles (No packing)</label>
                         </div>
                     </div>
@@ -319,19 +319,30 @@
                     
                     <div class="religion">
                         <div class="christianity">
-                            <input type="checkbox" name="Christianity" id="christianity">
+                            <input type="checkbox" name="Christianity" value="christianity" id="christianity">
                             <label for="christianity">Christianity</label>
                         </div>
                         <div class="islam">
-                            <input type="checkbox" name="islam" id="islam">
+                            <input type="checkbox" name="islam" value="islam" id="islam">
                             <label for="islam">Islam</label>
                         </div>
                         <div class="hinduism">
-                            <input type="checkbox" name="hinduism" id="hinduism">
+                            <input type="checkbox" name="hinduism"value="hinduism" id="hinduism">
                             <label for="hinduism">Hinduism</label>
                         </div>
+                        <div class="other-religion">
+                            <input type="checkbox" 
+                            name="other-religion"
+                            value="other-religion" id="other-religion" onclick="specifyWhichReligion()">
+                            <label for="other-religion">Other</label>                         
+                        </div>
+                        <div class="specified-religion">
+                            <input type="text" name="specified-religion" id="specified-religion">
+                        </div>                       
                         <div class="any-religion">
-                            <input type="checkbox" name="any-religion" id="any-religion">
+                            <input type="checkbox" 
+                            name="any-religion"
+                            value="any-religion" id="any-religion" onclick="uncheckAllOthers()">
                             <label for="any-religion">Any Religion</label>
                         </div>               
                     </div>                  

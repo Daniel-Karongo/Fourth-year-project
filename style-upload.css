@@ -25,9 +25,10 @@ form input,select, textarea {
 form option {
     color: black;
 }
+
 button {
     background-color: transparent;
-    border-color: #2C18DE;
+    border: 2px solid #2C18DE;
     font-size: 0.9rem;
     color: rgba(255,255,255,0.85);
 }
@@ -95,9 +96,9 @@ nav button {
     flex-direction: column;
 }
 
-.basic-information div input:focus, select:focus {
+.basic-information div input:focus, select:focus, textarea:focus, div:focus, button:focus {
     border: 0;
-    outline: 2px solid #2C18DE;
+    outline: 3px solid #2C18DE;
 }
 
 .basic-information div.success select {
@@ -140,9 +141,8 @@ nav button {
 
 .upload-photographs label {
     padding: 7px 15px;
-    border: 1px solid;
+    border: 2px solid #2C18DE;
     background-color: transparent;
-    border-color: #2C18DE;
     color: rgba(255,255,255,0.85); 
     margin-bottom: 0;    
 }
@@ -203,15 +203,29 @@ h4 {
     flex-direction: column;
 }
 
-.male, .female, .any-gender, .no-students, .students-welcome, .no-children, .children-allowed, .having-vehicles, .not-having-vehicles, .christianity, .islam, .hinduism, .any-religion {
+.male, .female, .any-gender, .no-students, .students-welcome, .no-children, .children-allowed, .having-vehicles, .not-having-vehicles, .christianity, .islam, .hinduism, .any-religion, .other-religion {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
 
-.gender #male ,#female ,#any-gender, #no-students, #students-welcome, #no-children, #any-welcome, #having-vehicles, #not-having-vehicles, #christianity, #islam, #hinduism, #any-religion {
+.gender #male ,#female ,#any-gender, #no-students, #students-welcome, #no-children, #any-welcome, #having-vehicles, #not-having-vehicles, #christianity, #islam, #hinduism, #other-religion, #specified-religion, #any-religion {
     margin-right: 5px;
     margin-bottom: 15px;
+}
+
+#specified-religion {
+    padding: 7px;
+    align-self: flex-start;   
+}
+
+#specified-religion:focus {
+    border: 0;
+    outline: 3px solid #2C18DE;
+}
+
+.specified-religion {
+    display: none;
 }
 
 .rules {
@@ -245,8 +259,7 @@ h4 {
     padding: 7px 15px;    
     color: rgba(255,255,255,0.85);
     background-color: transparent;
-    border: 2px solid;
-    border-color: #2C18DE; 
+    border: 2px solid #2C18DE; 
 }
 
 .submit-entry {
@@ -257,6 +270,10 @@ h4 {
     padding: 5px 15px;
     margin-top: 10px;
     font-size: 1rem;   
+}
+
+.submit-entry button:focus {
+    border: 2px solid #2C18DE; 
 }
 
 a {
