@@ -8,7 +8,6 @@ html {
 }
 
 * {
-    margin: inherit;
     box-sizing: inherit;
 }
 
@@ -23,6 +22,7 @@ body {
     flex-direction: column;
     width: 100%;
     height: 100%;
+    min-height: 100vh;
     text-align: center;
     background-color: #1D2024;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.6);    
@@ -33,7 +33,12 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid;    
+}
+
+nav h3 {
+    margin: 0;
 }
 
 nav .sign-out-button button {
@@ -58,13 +63,17 @@ nav .sign-out-button button {
     border-bottom: 1px solid;    
 }
 
+.buttons button {
+    padding: 10px 15px;
+}
+
 .buttons a {
     text-decoration: none;
     color: rgba(255,255,255,0.85);
 }
 
 .panel {
-    padding: 10px;
+    padding-top: 10px;
 }
 
 .panel-buttons {
@@ -76,6 +85,7 @@ nav .sign-out-button button {
 .rental-template {
     padding: 10px;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.8);
+    margin-left: 0;
     margin-bottom: 10px;
 }
 
@@ -101,8 +111,8 @@ nav .sign-out-button button {
 }
 
 form {
-    padding: 15px;
-    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
+    padding: 10px;
+    box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.3);
     text-align: left;    
 }
 
@@ -142,10 +152,10 @@ button {
     background-color: transparent;
     outline: none;
     box-shadow: none;    
-    border-color: #2C18DE;
+    border: 2.5px solid#2C18DE;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 700px) {
     
     body {
         display: flex;
@@ -156,7 +166,7 @@ button {
 
     .container {
         margin-top: 0;
-        max-width: 900px;
+        max-width: 1100px;
         box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
     }
 
@@ -176,55 +186,69 @@ button {
     .buttons {
         display: flex;
         flex-direction: column;
+        padding-right: 10px;
         padding-bottom: 0px;
         border: none;
         width: 80%;
-        text-align: left;           
+        text-align: left;
+        flex-basis: 20%;           
     }
 
     .buttons button {
-        padding: 5px 15px;
+        padding: 10px 15px;
         margin-bottom: 10px;
         text-align: center;
         width: auto;
     }
 
     .panel {
-        padding: 0px;
-        padding-left: 10px;
+        flex-basis: 80%;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+        box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.6);
+        min-height: 100vh;
+        height: 100%;
     }
     
     .panel-buttons {
         display: flex;
         justify-content: flex-start;
+        margin-left: 0;
+        margin-bottom: 4px;
     }
 
     .panel-buttons button{
-        padding: 5px 15px;
-        margin-right: 1px;
+        padding: 10px 15px;
+        margin-right: 3px;
     }
 
     .rental-template {
         display: flex;
         flex-direction: row;
         align-items: flex-start;
-        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.6);        
+        box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.5); 
+        margin-left: 10px;
+        margin-right: 10px;       
     }
     
     .rental-template img {
         width: 35%;
         height: 100%;
         box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
-        margin-right: 15px;    
+        margin: 0;    
     }
     
     .rental-template p {
-        margin-right: 15px;
+        margin: 0;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 
     .rental-template button {
-        padding: 5px 10px;
-        margin-bottom: 1px;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 3px;
     }
 
     .template-buttons {
