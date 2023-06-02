@@ -10,7 +10,6 @@ html {
 }
 
 * {
-    margin: inherit;
     box-sizing: inherit;
 }
 
@@ -22,7 +21,9 @@ body{
     padding: 10px;
     display: flex;
     flex-direction: column;
+    margin: auto;
     width: 100%;
+    max-width: 400px;
     height: 100%;
     text-align: center;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
@@ -31,12 +32,14 @@ body{
 }
 
 .periphery {
-    margin-top: 10px
+    margin-top: 15px;
 }
 
 .main-body {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
     border-radius: 3px;    
 }
@@ -64,7 +67,7 @@ p, .label-hint {
 }
 
 .input-last-name, .input-email, .input-confirm-password {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .label-hint {
@@ -119,22 +122,29 @@ a {
     font-size: 0.9rem;
 }
 
-@media all and (min-width: 576px){
+@media all and (min-width: 765px){
     
     body {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 3%;                                           
+        padding: 4%;                                           
     }
 
     .container {
         flex-direction: row;
-        max-width: 900px;        
+        max-width: 1000px;        
     }
 
     .main-body {
         padding: 20px;
+        flex-basis: 65%;
+    }
+
+    .periphery {
+        padding-left: 15px;
+        flex-basis: 35%;
+        text-align: center;
     }
 
     .password-entry {

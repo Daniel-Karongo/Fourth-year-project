@@ -131,6 +131,15 @@ form input {
     color: white;
 }
 
+form input:focus {
+    outline: none;
+    border: 2.5px solid#2C18DE;
+}
+
+form button:focus {
+    border: 3px solid#2C18DE;
+}
+
 .submit-confirm {
     text-align: center;  
 }
