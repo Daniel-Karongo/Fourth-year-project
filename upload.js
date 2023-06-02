@@ -123,8 +123,11 @@ function viewNumberOfSpecificApartmentBedrooms() {
         // Hide the section where the user specifies the number of bedrooms if greater than 3.          
         
         document.querySelector('#more-apartment-bedrooms').value = null;    // Clear whatever value may have been entered into the "How many" section of the apartment.
-
     }    
+    nullifySuccessOrFailure(document.getElementById('number-of-available-rentals'));
+    nullifySuccessOrFailure(document.getElementById('more-apartment-bedrooms'));
+    nullifySuccessOrFailure(document.getElementById('number-of-apartment-bedrooms'));
+    toViewAndHideMultiplesections('.numberOfAvailableRentals', '.numberOfAvailableRentals');
 }
 
 function viewNumberofSpecificHouseBedrooms() {
@@ -151,7 +154,11 @@ function viewNumberofSpecificHouseBedrooms() {
         // Hide the section (final) where the user specifies the total number of rentals available of the chosen type.           
         // Hide the section where the user specifies the number of bedrooms if greater than 3.          
         document.querySelector('#more-house-bedrooms').value = null;    // Clear whatever value may have been entered into the "How many" section of the apartment.
-    }    
+    }
+    nullifySuccessOrFailure(document.getElementById('number-of-available-rentals'));
+    nullifySuccessOrFailure(document.getElementById('more-house-bedrooms'));
+    nullifySuccessOrFailure(document.getElementById('number-of-house-bedrooms'));
+    toViewAndHideMultiplesections('.numberOfAvailableRentals', '.numberOfAvailableRentals');    
 }
 
 function viewNumberofSpecificBusinessPremises() {
@@ -173,7 +180,12 @@ function viewNumberofSpecificBusinessPremises() {
         toViewAndHideMultiplesections('.numberOfAvailableRentals', null);
        // Hide the section (final) where the user specifies the total number of rentals available of the chosen type.
     }
+    nullifySuccessOrFailure(document.getElementById('number-of-available-rentals'));    
+}
 
+function viewNumberofSpecificBusinessPremises1() {
+    viewNumberofSpecificBusinessPremises();
+    toViewAndHideMultiplesections('.numberOfAvailableRentals', '.numberOfAvailableRentals');
 }
 
 function specifyTheFinalTheNumberOfApartments() {
