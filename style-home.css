@@ -51,43 +51,48 @@ body {
     align-items: baseline;
     background-color: transparent;
     flex-wrap: wrap;    /*To force the "advertise" button drop once the screen becomes smaller, rather than overflow*/
-    color: rgba(255,255,255,0.85);
+    color: rgba(255,255,255,1);
     border-bottom: 1px solid;
 }
 
 #navigation-bar h1 {
     font-size: 1.7rem;
+    font-weight: 400;
     margin-right: 10px;
     margin-bottom: 10px;    
 }
 
 .advertise {
-    border: 1px solid white;
+    border: 2px solid white;
     border-radius: 10px;    /* To round the corners*/
     padding: 10px 20px;     /* To give the button a bigger body: 5px more in the upwards and downwards directions and 20px more in the left and right directions*/
     outline: none;
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: 400;
     background-color: transparent;
 }
+
 a {
     text-decoration: none;
-    color: rgba(255,255,255,0.85);
+    color: rgba(255,255,255, 1);
 }
 
 .introduction {
     position: absolute;
-    top: 150px;
+    top: 110px;
     text-align: center;
-    color: rgba(245,245,245,0.80);   
+    color: rgba(245,245,245,1);
+    padding: 20px;   
 }
 
 .introduction h1 {
     font-size: 1.5rem;
+    font-weight: 400;
 }
 
 .introduction p {
     font-size: 1.1rem;
+    font-weight: 300;
 }
 
 .search-bar {
@@ -104,15 +109,16 @@ a {
 .search-bar input {
     background-color: transparent;
     flex: 1;    /* To fill the width of the form */
-    border: 0px;
+    border: 0;
     outline: none;      /* To Remove the border and outline of the input box */
-    color: white;
+    color: rgba(255, 255, 255, 1);
     font-size: 1.2rem;
 }
 
 ::placeholder {
     color: rgba(255, 255, 255, 0.6); /* Makes the placeholder white and makes it slightly transparent */
     font-size: 1.2rem;
+    font-weight: 100;
 }
 
 .search-bar button img{
@@ -123,7 +129,7 @@ a {
     border-radius: 50%; /* To round the button */
     border: 0;
     background: rgba(255, 255, 255, 0.4);
-    color: rgba(255, 255, 255, 1);;
+    color: rgba(255, 255, 255, 1);
     width: auto;
     height: auto;
     cursor: pointer; 
@@ -133,7 +139,7 @@ a {
 
 @media (min-width: 576px) {
     .container {
-        max-width: 80vw;
+        max-width: 900px;
     }
     
     .introduction {
