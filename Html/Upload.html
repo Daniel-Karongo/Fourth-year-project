@@ -5,19 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HouseSearchKE</title>
-    <link href="./style-upload.css" rel="stylesheet">
+    <link href="../Css/style-upload.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
-    <script defer src="./upload.js"></script>       
+    <script defer src="../Javascript/upload.js"></script>       
 </head>
 <body>
     <div class="container">
         <nav>
             <h3>User Name</h3>
-            <button type="submit"><a href="./index.html" tabindex="-1">Sign Out</a></button>
+            <button type="submit"><a href="../Html/index.html" tabindex="-1">Sign Out</a></button>
         </nav>
-        <form class="main-body" id="form" action="./ViewList.html" onsubmit="validateForm(event)">
+        <form class="main-body" id="form" action="../Html/ViewList.html" onsubmit="validateForm(event)">
             <div class="buttons">
                 <button onClick="wrapperFunction('.basic-information', 'flex', '.optional-information', 'input')" type="button">Basic Information</button>
                 <button onClick="wrapperFunction('.optional-information', 'block', '.basic-information', null)" type="button">Optional Information</button>
@@ -135,7 +135,7 @@
                     <div class="imagesDiv" id="imagesDiv">
                         <div class="upload-photographs" tabindex="0" onkeydown="triggerFileInput(event)" onblur="imagesSuccessOrFailure()">
                             <label for="images-upload"> Upload Photographs</label>                          
-                            <input type="file" name="images-upload" id="images-upload" accept="image/*" multiple>                        
+                            <input type="file" name="images-upload[]" id="images-upload" accept="image/*" multiple onchange="imagesSuccessOrFailure()">                        
                         </div>
                         <div class="error" id="imageError"></div>
                     </div>                    
