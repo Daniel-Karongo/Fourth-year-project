@@ -84,6 +84,7 @@ main form div input:focus {
 }
 
 main form div.error input {
+    border: 1.5px solid;
     border-color: #ff3860;    
 }
 
@@ -120,6 +121,7 @@ main form input {
     font-size: 1rem;
     background-color: rgba(255, 255, 255, 0.2);
     color: rgba(255,255,255,1);
+    border: 0;
     border-radius: 1px;
 }
 

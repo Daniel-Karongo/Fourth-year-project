@@ -74,6 +74,57 @@ p, .label-hint {
     margin-bottom: 7px;
 }
 
+.names div div input:focus {
+    border: 0;
+    outline: 3px solid #2C18DE;
+}
+
+.contacts div div input:focus {
+    border: 0;
+    outline: 3px solid #2C18DE;
+}
+
+.password-entry div div input:focus, input {
+    border: 0;
+    outline: 3px solid #2C18DE;
+}
+
+.names div div.error input {
+    border: 1.5px solid;
+    border-color: #ff3860;    
+}
+
+.contacts div div.error input {
+    border: 1.5px solid;
+    border-color: #ff3860;    
+}
+
+.password-entry div div.error input {
+    border: 1.5px solid;
+    border-color: #ff3860;    
+}
+
+.names div div .error {
+    color: #ff3860;
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.contacts div div .error {
+    color: #ff3860;
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.password-entry div div .error {
+    color: #ff3860;
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
 .checkbox-label {
     display: flex;
     flex-direction: row;
@@ -106,15 +157,17 @@ label, input {
 
 .label-first-name, .label-last-name, .label-phone, .label-email, .label-create-password, .label-confirm-password {
     margin: 7px;
+    font-size: 1rem;
 }
 
 input {
     outline: none;
-    padding: 7px 10px;
+    padding: 10px;
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
     border: none;
     border-radius: 2px;
+    font-size: 1rem;
 }
 
 a {
@@ -157,7 +210,7 @@ a {
     }
 
     .first-name, .last-name, .phone, .email, .create-password, .confirm-password {
-        flex-basis: 49%;   /* To leave enough room for the space between above*/
+        flex-basis: 48%;   /* To leave enough room for the space between above*/
     }
 }
 

@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../Css/style-create.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
+    <script src="../Javascript/create-Account.js"></script>    
 </head>
 <body>
     <div class="container">
@@ -27,6 +28,7 @@
                             </div>
                             <div class="input-first-name">
                                 <input type="text">
+                                <div class="error"></div>
                             </div>                           
                         </div>
                         <div class="last-name">
@@ -35,6 +37,7 @@
                             </div>
                             <div class="input-last-name">
                                 <input type="text">
+                                <div class="error"></div>
                             </div>                     
                         </div>                  
                     </div>
@@ -45,6 +48,7 @@
                             </div>
                             <div class="input-phone">
                                 <input type="text">
+                                <div class="error"></div>
                             </div>                      
                         </div>
                         <div class="email">
@@ -52,7 +56,8 @@
                                 <label for="">Email Address</label>
                             </div>
                             <div class="input-email">
-                                <input type="text">
+                                <input type="text" name="email" id="email" onblur="validateEmail()">
+                                <div class="error"></div>
                             </div>                     
                         </div>                        
                     </div>                    
@@ -63,15 +68,17 @@
                                     <label for="">Create a Password</label>
                                 </div>
                                 <div class="input-create-password">
-                                    <input type="password">
+                                    <input type="password" name="create-password" id="create-password">
+                                    <div class="error"></div>
                                 </div>                          
                             </div>
                             <div class="confirm-password">
                                 <div class="label-confirm-password">
-                                    <label for="">Confirm Password</label>
+                                    <label for="confirm-password">Confirm Password</label>
                                 </div>
                                 <div class="input-confirm-password">
-                                    <input type="password">
+                                    <input type="password" name="confirm-password" id="confirm-password">
+                                    <div class="error"></div>
                                 </div>                          
                             </div>                        
                         </div>                        
@@ -83,10 +90,10 @@
                             </div>                   
                             <div class="checkbox-label">
                                 <div class="actual-checkbox">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="toggle-show-password" onclick="toggleBtwShowingAndHidingPassword()">
                                 </div>
                                 <div class="label-show-password">
-                                    <label for="">Show Password</label>
+                                    <label for="toggle-show-password">Show Password</label>
                                 </div>                  
                             </div>                  
                         </div>                        
