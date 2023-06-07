@@ -54,3 +54,13 @@ function viewRight() {
         }                
     } 
 }
+
+function display() {
+    const inputField = document.querySelectorAll('.contacts input');
+    console.log(inputField);
+    inputField.forEach((field) => {
+        field.disabled = false;
+        field.value = 'ASDFGH';
+    });
+
+}

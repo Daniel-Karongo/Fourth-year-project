@@ -18,31 +18,118 @@ function toggleBtwShowingAndHidingPassword() {
     const createPassword = document.getElementById('create-password');
     const confirmPassword = document.getElementById('confirm-password');
 
-    if ((createPassword.type === "password") || (confirmPassword.type === "password")) {
+    const checkbox = document.getElementById('toggle-show-password');
+    if(checkbox.checked) {
         createPassword.type = "text";
-        confirmPassword.type = "text";
+        confirmPassword.type = "text";        
     } else {
         createPassword.type = "password";
         confirmPassword.type = "password"
-    }    
+        
+    }        
 }
 
-function validateEmail() {
+function validateEmail(event) {
     const email = document.getElementById('email');
     const emailValue = email.value;
         
-    // Use a regular expression to validate the email address
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const emailValidity = emailRegex.test(emailValue);    
 
-    if(emailValidity) {
+    if(emailValidity === true) {
         nullifySuccessOrFailure(email);
+        if(event === 'submit') {
+            return true;
+        }
     } else {
         displayError(email, "Please Enter a Valid Email");
     }
 }
 
-function validateField(id, error) {
+function validatePasswordCreation(event) {
+    const field = document.getElementById('create-password');
+    const fieldValue = field.value;
+    const regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\S]).*$/;
+
+    if(fieldValue.length < 8) {
+        displayError(field, "The Password Is Too Short");
+    } else {
+        if(regex.test(fieldValue) === false) {
+            displayError(field, "The Password Must Contain At Least One Of Each Of The Following: lowercase, UPPERCASE, special characters as well as digits");
+        } else {
+            nullifySuccessOrFailure(field);
+            if(event === 'submit') {
+                return true;
+            }
+        }
+    }
+}
+
+function validatePasswordConfirmation(event) {
+    const enterPasswordfield = document.getElementById('create-password');
+    const enterPasswordfieldValue = enterPasswordfield.value;
+
+    const confirmPasswordfield = document.getElementById('confirm-password');
+    const confirmPasswordfieldValue = confirmPasswordfield.value;
+
+    if(enterPasswordfieldValue !== confirmPasswordfieldValue) {
+        displayError(confirmPasswordfield, "The Passwords Do Not Match");
+    } else {
+        nullifySuccessOrFailure(confirmPasswordfield);
+        if(event === 'submit') {
+            return true;
+        }
+    }
+}
+
+function validatePhoneNumber(event) {
+    const phoneNumber = document.getElementById('phone-number');
+    const phoneNumberValue = phoneNumber.value;
+    const regex = new RegExp('^07[0-9]+$');
+
+    if(phoneNumberValue === '') {
+        displayError(phoneNumber, "Please Specify A Phone Number that will be Associated With Your Rentals");
+    } else {
+        if(phoneNumberValue.length !== 10) {
+            displayError(phoneNumber, "Please Enter A Valid Phone Number");
+        } else if(regex.test(phoneNumberValue) === false) {
+            displayError(phoneNumber, "Please Enter A Valid Format");
+        } else {
+            nullifySuccessOrFailure(phoneNumber);
+            if(event === 'submit') {
+                return true;
+            }
+        }        
+    }
+}
+
+function validateForm(event) {
+    event.preventDefault();
+
+    const firstNameOkay = validateField('first-name', 'Please Specify Your First Name', 'submit');
+
+    const lastNameOkay = validateField('last-name', 'Please Specify Your Last Name', 'submit');
+
+    const phoneNumberOkay = validatePhoneNumber('submit');
+
+    const emailOkay = validateField('email', 'Please Specify An Email that will be Associated With Your Rentals', 'submit');
+
+    const createPasswordOkay = validateField('create-password', 'Please Enter A Password To Secure Your Account', 'submit');
+
+    const confirmPasswordOkay = validateField('confirm-password', 'Please Confirm The Password', 'submit');
+    
+    if((firstNameOkay === true) && (lastNameOkay === true) && (phoneNumberOkay === true) && (emailOkay === true) && (createPasswordOkay === true) && (confirmPasswordOkay === true)) {
+        const proceed = confirm("Are You Sure You Want To Create An Account?");
+        console.log(proceed);
+        if(proceed) {
+            alert("Account Created Successfully");
+            document.querySelector('form').submit();
+        }        
+    }
+    
+}
+
+function validateField(id, error, event) {
     const field = document.getElementById(id);
     const fieldValue = field.value;
 
@@ -50,21 +137,28 @@ function validateField(id, error) {
         displayError(field, error);
     } else {
         nullifySuccessOrFailure(field);
-    }
-}
-
-function validatePhoneNumber() {
-    const phoneNumber = document.getElementById('phone-number');
-    const phoneNumberValue = phoneNumber.value;
-
-    if(phoneNumberValue === '') {
-        displayError(phoneNumber, "Please Specify A Phone Number that will be Associated With Your Rentals");
-    } else {
-        console.log(typeof phoneNumberValue.length);
-        if(phoneNumberValue.length !== 10) {
-            displayError(phoneNumber, "Please Enter A Valid Phone Number");
-        } else {
-            nullifySuccessOrFailure(phoneNumber);
-        }        
+        if((id === 'first-name') && (event === 'submit')) {
+            return true;
+        } else if((id === 'last-name') && (event === 'submit')) {
+            return true;
+        } else if(id === 'email') {
+            validateEmail();
+            if(event === 'submit') {
+                const emailOkay = validateEmail(event);
+                return emailOkay;
+            }
+        } else if (id === 'create-password') {
+            validatePasswordCreation();
+            if(event === 'submit') {
+                const createPasswordOkay = validatePasswordCreation(event);
+                return createPasswordOkay;
+            }
+        } else if (id === 'confirm-password') {
+            validatePasswordConfirmation();
+            if(event === 'submit') {
+                const confirmPasswordOkay = validatePasswordConfirmation(event);
+                return confirmPasswordOkay;
+            }
+        }
     }
 }
