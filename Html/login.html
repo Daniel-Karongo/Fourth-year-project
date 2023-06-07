@@ -22,24 +22,29 @@
         </nav>
         <div class="lower">
             <main>
-                <form action="../Html/Manage.html" onsubmit="validateForm(event)">
+                <form id="login-form" action="../Php/login-form-validator.php" method="post" onsubmit="validateForm(event)">
                     <h2>Login</h2>
                     <div class="user-name-div">
-                        <label for="email-username"> User Name/ Email</label>
-                        <input type="text" name="email-username" id="email-username" onblur="forEmail()">
+                        <label for="email"> Email</label>
+                        <input type="text" name="email" id="email" onblur="forEmail()">
                         <div class="error"></div>
                     </div>
+
                     <div class="password-div">
                         <label for="password"> Password </label>
-                        <input type="password" name="password" id="password" onblur="forPassword()">
+                        <input type="password" name="passwordField" id="passwordField" onblur="forPassword()">
                         <div class="error"></div>
-                    </div>                    
+                    </div> 
+
                     <div class="remember">
                         <input type="checkbox" name="remember" id="remember">
                         <label for="remember">Remember Me</label>
-                    </div>                
+                    </div>
+
                     <button type="submit">Login</button>
+
                     <a href="">Forgot Password</a>
+
                 </form>                                
                 <div class="no-account-b">
                     <p>Don't have an account?</p>

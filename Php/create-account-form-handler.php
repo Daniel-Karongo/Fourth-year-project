@@ -1,5 +1,5 @@
 <?php
-    include "../Php/databaseConnector.php";
+    include '../Php/databaseConnector.php';
 
     $firstName = $_POST["first-name"]; 
     $lastName = $_POST["last-name"];

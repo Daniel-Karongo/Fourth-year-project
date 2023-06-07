@@ -14,31 +14,42 @@ function nullifySuccessOrFailure(element) {
     parentDiv.classList.remove('error'); 
 }
 
-function forEmail() {
-    const userName = document.getElementById('email-username');
+function forEmail(event) {
+    const userName = document.getElementById('email');
     const userNameValue = userName.value;
 
     if(userNameValue === '') {
         displayError(userName, "Please Enter Your Email Address");
     } else {
         nullifySuccessOrFailure(userName);
+        if(event === 'submit') {
+            return true;
+        }
     }
 }
 
-function forPassword() {
-    const password = document.getElementById('password');
+function forPassword(event) {
+    const password = document.getElementById('passwordField');
     const passwordValue = password.value;
 
     if(passwordValue === '') {
         displayError(password, "Please Enter Your password");
     } else {
         nullifySuccessOrFailure(password);
+        if(event === 'submit') {
+            return true;
+        }
     }
 }
 
 function validateForm(event) {
     event.preventDefault();
-    forEmail();
-    forPassword();
+
+    const emailOkay = forEmail('submit');
+    const passwordOkay = forPassword('submit');
+
+    if((emailOkay === true) && (passwordOkay === true)) {
+        document.getElementById('login-form').submit();
+    }
 }
 
