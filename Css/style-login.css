@@ -83,11 +83,6 @@ main form div input:focus {
     outline: 3px solid #2C18DE;
 }
 
-main form div.error input {
-    border: 1.5px solid;
-    border-color: #ff3860;    
-}
-
 main form div .error {
     color: #ff3860;
     font-size: 0.9rem;

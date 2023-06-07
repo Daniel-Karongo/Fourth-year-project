@@ -27,7 +27,7 @@
                                 <label for="">First Name</label>
                             </div>
                             <div class="input-first-name">
-                                <input type="text">
+                                <input type="text" id="first-name" onblur="validateField('first-name', 'Please Specify Your First Name')">
                                 <div class="error"></div>
                             </div>                           
                         </div>
@@ -36,7 +36,7 @@
                                 <label for="">Last Name</label>
                             </div>
                             <div class="input-last-name">
-                                <input type="text">
+                                <input type="text" id="last-name" onblur="validateField('last-name', 'Please Specify Your Last Name')">
                                 <div class="error"></div>
                             </div>                     
                         </div>                  
@@ -47,7 +47,7 @@
                                 <label for="">Phone Number</label>
                             </div>
                             <div class="input-phone">
-                                <input type="text">
+                                <input type="text" id="phone-number" onblur="validatePhoneNumber()">
                                 <div class="error"></div>
                             </div>                      
                         </div>

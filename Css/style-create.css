@@ -89,21 +89,6 @@ p, .label-hint {
     outline: 3px solid #2C18DE;
 }
 
-.names div div.error input {
-    border: 1.5px solid;
-    border-color: #ff3860;    
-}
-
-.contacts div div.error input {
-    border: 1.5px solid;
-    border-color: #ff3860;    
-}
-
-.password-entry div div.error input {
-    border: 1.5px solid;
-    border-color: #ff3860;    
-}
-
 .names div div .error {
     color: #ff3860;
     font-size: 0.9rem;
