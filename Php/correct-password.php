@@ -8,7 +8,7 @@
         $retrieved_last_name = $property_owner['Last_Name'];
         $retrieved_rentals_owned = array();                    
         $retrieved_rentals_owned = $property_owner['Rentals_Owned'];                    
-    }  
+    }
 
-    include "../Php/dashboard.php";
+    include "../Php/dashboard.php";       
 ?>

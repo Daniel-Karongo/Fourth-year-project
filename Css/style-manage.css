@@ -134,11 +134,18 @@ form input {
 
 form input:focus {
     outline: none;
-    border: 2.5px solid#2C18DE;
+    border: 3px solid#2C18DE;
 }
 
 form button:focus {
     border: 3px solid#2C18DE;
+}
+
+form div div.error {
+    color: #ff3860;
+    font-size: 0.9rem;
+    margin-top: 6px;
+    margin-bottom: 7px;
 }
 
 .edit-details, .confirm-button {

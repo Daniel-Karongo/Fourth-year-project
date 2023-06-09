@@ -73,25 +73,31 @@
                     <form action="">
                         <label for="first-name">First Name:</label>
                         <input type="text" id="first-name" value="<?php echo $retrieved_first_name;?>" disabled>
+                        <p class="error"></p>
 
                         <label for="last-name">Last Name:</label>
                         <input type="text" id="last-name" value="<?php echo $retrieved_last_name;?>" disabled>
+                        <p class="error"></p>
 
                         <label for="phone">Phone Number:</label>
                         <input type="text" id="phone" value="<?php echo $retrieved_phone_number;?>" disabled>
+                        <p class="error"></p>
 
                         <label for="email">Email Address:</label>
                         <input type="text" id="email" value="<?php echo $email;?>" disabled>
+                        <p class="error"></p>
 
                         <label for="password">Password:</label>
                         <input type="password" id="password" value="<?php echo $password;?>" disabled>
+                        <p class="error"></p>
 
                         <input type="checkbox" id="show-pass" tabindex="0" onclick="toggleShowPassword()">
                         <label for="show-pass">Show Password</label>
 
-                        <div class="submit-confirm">
-                            <button type="submit" tabindex="0">Edit Details</button>
+                        <div class="edit-details">
+                            <button type="button" tabindex="0" onclick="toggleEnabled()">Edit Details</button>
                         </div>
+                        
                         <div class="confirm-button">
                             <button type="submit" tabindex="0">Confirm Details</button>
                         </div>                       
@@ -102,3 +108,4 @@
     </div>
 </body>
 </html>
+
