@@ -1,13 +1,25 @@
 <?php
-    // include "../Php/databaseConnector.php";
+    include "../Php/databaseConnector.php";
 
+    $email = $_POST["email"];
+    $password = $_POST["passwordField"];
+
+    $sqlquery = "SELECT Email_Address, Pass_Word FROM property_owners WHERE Email_Address = '$email';";
+    $res = mysqli_query($connectionInitialisation, $sqlquery);
     
-    // $email = $_POST["email-username"];
-    // $password = $_POST["password"];
+    if (mysqli_num_rows($res) > 0) {
+        while ($property_owner = mysqli_fetch_assoc($res)) {
+            $retrieved_email = $property_owner['Email_Address'];
+            $retrieved_password = $property_owner['Pass_Word'];            
+        }
 
-    // $sqlquery = "INSERT INTO property_owners (Phone_Number, Email_Address, Pass_word, First_Name, Last_Name) VALUES('$phoneNumber', '$email', PASSWORD('$confirmPassword'), '$firstName', '$lastName');";
+        if (password_verify($password, $retrieved_password)) {
+            echo "The Passwords Match";
+        } else {
+            echo "The Passwords Do Not Match";
+        }
 
-    // mysqli_query($connectionInitialisation, $sqlquery);
-
-    echo "Hello";
+    } else {
+        echo "There Is No such User";
+    }  
 ?>

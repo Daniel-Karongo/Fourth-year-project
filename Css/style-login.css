@@ -78,9 +78,28 @@ main form div {
     flex-direction: column;
 }
 
-main form div input:focus {
+.bottom-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.show-password-checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+main form div input[type='text']:focus, input[type='password']:focus {
     border: 0;
     outline: 3px solid #2C18DE;
+}
+
+main form div input[type='checkbox']:focus {
+    outline: none;
 }
 
 main form div .error {
@@ -121,7 +140,6 @@ main form input {
 }
 
 .remember {
-    margin-top: 10px;
     display: flex;
     flex-direction: row;
     align-items: baseline;    

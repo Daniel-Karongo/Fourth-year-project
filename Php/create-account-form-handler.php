@@ -5,10 +5,10 @@
     $lastName = $_POST["last-name"];
     $phoneNumber = $_POST["phone-number"];
     $email = $_POST["email"];
-    $createPassword = $_POST["create-password"];
     $confirmPassword = $_POST["confirm-password"];
+    $hashedPassword = password_hash($confirmPassword, PASSWORD_DEFAULT);
 
-    $sqlquery = "INSERT INTO property_owners (Phone_Number, Email_Address, Pass_word, First_Name, Last_Name) VALUES('$phoneNumber', '$email', PASSWORD('$confirmPassword'), '$firstName', '$lastName');";
+    $sqlquery = "INSERT INTO property_owners (Phone_Number, Email_Address, Pass_word, First_Name, Last_Name) VALUES('$phoneNumber', '$email', '$hashedPassword', '$firstName', '$lastName');";
 
     mysqli_query($connectionInitialisation, $sqlquery);
 

@@ -15,15 +15,22 @@ function nullifySuccessOrFailure(element) {
 }
 
 function forEmail(event) {
-    const userName = document.getElementById('email');
-    const userNameValue = userName.value;
+    const email = document.getElementById('email');
+    const emailValue = email.value;
 
-    if(userNameValue === '') {
-        displayError(userName, "Please Enter Your Email Address");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailValidity = emailRegex.test(emailValue);
+
+    if(emailValue === '') {
+        displayError(email, "Please Enter Your Email Address");
     } else {
-        nullifySuccessOrFailure(userName);
-        if(event === 'submit') {
-            return true;
+        if(emailValidity === true) {
+            nullifySuccessOrFailure(email);
+            if(event === 'submit') {
+                return true;
+            }
+        } else {
+            displayError(email, "Please Enter a Valid Email");
         }
     }
 }
@@ -51,5 +58,17 @@ function validateForm(event) {
     if((emailOkay === true) && (passwordOkay === true)) {
         document.getElementById('login-form').submit();
     }
+}
+
+function toggleBtwShowingAndHidingPassword() {
+    const password = document.getElementById('passwordField');
+    const checkbox = document.getElementById('toggle-show-password');
+
+    if(checkbox.checked) {
+        password.type = "text";        
+    } else {
+        password.type = "password"
+        
+    }        
 }
 
