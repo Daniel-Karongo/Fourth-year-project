@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <nav>
-            <h3>User Name</h3>
+            <h3><?php echo $retrieved_first_name . " " . $retrieved_last_name;?></h3>
             <form action="../Html/index.html" class="sign-out-button"><button type="submit">Sign Out</button></form>
         </nav>
         <div class="main-body">
@@ -24,7 +24,7 @@
             </div>
             <div class="panel">
                 <div class="panel-buttons">
-                    <button onclick="wrapperFunction('.my-rentals', '.contact-information', null)"> My Rentals</button>
+                    <button onclick="wrapperFunction('.my-rentals', '.contact-information', 'input')"> My Rentals</button>
                     <button onclick="wrapperFunction('.contact-information', '.my-rentals', null)"> My Contact Information</button>
                 </div>                
                 <div class="my-rentals">
@@ -72,36 +72,29 @@
                 <div class="contact-information">
                     <form action="">
                         <label for="first-name">First Name:</label>
-                        <input type="text" id="first-name" disabled>
-                        <p class="error"></p>
+                        <input type="text" id="first-name" value="<?php echo $retrieved_first_name;?>" disabled>
 
                         <label for="last-name">Last Name:</label>
-                        <input type="text" id="last-name" disabled>
-                        <p class="error"></p>
+                        <input type="text" id="last-name" value="<?php echo $retrieved_last_name;?>" disabled>
 
                         <label for="phone">Phone Number:</label>
-                        <input type="number" id="phone" disabled>
-                        <p class="error"></p>
+                        <input type="text" id="phone" value="<?php echo $retrieved_phone_number;?>" disabled>
 
                         <label for="email">Email Address:</label>
-                        <input type="text" id="email" disabled>
-                        <p class="error"></p>
+                        <input type="text" id="email" value="<?php echo $email;?>" disabled>
 
                         <label for="password">Password:</label>
-                        <input type="password" id="password" disabled>
-                        <p class="error"></p>
+                        <input type="password" id="password" value="<?php echo $password;?>" disabled>
 
                         <input type="checkbox" id="show-pass" tabindex="0" onclick="toggleShowPassword()">
                         <label for="show-pass">Show Password</label>
 
-                        <div class="edit-details">
-                            <button type="button" tabindex="0" onclick="toggleEnabled()">Edit Details</button>
+                        <div class="submit-confirm">
+                            <button type="submit" tabindex="0">Edit Details</button>
                         </div>
-                        
                         <div class="confirm-button">
                             <button type="submit" tabindex="0">Confirm Details</button>
-                        </div>
-
+                        </div>                       
                     </form>                       
                 </div>                
             </div>            

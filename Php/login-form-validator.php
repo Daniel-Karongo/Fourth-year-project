@@ -12,14 +12,14 @@
             $retrieved_email = $property_owner['Email_Address'];
             $retrieved_password = $property_owner['Pass_Word'];            
         }
-
         if (password_verify($password, $retrieved_password)) {
-            echo "The Passwords Match";
+            include "../Php/correct-password.php";
         } else {
-            echo "The Passwords Do Not Match";
+            include "../Php/incorrect-Password.php";
+            
         }
 
     } else {
-        echo "There Is No such User";
+        include "../Php/no-Such-Account.php";
     }  
 ?>

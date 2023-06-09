@@ -107,6 +107,7 @@ main form div .error {
     font-size: 0.9rem;
     margin-top: 0;
     margin-bottom: 15px;
+    width: 100%;
 }
 
 .no-account-b {    
