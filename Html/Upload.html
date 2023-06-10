@@ -17,7 +17,7 @@
             <h3>User Name</h3>
             <button type="submit"><a href="../Html/index.html" tabindex="-1">Sign Out</a></button>
         </nav>
-        <form class="main-body" id="form" action="../Php/rental-uploader.php" method="post" enctype="multipart/form-data">
+        <form class="main-body" id="form" action="../Php/rental-uploader.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event)">
             <div class="buttons">
                 <button onClick="wrapperFunction('.basic-information', 'flex', '.optional-information', 'input')" type="button">Basic Information</button>
                 <button onClick="wrapperFunction('.optional-information', 'block', '.basic-information', null)" type="button">Optional Information</button>
