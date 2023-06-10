@@ -17,15 +17,21 @@
             <h3>User Name</h3>
             <button type="submit"><a href="../Html/index.html" tabindex="-1">Sign Out</a></button>
         </nav>
-        <form class="main-body" id="form" action="../Html/ViewList.html" onsubmit="validateForm(event)">
+        <form class="main-body" id="form" action="../Php/rental-uploader.php" method="post" enctype="multipart/form-data">
             <div class="buttons">
                 <button onClick="wrapperFunction('.basic-information', 'flex', '.optional-information', 'input')" type="button">Basic Information</button>
                 <button onClick="wrapperFunction('.optional-information', 'block', '.basic-information', null)" type="button">Optional Information</button>
             </div>
             <div class="basic-information">
+                    <div class="nameofRental" id="nameofRental">
+                        <label class="name-of-rental" for="name-of-rental">Name Of Rental</label>
+                        <input type="text" class="name-of-rental" id="name-of-rental" name="name-of-rental" onblur="forNameOfRental()">
+                        <div class="error"></div>
+                    </div>
+
                     <div class="rentalType" id="rentalType">
                         <label class="type-of-rental" for="type-of-rental">Type of Rental</label>
-                        <select class="type-of-rental" name="type-of-rental" id="type-of-rental" onchange="forRentalType()"
+                        <select class="type-of-rental" id="type-of-rental" name="type-of-rental" onchange="forRentalType()"
                         onblur="forRentalType2()">
                             <option value="no-value">Please choose the kind of rental you want to advertise </option>
                             <option value="Hostel">Hostel</option>
