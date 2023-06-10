@@ -135,10 +135,9 @@ function validateForm(event) {
 
     if((firstNameOkay === true) && (lastNameOkay === true) && (phoneNumberOkay === true) && (emailOkay === true) && (createPasswordOkay === true)) {
         const proceed = confirm("Are You Sure You Want To Create An Account?");
-        console.log(proceed);
         if(proceed) {
             alert("Account Created Successfully");
-            document.querySelector('form').submit();
+            document.querySelector('.contact-information #contact-information-form').submit();
         }        
     }
     

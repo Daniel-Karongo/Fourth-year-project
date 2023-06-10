@@ -14,10 +14,10 @@
 <body>
     <div class="container">
         <nav>
-            <h3><?php echo $retrieved_first_name . " " . $retrieved_last_name;?></h3>
+            <h3><?php echo $firstName . " " . $lastName;?></h3>
             <button type="submit"><a href="../Html/index.html" tabindex="-1">Sign Out</a></button>
         </nav>
-        <form class="main-body" id="form" action="../Php/rental-uploader.php"  method="post" enctype="multipart/form-data" onsubmit="validateForm(event)">
+        <form class="main-body" id="form" action="../Php/rental-uploader.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event)">
             <div class="buttons">
                 <button onClick="wrapperFunction('.basic-information', 'flex', '.optional-information', 'input')" type="button">Basic Information</button>
                 <button onClick="wrapperFunction('.optional-information', 'block', '.basic-information', null)" type="button">Optional Information</button>
@@ -25,13 +25,13 @@
             <div class="basic-information">
                     <div class="nameofRental" id="nameofRental">
                         <label class="name-of-rental" for="name-of-rental">Name Of Rental</label>
-                        <input type="text" class="name-of-rental" name="name-of-rental" id="name-of-rental" onblur="forNameOfRental()">
+                        <input type="text" class="name-of-rental" id="name-of-rental" name="name-of-rental" onblur="forNameOfRental()">
                         <div class="error"></div>
                     </div>
 
                     <div class="rentalType" id="rentalType">
                         <label class="type-of-rental" for="type-of-rental">Type of Rental</label>
-                        <select class="type-of-rental" name="type-of-rental" id="type-of-rental" name= "type-of-rental" onchange="forRentalType()"
+                        <select class="type-of-rental" id="type-of-rental" name="type-of-rental" onchange="forRentalType()"
                         onblur="forRentalType2()">
                             <option value="no-value">Please choose the kind of rental you want to advertise </option>
                             <option value="Hostel">Hostel</option>
@@ -97,7 +97,7 @@
 
                     <div class="numberOfAvailableRentals" id="numberOfAvailableRentals">
                         <label class="number-of-available-rentals"for="number-of-available-rentals">Number of Available </label>
-                        <input type="number" class="number-of-available-rentals"name="number-of-available-rentals" id="number-of-available-rentals" name="number-of-available-rentals"  onblur="forFinalNumberOfRentals()">
+                        <input type="number" class="number-of-available-rentals"name="number-of-available-rentals" id="number-of-available-rentals" onblur="forFinalNumberOfRentals()">
                         <div class="error"></div>
                     </div>
 
@@ -118,6 +118,7 @@
                         <select class="rental-term" name="rental-term" id="rental-term" onblur="rentalTermSuccessorFailure()">
                             <option value="no-value"></option>
                             <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
                             <option value="monthly">Monthly</option>
                             <option value="yearly">Yearly</option>
                             <option value="quarterly">Quarterly (Once every three months)</option>option>
@@ -363,6 +364,10 @@
                     </div>                   
                 </div>
             </div>
+
+            <input type="hidden" name="email" value="<?php echo $email;?>">
+            <input type="hidden" name="phone-number" value="<?php $phoneNumber;?>">
+
             <div class="submit-entry">
                 <button type="submit">Submit</button>
             </div>            

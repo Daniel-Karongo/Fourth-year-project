@@ -41,21 +41,20 @@ nav h3 {
     margin: 0;
 }
 
-nav .sign-out-button button {
-    margin: 0;
-}
-
 .main-body {
     padding: 10px;
 }
 
 .sign-out-button {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    outline: 0;
-    box-shadow: none;
-    align-self: flex-start;    
+    text-decoration: none;
+    align-self: flex-start;
+    padding: 7px 10px;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.9rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;    
 }
 
 .buttons {
@@ -65,11 +64,21 @@ nav .sign-out-button button {
 
 .buttons button {
     padding: 10px 15px;
+    font-size: 1rem;
 }
 
 .buttons a {
     text-decoration: none;
+    text-align: center;
+    padding: 10px 15px;
     color: rgba(255,255,255,0.85);
+    font-size: 1rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+    width: 100%;
+    margin-bottom: 5px;
 }
 
 .panel {

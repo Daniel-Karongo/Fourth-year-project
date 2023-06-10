@@ -15,11 +15,15 @@
     <div class="container">
         <nav>
             <h3><?php echo $retrieved_first_name . " " . $retrieved_last_name;?></h3>
-            <form action="../Html/index.html" class="sign-out-button"><button type="submit">Sign Out</button></form>
+            <a class="sign-out-button" href="../Html/index.html">Sign Out</a>
         </nav>
         <div class="main-body">
             <div class="buttons">
-                <button><a href="../Html/Upload.html">Advertise a new Rental</a></button>
+                <a href="../Php/uploadPreparation.php?
+                    first-name=<?php echo $retrieved_first_name; ?>&
+                    last-name=<?php echo $retrieved_last_name; ?>&
+                    email=<?php echo $email; ?>&
+                    phone_number=<?php echo $retrieved_phone_number; ?>" class="button-link">Advertise a new Rental</a>
                 <button>Settings</button>
             </div>
             <div class="panel">
@@ -70,7 +74,7 @@
                     </div>
                 </div>
                 <div class="contact-information">
-                    <form action="../Php/edit-Landlords-Details.php" method="post" onsubmit="validateForm(event)">
+                    <form id="contact-information-form" action="../Php/edit-Landlords-Details.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event)">
                         <div class="first-name">
                             <label for="first-name">First Name:</label>
                             <input type="text" id="first-name" name="first-name" value="<?php echo $retrieved_first_name;?>" disabled onblur="validateField('first-name', 'Please Specify Your First Name')">
@@ -100,6 +104,9 @@
                             <input type="password" id="password" name="password" value="<?php echo $password;?>" disabled onblur="validateField('password', 'Please Confirm The Password')">
                             <div class="error"></div>
                         </div>
+
+                        <input type="hidden" name="retrieved-email" value="<?php echo $email;?>">
+                        <input type="hidden" name="retrieved-phone-number" value="<?php echo $retrieved_phone_number;?>">
 
                         <input type="checkbox" id="show-pass" tabindex="0" onclick="toggleShowPassword()">
                         <label for="show-pass">Show Password</label>
