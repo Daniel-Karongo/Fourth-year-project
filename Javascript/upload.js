@@ -685,3 +685,14 @@ function forMaximumNumberOfOccupants() {
         successfulEntry(maximumNumberOfOccupants);        
     }
 }
+
+function forNameOfRental() {
+    const nameOfRental = document.getElementById('name-of-rental');
+    const nameOfRentalValue = nameOfRental.value;
+
+    if(nameOfRentalValue === '') {
+        displayError(nameOfRental, "Please Specify The Name Of The Rental You Want To Advertise");
+    } else {
+        successfulEntry(nameOfRental);
+    }
+}
