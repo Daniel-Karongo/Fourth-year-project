@@ -1,6 +1,8 @@
 <?php
     // include '../Php/databaseConnector.php';
 
+    preferredSortsOfTenants();
+
     function generateRentalID() {
         $email = $_POST["email"];
         $phoneNumber = $_POST["phone-number"];
@@ -13,18 +15,50 @@
     function preferredSortsOfTenants() {
         $preferences = array();
 
-        array_push($preferences, 'The pickup point is required');
+        $gender = isset($_POST['gender']) ? $_POST["gender"] : null; 
+        $students = isset($_POST['students']) ? $_POST["students"] : null; 
+        $family = isset($_POST['family']) ? $_POST["family"] : null;
+        $vehicles = isset($_POST['vehicles']) ? $_POST["vehicles"] : null;
 
-        $gender = $_POST["gender"]; 
-        $students = $_POST["students"]; 
-        $family = $_POST["family"]; 
-        $vehicles = $_POST["vehicles"]; 
-        $Christianity = $_POST["Christianity"]; 
-        $islam = $_POST["islam"]; 
-        $hinduism = $_POST["hinduism"]; 
-        $otherReligion = $_POST["other-religion"]; 
-        $specifiedReligion = $_POST["specified-religion"]; 
-        $anyReligion = $_POST["any-religion"];
+        $Christianity = isset($_POST['Christianity']) ? $_POST["Christianity"] : null;
+        $islam = isset($_POST['islam']) ? $_POST["islam"] : null;
+        $hinduism = isset($_POST['hinduism']) ? $_POST["hinduism"] : null;
+        $specified_religion = empty($_POST['specified-religion']) ? null : $_POST['specified-religion'];        
+        $anyReligion = isset($_POST['any-religion']) ? $_POST["any-religion"] : null;
+
+        if ($gender !== null) {  
+            array_push($preferences, $gender);  
+        }
+        if ($students !== null) {  
+            array_push($preferences, $students);  
+        }
+        if ($family !== null) {  
+            array_push($preferences, $family);  
+        }
+        if ($vehicles !== null) {  
+            array_push($preferences, $vehicles);  
+        }
+        if ($Christianity !== null) {  
+            array_push($preferences, $Christianity);  
+        }
+        if ($islam !== null) {  
+            array_push($preferences, $islam);  
+        }
+        if ($hinduism !== null) {  
+            array_push($preferences, $hinduism);  
+        }
+        if ($specified_religion !== null) {  
+            array_push($preferences, $specified_religion);  
+        }
+        if ($anyReligion !== null) {  
+            array_push($preferences, $anyReligion);  
+        }
+
+        for ($i = 0; $i < count($preferences); $i++) {
+            echo $preferences[$i];
+            echo "<br>";
+        }
+
     }
 
     function ammenities() {
@@ -134,5 +168,5 @@
     // $sqlquery = "INSERT INTO property_owners (Phone_Number, Email_Address, Pass_word, First_Name, Last_Name) VALUES('$phoneNumber', '$email', '$hashedPassword', '$firstName', '$lastName');";
     // mysqli_query($connectionInitialisation, $sqlquery);
 
-    include '../Php/dashboard.php';
+    // include '../Php/dashboard.php';
 ?>

@@ -1,8 +1,3 @@
-function clearText(tag) {
-    let text = document.querySelectorAll(tag);
-    text.forEach((input) => {input.value = ""});    // Works for everything except the checkbox
-}
-
 function toViewAndHide(view, hide, displaytype) {
     document.querySelector(view).style.display = displaytype;
     document.querySelector(hide).style.display = 'none';
@@ -11,11 +6,8 @@ function toViewAndHide(view, hide, displaytype) {
     }   
 }
 
-function wrapperFunction(view, displaytype, hide, tag) {
-    toViewAndHide(view, hide, displaytype);
-    if(tag != null){
-        clearText(tag);    
-    }    
+function wrapperFunction(view, displaytype, hide) {
+    toViewAndHide(view, hide, displaytype);    
 }
 
 function toViewAndHideMultiplesections(toHideArg, toViewArg) {
@@ -253,6 +245,7 @@ function uncheckAllOthers() {
     } else {
         checkboxes.forEach((checkbox) => {
             checkbox.disabled = false;
+            inputField.disabled = false;
         });        
     }        
 }

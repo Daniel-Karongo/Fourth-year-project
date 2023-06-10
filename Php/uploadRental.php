@@ -19,8 +19,8 @@
         </nav>
         <form class="main-body" id="form" action="../Php/rental-uploader.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event)">
             <div class="buttons">
-                <button onClick="wrapperFunction('.basic-information', 'flex', '.optional-information', 'input')" type="button">Basic Information</button>
-                <button onClick="wrapperFunction('.optional-information', 'block', '.basic-information', null)" type="button">Optional Information</button>
+                <button onClick="wrapperFunction('.basic-information', 'flex', '.optional-information')" type="button">Basic Information</button>
+                <button onClick="wrapperFunction('.optional-information', 'block', '.basic-information')" type="button">Optional Information</button>
             </div>
             <div class="basic-information">
                     <div class="nameofRental" id="nameofRental">
@@ -289,11 +289,11 @@
                     <div class="students">
                         <div class="no-students">
                             <input type="radio" name="students" value="No Students" id="no-students">
-                            <label for="students">No Students</label>
+                            <label for="no-students">No Students</label>
                         </div>
                         <div class="students-welcome">
                             <input type="radio" name="students" value="Students Welcome" id="students-welcome">
-                            <label for="students">Students Welcome</label>
+                            <label for="students-welcome">Students Welcome</label>
                         </div>                  
                     </div>
 
@@ -305,7 +305,7 @@
                             <label for="no-children">Without small childen</label>
                         </div>
                         <div class="children-allowed">
-                            <input type="radio" name="family" name="Any Family Welcome" id="any-welcome">
+                            <input type="radio" name="family" value="Any Family Welcome" id="any-welcome">
                             <label for="any-welcome">Any Family</label>
                         </div>                  
                     </div>
@@ -335,22 +335,18 @@
                             <label for="islam">Islam</label>
                         </div>
                         <div class="hinduism">
-                            <input type="checkbox" name="hinduism"value="hinduism" id="hinduism">
+                            <input type="checkbox" name="hinduism" value="hinduism" id="hinduism">
                             <label for="hinduism">Hinduism</label>
                         </div>
                         <div class="other-religion">
-                            <input type="checkbox" 
-                            name="other-religion"
-                            value="other-religion" id="other-religion" onclick="specifyWhichReligion()">
+                            <input type="checkbox" name="other-religion" value="other-religion" id="other-religion" onclick="specifyWhichReligion()">
                             <label for="other-religion">Other</label>                         
                         </div>
                         <div class="specified-religion">
                             <input type="text" name="specified-religion" id="specified-religion">
                         </div>                       
                         <div class="any-religion">
-                            <input type="checkbox" 
-                            name="any-religion"
-                            value="any-religion" id="any-religion" onclick="uncheckAllOthers()">
+                            <input type="checkbox" name="any-religion" value="any-religion" id="any-religion" onclick="uncheckAllOthers()">
                             <label for="any-religion">Any Religion</label>
                         </div>               
                     </div>                  
