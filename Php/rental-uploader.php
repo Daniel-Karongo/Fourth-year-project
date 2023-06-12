@@ -1,7 +1,9 @@
 <?php
     // include '../Php/databaseConnector.php';
 
+    ammenities();
     preferredSortsOfTenants();
+    grabPhotographs();    
 
     function generateRentalID() {
         $email = $_POST["email"];
@@ -27,111 +29,189 @@
         $anyReligion = isset($_POST['any-religion']) ? $_POST["any-religion"] : null;
 
         if ($gender !== null) {  
-            array_push($preferences, $gender);  
+            array_push($preferences, "Gender: ".$gender);  
         }
         if ($students !== null) {  
-            array_push($preferences, $students);  
+            array_push($preferences, "Students: ".$students);  
         }
         if ($family !== null) {  
-            array_push($preferences, $family);  
+            array_push($preferences, "Family: ".$family);  
         }
         if ($vehicles !== null) {  
-            array_push($preferences, $vehicles);  
+            array_push($preferences, "Vehicles: ".$vehicles);  
         }
         if ($Christianity !== null) {  
-            array_push($preferences, $Christianity);  
+            array_push($preferences, "Christianity: ".$Christianity);  
         }
         if ($islam !== null) {  
-            array_push($preferences, $islam);  
+            array_push($preferences, "Islam: ".$islam);  
         }
         if ($hinduism !== null) {  
-            array_push($preferences, $hinduism);  
+            array_push($preferences, "Hinduism: ".$hinduism);  
         }
         if ($specified_religion !== null) {  
-            array_push($preferences, $specified_religion);  
+            array_push($preferences, "Specified Religion: ".$specified_religion);  
         }
         if ($anyReligion !== null) {  
-            array_push($preferences, $anyReligion);  
-        }
-
-        for ($i = 0; $i < count($preferences); $i++) {
-            echo $preferences[$i];
-            echo "<br>";
+            array_push($preferences, "Any Religion: ".$anyReligion);  
         }
 
     }
 
     function ammenities() {
         $ammenities = array();
+        
+        $cleanWater = isset($_POST["clean-water"]) ? $_POST["clean-water"] : null; 
+        $token = isset($_POST["token"]) ? $_POST["token"] : null; 
+        $meter = isset($_POST["meter"]) ? $_POST["meter"] : null;
+        $securityGuard = isset($_POST["security-guard"]) ? $_POST["security-guard"] : null; 
+        $cctv = isset($_POST["cctv"]) ? $_POST["cctv"] : null; 
+        $securityLights = isset($_POST["security-lights"]) ? $_POST["security-lights"] : null; 
+        $pitLatrine = isset($_POST["pit-latrine"]) ? $_POST["pit-latrine"] : null; 
+        $automaticToilet = isset($_POST["automatic-toilet"]) ? $_POST["automatic-toilet"] : null; 
+        $garbageCollection = isset($_POST["garbage-collection"]) ? $_POST["garbage-collection"] : null; 
+        $cleaner = isset($_POST["cleaner"]) ? $_POST["cleaner"] : null; 
+        $sink = isset($_POST["sink"]) ? $_POST["sink"] : null; 
+        $handicapAccess = isset($_POST["handicap-access"]) ? $_POST["handicap-access"] : null; 
+        $packing = isset($_POST["packing"]) ? $_POST["packing"] : null; 
+        $tiles = isset($_POST["tiles"]) ? $_POST["tiles"] : null; 
+        $ceiling = isset($_POST["ceiling"]) ? $_POST["ceiling"] : null; 
+        $balcony = isset($_POST["balcony"]) ? $_POST["balcony"] : null; 
+        $wifi = isset($_POST["wi-fi"]) ? $_POST["wi-fi"] : null; 
+        $jointTvSubscription = isset($_POST["joint-tv-subscription"]) ? $_POST["joint-tv-subscription"] : null; 
+        $airConditioning = isset($_POST["air-conditioning"]) ? $_POST["air-conditioning"] : null; 
+        $furnished = isset($_POST["furnished"]) ? $_POST["furnished"] : null; 
+        $swimmingPool = isset($_POST["swimming-pool"]) ? $_POST["swimming-pool"] : null; 
+        $gym = isset($_POST["gym"]) ? $_POST["gym"] : null;
 
-        $cleanWater = $_POST["clean-water"];
-        $token = $_POST["token"]; 
-        $meter = $_POST["meter"];
-        $securityGuard = $_POST["security-guard"]; 
-        $cctv = $_POST["cctv"]; 
-        $securityLights = $_POST["security-lights"]; 
-        $pitLatrine = $_POST["pit-latrine"]; 
-        $automaticToilet = $_POST["automatic-toilet"]; 
-        $garbageCollection = $_POST["garbage-collection"]; 
-        $cleaner = $_POST["cleaner"]; 
-        $sink = $_POST["sink"]; 
-        $handicapAccess = $_POST["handicap-access"]; 
-        $packing = $_POST["packing"]; 
-        $tiles = $_POST["tiles"]; 
-        $ceiling = $_POST["ceiling"]; 
-        $balcony = $_POST["balcony"]; 
-        $wifi = $_POST["wi-fi"]; 
-        $jointTvSubscription = $_POST["joint-tv-subscription"]; 
-        $airConditioning = $_POST["air-conditioning"]; 
-        $furnished = $_POST["furnished"]; 
-        $swimmingPool = $_POST["swimming-pool"]; 
-        $gym = $_POST["gym"];
+        if ($cleanWater !== null) {  
+            array_push($ammenities, "Clean Water: ".$cleanWater);  
+        }
+        if ($token !== null) {  
+            array_push($ammenities, "Token: ".$token);  
+        }
+        if ($meter !== null) {  
+            array_push($ammenities, "Meter: ".$meter);  
+        }
+        if ($securityGuard !== null) {  
+            array_push($ammenities, "Security Guard: ".$securityGuard);  
+        }
+        if ($cctv !== null) {  
+            array_push($ammenities, "Cctv: ".$cctv);  
+        }
+        if ($securityLights !== null) {  
+            array_push($ammenities, "Security Lights: ".$securityLights);  
+        }
+        if ($pitLatrine !== null) {  
+            array_push($ammenities, "Pit Latrine: ".$pitLatrine);  
+        }
+        if ($automaticToilet !== null) {  
+            array_push($ammenities, "Automatic Toilet: ".$automaticToilet);  
+        }
+        if ($garbageCollection !== null) {  
+            array_push($ammenities, "Garbage Collection: ".$garbageCollection);  
+        }
+        if ($cleaner !== null) {  
+            array_push($ammenities, "cleaner: ".$cleaner);  
+        }
+        if ($sink !== null) {  
+            array_push($ammenities, "sink: ".$sink);  
+        }        
+        if ($handicapAccess !== null) {  
+            array_push($ammenities, "handicap-access: ".$handicapAccess);  
+        }
+        if ($packing !== null) {  
+            array_push($ammenities, "packing: ".$packing);  
+        }
+        if ($tiles !== null) {  
+            array_push($ammenities, "tiles: ".$tiles);  
+        }
+        if ($ceiling !== null) {  
+            array_push($ammenities, "ceiling: ".$ceiling);  
+        }
+        if ($balcony !== null) {  
+            array_push($ammenities, "balcony: ".$balcony);  
+        }
+        if ($wifi !== null) {  
+            array_push($ammenities, "wi-fi: ".$wifi);  
+        }
+        if ($jointTvSubscription !== null) {  
+            array_push($ammenities, "joint-tv-subscription: ".$jointTvSubscription);  
+        }
+        if ($airConditioning !== null) {  
+            array_push($ammenities, "air-conditioning: ".$airConditioning);  
+        }
+        if ($furnished !== null) {  
+            array_push($ammenities, "furnished: ".$furnished);  
+        }
+        if ($swimmingPool !== null) {  
+            array_push($ammenities, "swimming-pool: ".$swimmingPool);  
+        }
+        if ($gym !== null) {  
+            array_push($ammenities, "gym: ".$gym);  
+        }
     }
     
     function grabPhotographs() {
+        $typeOfRental = $_POST["type-of-rental"];
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if(isset($_POST['submit']) && isset($_FILES['images-upload[]'])){
-                include "./databaseConnector.php";
+            if(isset($_FILES['images-upload'])){
+                // include "./databaseConnector.php";                
 
-                $fileCount = count($_FILES['image']['name']);
+                $fileCount = count($_FILES['images-upload']['name']);
 
                 for ($i = 0; $i < $fileCount; $i++) {
-                    $imageName = $_FILES['image']['name'][$i];
-                    $imageType = $_FILES['image']['type'][$i];
-                    $imageTemporaryName = $_FILES['image']['tmp_name'][$i];
-                    $imageSize = $_FILES['image']['size'][$i];
-                    $imageError = $_FILES['image']['error'][$i];
+                    $imageName = $_FILES['images-upload']['name'][$i];
+                    $imageTemporaryName = $_FILES['images-upload']['tmp_name'][$i];
+                    
+                    $imageExtension = pathinfo($imageName, PATHINFO_EXTENSION);
+                    $imageExtensionInLowerCase = strtolower($imageExtension);
+    
+                    $newImageName = uniqid("IMG-", true).".".$imageExtensionInLowerCase;
 
-                    if($imageError === 0) {
-                        if($imageSize > 125000) {
-                            $errorMessage = "Sorry, Your File is Too Large";
-                            header("Location: index.php?error=$errorMessage");
+                    if($typeOfRental === "Business Premise") {
+                        $typeOfOfBusinessPremise = $_POST["type-of-premise"];
+                        $imageUploadPath = "../Image_Data/Business Premises/" . $typeOfOfBusinessPremise . "/" . $newImageName;
+                        move_uploaded_file($imageTemporaryName, $imageUploadPath);
+
+                    } else if($typeOfRental === "Apartment") {
+                        $typeOfApartment = $_POST["number-of-apartment-bedrooms"];
+                        if($typeOfApartment !== "more") {
+                            $imageUploadPath = "../Image_Data/Apartments/" . $typeOfApartment . "/" . $newImageName;
+                            move_uploaded_file($imageTemporaryName, $imageUploadPath);
                         } else {
-                            echo "Not More than 1mb";
-                            $imageExtension = pathinfo($imageName, PATHINFO_EXTENSION);
-                            $imageExtensionInLowerCase = strtolower($imageExtension);
-                            $allowedExtensions = array("apng", "gif", "ico", "jpg", "jpeg", "png", "svg", "webp");
-            
-                            if(in_array($imageExtensionInLowerCase, $allowedExtensions)) {
-                                $newImageName = uniqid("IMG-", true).".".$imageExtensionInLowerCase;
-                                $imageUploadPath = "./Uploaded Images/".$newImageName;
-                                move_uploaded_file($imageTemporaryName, $imageUploadPath);
-                                
-                                $sqlquery = "INSERT INTO images(image_url) VALUES('$newImageName');";
-                                mysqli_query($connectionInitialisation, $sqlquery);                        
-                                header("Location: view.php");
-                            } else {
-                                $errorMessage = "You Cannot Upload Images Of This Type";
-                                header("Location: index.php?error=$errorMessage");
-                            }
+                            $moreApartmentBedrooms = $_POST["more-apartment-bedrooms"];
+                            $imageUploadPath = "../Image_Data/Apartments/More Bedrooms/" . $moreApartmentBedrooms . "-Bedrooms/" . $newImageName;
+                            if (!is_dir(dirname($imageUploadPath))) {
+                                mkdir(dirname($imageUploadPath), 0777, true);
+                            }                            
+                            move_uploaded_file($imageTemporaryName, $imageUploadPath);
+                        }                        
+                    } else if($typeOfRental === "House") {
+                        $typeOfHouse = $_POST["number-of-house-bedrooms"];
+                        if($typeOfHouse !== "more") {
+                            $imageUploadPath = "../Image_Data/Houses/" . $typeOfHouse . "/" . $newImageName;
+                            move_uploaded_file($imageTemporaryName, $imageUploadPath);
+                        } else {
+                            $moreHouseBedrooms = $_POST["more-house-bedrooms"];
+                            $imageUploadPath = "../Image_Data/Houses/More Bedrooms/" . $moreHouseBedrooms . "-Bedrooms/" . $newImageName;
+                            if (!is_dir(dirname($imageUploadPath))) {
+                                mkdir(dirname($imageUploadPath), 0777, true);
+                            }                            
+                            move_uploaded_file($imageTemporaryName, $imageUploadPath);
                         }
                     } else {
-                        $errorMessage = "Unknown Error Occured";
-                        header("Location: index.php?error=$errorMessage");
-                    }                
+                        $imageUploadPath = "../Image_Data/" . $typeOfRental . "s/" . $newImageName;
+                        move_uploaded_file($imageTemporaryName, $imageUploadPath);
+                    }
+
+                    
+                    
+                    // $sqlquery = "INSERT INTO images(image_url) VALUES('$newImageName');";
+                    // mysqli_query($connectionInitialisation, $sqlquery);                        
+                    // header("Location: view.php");                       
+                                   
                 }
-            } else {
-                header("Location: index.php?error=$errorMessage");
             }
         }
     }
@@ -155,7 +235,6 @@
         $amountOfRent = $_POST["rent"];
         $description = $_POST["description"];
     }
-
 
     function populatePropertiesDatabase() {
         

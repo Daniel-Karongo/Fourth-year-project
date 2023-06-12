@@ -152,115 +152,115 @@
                     <h4>Ammenities</h4>
                     
                     <div class="clean-water">
-                        <input type="checkbox"  name="clean-water" id="clean-water">
+                        <input type="checkbox"  name="clean-water" id="clean-water" value="Clean Water">
                         <label for="clean-water"> Clean Tap Water/ Water Reserves (Tanks and/or Borehole)</label>
                     </div>
                     
                     <h5>Electricity</h5>
                     <div class="electricity-token">
-                        <input type="checkbox" name="token" id="token">
+                        <input type="checkbox" name="token" id="token" value="Token">
                         <label for="token"> Individual Token</label>
                     </div>
                     
                     <div class="electricity-meter">
-                        <input type="checkbox" name="meter" id="meter">
+                        <input type="checkbox" name="meter" id="meter" value="Meter">
                         <label for="meter"> Shared Meter</label>
                     </div>
                     
                     <h5>Security</h5>
 
                     <div class="security-guard">
-                        <input type="checkbox" name="security-guard" id="security-guard">
+                        <input type="checkbox" name="security-guard" id="security-guard" value="Security Guard">
                         <label for="security-guard"> Security Guard</label>
                     </div>
 
                     <div class="cctv">
-                        <input type="checkbox" name="cctv" id="cctv">
+                        <input type="checkbox" name="cctv" id="cctv" value="Cctv">
                         <label for="cctv"> CCTV</label>
                     </div>
                     
                     <div class="security-lights">
-                        <input type="checkbox" name="security-lights" id="security-lights">
+                        <input type="checkbox" name="security-lights" id="security-lights" value="Security Lights">
                         <label for="security-lights"> Security Lights</label>                    
                     </div>
                     
                     <h5>Toilets</h5>
                     
                     <div class="pit-latrine">
-                        <input type="checkbox" name="pit-latrine" id="pit-latrine">
+                        <input type="checkbox" name="pit-latrine" id="pit-latrine" value="Pit Latrine">
                         <label for="pit-latrine"> Communal Pit Latrine</label>
                     </div>
                     
                     <div class="automatic-toilet">
-                        <input type="checkbox" name="automatic-toilet" id="automatic-toilet">
+                        <input type="checkbox" name="automatic-toilet" id="automatic-toilet" value="Automatic Toilet">
                         <label for="automatic-toilet"> Communal Automatic Toilets</label>
                     </div>
                     
                     <h5>Cleaning</h5>
                     
                     <div class="garbage-collection">
-                        <input type="checkbox" name="garbage-collection" id="garbage-collection">
+                        <input type="checkbox" name="garbage-collection" id="garbage-collection" value="Garbage Collection">
                         <label for="garbage-collection"> Garbage Collection</label>
                     </div>
                     <div class="cleaner">
-                        <input type="checkbox" name="cleaner" id="cleaner">
+                        <input type="checkbox" name="cleaner" id="cleaner" value="Cleaner">
                         <label for="cleaner"> Cleaner for the shared spaces (e.g toilets/ablution block)</label>
                     </div>
                     <div class="sink">
-                        <input type="checkbox" name="sink" id="sink">
+                        <input type="checkbox" name="sink" id="sink" value="Sink">
                         <label for="sink"> Sink</label>
                     </div>
                     
                     <h5>Accessibility</h5>
 
                     <div class="handicap-access">
-                        <input type="checkbox" name="handicap-access" id="handicap-access">
+                        <input type="checkbox" name="handicap-access" id="handicap-access" value="Handicap Access">
                         <label for="handicap-access"></label>Handicap/ WheelChair Access</label>
                     </div>
                     <div class="packing">
-                        <input type="checkbox" name="packing" id="packing">
+                        <input type="checkbox" name="packing" id="packing" value="Packing">
                         <label for="packing"></label>Packing</label>
                     </div>
                     
                     <h5> Finishing</h5>
 
                     <div class="tiles">
-                        <input type="checkbox" name="tiles" id="tiles">
+                        <input type="checkbox" name="tiles" id="tiles" value="Tiles">
                         <label for="tiles" class="tiles"> Tiles</label>
                     </div>
                     <div class="ceiling">
-                        <input type="checkbox" class="ceiling" name="ceiling" id="ceiling">
+                        <input type="checkbox" class="ceiling" name="ceiling" id="ceiling" value="Ceiling">
                         <label for="ceiling"> Ceiling</label>
                     </div>
                     <div class="balcony">
-                        <input type="checkbox" name="balcony" id="balcony">
+                        <input type="checkbox" name="balcony" id="balcony" value="Balcony">
                         <label for="balcony"></label>Balcony</label>
                     </div>
                    
                     <h5>luxury</h5>
 
                     <div class="wi-fi">
-                        <input type="checkbox" name="wi-fi" id="wi-fi">
+                        <input type="checkbox" name="wi-fi" id="wi-fi" value="Wi-Fi">
                         <label for="wi-fi"> Wi-Fi</label>
                     </div>
                     <div class="joint-tv-subscription">
-                        <input type="checkbox" name="joint-tv-subscription" id="joint-tv-subscription">
+                        <input type="checkbox" name="joint-tv-subscription" id="joint-tv-subscription" value="Joint TV Subscription">
                         <label for="joint-tv-subscription"> Joint TV Subscription</label>
                     </div>
                     <div class="air-conditioning">
-                        <input type="checkbox"  name="air-conditioning" id="air-conditioning">
+                        <input type="checkbox"  name="air-conditioning" id="air-conditioning" value="Air Conditioning">
                         <label for="air-conditioning"></label>Air Conditioning</label>
                     </div>
                     <div class="furnished">
-                        <input type="checkbox" name="furnished" id="furnished">
+                        <input type="checkbox" name="furnished" id="furnished" value="Furnished">
                         <label for="furnished"></label>Furnished</label>
                     </div>
                     <div class="swimming-pool">
-                        <input type="checkbox" name="swimming-pool" id="swimming-pool">
+                        <input type="checkbox" name="swimming-pool" id="swimming-pool" value="Swimming Pool">
                         <label for="swimming-pool"></label>Swimming Pool</label>
                     </div>
                     <div class="gym">
-                        <input type="checkbox" name="gym" id="gym">
+                        <input type="checkbox" name="gym" id="gym" value="Gym">
                         <label for="gym"></label>Gym</label>
                     </div>  
                 </div>
@@ -327,26 +327,26 @@
                     
                     <div class="religion">
                         <div class="christianity">
-                            <input type="checkbox" name="Christianity" value="christianity" id="christianity">
+                            <input type="checkbox" name="Christianity" value="Christianity" id="christianity">
                             <label for="christianity">Christianity</label>
                         </div>
                         <div class="islam">
-                            <input type="checkbox" name="islam" value="islam" id="islam">
+                            <input type="checkbox" name="islam" value="Islam" id="islam">
                             <label for="islam">Islam</label>
                         </div>
                         <div class="hinduism">
-                            <input type="checkbox" name="hinduism" value="hinduism" id="hinduism">
+                            <input type="checkbox" name="hinduism" value="Hinduism" id="hinduism">
                             <label for="hinduism">Hinduism</label>
                         </div>
                         <div class="other-religion">
-                            <input type="checkbox" name="other-religion" value="other-religion" id="other-religion" onclick="specifyWhichReligion()">
+                            <input type="checkbox" name="other-religion" value="Other Religion" id="other-religion" onclick="specifyWhichReligion()">
                             <label for="other-religion">Other</label>                         
                         </div>
                         <div class="specified-religion">
                             <input type="text" name="specified-religion" id="specified-religion">
                         </div>                       
                         <div class="any-religion">
-                            <input type="checkbox" name="any-religion" value="any-religion" id="any-religion" onclick="uncheckAllOthers()">
+                            <input type="checkbox" name="any-religion" value="Any religion" id="any-religion" onclick="uncheckAllOthers()">
                             <label for="any-religion">Any Religion</label>
                         </div>               
                     </div>                  
