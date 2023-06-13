@@ -1,9 +1,6 @@
 <?php
-    // include '../Php/databaseConnector.php';
-
-    ammenities();
-    preferredSortsOfTenants();
-    grabPhotographs();    
+   
+    grabBasicInformation();
 
     function generateRentalID() {
         $email = $_POST["email"];
@@ -56,6 +53,7 @@
             array_push($preferences, "Any Religion: ".$anyReligion);  
         }
 
+        return $preferences;
     }
 
     function ammenities() {
@@ -150,14 +148,14 @@
         if ($gym !== null) {  
             array_push($ammenities, "gym: ".$gym);  
         }
+        return $ammenities;
     }
     
     function grabPhotographs() {
         $typeOfRental = $_POST["type-of-rental"];
+        $imagesToUpload = array();
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if(isset($_FILES['images-upload'])){
-                // include "./databaseConnector.php";                
-
                 $fileCount = count($_FILES['images-upload']['name']);
 
                 for ($i = 0; $i < $fileCount; $i++) {
@@ -168,6 +166,8 @@
                     $imageExtensionInLowerCase = strtolower($imageExtension);
     
                     $newImageName = uniqid("IMG-", true).".".$imageExtensionInLowerCase;
+                    
+                    array_push($imagesToUpload, $newImageName);
 
                     if($typeOfRental === "Business Premise") {
                         $typeOfOfBusinessPremise = $_POST["type-of-premise"];
@@ -203,49 +203,234 @@
                     } else {
                         $imageUploadPath = "../Image_Data/" . $typeOfRental . "s/" . $newImageName;
                         move_uploaded_file($imageTemporaryName, $imageUploadPath);
-                    }
-
-                    
+                    }                    
                     
                     // $sqlquery = "INSERT INTO images(image_url) VALUES('$newImageName');";
                     // mysqli_query($connectionInitialisation, $sqlquery);                        
                     // header("Location: view.php");                       
                                    
                 }
+                return $imagesToUpload;
             }
         }
     }
 
     function grabRules() {
-        $rulesUpload = $_POST["rules-upload"]; 
+        $imagesToUpload = array();
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if(isset($_FILES['rules-upload'])){
+                $fileCount = count($_FILES['rules-upload']['name']);
+                
+                for ($i = 0; $i < $fileCount; $i++) {
+                    $imageName = $_FILES['rules-upload']['name'][$i];
+                    $imageTemporaryName = $_FILES['rules-upload']['tmp_name'][$i];
+                    
+                    $imageExtension = pathinfo($imageName, PATHINFO_EXTENSION);
+                    $imageExtensionInLowerCase = strtolower($imageExtension);
+    
+                    $newImageName = uniqid("IMG-", true).".".$imageExtensionInLowerCase;
+
+                    array_push($imagesToUpload, $newImageName);
+                
+                    $imageUploadPath = "../Image_Data/Rules/" . $newImageName;
+                    move_uploaded_file($imageTemporaryName, $imageUploadPath);              
+                    
+                    // $sqlquery = "INSERT INTO images(image_url) VALUES('$newImageName');";
+                    // mysqli_query($connectionInitialisation, $sqlquery);                        
+                    // header("Location: view.php");                       
+                                   
+                }
+                return $imagesToUpload;
+            }
+        }
     }
 
     function grabBasicInformation() {
+
+        $email = $_POST["email"];
+        $phoneNumber = $_POST["phone-number"];
+
         $numberOfApartmentBedrooms = $_POST["number-of-apartment-bedrooms"];
         $moreApartmentBedrooms = $_POST["more-apartment-bedrooms"];
         $typeOfOfBusinessPremise = $_POST["type-of-premise"];
         $numberOfHouseBedrooms = $_POST["number-of-house-bedrooms"];
         $moreHouseBedrooms = $_POST["more-house-bedrooms"];
-        $typeOfRental = $_POST["type-of-rental"];
 
+        $nameOfRental = $_POST['name-of-rental'];
+        $typeOfRental = $_POST["type-of-rental"];
         $numberOfAvailableRentals = $_POST["number-of-available-rentals"];
         $numberOfOccupants = $_POST["maximum-occupants"];
         $location = $_POST["location"];
+        $googleLocation = $_POST["googlelocation"];
         $rentalTerm = $_POST["rental-term"];
         $amountOfRent = $_POST["rent"];
         $description = $_POST["description"];
-    }
 
-    function populatePropertiesDatabase() {
+        $rentalID = generateRentalID();
+        $plotPhotos = grabPhotographs();
+        $rulesPhotos = grabRules();
+        $preferences = preferredSortsOfTenants();
+        $ammenities = ammenities();
+
+        $plotNames = "";        
+        foreach($plotPhotos as $plotPhoto) {
+            if($plotNames !== '') {
+                $plotNames = $plotNames  . ", " . $plotPhoto;
+            } else {
+                $plotNames = $plotPhoto;
+            }
+        }
+
+        $rulesFiles = "";        
+        foreach($rulesPhotos as $rulesPhoto) {
+            if($rulesFiles !== '') {
+                $rulesFiles = $rulesFiles  . ", " . $rulesPhoto;
+            } else {
+                $rulesFiles = $rulesPhoto;
+            }
+        }
+
+        $preferencesCollection = "";        
+        foreach($preferences as $preference) {
+            if($preferencesCollection !== '') {
+                $preferencesCollection = $preferencesCollection  . ", " . $preference;
+            } else {
+                $preferencesCollection = $preference;
+            }
+        }
+
+        $ammenitiesCollection = "";        
+        foreach($ammenities as $ammenity) {
+            if($ammenitiesCollection !== '') {
+                $ammenitiesCollection = $ammenitiesCollection  . ", " . $ammenity;
+            } else {
+                $ammenitiesCollection = $ammenity;
+            }
+        }
+
+        include '../Php/databaseConnector.php';
+
+        switch($typeOfRental){
+            case 'Hostel':
+                $tableName = "Hostels";
+
+                otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
+
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);                
+                break;
+
+            case "Single Room":
+                $tableName = "single_rooms";
+
+                otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
+
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);                
+                break;
+            
+            case "Bedsitter":
+                $tableName = "bedsitters";
+
+                otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
+
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+
+                break;
+            
+            case "Suite":
+                $tableName = "suites";
+                $extraColumn = "Number_Of_Beds_Per_Suite";
+
+                eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $numberOfAvailableRentals, $connectionInitialisation);
+
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+
+                break;
+            
+            case "Apartment":
+                $tableName = "apartments";
+                $extraColumn = "Number_Of_Bedrooms";
+
+                if($numberOfApartmentBedrooms !== "more") {
+                    eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfApartmentBedrooms, $numberOfAvailableRentals, $connectionInitialisation);
+                } else {
+                    eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $moreApartmentBedrooms, $numberOfAvailableRentals, $connectionInitialisation);
+                }
+                
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $connectionInitialisation);
+                
+                break;
+            
+            case "House":
+                $tableName = "houses";
+                $extraColumn = "Number_Of_Bedrooms";
+
+                if($numberOfHouseBedrooms !== "more") {
+                    eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfHouseBedrooms, $numberOfAvailableRentals, $connectionInitialisation);
+                } else {
+                    eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $moreHouseBedrooms, $numberOfAvailableRentals, $connectionInitialisation);
+                }
+                
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $connectionInitialisation);
+                
+                break;
+            
+            case "Business Premise":
+                
+                $sqlquery = "INSERT INTO business_premises (Rental_ID, Rental_Name, Type_Of_Premise, Location, Google_Location, Image_Urls, Ammenities, Number_Of_Similar_Units) 
+                VALUES('$rentalID', '$nameOfRental', '$typeOfOfBusinessPremise', '$location', '$googleLocation', '$plotNames', '$ammenitiesCollection', '$numberOfAvailableRentals');";
+                
+                if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+                    die("Update query failed: " . mysqli_error($connectionInitialisation));
+                }
+
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+
+                break;
+
+        }
+
+        $retrieved_first_name = $_POST["first-name"];
+        $retrieved_last_name = $_POST["last-name"];
+        $email = $email;
+        $retrieved_phone_number = $phoneNumber;
+        $password = $_POST["password"];
         
+        include "../Php/dashboard.php";
+    
     }
 
-    function populatePropertiesOwnersDatabase() {
-
+    function otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation) {
+        include '../Php/databaseConnector.php';
+        
+        $sqlquery = "INSERT INTO $tableName (Rental_ID, Rental_Name, Location, Google_Location, Image_Urls, Ammenities, Number_Of_Similar_Units) 
+        VALUES('$rentalID', '$nameOfRental', '$location', '$googleLocation', '$plotNames', '$ammenitiesCollection', '$numberOfAvailableRentals');";
+        
+        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+            die("Update query failed: " . mysqli_error($connectionInitialisation));
+        }        
     }
 
-    // $sqlquery = "INSERT INTO property_owners (Phone_Number, Email_Address, Pass_word, First_Name, Last_Name) VALUES('$phoneNumber', '$email', '$hashedPassword', '$firstName', '$lastName');";
-    // mysqli_query($connectionInitialisation, $sqlquery);
+    function eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $numberOfAvailableRentals, $connectionInitialisation) {
+        include '../Php/databaseConnector.php';
+        
+        $sqlquery = "INSERT INTO $tableName (Rental_ID, Rental_Name, Location, Google_Location, Image_Urls, Ammenities, $extraColumn, Number_Of_Similar_Units) 
+        VALUES('$rentalID', '$nameOfRental', '$location', '$googleLocation', '$plotNames', '$ammenitiesCollection', '$numberOfOccupants', '$numberOfAvailableRentals');";
+        
+        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+            die("Update query failed: " . mysqli_error($connectionInitialisation));
+        }        
+    }
 
-    // include '../Php/dashboard.php';
+    function properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation) {
+
+        include '../Php/databaseConnector.php';
+
+        $sqlquery = "INSERT INTO properties_owners_details (Rental_ID, Owners_Phone_Number, Email_Address, Rental_Term, Amount_of_Rent, Pitching, Preferred_Sorts_of_Applicants, Maximum_Number_Of_Occupants) 
+        VALUES('$rentalID', '$phoneNumber', '$email', '$rentalTerm', '$amountOfRent', '$description', '$preferencesCollection', '$numberOfOccupants');";
+
+        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+            die("Update query failed: " . mysqli_error($connectionInitialisation));
+        }                
+    }
+    
 ?>

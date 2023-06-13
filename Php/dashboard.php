@@ -23,7 +23,8 @@
                     first-name=<?php echo $retrieved_first_name; ?>&
                     last-name=<?php echo $retrieved_last_name; ?>&
                     email=<?php echo $email; ?>&
-                    phone_number=<?php echo $retrieved_phone_number; ?>" class="button-link">Advertise a new Rental</a>
+                    phone_number=<?php echo $retrieved_phone_number; ?>&
+                    password=<?php echo $retrieved_phone_number; ?>" class="button-link">Advertise a new Rental</a>
                 <button>Settings</button>
             </div>
             <div class="panel">

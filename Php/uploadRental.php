@@ -111,7 +111,12 @@
                         <label class="location" for="location">Location</label>
                         <input class="location" type="text" name="location" id="location" onblur="locationSuccessOrFailure()">
                         <div class="error"></div>
-                    </div>                    
+                    </div>
+                    
+                    <div class="googlelocationDiv" id="googlelocationDiv">
+                        <label class="googlelocation" for="googlelocation">Google Location Url</label>
+                        <input class="googlelocation" type="text" name="googlelocation" id="googlelocation" placeholder="Optional">                        
+                    </div>
 
                     <div class="rentalTerm" id="rentalTerm">
                         <label class="rental-term" for="rental-term">Rental Term</label>
@@ -353,16 +358,19 @@
                 </div>
                 <div class="rules">
                     <h4>Rules of the rental</h4>
-                    <p>Please upload an image file (a picture) containing the rules of your place, rather than having to write them all down.</p>
+                    <p>Please upload one or more image files (pictures/photographs) containing the rules of your place, rather than having to write them all down.</p>
                     <div class="upload-rules">
                         <label for="rules-upload"> Upload Rules</label>
-                        <input type="file" name="rules-upload" id="rules-upload" multiple>                        
+                        <input type="file" name="rules-upload[]" id="rules-upload" multiple>                        
                     </div>                   
                 </div>
             </div>
 
-            <input type="hidden" name="email" value="<?php echo $email;?>">
-            <input type="hidden" name="phone-number" value="<?php $phoneNumber;?>">
+            <input type="hidden" name="email" id="email" value="<?php echo $email;?>">
+            <input type="hidden" name="phone-number" id="phone-number" value="<?php echo $phoneNumber;?>">
+            <input type="hidden" name="first-name" id="first-name" value="<?php echo $firstName;?>">
+            <input type="hidden" name="last-name" id="last-name" value="<?php echo $lastName;?>">
+            <input type="hidden" name="password" id="password" value="<?php echo $password;?>">
 
             <div class="submit-entry">
                 <button type="submit">Submit</button>

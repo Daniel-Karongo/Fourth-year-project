@@ -37,6 +37,10 @@ textarea::placeholder {
     color: rgba(255,255,255,0.70);    
 }
 
+.googlelocation input::placeholder {
+    color: rgba(255,255,255,0.70);    
+}
+
 .container {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
     background-color: #1D2024;
