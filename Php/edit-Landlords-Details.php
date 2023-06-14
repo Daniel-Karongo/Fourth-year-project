@@ -23,6 +23,16 @@
     if (!mysqli_query($connectionInitialisation, $sqlquery)) {
         die("Update query failed: " . mysqli_error($connectionInitialisation));
     }
+
+    $sqlquery = "UPDATE properties_owners_details 
+                 SET Owners_Phone_Number = '$phoneNumber', 
+                     Email_Address = '$email'                      
+                 WHERE Email_Address = '$retrieved_email' 
+                     AND Owners_Phone_Number = '$retrieved_phone_number'";
+    
+    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+        die("Update query failed: " . mysqli_error($connectionInitialisation));
+    }
     
     $retrieved_phone_number = $phoneNumber;
     $retrieved_first_name = $firstName;                    
@@ -41,6 +51,6 @@
         $retrieved_rentals_owned = $property_owner['Rentals_Owned'];                    
     }
     
-    include "../Php/dashboard.php";
+    include "../Php/correct-password.php";
     
 ?>

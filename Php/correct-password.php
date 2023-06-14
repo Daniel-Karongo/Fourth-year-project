@@ -12,13 +12,39 @@
     $rentalsOwned = array();
     $rentalsOwned = explode(", ", $retrieved_rentals_owned);
     
+    $retrieved_rentalID = array();
+    $retrieved_rental_name = array();
+    $rentalType = array();
+    $retrieved_location = array();
+    $retrieved_google_location = array();
+    $retrieved_image_urls = array();
+    $retrieved_ammenities = array();
+    $retrieved_number_of_units = array();
+
+    $apartments_retrieved_number_of_bedrooms = array();
+    $business_premises_retrieved_type_of_premise = array();    
+    $houses_retrieved_number_of_bedrooms = array();
+    $suites_retrieved_number_of_beds = array();
+
+    $retrieved_rental_term = array();
+    $retrieved_amount_of_rent = array();
+    $retrieved_description = array();
+    $retrieved_tenant_preferences = array();
+
+    $Hostel_retrieved_maximum_occupants = array();
+    $Single_Room_retrieved_maximum_occupants = array();
+    $Bedsitter_retrieved_maximum_occupants = array();
+    $Suite_retrieved_maximum_occupants = array();
+
+    $iteration = 0;
+    
     foreach($rentalsOwned as $rentalID) {
         $rentalIDComponents = explode("_", $rentalID);
         $lastIndex = count($rentalIDComponents) - 1;
-        $rentalType = $rentalIDComponents[$lastIndex];
+        array_push($rentalType, $rentalIDComponents[$lastIndex]);
         $tablename = '';
         
-        switch($rentalType) {
+        switch($rentalType[$iteration]) {
             case "Hostel":
                 $tablename = "hostels";
                 break;
@@ -49,65 +75,102 @@
             if (mysqli_num_rows($res) > 0) {
 
                 while ($table = mysqli_fetch_assoc($res)) {
-                    $retrieved_rentalID = $rentalID;
-                    $retrieved_rental_name = $table['Rental_Name'];
-                    $retrieved_location = $table['Location'];                    
-                    $retrieved_google_location = $table['Google_Location'];
-                    $retrieved_image_urls = $table['Image_Urls'];                    
-                    $retrieved_ammenities = $table['Ammenities'];
-                    $retrieved_number_of_units = $table['Number_Of_Similar_Units'];
+                    array_push($retrieved_rentalID, $rentalID);
+                    array_push($retrieved_rental_name, $table['Rental_Name']);
+                    array_push($retrieved_location, $table['Location']);                    
+                    array_push($retrieved_google_location, $table['Google_Location']);
+                    array_push($retrieved_image_urls, $table['Image_Urls']);                    
+                    array_push($retrieved_ammenities, $table['Ammenities']);
+                    array_push($retrieved_number_of_units, $table['Number_Of_Similar_Units']);
         
-                    echo "ID: " . $retrieved_rentalID;
-                    echo "<br>";
-                    echo "Name: " . $retrieved_rental_name;
-                    echo "<br>";
-                    echo "Location: " . $retrieved_location;
-                    echo "<br>";
-                    echo "Google Location: " . $retrieved_google_location;
-                    echo "<br>";
-                    echo "Images: " . $retrieved_image_urls;
-                    echo "<br>";
-                    echo "Ammenities: " . $retrieved_ammenities;
-                    echo "<br>";
-                    echo "Units: " . $retrieved_number_of_units;
-                    echo "<br>";
-                    
                     switch($tablename) {
                         case "apartments":
-                            $retrieved_number_of_bedrooms = $table['Number_Of_Bedrooms'];
-                            echo "Bedrooms: " . $retrieved_number_of_bedrooms;
-                            echo "<br>";
+                            array_push($apartments_retrieved_number_of_bedrooms, $table['Number_Of_Bedrooms']);
+                            array_push($business_premises_retrieved_type_of_premise, null);
+                            array_push($houses_retrieved_number_of_bedrooms, null);
+                            array_push($suites_retrieved_number_of_beds, null);
                             break;
                         case "business_premises":
-                            $retrieved_type_of_premise = $table['Type_Of_Premise'];
-                            echo "Type of Business Premise: " . $retrieved_type_of_premise;
-                            echo "<br>";
+                            array_push($business_premises_retrieved_type_of_premise, $table['Type_Of_Premise']);
+                            array_push($apartments_retrieved_number_of_bedrooms, null);
+                            array_push($houses_retrieved_number_of_bedrooms, null);
+                            array_push($suites_retrieved_number_of_beds, null);
                             break;
                         case "houses":
-                            $retrieved_number_of_bedrooms = $table['Number_Of_Bedrooms'];
-                            echo "Bedrooms: " . $retrieved_number_of_bedrooms;
-                            echo "<br>";
+                            array_push($houses_retrieved_number_of_bedrooms, $table['Number_Of_Bedrooms']);
+                            array_push($apartments_retrieved_number_of_bedrooms, null);
+                            array_push($business_premises_retrieved_type_of_premise, null);
+                            array_push($suites_retrieved_number_of_beds, null);
                             break;
                         case "suites":
-                            $retrieved_number_of_beds = $table['Number_Of_Beds_Per_Suite'];
-                            echo "Beds: " . $retrieved_number_of_beds;
-                            echo "<br>";
+                            array_push($suites_retrieved_number_of_beds, $table['Number_Of_Beds_Per_Suite']);
+                            array_push($apartments_retrieved_number_of_bedrooms, null);
+                            array_push($business_premises_retrieved_type_of_premise, null);
+                            array_push($houses_retrieved_number_of_bedrooms, null);
+                            break;
+                        default:
+                            array_push($suites_retrieved_number_of_beds, null);
+                            array_push($apartments_retrieved_number_of_bedrooms, null);
+                            array_push($business_premises_retrieved_type_of_premise, null);
+                            array_push($houses_retrieved_number_of_bedrooms, null);
                             break;
                     }
-                    echo "<br>";
-                    echo "<br>";
                 }
     
-            } else {
-                echo "No Rentals Owned";        
             }
-        } 
-        else {
-            echo "The User Has No Rentals Uploaded";
         }
-           
-    }
+        
+        $sqlquery = "SELECT * FROM properties_owners_details WHERE Rental_ID = '$rentalID';";
+        $res = mysqli_query($connectionInitialisation, $sqlquery);
 
+        if($res) {
+            if (mysqli_num_rows($res) > 0) {
+
+                while ($table = mysqli_fetch_assoc($res)) {
+                    array_push($retrieved_rentalID, $rentalID);
+                    array_push($retrieved_rental_term, $table['Rental_Term']);
+                    array_push($retrieved_amount_of_rent, $table['Amount_of_Rent']);                    
+                    array_push($retrieved_description, $table['Pitching']);
+                    array_push($retrieved_tenant_preferences, $table['Preferred_Sorts_of_Applicants']);                  
+        
+                    switch($rentalType) {
+                        case "Hostel":
+                            array_push($Hostel_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                            array_push($Single_Room_retrieved_maximum_occupants, null);
+                            array_push($Bedsitter_retrieved_maximum_occupants, null);
+                            array_push($Suite_retrieved_maximum_occupants, null);
+                            break;
+                        case "Single Room":
+                            array_push($Single_Room_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                            array_push($Hostel_retrieved_maximum_occupants, null);
+                            array_push($Bedsitter_retrieved_maximum_occupants, null);
+                            array_push($Suite_retrieved_maximum_occupants, null);
+                            break;
+                        case "Bedsitter":
+                            array_push($Bedsitter_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                            array_push($Hostel_retrieved_maximum_occupants, null);
+                            array_push($Single_Room_retrieved_maximum_occupants, null);
+                            array_push($Suite_retrieved_maximum_occupants, null);
+                            break;
+                        case "Suite":
+                            array_push($Suite_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                            array_push($Hostel_retrieved_maximum_occupants, null);
+                            array_push($Single_Room_retrieved_maximum_occupants, null);
+                            array_push($Bedsitter_retrieved_maximum_occupants, null);
+                            break;
+                        default:
+                            array_push($Suite_retrieved_maximum_occupants, null);
+                            array_push($Hostel_retrieved_maximum_occupants, null);
+                            array_push($Single_Room_retrieved_maximum_occupants, null);
+                            array_push($Bedsitter_retrieved_maximum_occupants, null);
+                            break;
+                    }                    
+                }
+    
+            } 
+        }
+        $iteration++; 
+    }
 
     include "../Php/dashboard.php";       
 ?>

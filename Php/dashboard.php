@@ -24,7 +24,7 @@
                     last-name=<?php echo $retrieved_last_name; ?>&
                     email=<?php echo $email; ?>&
                     phone_number=<?php echo $retrieved_phone_number; ?>&
-                    password=<?php echo $retrieved_phone_number; ?>&
+                    password=<?php echo $password; ?>&
                     rentals_owned=<?php echo $retrieved_rentals_owned; ?>" class="button-link">Advertise a new Rental</a>
                 <button>Settings</button>
             </div>
@@ -34,46 +34,93 @@
                     <button onclick="wrapperFunction('.contact-information', '.my-rentals', null)"> My Contact Information</button>
                 </div>                
                 <div class="my-rentals">
-                    <div class="rental-template">
-                        <img src="../Images/cheap-accommodation-kerikeri.jpg" alt="Rental-1">
-                        <p> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
-                        <div class="template-buttons">
-                            <button>Remove Rental</button> 
-                            <button>Edit Rental Details</button> 
-                        </div>  
-                    </div>
-                    <div class="rental-template">
-                        <img src="../Images/mud-house.jpg" alt="Rental-2">
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
-                        <div class="template-buttons">
-                            <button>Remove Rental</button> 
-                            <button>Edit Rental Details</button> 
-                        </div>                        
-                    </div>
-                    <div class="rental-template">
-                        <img src="../Images/apartment-housing-tripoli-lebanon-ATHN9J.jpg" alt="Rental-2">
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
-                        <div class="template-buttons">
-                            <button>Remove Rental</button> 
-                            <button>Edit Rental Details</button> 
-                        </div>                        
-                    </div>
-                    <div class="rental-template">
-                        <img src="../Images/motel2.webp" alt="Rental-2">
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
-                        <div class="template-buttons">
-                            <button>Remove Rental</button> 
-                            <button>Edit Rental Details</button> 
-                        </div>                        
-                    </div>
-                    <div class="rental-template">
-                        <img src="../Images/Plot Construction.jpg" alt="Rental-2">
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
-                        <div class="template-buttons">
-                            <button>Remove Rental</button> 
-                            <button>Edit Rental Details</button> 
-                        </div>                        
-                    </div>
+
+                    <?php 
+                        if(($res) && (mysqli_num_rows($res) > 0)) {
+                            for($i=0; $i<count($rentalsOwned); $i++) {
+                                                                    
+                                $imageUrlsComponents = explode(", ", $retrieved_image_urls[$i]);
+                                $imageToDisplay = $imageUrlsComponents[0];
+                                
+                                $finalFolder = "";
+
+                                switch($rentalType[$i]) {
+                                    case "Business Premise":
+                                        $finalFolder = $rentalType[$i] . "s/" . $business_premises_retrieved_type_of_premise[$i] . "/";
+                                        break;
+
+                                    case "Apartment":                                                    
+                                        if(($apartments_retrieved_number_of_bedrooms[$i] == 1) || ($apartments_retrieved_number_of_bedrooms[$i] == 2) || ($apartments_retrieved_number_of_bedrooms == 3)) {
+                                            $finalFolder = $rentalType[$i] . "s/" . $apartments_retrieved_number_of_bedrooms[$i]. "-Bedroom/";
+                                        } else {
+                                            $finalFolder = $rentalType[$i] . "s/More Bedrooms/" . $apartments_retrieved_number_of_bedrooms. "-Bedrooms/";
+                                        }                                                    
+                                        break;
+
+                                    case "House":
+                                        if(($houses_retrieved_number_of_bedrooms[$i] == 1) || ($houses_retrieved_number_of_bedrooms[$i] == 2) || ($houses_retrieved_number_of_bedrooms[$i] == 3)) {
+                                            $finalFolder = $rentalType[$i] . "s/" . $houses_retrieved_number_of_bedrooms[$i]. "-Bedroom/";
+                                        } else {
+                                            $finalFolder = $rentalType[$i] . "s/More Bedrooms/" . $houses_retrieved_number_of_bedrooms[$i] . "-Bedrooms/";
+                                        }
+                                        break;
+                                    
+                                    default:
+                                        $finalFolder = $rentalType[$i] . "s/";
+                                }
+                                
+                                $termDisplay = "";
+                                switch($retrieved_rental_term[$i]) {
+                                    case "daily":
+                                        $termDisplay = "Day";
+                                        break;
+                                    case "weekly":
+                                        $termDisplay = "Week";
+                                        break;
+                                    case "monthly":
+                                        $termDisplay = "Month";
+                                        break;
+                                    case "yearly":
+                                        $termDisplay = "Year";
+                                        break;
+                                    case "quarterly":
+                                        $termDisplay = "3 Months";
+                                        break;
+                                    case "bi-annually":
+                                        $termDisplay = "6 Months";
+                                        break;
+                                }
+
+                                echo 
+                                '   <div class="rental-template">
+                                        <div class="title">
+                                            <h3>' . $retrieved_rental_name[$i] . '</h3>' .
+                                        '</div>' .
+                                        '<div class="main-section">' . 
+                                            '<div class="top-section">' .
+                                                '<div class="image-div">'.
+                                                    '<img src="../Image_Data/' . $finalFolder . $imageToDisplay . '" ' . 'alt="Rental-' . $i + 1 . '">' .
+                                                '</div>' .                                
+                                                '<div class="payment">' .
+                                                    '<h4 class="amount">Ksh.' . $retrieved_amount_of_rent[$i] . '</h4>' .
+                                                    '<h5 class="rental-term">Per' . $termDisplay . '</h5>' .
+                                                '</div>' .
+                                            '</div>' .
+                                            '<div class="bottom-section">' .
+                                                '<h4 class="description-title">Description</h4>' .
+                                                '<p class="description">' . $retrieved_description[$i] . '</p>' .
+                                                '<div class="template-buttons"> 
+                                                    <button class="remove-rental"> Remove Rental </button> 
+                                                    <button class="edit-rental"> Edit Rental Details </button> 
+                                                </div>' .
+                                            '</div>' .
+                                        '</div>' .                                        
+                                    '</div>'
+                                ; 
+                            } 
+                        } 
+                    ?>
+
                 </div>
                 <div class="contact-information">
                     <form id="contact-information-form" action="../Php/edit-Landlords-Details.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event)">

@@ -415,7 +415,7 @@
         $retrieved_rentals_owned = $rentalsOwned;
 
         
-        include "../Php/dashboard.php";
+        include "../Php/correct-password.php";
     
     }
 
