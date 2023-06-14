@@ -371,6 +371,7 @@
             <input type="hidden" name="first-name" id="first-name" value="<?php echo $firstName;?>">
             <input type="hidden" name="last-name" id="last-name" value="<?php echo $lastName;?>">
             <input type="hidden" name="password" id="password" value="<?php echo $password;?>">
+            <input type="hidden" name="rentals-owned" id="rentals-owned" value="<?php echo $retrieved_rentals_owned;?>">
 
             <div class="submit-entry">
                 <button type="submit">Submit</button>

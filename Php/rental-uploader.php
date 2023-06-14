@@ -203,12 +203,7 @@
                     } else {
                         $imageUploadPath = "../Image_Data/" . $typeOfRental . "s/" . $newImageName;
                         move_uploaded_file($imageTemporaryName, $imageUploadPath);
-                    }                    
-                    
-                    // $sqlquery = "INSERT INTO images(image_url) VALUES('$newImageName');";
-                    // mysqli_query($connectionInitialisation, $sqlquery);                        
-                    // header("Location: view.php");                       
-                                   
+                    }                            
                 }
                 return $imagesToUpload;
             }
@@ -249,6 +244,7 @@
 
         $email = $_POST["email"];
         $phoneNumber = $_POST["phone-number"];
+        $rentalsOwned = $_POST["rentals-owned"];
 
         $numberOfApartmentBedrooms = $_POST["number-of-apartment-bedrooms"];
         $moreApartmentBedrooms = $_POST["more-apartment-bedrooms"];
@@ -307,6 +303,12 @@
                 $ammenitiesCollection = $ammenity;
             }
         }
+        
+        if($rentalsOwned === '') {
+            $rentalsOwned = $rentalID;
+        } else {
+            $rentalsOwned = $rentalsOwned . ", " . $rentalID;
+        }
 
         include '../Php/databaseConnector.php';
 
@@ -316,7 +318,10 @@
 
                 otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);                
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+                
+                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
+
                 break;
 
             case "Single Room":
@@ -324,7 +329,10 @@
 
                 otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);                
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+                
+                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
+
                 break;
             
             case "Bedsitter":
@@ -333,6 +341,8 @@
                 otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
 
                 properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+
+                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
 
                 break;
             
@@ -343,6 +353,8 @@
                 eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $numberOfAvailableRentals, $connectionInitialisation);
 
                 properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+
+                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
 
                 break;
             
@@ -357,6 +369,8 @@
                 }
                 
                 properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $connectionInitialisation);
+
+                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
                 
                 break;
             
@@ -371,6 +385,8 @@
                 }
                 
                 properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $connectionInitialisation);
+
+                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
                 
                 break;
             
@@ -385,6 +401,8 @@
 
                 properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
 
+                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
+
                 break;
 
         }
@@ -394,6 +412,8 @@
         $email = $email;
         $retrieved_phone_number = $phoneNumber;
         $password = $_POST["password"];
+        $retrieved_rentals_owned = $rentalsOwned;
+
         
         include "../Php/dashboard.php";
     
@@ -431,6 +451,16 @@
         if (!mysqli_query($connectionInitialisation, $sqlquery)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
         }                
+    }
+
+    function property_owners_table_updator($email, $rentalsOwned, $phoneNumber) {
+        include '../Php/databaseConnector.php';
+
+        $sqlquery = "UPDATE property_owners SET Rentals_Owned = '$rentalsOwned' WHERE Email_Address = '$email' AND Phone_Number = '$phoneNumber';";
+        
+        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+            die("Update query failed: " . mysqli_error($connectionInitialisation));
+        }
     }
     
 ?>
