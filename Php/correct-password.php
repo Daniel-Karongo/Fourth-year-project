@@ -12,6 +12,8 @@
     $rentalsOwned = array();
     $rentalsOwned = explode(", ", $retrieved_rentals_owned);
     
+    $tablenames = array();
+
     $retrieved_rentalID = array();
     $retrieved_rental_name = array();
     $rentalType = array();
@@ -82,6 +84,7 @@
                     array_push($retrieved_image_urls, $table['Image_Urls']);                    
                     array_push($retrieved_ammenities, $table['Ammenities']);
                     array_push($retrieved_number_of_units, $table['Number_Of_Similar_Units']);
+                    array_push($tablenames, $tablename);
         
                     switch($tablename) {
                         case "apartments":
@@ -127,11 +130,10 @@
             if (mysqli_num_rows($res) > 0) {
 
                 while ($table = mysqli_fetch_assoc($res)) {
-                    array_push($retrieved_rentalID, $rentalID);
                     array_push($retrieved_rental_term, $table['Rental_Term']);
                     array_push($retrieved_amount_of_rent, $table['Amount_of_Rent']);                    
                     array_push($retrieved_description, $table['Pitching']);
-                    array_push($retrieved_tenant_preferences, $table['Preferred_Sorts_of_Applicants']);                  
+                    array_push($retrieved_tenant_preferences, $table['Preferred_Sorts_of_Applicants']);                    
         
                     switch($rentalType) {
                         case "Hostel":

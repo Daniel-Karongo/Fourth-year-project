@@ -91,6 +91,9 @@
                                         break;
                                 }
 
+                                $rentalID = $retrieved_rentalID[$i];
+                                $tableName = $tablenames[$i];
+
                                 echo 
                                 '   <div class="rental-template">
                                         <div class="title">
@@ -110,8 +113,17 @@
                                                 '<h4 class="description-title">Description</h4>' .
                                                 '<p class="description">' . $retrieved_description[$i] . '</p>' .
                                                 '<div class="template-buttons"> 
-                                                    <button class="remove-rental"> Remove Rental </button> 
-                                                    <button class="edit-rental"> Edit Rental Details </button> 
+                                                    <form class="template-submit-buttons" action="../Php/rentalDelete.php" method="post" enctype="multipart/form-data" onsubmit="validateDeletion(event)">
+                                                        <button type="submit" class="remove-rental"> Remove Rental </button> 
+                                                        <button type="button" class="edit-rental"> Edit Rental Details </button>
+                                                        <input type="hidden" name="rentalID" class="rentalID" value="' . $rentalID . '">
+                                                        <input type="hidden" name="tableName" class="tableName" value="' . $tableName . '">
+                                                        <input type="hidden" name="user-email" class="user-email" value="' . $email . '">
+                                                        <input type="hidden" name="phone-number" class="phone-number" value="' . $retrieved_phone_number . '">
+                                                        <input type="hidden" name="rentals-owned" class="rentals-owned" value="' . $retrieved_rentals_owned . '">
+                                                        <input type="hidden" name="image-urls" class="image-urls" value="' . $retrieved_image_urls[$i] . '">
+                                                        <input type="hidden" name="image-paths" class="image-paths" value="../Image_Data/' . $finalFolder . '">
+                                                    </form>                           
                                                 </div>' .
                                             '</div>' .
                                         '</div>' .                                        
