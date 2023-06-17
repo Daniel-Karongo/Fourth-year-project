@@ -147,27 +147,26 @@ section .right {
     display: none;
 }
 
-.rental-description, .contact-information {
+.rental-description {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
     padding: 10px;
     display: flex;
     flex-direction: column;
 }
 
-.rental-description h2 {
+.rental-description-labels {
     margin-top: 10px;
     margin-bottom: 0;
     align-self: center;
+    font-size: 1rem;
+    color: red;
 }
 
-.rental-description h3 {
-    margin-top: 10px;
-    margin-bottom: 0;
-}
-
-.rental-description h4 {
+.rental-description-input {
     margin-top: 5px;
     margin-bottom: 0;
+    font-size: 1rem;
+    color: red;
 }
 
 .rental-description textarea {

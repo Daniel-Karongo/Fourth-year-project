@@ -41,53 +41,71 @@
         <main>
             <form action="../Php/submit-editted-rental-details.php" class="overall-form">
                 <div class="rental-description">
-                    <h2>Description</h2>
-                    <h3>Ksh. <?php echo $rentAmount; ?></h3>
-                    <h4>Per <?php echo $termDisplay; ?></h4>
-                    <textarea id="description" name="description" readonly><?php echo $description; ?> </textarea>
-                    <h3>Type Of Rental: <?php 
+                    
+                <h2>Rental Details</h2>
+
+                    <label for="rent-amount" class="rental-description-labels">Ksh: </label>
+                    <input type="number" class="rental-description-input" name="rent-amount" id="rent-amount" value="<?php echo $rentAmount; ?>">
+                    <label for="rent-term" class="rental-description-labels">Per:  </label>
+                    <input type="text" class="rental-description-input" name="rent-term" id="rent-term" value="<?php echo $termDisplay; ?>">
+                    <label for="description" class="rental-description-labels">Description</label>
+                    <textarea id="description" class="rental-description-input" name="description" readonly><?php echo $description; ?> </textarea>
+                    <label for="premise-type" class="rental-description-labels">Type Of Rental: </label>
+                    <input type="text" class="rental-description-input" name="premise-type" id="premise-type" value="<?php 
                         switch($rentalType) {
                             case "Business Premise":
-                                $typeOfPremise = $_POST['type-of-business-premise'];
-                                echo $typeOfPremise;
+                                echo $typeOfBusinessPremise;
                                 break;
                             default:
                                 echo $rentalType;
                         }
-                    ?></h3>
-                    <h3>Number Of <?php echo $rentalType; ?>s: <?php echo $numberOfUnits; ?></h3>
-                    <h3>Location: <?php echo $location; ?></h3>
-                    <h3>Google Location: <?php echo $googlelocation; ?></h3>
+                    ?>">
+                    <label for="number-of-unit" class="rental-description-labels">Number Of <?php 
+                        switch($rentalType) {
+                            case "Business Premise":
+                                echo $typeOfBusinessPremise;
+                                break;
+                            default:
+                                echo $rentalType;
+                        }
+                    ?>s</label>  
+                    <input type="number" class="rental-description-input" name="number-of-unit" id="number-of-unit" value="<?php echo $numberOfUnits; ?>">
                     <?php
                         switch($rentalType) {
                             case "Suite":
-                                $numberOfBeds = $_POST['suite-beds'];
-                                echo '<label for="number-of-beds"> Number Of Beds Per Suite </label>
-                                <input type="number" value="' . $numberOfBeds . '" id="number-of-beds" name="number-of-beds">';
+                                echo '<label for="number-of-beds" class="rental-description-labels"> Number Of Beds Per Suite </label>
+                                <input type="number" class="rental-description-input" value="' . $suiteBeds . '" id="number-of-beds" name="number-of-beds">';
                                 break;
                             case "Apartment":
-                                $numberOfBedrooms = $_POST['apartment-bedrooms'];
-                                echo '<label for="number-of-apartment-bedrooms"> Number Of Bedrooms Per Apartment </label>
-                                <input type="number" value="' . $numberOfBedrooms . '" id="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms">';
+                                echo '<label for="number-of-apartment-bedrooms" class="rental-description-labels"> Number Of Bedrooms Per Apartment </label>
+                                <input type="number" class="rental-description-input" value="' . $apartmentBedrooms . '" id="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms">';
                                 break;
                             case "House":
-                                $numberOfBedrooms = $_POST['house-bedrooms'];
-                                echo '<label for="number-of-house-bedrooms"> Number Of Bedrooms Per House </label>
-                                <input type="number" value="' . $numberOfBedrooms . '" id="number-of-house-bedrooms" name="number-of-house-bedrooms">';
+                                echo '<label for="number-of-house-bedrooms" class="rental-description-labels"> Number Of Bedrooms Per House </label>
+                                <input type="number" class="rental-description-input" value="' . $houseBedrooms . '" id="number-of-house-bedrooms" name="number-of-house-bedrooms">';
                                 break;
                             case "Hostel":
-                                $maximumNumberOfOccupants = $_POST['hostel-maximum-occupants'];
-                                echo '<label for="maximum-number-of-Hostel-occupants"> Maximum Number Of Occupants </label>
-                                <input type="number" value="' . $maximumNumberOfOccupants . '" id="maximum-number-of-Hostel-occupants" name="maximum-number-of-Hostel-occupants">';
+                               echo '<label for="maximum-number-of-Hostel-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
+                                <input type="number" class="rental-description-input" value="' . $hostelMaximumOccupants . '" id="maximum-number-of-Hostel-occupants" name="maximum-number-of-Hostel-occupants">';
                                 break;
                             case "Bedsitter":
-                                $maximumNumberOfOccupants = $_POST['bedsitter-maximum-occupants'];
-                                echo '<label for="maximum-number-of-bedsitter-occupants"> Maximum Number Of Occupants </label>
-                                <input type="number" value="' . $maximumNumberOfOccupants . '" id="maximum-number-of-bedsitter-occupants" name="maximum-number-of-bedsitter-occupants">';
+                                echo '<label for="maximum-number-of-bedsitter-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
+                                <input type="number" class="rental-description-input" value="' . $bedsitterMaximumOccupants . '" id="maximum-number-of-bedsitter-occupants" name="maximum-number-of-bedsitter-occupants">';
+                                break;
+                            case "Single Room":
+                                echo '<label for="maximum-number-of-single-room-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
+                                <input type="number" class="rental-description-input" value="' . $singleRoomMaximumOccupants . '" id="maximum-number-of-single-room-occupants" name="maximum-number-of-single-room-occupants">';
+                                break;
+                            case "Single Room":
+                                echo '<label for="maximum-number-of-single-room-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
+                                <input type="number" class="rental-description-input" value="' . $singleRoomMaximumOccupants . '" id="maximum-number-of-single-room-occupants" name="maximum-number-of-single-room-occupants">';
                                 break;
                         }
-
                     ?>
+                    <label for="location" class="rental-description-labels">Location:</label>
+                    <input type="text" class="rental-description-input" name="location" id="location" value="<?php echo $location; ?>">
+                    <label for="google-location" class="rental-description-labels"> Google Location: </label>
+                    <input type="text" class="rental-description-input" name="google-location" id="google-location" value="<?php echo $googlelocation; ?>">   
 
                 </div>            
                 

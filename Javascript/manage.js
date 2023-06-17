@@ -181,9 +181,18 @@ function validateDeletion(event) {
     }        
 }
 
-function activateAnchor() {
-    const form = document.getElementById('edit-details-form');
-    form.submit();
+function activateAnchor(event) {
+    const clickedElement = event.target;
+    const form = document.querySelectorAll('.rental-template');
+    form.forEach((div) => {
+        const descendants = div.querySelectorAll('*');
+        descendants.forEach((descendant) => {
+            if(descendant === clickedElement) {
+                const form = div.querySelector('.edit-details-form');
+                form.submit();
+            }
+        });        
+    });
 }
 
 function zoomDiv(div) {
@@ -194,6 +203,7 @@ function zoomDiv(div) {
 
 function unzoomDiv(div) {
     div.style.transform = 'scale(1)';
-    div.style.borderColor = 'gray';
+    div.style.borderColor = '';
+    div.style.boxShadow = '0px 0px 5px 2px rgba(0,0,0,0.5)';
     div.style.outline = 'none';
 }

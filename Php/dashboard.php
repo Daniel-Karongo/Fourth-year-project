@@ -15,7 +15,7 @@
     <div class="container">
         <nav>
             <h3><?php echo $retrieved_first_name . " " . $retrieved_last_name;?></h3>
-            <a class="sign-out-button" href="../Html/index.html">Sign Out</a>
+            <a class="sign-out-button" href="../Html/index.html" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Sign Out</a>
         </nav>
         <div class="main-body">
             <div class="buttons">
@@ -25,13 +25,12 @@
                     email=<?php echo $email; ?>&
                     phone_number=<?php echo $retrieved_phone_number; ?>&
                     password=<?php echo $password; ?>&
-                    rentals_owned=<?php echo $retrieved_rentals_owned; ?>" class="button-link">Advertise a new Rental</a>
-                <button>Settings</button>
+                    rentals_owned=<?php echo $retrieved_rentals_owned; ?>" class="button-link" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Advertise a new Rental</a>
             </div>
             <div class="panel">
                 <div class="panel-buttons">
-                    <button onclick="wrapperFunction('.my-rentals', '.contact-information', null)"> My Rentals</button>
-                    <button onclick="wrapperFunction('.contact-information', '.my-rentals', null)"> My Contact Information</button>
+                    <button onclick="wrapperFunction('.my-rentals', '.contact-information', null)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"> My Rentals</button>
+                    <button onclick="wrapperFunction('.contact-information', '.my-rentals', null)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"> My Contact Information</button>
                 </div>                
                 <div class="my-rentals">
 
@@ -95,7 +94,7 @@
                                 $tableName = $tablenames[$i];
 
                                 echo 
-                                '   <div class="rental-template" onclick="activateAnchor()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                '   <div class="rental-template" id="rental-template-' . $i+1 . '" onclick="activateAnchor(event)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                         <div class="title">
                                             <h3>' . $retrieved_rental_name[$i] . '</h3>' .
                                         '</div>' .
@@ -124,7 +123,7 @@
                                                         <input type="hidden" name="image-paths" class="image-paths" value="../Image_Data/' . $finalFolder . '">
                                                     </form>
 
-                                                    <form class="template-submit-buttons" action="../Php/edit-rental-preparation.php" method="post" enctype="multipart/form-data" id="edit-details-form">                               
+                                                    <form class="template-submit-buttons edit-details-form" id="template-edit-details-' . $i+1 . '" action="../Php/edit-rental-preparation.php" method="post" enctype="multipart/form-data">                               
                                                         <button type="submit" class="edit-rental"> Edit Rental Details </button>
                                                         
                                                         <input type="hidden" name="rental-ID" class="rental-ID" value="' .$retrieved_rentalID[$i] . '">
@@ -148,7 +147,6 @@
                                                         <input type="hidden" name="hostel-maximum-occupants" class="hostel-maximum-occupants" value="' . $Hostel_retrieved_maximum_occupants[$i] . '">
                                                         <input type="hidden" name="single-room-maximum-occupants" class="single-room-maximum-occupants" value="' . $Single_Room_retrieved_maximum_occupants[$i] . '">
                                                         <input type="hidden" name="bedsitter-maximum-occupants" class="bedsitter-maximum-occupants" value="' . $Bedsitter_retrieved_maximum_occupants[$i] . '">
-                                                        <input type="hidden" name="suite-maximum-occupants" class="suite-maximum-occupants" value="' . $Suite_retrieved_maximum_occupants[$i] . '">
                                                         <input type="hidden" name="image-paths" class="image-paths" value="../Image_Data/' . $finalFolder . '">
                                                         <input type="hidden" name="term-display" class="term-display" value="'. $termDisplay . '">
 
@@ -202,11 +200,11 @@
                         <label for="show-pass">Show Password</label>
 
                         <div class="edit-details">
-                            <button type="button" tabindex="0" onclick="toggleEnabled()">Edit Details</button>
+                            <button type="button" tabindex="0" onclick="toggleEnabled()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Edit Details</button>
                         </div>
                         
                         <div class="confirm-button">
-                            <button type="submit" tabindex="0">Confirm Details</button>
+                            <button type="submit" tabindex="0" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Confirm Details</button>
                         </div>                       
                     </form>                       
                 </div>                

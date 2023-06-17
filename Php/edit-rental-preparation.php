@@ -24,8 +24,7 @@
     $hostelMaximumOccupants = $_POST['hostel-maximum-occupants'];
     $singleRoomMaximumOccupants = $_POST['single-room-maximum-occupants'];
     $bedsitterMaximumOccupants = $_POST['bedsitter-maximum-occupants'];
-    $suiteMaximumOccupants = $_POST['suite-maximum-occupants'];
-    
+        
     $imagePaths = $_POST['image-paths'];
     $tableName = $_POST['table-name'];
 
