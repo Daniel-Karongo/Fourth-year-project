@@ -20,6 +20,7 @@
     $retrieved_location = array();
     $retrieved_google_location = array();
     $retrieved_image_urls = array();
+    $retrieved_rules_urls = array();
     $retrieved_ammenities = array();
     $retrieved_number_of_units = array();
 
@@ -134,8 +135,9 @@
                     array_push($retrieved_amount_of_rent, $table['Amount_of_Rent']);                    
                     array_push($retrieved_description, $table['Pitching']);
                     array_push($retrieved_tenant_preferences, $table['Preferred_Sorts_of_Applicants']);                    
+                    array_push($retrieved_rules_urls, $table['Rules_Urls']);                    
         
-                    switch($rentalType) {
+                    switch($rentalType[$iteration]) {
                         case "Hostel":
                             array_push($Hostel_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
                             array_push($Single_Room_retrieved_maximum_occupants, null);
@@ -173,6 +175,6 @@
         }
         $iteration++; 
     }
-
+    
     include "../Php/dashboard.php";       
 ?>

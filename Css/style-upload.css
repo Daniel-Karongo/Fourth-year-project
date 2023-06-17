@@ -33,6 +33,12 @@ button {
     color: rgba(255,255,255,0.85);
 }
 
+#description {
+    font-size: 1rem;
+    overflow: hidden;
+    resize: none;
+}
+
 textarea::placeholder {
     color: rgba(255,255,255,0.70);    
 }

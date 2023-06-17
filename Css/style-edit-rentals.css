@@ -1,0 +1,400 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #282B30;
+    color: rgba(255,255,255,1);
+}
+
+*{
+    box-sizing: inherit;
+    font-family: inherit;
+}
+
+.container {
+    padding: 10px;
+    width: 100%;
+    background-color: #1D2024;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding : 10px;
+}
+
+nav h1,button {
+    margin: 0;
+}
+
+nav #back-button {
+    align-self: flex-start;
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
+    font-size: 1rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;    
+}
+
+
+nav a {
+    text-decoration: none;
+    color:rgba(255, 255, 255 , 1);
+    font-size: 1rem;
+}
+
+.plot-name {
+    text-align: center;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+}
+
+.plot-name h3 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    margin-bottom: 0;
+    padding: 0;       
+}
+
+section .images {
+    flex-basis: 90%;
+    margin-bottom: 0;
+    padding: 0;
+    flex: 1; 
+    z-index: 1; 
+    display: flex;
+    flex-direction: column; 
+}
+
+.tally {
+    margin: auto;
+    margin-top: 2px;
+    text-align: center; 
+    width: 100px;
+    align-self: center;   
+}
+
+.tally p {
+    padding: 7px;
+    margin: 0;
+    background-color: rgba(255, 255, 255 , 0.2);  
+}
+
+section .left {
+    position: absolute;
+    z-index: 2;
+}
+
+.left button {
+    background-color: rgba(255, 255, 255 , 0.2);
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+    margin-left: 1px;
+}
+
+.left button img {
+    width: 50px;
+}
+
+section .right {
+    position: absolute;
+    z-index: 2;
+    right: 15px;         
+}
+
+.images img {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+    margin-bottom: 0;
+    padding: 0;    
+}
+
+.rules-images img {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+    margin-bottom: 0;
+    padding: 0;       
+}
+
+.images :not(#image1) {
+    display: none;
+}
+
+.rental-description, .contact-information {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rental-description h2 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    align-self: center;
+}
+
+.rental-description h3 {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.rental-description h4 {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.rental-description textarea {
+    margin-top: 10px;
+    background-color: transparent;
+    border: none;
+    color: rgba(255, 255, 255 , 1);
+    font-size: 1rem;
+    outline: none;
+    overflow: hidden;
+    margin-right: 0;
+    padding-left: 0;
+    height: 100%;
+    resize: none;
+}
+
+.actual-ammenities-and-preferences {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.actual-ammenities-and-preferences h3 {
+    align-self: center;
+    border-bottom: 1px solid white;
+    border-width: 100%;
+}
+
+.ammenities {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid white;
+    padding-bottom: 20px;
+}
+
+.basic-ammenities {
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;    
+}
+
+.basic-ammenities .rental-ammenities {
+    margin-left: 10px;
+}
+
+.bonus-ammenities {
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;    
+}
+
+.bonus-ammenities .bonus {
+    margin-left: 10px;
+}
+
+.preferences {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.preferences .parameters {
+    margin-left: 10px;
+}
+
+#specified-religion {
+    color: rgba(255, 255, 255 , 1);
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255 , 0.2);
+    padding: 5px 10px;
+}
+
+.rules-title {
+    margin: 0;
+    text-align: center;    
+}
+
+.rules-title h3 {
+    margin: 10px;
+}
+
+.rules {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);   
+}
+
+.rules-images :not(#rules-image1) {
+    display: none;
+}
+
+.rules .rules-images {
+    flex: 1; 
+    z-index: 1; 
+    display: flex;
+    flex-direction: column;     
+}
+
+.rules .rules-images {
+    flex-basis: 90%;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.tally p {
+    padding: 7px;
+    margin: 0;
+    background-color: rgba(255, 255, 255 , 0.2);  
+}
+
+.rules .left {
+    position: absolute;
+    z-index: 2;
+}
+
+.right button {
+    background-color: rgba(255, 255, 255 , 0.2);
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+    margin-right: 1px;
+}
+
+.right button img{
+    width: 50px;
+}
+
+.rules .right {
+    position: absolute;
+    z-index: 2;
+    right: 15px;         
+}
+
+.submit-button {
+    margin-top: 10px;
+    margin-bottom: 12px;
+    text-align: center;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+
+}
+
+.submit-button button {
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
+    font-size: 1rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+}
+
+
+@media (min-width: 576px){
+    .container {
+        max-width: 900px;
+        margin: auto;
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    }
+
+    .images {
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+
+    .rules-images {
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+
+    .images img {
+        height: 450px;
+
+    }
+
+    .rules-images img {
+        height: 450px;
+        border: 1px solid black;        
+    }
+    
+    section .left {
+        position: relative;                      
+    }
+
+    section .right {
+        position: relative;
+        right: 0;        
+    } 
+
+    .rules .left {
+        position: relative;                      
+    }
+
+    .rules .right {
+        position: relative;
+        right: 0;        
+    }
+
+    main {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+        padding: 10px;  
+    }
+
+    .ammenities {
+        flex-direction: row;
+    }
+
+    .basic-ammenities {
+        border-bottom: none;
+        border-right: 1px solid white;
+        margin-right: 15px;
+        flex-basis: 50%;
+        margin-left: 10px;
+        padding-right: 10px;
+    }
+
+    .bonus-ammenities {
+        flex-basis: 50%;
+        padding-right: 10px;
+    }
+}

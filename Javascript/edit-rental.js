@@ -1,16 +1,16 @@
 function findCurrentImage(arrayOfImages) {
     for(let i=0; i<arrayOfImages.length; i++) {
-        if(window.getComputedStyle(arrayOfImages[i]).display === "inline") {
+        if(window.getComputedStyle(arrayOfImages[i]).display !== "none") {
             currentImage = arrayOfImages[i];
             return currentImage;            
         }
     }
 }
 
-function viewLeft() {
-    let images = document.querySelectorAll('img.viewimage');
+function viewLeft(imagesCollection, tallyParagraph) {
+    let images = document.querySelectorAll(imagesCollection);
     let currentImage; 
-    let paragraph = document.querySelector('#tally-paragraph');   
+    let paragraph = document.querySelector(tallyParagraph);
 
     currentImage = findCurrentImage(images);
 
@@ -31,10 +31,10 @@ function viewLeft() {
     }   
 }
 
-function viewRight() {
-    let images = document.querySelectorAll('img.viewimage');
+function viewRight(imagesCollection, tallyParagraph) {
+    let images = document.querySelectorAll(imagesCollection);
     let currentImage;
-    let paragraph = document.querySelector('#tally-paragraph');     
+    let paragraph = document.querySelector(tallyParagraph);     
 
     currentImage = findCurrentImage(images);
 
@@ -54,14 +54,4 @@ function viewRight() {
         }                
     } 
 }
-
-function display() {
-    const inputField = document.querySelectorAll('.contacts input');
-    console.log(inputField);
-    inputField.forEach((field) => {
-        field.disabled = false;
-        field.value = 'ASDFGH';
-    });
-
-}
-
+ 

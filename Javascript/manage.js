@@ -180,3 +180,20 @@ function validateDeletion(event) {
         alert("Rental Deleted");
     }        
 }
+
+function activateAnchor() {
+    const form = document.getElementById('edit-details-form');
+    form.submit();
+}
+
+function zoomDiv(div) {
+    div.style.transform = 'scale(1.02, 1.0)';
+    div.style.borderColor = '#2C18DE';
+    div.style.outline = '2px solid #2C18DE';
+}
+
+function unzoomDiv(div) {
+    div.style.transform = 'scale(1)';
+    div.style.borderColor = 'gray';
+    div.style.outline = 'none';
+}

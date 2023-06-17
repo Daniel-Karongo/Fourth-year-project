@@ -318,7 +318,7 @@
 
                 otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation);
                 
                 property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
 
@@ -329,7 +329,7 @@
 
                 otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation);
                 
                 property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
 
@@ -340,7 +340,7 @@
 
                 otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation);
 
                 property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
 
@@ -352,7 +352,7 @@
 
                 eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $numberOfAvailableRentals, $connectionInitialisation);
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation);
 
                 property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
 
@@ -368,7 +368,7 @@
                     eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $moreApartmentBedrooms, $numberOfAvailableRentals, $connectionInitialisation);
                 }
                 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $connectionInitialisation);
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $rulesFiles, $connectionInitialisation);
 
                 property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
                 
@@ -384,7 +384,7 @@
                     eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $moreHouseBedrooms, $numberOfAvailableRentals, $connectionInitialisation);
                 }
                 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $connectionInitialisation);
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $rulesFiles, $connectionInitialisation);
 
                 property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
                 
@@ -399,7 +399,7 @@
                     die("Update query failed: " . mysqli_error($connectionInitialisation));
                 }
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation);
+                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation);
 
                 property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
 
@@ -441,12 +441,12 @@
         }        
     }
 
-    function properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $connectionInitialisation) {
+    function properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation) {
 
         include '../Php/databaseConnector.php';
 
-        $sqlquery = "INSERT INTO properties_owners_details (Rental_ID, Owners_Phone_Number, Email_Address, Rental_Term, Amount_of_Rent, Pitching, Preferred_Sorts_of_Applicants, Maximum_Number_Of_Occupants) 
-        VALUES('$rentalID', '$phoneNumber', '$email', '$rentalTerm', '$amountOfRent', '$description', '$preferencesCollection', '$numberOfOccupants');";
+        $sqlquery = "INSERT INTO properties_owners_details (Rental_ID, Owners_Phone_Number, Email_Address, Rental_Term, Amount_of_Rent, Pitching, Preferred_Sorts_of_Applicants, Maximum_Number_Of_Occupants, Rules_Urls) 
+        VALUES('$rentalID', '$phoneNumber', '$email', '$rentalTerm', '$amountOfRent', '$description', '$preferencesCollection', '$numberOfOccupants', '$rulesFiles');";
 
         if (!mysqli_query($connectionInitialisation, $sqlquery)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
