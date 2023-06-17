@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
     <script src="../Javascript/edit-rental.js"></script>
 </head>
-<body>
+<body onload="textareaSizor()" onresize="textareaSizor()">
     <div class="container">
         <nav>
             <h1>HousesearchKE.com</h1>
@@ -37,20 +37,27 @@
         </section>
         <div class="tally">
             <p id="tally-paragraph"> 1 of <?php echo count($IndividualPlotPhotos); ?> </p>
-        </div>
+        </div>        
         <main>
             <form action="../Php/submit-editted-rental-details.php" class="overall-form">
                 <div class="rental-description">
                     
-                <h2>Rental Details</h2>
+                    <h2>Rental Details</h2>
 
-                    <label for="rent-amount" class="rental-description-labels">Ksh: </label>
-                    <input type="number" class="rental-description-input" name="rent-amount" id="rent-amount" value="<?php echo $rentAmount; ?>" readonly>
-                    <label for="rent-term" class="rental-description-labels">Per:  </label>
-                    <input type="text" class="rental-description-input" name="rent-term" id="rent-term" value="<?php echo $termDisplay; ?>" readonly>
+                    <label for="rent-amount" class="rental-description-labels">Amount Of Rent </label>
+                    <input type="number" class="rental-description-input" name="rent-amount" id="rent-amount" value="<?php echo $rentAmount; ?>">
+                    <label for="rent-term" class="rental-description-labels">Per  </label>
+                    <select class="rental-description-input" name="rent-term" id="rent-term">
+                        <option value="daily" <?php if($termDisplay === "Day"){echo "selected";}?>>Day</option>
+                        <option value="weekly" <?php if($termDisplay === "Week"){echo "selected";}?>>Week</option>
+                        <option value="monthly" <?php if($termDisplay === "Month"){echo "selected";}?>>Month</option>
+                        <option value="yearly" <?php if($termDisplay === "Year"){echo "selected";}?>>Year</option>
+                        <option value="quarterly" <?php if($termDisplay === "3 Months"){echo "selected";}?>>3 Months</option>option>
+                        <option value="bi-annually" <?php if($termDisplay === "6 Months"){echo "selected";}?>>6 Months</option>                
+                    </select>
                     <label for="description" class="rental-description-labels">Description</label>
-                    <textarea id="description" class="rental-description-input" name="description" rows=1 oninput="textareaSizor()"><?php echo $description; ?> </textarea>
-                    <label for="premise-type" class="rental-description-labels">Type Of Rental: </label>
+                    <textarea id="description" class="rental-description-input" name="description" oninput="textareaSizor()"><?php echo $description; ?> </textarea>
+                    <label for="premise-type" class="rental-description-labels">Type Of Rental </label>
                     <input type="text" class="rental-description-input" name="premise-type" id="premise-type" value="<?php 
                         switch($rentalType) {
                             case "Business Premise":
@@ -59,7 +66,7 @@
                             default:
                                 echo $rentalType;
                         }
-                    ?>" readonly>
+                    ?>">
                     <label for="number-of-unit" class="rental-description-labels">Number Of <?php 
                         switch($rentalType) {
                             case "Business Premise":
@@ -69,44 +76,45 @@
                                 echo $rentalType;
                         }
                     ?>s</label>  
-                    <input type="number" class="rental-description-input" name="number-of-unit" id="number-of-unit" value="<?php echo $numberOfUnits; ?>" readonly>
+                    <input type="number" class="rental-description-input" name="number-of-unit" id="number-of-unit" value="<?php echo $numberOfUnits; ?>">
                     <?php
                         switch($rentalType) {
                             case "Suite":
                                 echo '<label for="number-of-beds" class="rental-description-labels"> Number Of Beds Per Suite </label>
-                                <input type="number" class="rental-description-input" value="' . $suiteBeds . '" id="number-of-beds" name="number-of-beds" readonly>';
+                                <input type="number" class="rental-description-input" value="' . $suiteBeds . '" id="number-of-beds" name="number-of-beds">';
                                 break;
                             case "Apartment":
                                 echo '<label for="number-of-apartment-bedrooms" class="rental-description-labels"> Number Of Bedrooms Per Apartment </label>
-                                <input type="number" class="rental-description-input" value="' . $apartmentBedrooms . '" id="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms" readonly>';
+                                <input type="number" class="rental-description-input" value="' . $apartmentBedrooms . '" id="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms">';
                                 break;
                             case "House":
                                 echo '<label for="number-of-house-bedrooms" class="rental-description-labels"> Number Of Bedrooms Per House </label>
-                                <input type="number" class="rental-description-input" value="' . $houseBedrooms . '" id="number-of-house-bedrooms" name="number-of-house-bedrooms" readonly>';
+                                <input type="number" class="rental-description-input" value="' . $houseBedrooms . '" id="number-of-house-bedrooms" name="number-of-house-bedrooms">';
                                 break;
                             case "Hostel":
                                echo '<label for="maximum-number-of-Hostel-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
-                                <input type="number" class="rental-description-input" value="' . $hostelMaximumOccupants . '" id="maximum-number-of-Hostel-occupants" name="maximum-number-of-Hostel-occupants" readonly>';
+                                <input type="number" class="rental-description-input" value="' . $hostelMaximumOccupants . '" id="maximum-number-of-Hostel-occupants" name="maximum-number-of-Hostel-occupants">';
                                 break;
                             case "Bedsitter":
                                 echo '<label for="maximum-number-of-bedsitter-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
-                                <input type="number" class="rental-description-input" value="' . $bedsitterMaximumOccupants . '" id="maximum-number-of-bedsitter-occupants" name="maximum-number-of-bedsitter-occupants" readonly>';
+                                <input type="number" class="rental-description-input" value="' . $bedsitterMaximumOccupants . '" id="maximum-number-of-bedsitter-occupants" name="maximum-number-of-bedsitter-occupants">';
                                 break;
                             case "Single Room":
-                                echo '<label for="maximum-number-of-single-room-occupants" class="rental-description-labels" readonly> Maximum Number Of Occupants </label>
-                                <input type="number" class="rental-description-input" value="' . $singleRoomMaximumOccupants . '" id="maximum-number-of-single-room-occupants" name="maximum-number-of-single-room-occupants" readonly>';
+                                echo '<label for="maximum-number-of-single-room-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
+                                <input type="number" class="rental-description-input" value="' . $singleRoomMaximumOccupants . '" id="maximum-number-of-single-room-occupants" name="maximum-number-of-single-room-occupants">';
                                 break;
                             case "Single Room":
-                                echo '<label for="maximum-number-of-single-room-occupants" class="rental-description-labels" readonly> Maximum Number Of Occupants </label>
-                                <input type="number" class="rental-description-input" value="' . $singleRoomMaximumOccupants . '" id="maximum-number-of-single-room-occupants" name="maximum-number-of-single-room-occupants" readonly>';
+                                echo '<label for="maximum-number-of-single-room-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
+                                <input type="number" class="rental-description-input" value="' . $singleRoomMaximumOccupants . '" id="maximum-number-of-single-room-occupants" name="maximum-number-of-single-room-occupants">';
                                 break;
                         }
                     ?>
                     <label for="location" class="rental-description-labels">Location:</label>
-                    <input type="text" class="rental-description-input" name="location" id="location" value="<?php echo $location; ?>" readonly>
-                    <label for="google-location" class="rental-description-labels"> Google Location: </label>
-                    <input type="text" class="rental-description-input" name="google-location" id="google-location" value="<?php echo $googlelocation; ?>" readonly>   
-
+                    <input type="text" class="rental-description-input" name="location" id="location" value="<?php echo $location; ?>">
+                    <label for="google-location" class="rental-description-labels"> Google Location </label>
+                    <input type="text" class="rental-description-input" name="google-location" id="google-location" value="<?php echo $googlelocation; ?>">
+                    <label for="plot-photos" class="rental-description-labels"> Re-Upload Photos Of Your Rental </label>
+                    <input type="file" class="rental-description-input" name="plot-photos" id="plot-photos" value="" multiple>
                 </div>            
                 
                 <div class="ammenities-and-preferences">
@@ -118,7 +126,7 @@
                                 <h5>Water</h5>
                                 <div class="rental-ammenities basic water">
                                     <input type="checkbox"  name="clean-water" id="clean-water" value="Clean Water" <?php if(in_array("Clean Water", $individualAmmenitiesRefined)) {echo "checked";}                                                        
-                                    ?> >
+                                    ?>>
                                     <label for="clean-water"> Clean Tap Water/ Water Reserves (Tanks and/or Borehole)</label>
                                 </div>
                                                 
@@ -196,22 +204,22 @@
 
                                 <h5>luxury</h5>
                                 <div class="rental-ammenities bonus luxury">
-                                    <input type="checkbox" name="wi-fi" id="wi-fi"value="Wi-Fi" <?php if(in_array("Wi-Fi", $individualAmmenitiesRefined)) {echo "checked";}                                                        
+                                    <input type="checkbox" name="wi-fi" id="wi-fi" value="Wi-Fi" <?php if(in_array("Wi-Fi", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
                                     <label for="wi-fi"> Wi-Fi</label>
-                                    <input type="checkbox" name="joint-tv-subscription" id="joint-tv-subscription"value="Joint TV Subscription" <?php if(in_array("Joint TV Subscription", $individualAmmenitiesRefined)) {echo "checked";}                                                        
+                                    <input type="checkbox" name="joint-tv-subscription" id="joint-tv-subscription" value="Joint TV Subscription" <?php if(in_array("Joint TV Subscription", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
                                     <label for="joint-tv-subscription"> Joint TV Subscription</label>
-                                    <input type="checkbox"  name="air-conditioning" id="air-conditioning"value="Air Conditioning" <?php if(in_array("Air Conditioning", $individualAmmenitiesRefined)) {echo "checked";}                                                        
+                                    <input type="checkbox"  name="air-conditioning" id="air-conditioning" value="Air Conditioning" <?php if(in_array("Air Conditioning", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
                                     <label for="air-conditioning"></label>Air Conditioning</label>
-                                    <input type="checkbox" name="furnished" id="furnished"value="Furnished" <?php if(in_array("Furnished", $individualAmmenitiesRefined)) {echo "checked";}                                                        
+                                    <input type="checkbox" name="furnished" id="furnished" value="Furnished" <?php if(in_array("Furnished", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
                                     <label for="furnished"></label>Furnished</label>
-                                    <input type="checkbox" name="swimming-pool" id="swimming-pool"value="Swimming Pool" <?php if(in_array("Swimming Pool", $individualAmmenitiesRefined)) {echo "checked";}                                                        
+                                    <input type="checkbox" name="swimming-pool" id="swimming-pool" value="Swimming Pool" <?php if(in_array("Swimming Pool", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
                                     <label for="swimming-pool"></label>Swimming Pool</label>
-                                    <input type="checkbox" name="gym" id="gym"value="Gym" <?php if(in_array("Gym", $individualAmmenitiesRefined)) {echo "checked";}                                                        
+                                    <input type="checkbox" name="gym" id="gym" value="Gym" <?php if(in_array("Gym", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
                                     <label for="gym"></label>Gym</label>
                                 </div>
@@ -318,11 +326,14 @@
                     </div>
                     <div class="tally">
                         <p id="tally-paragraph-rules"> 1 of <?php echo count($IndividualRules); ?> </p>
-                    </div>                        
+                    </div>
+                    <div class="input-rules-files">
+                        <label for="rules-photos" class="rental-description-labels" id="rules-photos-label"> Re-Upload Photos Of Your Rules </label>
+                        <input type="file" class="rental-description-input" name="rules-photos" id="rules-photos" value="" multiple>
+                    </div>                                           
                 </div>
                 
                 <div class="submit-button">
-                    <button type="button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Edit Details</button>
                     <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Submit Details</button>
                 </div>
             </form>            

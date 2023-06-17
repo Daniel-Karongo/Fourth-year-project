@@ -92,8 +92,27 @@ section .images {
     margin: auto;
     margin-top: 2px;
     text-align: center; 
-    width: 100px;
-    align-self: center;   
+    width: 100px;       
+}
+
+.input-rules-files {
+    border: 1px solid rgba(255, 255, 255 , 0.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 15px;
+    padding: 20px;
+    margin-bottom: 20px;    
+}
+
+#rules-photos-label {
+    margin-top: 0;
+    font-weight: 700;
+}
+
+input[type="file"] {
+    margin-top: 15px;
 }
 
 .tally p {
@@ -152,10 +171,13 @@ section .right {
     padding: 10px;
     display: flex;
     flex-direction: column;
+    height: fit-content;
+    padding-bottom: 30px;
 }
 
 .rental-description h2 {
     align-self: center;
+    margin-bottom: 5px;
 }
 
 .rental-description-labels {
@@ -172,18 +194,23 @@ section .right {
     background-color: transparent;
     color: rgba(255, 255, 255 , 1);
     outline: 0;
-    border: 1px solid rgba(255, 255, 255 , 1);
+    border: 1px solid rgba(255, 255, 255 , 0.5);
 }
 
 .rental-description textarea {
     margin-top: 10px;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255 , 1);
+    border: 1px solid rgba(255, 255, 255 , 0.5);
     padding: 10px;
     color: rgba(255, 255, 255 , 1);
     font-size: 1rem;
     outline: none;
     resize: none;
+    overflow: hidden;
+}
+
+#rent-term[disabled] {
+    color: rgba(255, 255, 255 , 1);
 }
 
 .actual-ammenities-and-preferences {
@@ -206,6 +233,10 @@ section .right {
     flex-direction: column;
     border-bottom: 2px solid white;
     padding-bottom: 20px;
+}
+
+*[disabled] {
+    border: 1px solid white;
 }
 
 .basic-ammenities {

@@ -56,9 +56,9 @@ function viewRight(imagesCollection, tallyParagraph) {
 }
 
 function textareaSizor() {
-    console.log("Hello");
     const textarea = document.getElementById('description');
-    textarea.rows = textarea.value.split('\n').length;
+    const height = textarea.scrollHeight;
+    textarea.style.height = height + 'px';
 }
 
 function zoomDiv(div) {
