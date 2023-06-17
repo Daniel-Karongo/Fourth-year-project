@@ -154,32 +154,35 @@ section .right {
     flex-direction: column;
 }
 
-.rental-description-labels {
-    margin-top: 10px;
-    margin-bottom: 0;
+.rental-description h2 {
     align-self: center;
+}
+
+.rental-description-labels {
+    margin-top: 30px;
+    margin-bottom: 0;
     font-size: 1rem;
-    color: red;
 }
 
 .rental-description-input {
     margin-top: 5px;
     margin-bottom: 0;
     font-size: 1rem;
-    color: red;
+    padding: 7px 10px;
+    background-color: transparent;
+    color: rgba(255, 255, 255 , 1);
+    outline: 0;
+    border: 1px solid rgba(255, 255, 255 , 1);
 }
 
 .rental-description textarea {
     margin-top: 10px;
     background-color: transparent;
-    border: none;
+    border: 1px solid rgba(255, 255, 255 , 1);
+    padding: 10px;
     color: rgba(255, 255, 255 , 1);
     font-size: 1rem;
     outline: none;
-    overflow: hidden;
-    margin-right: 0;
-    padding-left: 0;
-    height: 100%;
     resize: none;
 }
 

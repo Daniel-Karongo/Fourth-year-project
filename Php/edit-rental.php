@@ -15,14 +15,14 @@
     <div class="container">
         <nav>
             <h1>HousesearchKE.com</h1>
-            <button id="back-button" onclick="history.back()">Back</button>
+            <button id="back-button" onclick="history.back()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Back</button>
         </nav>
         <div class="plot-name">
                 <h3> <?php echo $rentalName; ?> </h3>
             </div>
         <section>            
             <div class="buttons left plot-images">
-                <button type="button" onclick="viewLeft('.images img.viewimage', '.tally #tally-paragraph')"><img src="../Images/left button.png" alt="left-button"></button>
+                <button type="button" onclick="viewLeft('.images img.viewimage', '.tally #tally-paragraph')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/left button.png" alt="left-button"></button>
             </div>
             <div class="images">
                 <?php
@@ -32,7 +32,7 @@
                 ?>                
             </div>             
             <div class="buttons right plot-images">
-                <button type="button" onclick="viewRight('.images img.viewimage', '.tally #tally-paragraph')"><img src="../Images/right button.png" alt="right-button"></button>
+                <button type="button" onclick="viewRight('.images img.viewimage', '.tally #tally-paragraph')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/right button.png" alt="right-button"></button>
             </div>            
         </section>
         <div class="tally">
@@ -45,11 +45,11 @@
                 <h2>Rental Details</h2>
 
                     <label for="rent-amount" class="rental-description-labels">Ksh: </label>
-                    <input type="number" class="rental-description-input" name="rent-amount" id="rent-amount" value="<?php echo $rentAmount; ?>">
+                    <input type="number" class="rental-description-input" name="rent-amount" id="rent-amount" value="<?php echo $rentAmount; ?>" readonly>
                     <label for="rent-term" class="rental-description-labels">Per:  </label>
-                    <input type="text" class="rental-description-input" name="rent-term" id="rent-term" value="<?php echo $termDisplay; ?>">
+                    <input type="text" class="rental-description-input" name="rent-term" id="rent-term" value="<?php echo $termDisplay; ?>" readonly>
                     <label for="description" class="rental-description-labels">Description</label>
-                    <textarea id="description" class="rental-description-input" name="description" readonly><?php echo $description; ?> </textarea>
+                    <textarea id="description" class="rental-description-input" name="description" rows=1 oninput="textareaSizor()"><?php echo $description; ?> </textarea>
                     <label for="premise-type" class="rental-description-labels">Type Of Rental: </label>
                     <input type="text" class="rental-description-input" name="premise-type" id="premise-type" value="<?php 
                         switch($rentalType) {
@@ -59,7 +59,7 @@
                             default:
                                 echo $rentalType;
                         }
-                    ?>">
+                    ?>" readonly>
                     <label for="number-of-unit" class="rental-description-labels">Number Of <?php 
                         switch($rentalType) {
                             case "Business Premise":
@@ -69,43 +69,43 @@
                                 echo $rentalType;
                         }
                     ?>s</label>  
-                    <input type="number" class="rental-description-input" name="number-of-unit" id="number-of-unit" value="<?php echo $numberOfUnits; ?>">
+                    <input type="number" class="rental-description-input" name="number-of-unit" id="number-of-unit" value="<?php echo $numberOfUnits; ?>" readonly>
                     <?php
                         switch($rentalType) {
                             case "Suite":
                                 echo '<label for="number-of-beds" class="rental-description-labels"> Number Of Beds Per Suite </label>
-                                <input type="number" class="rental-description-input" value="' . $suiteBeds . '" id="number-of-beds" name="number-of-beds">';
+                                <input type="number" class="rental-description-input" value="' . $suiteBeds . '" id="number-of-beds" name="number-of-beds" readonly>';
                                 break;
                             case "Apartment":
                                 echo '<label for="number-of-apartment-bedrooms" class="rental-description-labels"> Number Of Bedrooms Per Apartment </label>
-                                <input type="number" class="rental-description-input" value="' . $apartmentBedrooms . '" id="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms">';
+                                <input type="number" class="rental-description-input" value="' . $apartmentBedrooms . '" id="number-of-apartment-bedrooms" name="number-of-apartment-bedrooms" readonly>';
                                 break;
                             case "House":
                                 echo '<label for="number-of-house-bedrooms" class="rental-description-labels"> Number Of Bedrooms Per House </label>
-                                <input type="number" class="rental-description-input" value="' . $houseBedrooms . '" id="number-of-house-bedrooms" name="number-of-house-bedrooms">';
+                                <input type="number" class="rental-description-input" value="' . $houseBedrooms . '" id="number-of-house-bedrooms" name="number-of-house-bedrooms" readonly>';
                                 break;
                             case "Hostel":
                                echo '<label for="maximum-number-of-Hostel-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
-                                <input type="number" class="rental-description-input" value="' . $hostelMaximumOccupants . '" id="maximum-number-of-Hostel-occupants" name="maximum-number-of-Hostel-occupants">';
+                                <input type="number" class="rental-description-input" value="' . $hostelMaximumOccupants . '" id="maximum-number-of-Hostel-occupants" name="maximum-number-of-Hostel-occupants" readonly>';
                                 break;
                             case "Bedsitter":
                                 echo '<label for="maximum-number-of-bedsitter-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
-                                <input type="number" class="rental-description-input" value="' . $bedsitterMaximumOccupants . '" id="maximum-number-of-bedsitter-occupants" name="maximum-number-of-bedsitter-occupants">';
+                                <input type="number" class="rental-description-input" value="' . $bedsitterMaximumOccupants . '" id="maximum-number-of-bedsitter-occupants" name="maximum-number-of-bedsitter-occupants" readonly>';
                                 break;
                             case "Single Room":
-                                echo '<label for="maximum-number-of-single-room-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
-                                <input type="number" class="rental-description-input" value="' . $singleRoomMaximumOccupants . '" id="maximum-number-of-single-room-occupants" name="maximum-number-of-single-room-occupants">';
+                                echo '<label for="maximum-number-of-single-room-occupants" class="rental-description-labels" readonly> Maximum Number Of Occupants </label>
+                                <input type="number" class="rental-description-input" value="' . $singleRoomMaximumOccupants . '" id="maximum-number-of-single-room-occupants" name="maximum-number-of-single-room-occupants" readonly>';
                                 break;
                             case "Single Room":
-                                echo '<label for="maximum-number-of-single-room-occupants" class="rental-description-labels"> Maximum Number Of Occupants </label>
-                                <input type="number" class="rental-description-input" value="' . $singleRoomMaximumOccupants . '" id="maximum-number-of-single-room-occupants" name="maximum-number-of-single-room-occupants">';
+                                echo '<label for="maximum-number-of-single-room-occupants" class="rental-description-labels" readonly> Maximum Number Of Occupants </label>
+                                <input type="number" class="rental-description-input" value="' . $singleRoomMaximumOccupants . '" id="maximum-number-of-single-room-occupants" name="maximum-number-of-single-room-occupants" readonly>';
                                 break;
                         }
                     ?>
                     <label for="location" class="rental-description-labels">Location:</label>
-                    <input type="text" class="rental-description-input" name="location" id="location" value="<?php echo $location; ?>">
+                    <input type="text" class="rental-description-input" name="location" id="location" value="<?php echo $location; ?>" readonly>
                     <label for="google-location" class="rental-description-labels"> Google Location: </label>
-                    <input type="text" class="rental-description-input" name="google-location" id="google-location" value="<?php echo $googlelocation; ?>">   
+                    <input type="text" class="rental-description-input" name="google-location" id="google-location" value="<?php echo $googlelocation; ?>" readonly>   
 
                 </div>            
                 
@@ -303,7 +303,7 @@
                     </div>
                     <div class="rules">
                         <div class="buttons left rules-images-buttons">
-                            <button type="button" onclick="viewLeft('.rules-images img.viewimage-rules', '.tally #tally-paragraph-rules')"><img src="../Images/left button.png" alt="left-button"></button>
+                            <button type="button" onclick="viewLeft('.rules-images img.viewimage-rules', '.tally #tally-paragraph-rules')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/left button.png" alt="left-button"></button>
                         </div>
                         <div class="rules-images">
                             <?php
@@ -313,7 +313,7 @@
                             ?>
                         </div>             
                         <div class="buttons right rules-images-buttons">
-                            <button type="button" onclick="viewRight('.rules-images img.viewimage-rules', '.tally #tally-paragraph-rules')"><img src="../Images/right button.png" alt="right-button"></button>
+                            <button type="button" onclick="viewRight('.rules-images img.viewimage-rules', '.tally #tally-paragraph-rules')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/right button.png" alt="right-button"></button>
                         </div>
                     </div>
                     <div class="tally">
@@ -322,8 +322,8 @@
                 </div>
                 
                 <div class="submit-button">
-                    <button type="button">Edit Details</button>
-                    <button type="submit">Submit Details</button>
+                    <button type="button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Edit Details</button>
+                    <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Submit Details</button>
                 </div>
             </form>            
         </main>
