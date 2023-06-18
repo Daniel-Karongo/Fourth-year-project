@@ -8,6 +8,7 @@
     $rentalsOwned = $_POST['rentals-owned'];
     $images = $_POST['image-urls'];
     $imagepaths = $_POST['image-paths'];
+    $rules = $_POST['rules-urls'];
 
     $rentalsOwnedSplit = array();
     $rentalsOwnedSplit = explode(", ", $rentalsOwned);
@@ -22,6 +23,18 @@
 
     for($i=0; $i<count($individualImages); $i++) {
         $filePath = $imagepaths . $individualImages[$i];
+        if (file_exists($filePath)) {
+            if (unlink($filePath)) {
+            } else {
+            }
+        } else {
+        }
+    }
+
+    $individualrulesPhotos = explode(", ", $rules);
+
+    for($i=0; $i<count($individualrulesPhotos); $i++) {
+        $filePath = "../Image_Data/Rules/" . $individualrulesPhotos[$i];
         if (file_exists($filePath)) {
             if (unlink($filePath)) {
             } else {

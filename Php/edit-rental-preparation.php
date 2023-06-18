@@ -1,5 +1,7 @@
 <?php
 
+    $email = $_POST['email'];
+    
     $rentalID = $_POST['rental-ID'];    
     $rentalName = $_POST['rental-name'];
     $rentalType = $_POST['rental-type'];
@@ -11,8 +13,9 @@
     $rentAmount = $_POST['rent-amount'];
     $description = $_POST['description'];
     $plotPhotos = $_POST['plot-photos'];
+    $oldPlotPhotosPaths = $_POST['plot-photos-paths'];
     
-    $rulesUrls = $_POST['rules-urls'];    
+    $rulesUrls = $_POST['rules-urls-edit'];    
     $ammenties = $_POST['ammenties'];
     $tenantPreferences = $_POST['tenant-preferences'];    
     

@@ -101,7 +101,7 @@
                                         '<div class="main-section">' . 
                                             '<div class="top-section">' .
                                                 '<div class="image-div">'.
-                                                    '<img src="../Image_Data/' . $finalFolder . $imageToDisplay . '" ' . 'alt="Rental-' . $i + 1 . '">' .
+                                                    '<img src="../Image_Data/' . $finalFolder . $imageToDisplay . '" ' . 'alt="Rental-' . ($i + 1) . '">' .
                                                 '</div>' .                                
                                                 '<div class="payment">' .
                                                     '<h4 class="amount">Ksh.' . $retrieved_amount_of_rent[$i] . '</h4>' .
@@ -112,7 +112,7 @@
                                                 '<h4 class="description-title">Description</h4>' .
                                                 '<p class="description">' . $retrieved_description[$i] . '</p>' .
                                                 '<div class="template-buttons"> 
-                                                    <form class="template-submit-buttons" action="../Php/rentalDelete.php" method="post" enctype="multipart/form-data" onsubmit="validateDeletion(event)">
+                                                    <form class="template-submit-buttons" id="delete-rental-' . $i+1 . '" action="../Php/rentalDelete.php" method="post" enctype="multipart/form-data" onsubmit="validateDeletion(event)">
                                                         <button type="submit" class="remove-rental"> Remove Rental </button>
                                                         <input type="hidden" name="rentalID" class="rentalID" value="' . $rentalID . '">
                                                         <input type="hidden" name="tableName" class="tableName" value="' . $tableName . '">
@@ -121,14 +121,17 @@
                                                         <input type="hidden" name="rentals-owned" class="rentals-owned" value="' . $retrieved_rentals_owned . '">
                                                         <input type="hidden" name="image-urls" class="image-urls" value="' . $retrieved_image_urls[$i] . '">
                                                         <input type="hidden" name="image-paths" class="image-paths" value="../Image_Data/' . $finalFolder . '">
+                                                        <input type="hidden" name="rules-urls" class="rules-urls" value="' .$retrieved_rules_urls[$i] . '">
                                                     </form>
 
                                                     <form class="template-submit-buttons edit-details-form" id="template-edit-details-' . $i+1 . '" action="../Php/edit-rental-preparation.php" method="post" enctype="multipart/form-data">                               
                                                         <button type="submit" class="edit-rental"> Edit Rental Details </button>
+
+                                                        <input type="hidden" name="email" class="email" value="' . $email . '">
                                                         
-                                                        <input type="hidden" name="rental-ID" class="rental-ID" value="' .$retrieved_rentalID[$i] . '">
+                                                        <input type="hidden" name="rental-ID" class="rental-ID" value="' .$rentalID . '">
                                                         <input type="hidden" name="table-name" class="table-name" value="' .$tablenames[$i] . '">
-                                                        <input type="hidden" name="rules-urls" class="rules-urls" value="' .$retrieved_rules_urls[$i] . '">
+                                                        <input type="hidden" name="rules-urls-edit" class="rules-urls-edit" value="' .$retrieved_rules_urls[$i] . '">
                                                         <input type="hidden" name="rental-name" class="rental-name" value="' .$retrieved_rental_name[$i] . '">
                                                         <input type="hidden" name="rental-type" class="rental-type" value="' .$rentalType[$i] . '">
                                                         <input type="hidden" name="location" class="location" value="' .$retrieved_location[$i] . '">
@@ -149,6 +152,7 @@
                                                         <input type="hidden" name="bedsitter-maximum-occupants" class="bedsitter-maximum-occupants" value="' . $Bedsitter_retrieved_maximum_occupants[$i] . '">
                                                         <input type="hidden" name="image-paths" class="image-paths" value="../Image_Data/' . $finalFolder . '">
                                                         <input type="hidden" name="term-display" class="term-display" value="'. $termDisplay . '">
+                                                        <input type="hidden" name="plot-photos-paths" class="plot-photos-paths" value="../Image_Data/' . $finalFolder . '">
 
                                                     </form>                           
                                                 </div>' .

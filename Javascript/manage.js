@@ -173,11 +173,12 @@ function validateField(id, error, event) {
 
 function validateDeletion(event) {
     event.preventDefault();
-
+    const form = event.target;
+    
     const proceed = confirm("Are You Sure You Want To Delete This Rental?");
     if(proceed) {
-        document.querySelector('.template-submit-buttons').submit();
         alert("Rental Deleted");
+        form.submit();
     }        
 }
 

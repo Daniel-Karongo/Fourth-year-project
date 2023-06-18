@@ -1,6 +1,10 @@
 <?php
     $sqlquery = "SELECT * FROM property_owners WHERE Email_Address = '$email';";
     $res = mysqli_query($connectionInitialisation, $sqlquery);
+
+    if (!$res) {
+        die("Query execution failed: " . mysqli_error($connectionInitialisation));
+    }
     
     while ($property_owner = mysqli_fetch_assoc($res)) {
         $retrieved_phone_number = $property_owner['Phone_Number'];
@@ -134,9 +138,9 @@
                     array_push($retrieved_rental_term, $table['Rental_Term']);
                     array_push($retrieved_amount_of_rent, $table['Amount_of_Rent']);                    
                     array_push($retrieved_description, $table['Pitching']);
-                    array_push($retrieved_tenant_preferences, $table['Preferred_Sorts_of_Applicants']);                    
-                    array_push($retrieved_rules_urls, $table['Rules_Urls']);                    
-        
+                    array_push($retrieved_tenant_preferences, $table['Preferred_Sorts_of_Applicants']);
+                    array_push($retrieved_rules_urls, $table['Rules_Urls']);
+                      
                     switch($rentalType[$iteration]) {
                         case "Hostel":
                             array_push($Hostel_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);

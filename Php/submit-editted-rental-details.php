@@ -1,17 +1,9 @@
 <?php
-   
+
     grabBasicInformation();
 
-    function generateRentalID() {
-        $email = $_POST["email"];
-        $phoneNumber = $_POST["phone-number"];
-        $nameOfRental = $_POST["name-of-rental"];
-        $typeOfRental = $_POST["type-of-rental"];
-        $rentalID = time() . "_" . $email . "_" . $phoneNumber . "_" . $nameOfRental . "_" . $typeOfRental;
-        return $rentalID;
-    }
-
     function preferredSortsOfTenants() {
+        
         $preferences = array();
 
         $gender = isset($_POST['gender']) ? $_POST["gender"] : null; 
@@ -150,14 +142,16 @@
         }
         return $ammenities;
     }
-    
+
     function grabPhotographs() {
-        $typeOfRental = $_POST["type-of-rental"];
+
+        $typeOfRental = $_POST['premise-type'];
         $imagesToUpload = array();
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if(isset($_FILES['images-upload'])){
-                $files = $_FILES['images-upload']['name'];
-                $fileCount = count($_FILES['images-upload']['name']);
+            if(isset($_FILES['plot-photos'])){
+                $files = $_FILES['plot-photos']['name'];
+                $fileCount = count($_FILES['plot-photos']['name']);
                 $files = array_filter($files);
 
                 for ($i = 0; $i < $fileCount; $i++) {
@@ -165,7 +159,7 @@
                         continue;
                     }
                     $imageName = $files[$i];
-                    $imageTemporaryName = $_FILES['images-upload']['tmp_name'][$i];
+                    $imageTemporaryName = $_FILES['plot-photos']['tmp_name'][$i];
                     
                     $imageExtension = pathinfo($imageName, PATHINFO_EXTENSION);
                     $imageExtensionInLowerCase = strtolower($imageExtension);
@@ -174,32 +168,30 @@
                     
                     array_push($imagesToUpload, $newImageName);
 
-                    if($typeOfRental === "Business Premise") {
-                        $typeOfOfBusinessPremise = $_POST["type-of-premise"];
-                        $imageUploadPath = "../Image_Data/Business Premises/" . $typeOfOfBusinessPremise . "/" . $newImageName;
+                    if(($typeOfRental === "Stall") || ($typeOfRental === "Shop") || ($typeOfRental === "Stall") || ($typeOfRental === "Event Hall") || ($typeOfRental === "Warehouse") || ($typeOfRental === "Office") || ($typeOfRental === "Industrial")) {
+                        $typeOfRental = $_POST['premise-type'];
+                        $imageUploadPath = "../Image_Data/Business Premises/" . $typeOfRental . "/" . $newImageName;
                         move_uploaded_file($imageTemporaryName, $imageUploadPath);
 
                     } else if($typeOfRental === "Apartment") {
-                        $typeOfApartment = $_POST["number-of-apartment-bedrooms"];
-                        if($typeOfApartment !== "more") {
-                            $imageUploadPath = "../Image_Data/Apartments/" . $typeOfApartment . "/" . $newImageName;
+                        $apartmentBedrooms = $_POST['number-of-apartment-bedrooms'];
+                        if($apartmentBedrooms < 4) {
+                            $imageUploadPath = "../Image_Data/Apartments/" . $apartmentBedrooms . "-Bedroom/" . $newImageName;
                             move_uploaded_file($imageTemporaryName, $imageUploadPath);
                         } else {
-                            $moreApartmentBedrooms = $_POST["more-apartment-bedrooms"];
-                            $imageUploadPath = "../Image_Data/Apartments/More Bedrooms/" . $moreApartmentBedrooms . "-Bedrooms/" . $newImageName;
+                            $imageUploadPath = "../Image_Data/Apartments/More Bedrooms/" . $apartmentBedrooms . "-Bedrooms/" . $newImageName;
                             if (!is_dir(dirname($imageUploadPath))) {
                                 mkdir(dirname($imageUploadPath), 0777, true);
                             }                            
                             move_uploaded_file($imageTemporaryName, $imageUploadPath);
                         }                        
                     } else if($typeOfRental === "House") {
-                        $typeOfHouse = $_POST["number-of-house-bedrooms"];
-                        if($typeOfHouse !== "more") {
-                            $imageUploadPath = "../Image_Data/Houses/" . $typeOfHouse . "/" . $newImageName;
+                        $houseBedrooms = $_POST['number-of-house-bedrooms'];
+                        if($houseBedrooms < 4) {
+                            $imageUploadPath = "../Image_Data/Houses/" . $houseBedrooms . "-Bedroom/" . $newImageName;
                             move_uploaded_file($imageTemporaryName, $imageUploadPath);
                         } else {
-                            $moreHouseBedrooms = $_POST["more-house-bedrooms"];
-                            $imageUploadPath = "../Image_Data/Houses/More Bedrooms/" . $moreHouseBedrooms . "-Bedrooms/" . $newImageName;
+                            $imageUploadPath = "../Image_Data/Houses/More Bedrooms/" . $houseBedrooms . "-Bedrooms/" . $newImageName;
                             if (!is_dir(dirname($imageUploadPath))) {
                                 mkdir(dirname($imageUploadPath), 0777, true);
                             }                            
@@ -215,65 +207,33 @@
         }
     }
 
-    function grabRules() {
-        $imagesToUpload = array();
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if(isset($_FILES['rules-upload'])){
-                $files = $_FILES['rules-upload']['name'];
-                $fileCount = count($_FILES['rules-upload']['name']);
-                $files = array_filter($files);
-                
-                for ($i = 0; $i < $fileCount; $i++) {
-                    if (empty($files[$i])) {
-                        continue;
-                    }
-
-                    $imageName = $files[$i];
-                    $imageTemporaryName = $_FILES['rules-upload']['tmp_name'][$i];
-                    
-                    $imageExtension = pathinfo($imageName, PATHINFO_EXTENSION);
-                    $imageExtensionInLowerCase = strtolower($imageExtension);
-    
-                    $newImageName = uniqid("IMG-", true).".".$imageExtensionInLowerCase;
-
-                    array_push($imagesToUpload, $newImageName);
-                
-                    $imageUploadPath = "../Image_Data/Rules/" . $newImageName;
-                    move_uploaded_file($imageTemporaryName, $imageUploadPath);                       
-                                   
-                }
-                return $imagesToUpload;
-            }
-        }
-    }
-
     function grabBasicInformation() {
 
-        $email = $_POST["email"];
-        $phoneNumber = $_POST["phone-number"];
-        $rentalsOwned = $_POST["rentals-owned"];
+        $rentalID = $_POST['rental-ID'];
+        $nameOfRental = $_POST['rental-name'];
+        $amountOfRent = $_POST['rent-amount'];
+        $rentalTerm = $_POST['rent-term'];
+        $description = $_POST['description'];
+        $typeOfRental = $_POST['premise-type'];
+        $availableUnits = $_POST['number-of-units'];
 
-        $numberOfApartmentBedrooms = $_POST["number-of-apartment-bedrooms"];
-        $moreApartmentBedrooms = $_POST["more-apartment-bedrooms"];
-        $typeOfOfBusinessPremise = $_POST["type-of-premise"];
-        $numberOfHouseBedrooms = $_POST["number-of-house-bedrooms"];
-        $moreHouseBedrooms = $_POST["more-house-bedrooms"];
+        $suiteBeds = isset($_POST['number-of-beds']);
+        $apartmentBedrooms = isset($_POST['number-of-apartment-bedrooms']);
+        $houseBedrooms = isset($_POST['number-of-house-bedrooms']);
+        $maximumHostelOccupants = isset($_POST['maximum-number-of-Hostel-occupants']);
+        $maximumBedsitterOccupants = isset($_POST['maximum-number-of-bedsitter-occupants']);
+        $maximumSingleRoomOccupants = isset($_POST['maximum-number-of-single-room-occupants']);
 
-        $nameOfRental = $_POST['name-of-rental'];
-        $typeOfRental = $_POST["type-of-rental"];
-        $numberOfAvailableRentals = $_POST["number-of-available-rentals"];
-        $numberOfOccupants = $_POST["maximum-occupants"];
-        $location = $_POST["location"];
-        $googleLocation = $_POST["googlelocation"];
-        $rentalTerm = $_POST["rental-term"];
-        $amountOfRent = $_POST["rent"];
-        $description = $_POST["description"];
+        $location = $_POST['location'];
+        $googleLocation = $_POST['google-location'];
 
-        $rentalID = generateRentalID();
+        $oldPlotPhotosPaths = $_POST['old-plot-photos-paths'];
+        
         $plotPhotos = grabPhotographs();
         $rulesPhotos = grabRules();
         $preferences = preferredSortsOfTenants();
         $ammenities = ammenities();
+        
 
         $plotNames = "";        
         foreach($plotPhotos as $plotPhoto) {
@@ -284,7 +244,7 @@
             }
         }
 
-        $rulesFiles = "";
+        $rulesFiles = "";        
         foreach($rulesPhotos as $rulesPhoto) {
             if($rulesFiles !== '') {
                 $rulesFiles = $rulesFiles  . ", " . $rulesPhoto;
@@ -311,45 +271,62 @@
             }
         }
         
-        if($rentalsOwned === '') {
-            $rentalsOwned = $rentalID;
-        } else {
-            $rentalsOwned = $rentalsOwned . ", " . $rentalID;
+        $rentalID = $_POST['rental-ID'];
+        
+        $oldPlotPhotos = $_POST['old-plot-photos'];
+        $individualOldPhotos = explode(", ", $oldPlotPhotos);
+        for($i=0; $i<count($individualOldPhotos); $i++) {
+            $filePath = $oldPlotPhotosPaths . $individualOldPhotos[$i];
+            if (file_exists($filePath)) {
+                if (unlink($filePath)) {
+                } else {
+                }
+            } else {
+            }
         }
 
+        $oldRulesPhotos = $_POST['old-rules-photos'];
+        $individualOldRulesPhotos = explode(", ", $oldRulesPhotos);
+        for($i=0; $i<count($individualOldRulesPhotos); $i++) {
+            $filePath = "../Image_Data/Rules/" . $individualOldRulesPhotos[$i];
+            if (is_file($filePath)) {
+                if (file_exists($filePath)) {
+                    if (unlink($filePath)) {
+                    } else {
+                    }
+                } else {
+                }
+            }            
+        }
+
+        
         include '../Php/databaseConnector.php';
 
         switch($typeOfRental){
             case 'Hostel':
                 $tableName = "Hostels";
 
-                otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
+                otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $availableUnits, $connectionInitialisation);
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation);
+                properties_owners_detailsTablePopulator($rentalID, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $maximumHostelOccupants, $rulesFiles, $connectionInitialisation);
                 
-                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
-
                 break;
 
             case "Single Room":
                 $tableName = "single_rooms";
 
-                otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
+                otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $availableUnits, $connectionInitialisation);
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation);
+                properties_owners_detailsTablePopulator($rentalID, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $maximumSingleRoomOccupants, $rulesFiles, $connectionInitialisation);
                 
-                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
-
                 break;
             
             case "Bedsitter":
                 $tableName = "bedsitters";
 
-                otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation);
+                otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $availableUnits, $connectionInitialisation);
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation);
-
-                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
+                properties_owners_detailsTablePopulator($rentalID, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $maximumBedsitterOccupants, $rulesFiles, $connectionInitialisation);
 
                 break;
             
@@ -357,11 +334,9 @@
                 $tableName = "suites";
                 $extraColumn = "Number_Of_Beds_Per_Suite";
 
-                eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $numberOfAvailableRentals, $connectionInitialisation);
+                eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $suiteBeds, $availableUnits, $connectionInitialisation);
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation);
-
-                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
+                properties_owners_detailsTablePopulator($rentalID, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $rulesFiles, $connectionInitialisation);
 
                 break;
             
@@ -369,105 +344,129 @@
                 $tableName = "apartments";
                 $extraColumn = "Number_Of_Bedrooms";
 
-                if($numberOfApartmentBedrooms !== "more") {
-                    eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfApartmentBedrooms, $numberOfAvailableRentals, $connectionInitialisation);
-                } else {
-                    eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $moreApartmentBedrooms, $numberOfAvailableRentals, $connectionInitialisation);
-                }
-                
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $rulesFiles, $connectionInitialisation);
+                eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $apartmentBedrooms, $availableUnits, $connectionInitialisation);
+                                
+                properties_owners_detailsTablePopulator($rentalID, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $rulesFiles, $connectionInitialisation);
 
-                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
-                
                 break;
             
             case "House":
                 $tableName = "houses";
                 $extraColumn = "Number_Of_Bedrooms";
 
-                if($numberOfHouseBedrooms !== "more") {
-                    eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfHouseBedrooms, $numberOfAvailableRentals, $connectionInitialisation);
-                } else {
-                    eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $moreHouseBedrooms, $numberOfAvailableRentals, $connectionInitialisation);
-                }
+                eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $houseBedrooms, $availableUnits, $connectionInitialisation);
                 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $rulesFiles, $connectionInitialisation);
+                properties_owners_detailsTablePopulator($rentalID, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $rulesFiles, $connectionInitialisation);
 
-                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
-                
                 break;
             
-            case "Business Premise":
-                
-                $sqlquery = "INSERT INTO business_premises (Rental_ID, Rental_Name, Type_Of_Premise, Location, Google_Location, Image_Urls, Ammenities, Number_Of_Similar_Units) 
-                VALUES('$rentalID', '$nameOfRental', '$typeOfOfBusinessPremise', '$location', '$googleLocation', '$plotNames', '$ammenitiesCollection', '$numberOfAvailableRentals');";
+            default:
+                $sqlquery = "UPDATE business_premises 
+                        SET Rental_Name = '$nameOfRental',
+                            Type_Of_Premise = '$typeOfRental',
+                            Location = '$location', 
+                            Google_Location = '$googleLocation', 
+                            Image_Urls = '$plotNames', 
+                            Ammenities = '$ammenitiesCollection', 
+                            Number_Of_Similar_Units = '$availableUnits'                
+                        WHERE Rental_ID = '$rentalID'";
                 
                 if (!mysqli_query($connectionInitialisation, $sqlquery)) {
                     die("Update query failed: " . mysqli_error($connectionInitialisation));
                 }
 
-                properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation);
-
-                property_owners_table_updator($email, $rentalsOwned, $phoneNumber);
-
-                break;
+                properties_owners_detailsTablePopulator($rentalID, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $rulesFiles, $connectionInitialisation);
 
         }
 
-        $retrieved_first_name = $_POST["first-name"];
-        $retrieved_last_name = $_POST["last-name"];
-        $email = $email;
-        $retrieved_phone_number = $phoneNumber;
-        $password = $_POST["password"];
-        $retrieved_rentals_owned = $rentalsOwned;
-
+        $email = $_POST["email"];
         
         include "../Php/correct-password.php";
     
     }
 
-    function otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation) {
+    function grabRules() {
+        $imagesToUpload = array();
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if(isset($_FILES['rules-photos'])){
+            
+                $files = $_FILES['rules-photos']['name'];
+                $fileCount = count($_FILES['rules-photos']['name']);
+                $files = array_filter($files);
+                
+                for ($i = 0; $i < $fileCount; $i++) {
+                    if(empty($files[$i])) {
+                        continue;
+                    }
+                    $imageName = $files[$i];
+                    $imageTemporaryName = $_FILES['rules-photos']['tmp_name'][$i];
+                    
+                    $imageExtension = pathinfo($imageName, PATHINFO_EXTENSION);
+                    $imageExtensionInLowerCase = strtolower($imageExtension);
+    
+                    $newImageName = uniqid("IMG-", true).".".$imageExtensionInLowerCase;
+
+                    array_push($imagesToUpload, $newImageName);
+                
+                    $imageUploadPath = "../Image_Data/Rules/" . $newImageName;
+                    move_uploaded_file($imageTemporaryName, $imageUploadPath);                      
+                                   
+                }
+                return $imagesToUpload;
+            }
+        }
+    }
+
+    function otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $availableUnits, $connectionInitialisation) {
         include '../Php/databaseConnector.php';
-        
-        $sqlquery = "INSERT INTO $tableName (Rental_ID, Rental_Name, Location, Google_Location, Image_Urls, Ammenities, Number_Of_Similar_Units) 
-        VALUES('$rentalID', '$nameOfRental', '$location', '$googleLocation', '$plotNames', '$ammenitiesCollection', '$numberOfAvailableRentals');";
+
+        $sqlquery = "UPDATE $tableName 
+                        SET Rental_Name = '$nameOfRental', 
+                            Location = '$location', 
+                            Google_Location = '$googleLocation', 
+                            Image_Urls = '$plotNames', 
+                            Ammenities = '$ammenitiesCollection', 
+                            Number_Of_Similar_Units = '$availableUnits'                
+                        WHERE Rental_ID = '$rentalID'";
         
         if (!mysqli_query($connectionInitialisation, $sqlquery)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
         }        
     }
 
-    function eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $numberOfAvailableRentals, $connectionInitialisation) {
+    function eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $availableUnits, $connectionInitialisation) {
         include '../Php/databaseConnector.php';
-        
-        $sqlquery = "INSERT INTO $tableName (Rental_ID, Rental_Name, Location, Google_Location, Image_Urls, Ammenities, $extraColumn, Number_Of_Similar_Units) 
-        VALUES('$rentalID', '$nameOfRental', '$location', '$googleLocation', '$plotNames', '$ammenitiesCollection', '$numberOfOccupants', '$numberOfAvailableRentals');";
+
+        $sqlquery = "UPDATE $tableName 
+                        SET Rental_Name = '$nameOfRental', 
+                            Location = '$location', 
+                            Google_Location = '$googleLocation', 
+                            Image_Urls = '$plotNames', 
+                            Ammenities = '$ammenitiesCollection',
+                            $extraColumn = '$numberOfOccupants', 
+                            Number_Of_Similar_Units = '$availableUnits'                
+                        WHERE Rental_ID = '$rentalID'";
         
         if (!mysqli_query($connectionInitialisation, $sqlquery)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
         }        
     }
 
-    function properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation) {
+    function properties_owners_detailsTablePopulator($rentalID, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation) {
 
         include '../Php/databaseConnector.php';
 
-        $sqlquery = "INSERT INTO properties_owners_details (Rental_ID, Owners_Phone_Number, Email_Address, Rental_Term, Amount_of_Rent, Pitching, Preferred_Sorts_of_Applicants, Maximum_Number_Of_Occupants, Rules_Urls) 
-        VALUES('$rentalID', '$phoneNumber', '$email', '$rentalTerm', '$amountOfRent', '$description', '$preferencesCollection', '$numberOfOccupants', '$rulesFiles');";
+        $sqlquery = "UPDATE properties_owners_details
+                        SET Rental_Term = '$rentalTerm', 
+                            Amount_of_Rent = '$amountOfRent', 
+                            Pitching = '$description', 
+                            Preferred_Sorts_of_Applicants = '$preferencesCollection', 
+                            Maximum_Number_Of_Occupants = '$numberOfOccupants', 
+                            Rules_Urls = '$rulesFiles'                
+                        WHERE Rental_ID = '$rentalID'";
 
         if (!mysqli_query($connectionInitialisation, $sqlquery)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
         }                
     }
-
-    function property_owners_table_updator($email, $rentalsOwned, $phoneNumber) {
-        include '../Php/databaseConnector.php';
-
-        $sqlquery = "UPDATE property_owners SET Rentals_Owned = '$rentalsOwned' WHERE Email_Address = '$email' AND Phone_Number = '$phoneNumber';";
-        
-        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-            die("Update query failed: " . mysqli_error($connectionInitialisation));
-        }
-    }
-    
 ?>

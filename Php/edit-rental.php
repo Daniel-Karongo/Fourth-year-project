@@ -13,6 +13,7 @@
 </head>
 <body onload="textareaSizor()" onresize="textareaSizor()">
     <div class="container">
+    <?php ?>
         <nav>
             <h1>HousesearchKE.com</h1>
             <button id="back-button" onclick="history.back()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Back</button>
@@ -39,11 +40,18 @@
             <p id="tally-paragraph"> 1 of <?php echo count($IndividualPlotPhotos); ?> </p>
         </div>        
         <main>
-            <form action="../Php/submit-editted-rental-details.php" class="overall-form">
+            <form action="../Php/submit-editted-rental-details.php" class="overall-form" method="post" enctype="multipart/form-data">
                 <div class="rental-description">
-                    
                     <h2>Rental Details</h2>
-
+                    
+                    <input type="hidden" name="email" class="email" value="<?php echo $email; ?>">
+                    <input type="hidden" name="rental-ID" value="<?php echo $rentalID; ?>">
+                    <input type="hidden" name="old-plot-photos" value="<?php echo $plotPhotos; ?>">
+                    <input type="hidden" name="old-plot-photos-paths" value="<?php echo $oldPlotPhotosPaths; ?>">
+                    <input type="hidden" name="old-rules-photos" value="<?php echo $rulesUrls; ?>">
+                    
+                    <label for="rental-name" class="rental-description-labels">Rental Name </label>
+                    <input type="text" class="rental-description-input" name="rental-name" id="rental-name" value="<?php echo $rentalName; ?>">
                     <label for="rent-amount" class="rental-description-labels">Amount Of Rent </label>
                     <input type="number" class="rental-description-input" name="rent-amount" id="rent-amount" value="<?php echo $rentAmount; ?>">
                     <label for="rent-term" class="rental-description-labels">Per  </label>
@@ -55,8 +63,6 @@
                         <option value="quarterly" <?php if($termDisplay === "3 Months"){echo "selected";}?>>3 Months</option>option>
                         <option value="bi-annually" <?php if($termDisplay === "6 Months"){echo "selected";}?>>6 Months</option>                
                     </select>
-                    <label for="description" class="rental-description-labels">Description</label>
-                    <textarea id="description" class="rental-description-input" name="description" oninput="textareaSizor()"><?php echo $description; ?> </textarea>
                     <label for="premise-type" class="rental-description-labels">Type Of Rental </label>
                     <input type="text" class="rental-description-input" name="premise-type" id="premise-type" value="<?php 
                         switch($rentalType) {
@@ -76,7 +82,7 @@
                                 echo $rentalType;
                         }
                     ?>s</label>  
-                    <input type="number" class="rental-description-input" name="number-of-unit" id="number-of-unit" value="<?php echo $numberOfUnits; ?>">
+                    <input type="number" class="rental-description-input" name="number-of-units" id="number-of-units" value="<?php echo $numberOfUnits; ?>">
                     <?php
                         switch($rentalType) {
                             case "Suite":
@@ -113,8 +119,10 @@
                     <input type="text" class="rental-description-input" name="location" id="location" value="<?php echo $location; ?>">
                     <label for="google-location" class="rental-description-labels"> Google Location </label>
                     <input type="text" class="rental-description-input" name="google-location" id="google-location" value="<?php echo $googlelocation; ?>">
+                    <label for="description" class="rental-description-labels">Description</label>
+                    <textarea id="description" class="rental-description-input" name="description" oninput="textareaSizor()"><?php echo $description; ?> </textarea>
                     <label for="plot-photos" class="rental-description-labels"> Re-Upload Photos Of Your Rental </label>
-                    <input type="file" class="rental-description-input" name="plot-photos" id="plot-photos" value="" multiple>
+                    <input type="file" class="rental-description-input" name="plot-photos[]" id="plot-photos" value="" multiple required>
                 </div>            
                 
                 <div class="ammenities-and-preferences">
@@ -232,43 +240,43 @@
 
                             <h5>Gender</h5>
                             <div class="parameters gender">
-                                <input type="radio" name="male" id="male" value="Males" <?php if(in_array("Males", $individualPreferencesRefined)) {echo "checked";}                                                        
+                                <input type="radio" name="gender" id="male" value="Males" <?php if(in_array("Males", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
                                 <label for="male">Males</label>
-                                <input type="radio" name="female" id="female" value="Females" <?php if(in_array("Females", $individualPreferencesRefined)) {echo "checked";}                                                        
+                                <input type="radio" name="gender" id="female" value="Females" <?php if(in_array("Females", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
                                 <label for="female">Females</label>
-                                <input type="radio" name="any-gender" id="any-gender" value="Any Gender" <?php if(in_array("Any Gender", $individualPreferencesRefined)) {echo "checked";}                                                        
+                                <input type="radio" name="gender" id="any-gender" value="Any Gender" <?php if(in_array("Any Gender", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
                                 <label for="any-gender">Any gender</label>
                             </div>
                                         
                             <h5>Students: </h5>
                             <div class="parameters students">
-                                <input type="radio" name="no-students" id="no-students" value="No Students" <?php if(in_array("No Students", $individualPreferencesRefined)) {echo "checked";}                                                        
+                                <input type="radio" name="students" id="no-students" value="No Students" <?php if(in_array("No Students", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
                                 <label for="students">No Students</label>
-                                <input type="radio" name="students-welcome" id="students-welcome" value="Students Welcome" <?php if(in_array("Students Welcome", $individualPreferencesRefined)) {echo "checked";}                                                        
+                                <input type="radio" name="students" id="students-welcome" value="Students Welcome" <?php if(in_array("Students Welcome", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
                                 <label for="students">Students Welcome</label>
                             </div>                        
 
                             <h5>Families that are welcome: </h5>
                             <div class="parameters families">
-                                <input type="radio" name="no-children" id="no-children" value="No Children" <?php if(in_array("No Children", $individualPreferencesRefined)) {echo "checked";}                                                        
+                                <input type="radio" name="family" id="no-children" value="No Children" <?php if(in_array("No Children", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
                                 <label for="no-children">Without small childen</label>
-                                <input type="radio" name="any-welcome" id="any-welcome" value="Any Family Welcome" <?php if(in_array("Any Family Welcome", $individualPreferencesRefined)) {echo "checked";}                                                        
+                                <input type="radio" name="family" id="any-welcome" value="Any Family Welcome" <?php if(in_array("Any Family Welcome", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
                                 <label for="any-welcome">Any Family</label>
                             </div>                                                
 
                             <h5>Driving: </h5>
                             <div class="parameters driving">
-                                <input type="radio" name="having-vehicles" id="having-vehicles" value="Vehicles Allowed" <?php if(in_array("Vehicles Allowed", $individualPreferencesRefined)) {echo "checked";}                                                        
+                                <input type="radio" name="vehicles" id="having-vehicles" value="Vehicles Allowed" <?php if(in_array("Vehicles Allowed", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
                                 <label for="having-vehicles">Having Vehicles</label>
-                                <input type="radio" name="not-having-vehicles" id="not-having-vehicles" value="Vehicles Not Allowed" <?php if(in_array("Vehicles Not Allowed", $individualPreferencesRefined)) {echo "checked";}                                                        
+                                <input type="radio" name="vehicles" id="not-having-vehicles" value="Vehicles Not Allowed" <?php if(in_array("Vehicles Not Allowed", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
                                 <label for="not-having-vehicles">Not having vehicles (No packing)</label>
                             </div>
@@ -329,7 +337,7 @@
                     </div>
                     <div class="input-rules-files">
                         <label for="rules-photos" class="rental-description-labels" id="rules-photos-label"> Re-Upload Photos Of Your Rules </label>
-                        <input type="file" class="rental-description-input" name="rules-photos" id="rules-photos" value="" multiple>
+                        <input type="file" class="rental-description-input" name="rules-photos[]" id="rules-photos" value="" multiple>
                     </div>                                           
                 </div>
                 
