@@ -23,11 +23,13 @@
 
     for($i=0; $i<count($individualImages); $i++) {
         $filePath = $imagepaths . $individualImages[$i];
-        if (file_exists($filePath)) {
-            if (unlink($filePath)) {
+        if (is_file($filePath)) {
+            if (file_exists($filePath)) {
+                if (unlink($filePath)) {
+                } else {
+                }
             } else {
             }
-        } else {
         }
     }
 
