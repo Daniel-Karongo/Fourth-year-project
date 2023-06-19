@@ -9,6 +9,8 @@ html {
 
 * {
     box-sizing: inherit;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'PT Sans', sans-serif;
 }
 
 body {
@@ -99,6 +101,7 @@ nav h3 {
     margin-bottom: 15px;
     transition: transform 0.3s, border 0.3s;
     border: 2px solid gray;
+    height: 100%;
 }
 
 .rental-template:hover {
@@ -140,6 +143,58 @@ nav h3 {
 
 .rental-template .description {
     margin-top: 0;
+}
+
+.rental-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255 , 0.5);
+}
+
+.rental-details div {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    align-self: flex-start;
+    width: 100%;
+    align-items: baseline;
+    text-align: start;
+}
+
+.rental-details div label {
+    margin-right: 10px;
+    flex-basis: 40%;    
+}
+
+.rental-details div input,textarea {
+    flex-basis: 60%;
+    font-size: 1rem;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255 , 0.5);
+    padding: 5px;
+    color: rgba(255,255,255,0.85);
+}
+
+.rental-details .description-div {
+    margin-top: 10px;
+    flex-direction: column;
+    text-align: center;
+    align-items: stretch;
+    width: 100%;    
+}
+
+.rental-details .description-div label{
+    margin-bottom: 10px;
+}
+
+.rental-details .description-div .rental-template-description{
+    outline: none;
+    resize: none;
+    overflow: hidden;
 }
 
 .template-buttons {

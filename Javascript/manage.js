@@ -208,3 +208,13 @@ function unzoomDiv(div) {
     div.style.boxShadow = '0px 0px 5px 2px rgba(0,0,0,0.5)';
     div.style.outline = 'none';
 }
+
+function textareaSizor() {
+    const textarea = document.querySelectorAll('.rental-template-description');
+    textarea.forEach((element) => {
+        elementId = element.id;
+        preciseElement = document.getElementById(elementId);
+        const height = preciseElement.scrollHeight;
+        preciseElement.style.height = height + 'px';
+    });    
+}

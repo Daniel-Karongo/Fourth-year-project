@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
     <script src="../Javascript/manage.js"></script>
 </head>
-<body>
+<body onload="textareaSizor()" onresize="textareaSizor()">
     <div class="container">
         <nav>
             <h3><?php echo $retrieved_first_name . " " . $retrieved_last_name;?></h3>
@@ -93,7 +93,7 @@
                                 $tableName = $tablenames[$i];
 
                                 echo 
-                                '   <div class="rental-template" id="rental-template-' . $i+1 . '" onclick="activateAnchor(event)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                '   <div class="rental-template" id="rental-template-' . $i+1 . '" ondblclick="activateAnchor(event)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                         <div class="title">
                                             <h3>' . $retrieved_rental_name[$i] . '</h3>' .
                                         '</div>' .
@@ -106,29 +106,84 @@
                                                 '<div class="payment">' .
                                                     '<h4 class="amount">Ksh.' . $retrieved_amount_of_rent[$i] . '</h4>' .
                                                     '<h5 class="rental-term">Per' . $termDisplay . '</h5>' .
-                                                    <h4>Type Of Rental</h4>
-                                                    <h5></hs>
-                                                    <h4>Number Of Similar Units</h4>
-                                                    <h5></h5>
-                                                    <h4>Maximum Of Occupants/Number Of Beds</h4>
-                                                    <h5></h5>
-                                                    <h4>Number Of Bedrooms</h4>
-                                                    <h5></h5>
-                                                    <h4>Location</h4>
-                                                    <h5></h5>
-                                                    <h4>Google Location</h4>
-                                                    <h5></h5>
-                                                    
-
-                                                    
                                                 '</div>' .
                                             '</div>' .
-
-                                            
                                             '<div class="bottom-section">' .
-                                                '<h4 class="description-title">Description</h4>' .
-                                                '<p class="description">' . $retrieved_description[$i] . '</p>' .
-                                                '<div class="template-buttons"> 
+                                                '<div class="rental-details">' .
+                                                    '<div class="rental-type-div">' .
+                                                        '<label for="rental-template-rental-type-' . $i+1 .'">Type Of Rental: </label>' .
+                                                        '<input type="text" name="rental-template-rental-type-' . $i+1 .'" id="rental-template-rental-type-' . $i+1 .'" value="';
+
+                                                        if($rentalType[$i] === "Business Premise"){
+                                                            echo $business_premises_retrieved_type_of_premise[$i];
+                                                        } else{
+                                                            echo $rentalType[$i];
+                                                        }
+
+                                                        echo '" disabled>' .
+                                                    '</div>' .
+                                                    '<div class="number-of-units-div">' .
+                                                        '<label for="rental-template-similar-units-' . $i+1 .'">Number Of Similar Units: </label>' .
+                                                        '<input type="text" name="rental-template-similar-units-' . $i+1 .'" id="rental-template-similar-units-' . $i+1 .'" value="' . $retrieved_number_of_units[$i] . '" disabled>' .
+                                                    '</div>';
+                                                    if(($rentalType[$i] === "Hostel") || ($rentalType[$i] === "Single Room") || ($rentalType[$i] === "Bedsitter")){
+
+                                                        echo 
+                                                        '<div class="maximum-occupants-div">' .
+                                                            '<label for="rental-template-maximum-occupants-' . $i+1 .'">Maximum Number Of Occupants: </label>' .
+                                                            '<input type="number" name="rental-template-maximum-occupants-' . $i+1 .'" id="rental-template-maximum-occupants-' . $i+1 .'" value="';
+                                                            if($rentalType[$i] === "Hostel"){
+                                                                echo $Hostel_retrieved_maximum_occupants[$i];
+                                                            } else if ($rentalType[$i] === "Bedsitter") {
+                                                                echo $Single_Room_retrieved_maximum_occupants[$i];
+                                                            } else {
+                                                                echo $Bedsitter_retrieved_maximum_occupants[$i];
+                                                            }
+
+                                                            echo '" disabled>' .
+                                                        '</div>';                                                        
+
+                                                    } else if ($rentalType[$i] === "Suite") {
+                                                        echo 
+                                                        '<div class="number-of-bedrooms-div">' .
+                                                            '<label for="rental-template-suite-beds-' . $i+1 .'">NumberOf Beds: </label>' .
+                                                            '<input type="number" name="rental-template-suite-beds-' . $i+1 .'" id="rental-template-suite-beds-' . $i+1 .'" value="' . $suites_retrieved_number_of_beds[$i] . '" disabled>' .
+                                                        '</div>';
+
+                                                    } else if (($rentalType[$i] === "Apartment") || ($rentalType[$i] === "House")){
+                                                        echo 
+                                                        '<div class="apartment-bedrooms-div">' .
+                                                            '<label for="rental-template-bedrooms-' . $i+1 .'">Number Of Bedrooms: </label>' .
+                                                            '<input type="number" name="rental-template-bedrooms-' . $i+1 .'" id="rental-template-bedrooms-' . $i+1 .'" value="';
+                                                            
+                                                            if($rentalType[$i] === "Apartment"){
+                                                                echo $apartments_retrieved_number_of_bedrooms[$i];
+                                                            } else {
+                                                                echo $houses_retrieved_number_of_bedrooms[$i];
+                                                            }
+
+                                                            echo '" disabled>' .
+                                                        '</div>';
+                                                    }
+
+                                                    echo 
+                                                    '<div class="location-div">' .
+                                                        '<label for="rental-template-location-' . $i+1 .'">Location: </label>' .
+                                                        '<input type="text" name="rental-template-location-' . $i+1 .'" id="rental-template-location-' . $i+1 .'" value="' . $retrieved_location[$i] .'" disabled>' .
+                                                    '</div>' .
+                                                    
+                                                    '<div class="google-location-div">' .
+                                                        '<label for="rental-template-google-location-' . $i+1 .'">Google Location: </label>' .
+                                                        '<input type="text" name="rental-template-google-location-' . $i+1 .'" id="rental-template-google-location-' . $i+1 .'" value="' . $retrieved_google_location[$i] .'" disabled>' .
+                                                    '</div>' .
+                                                    
+                                                    '<div class="description-div">' .
+                                                        '<label for="rental-template-description-' . $i+1 .'">Description: </label>' .
+                                                        '<textarea name="rental-template-description-' . $i+1 .'" class="rental-template-description" id="rental-template-description-' . $i+1 .'" oninput="textareaSizor()" disabled>' .  $retrieved_description[$i] . '</textarea>' .
+                                                    '</div>' .                                                     
+                                                '</div>'; 
+
+                                                echo '<div class="template-buttons"> 
                                                     <form class="template-submit-buttons" id="delete-rental-' . $i+1 . '" action="../Php/rentalDelete.php" method="post" enctype="multipart/form-data" onsubmit="validateDeletion(event)">
                                                         <button type="submit" class="remove-rental"> Remove Rental </button>
                                                         <input type="hidden" name="rentalID" class="rentalID" value="' . $rentalID . '">
@@ -139,14 +194,14 @@
                                                         <input type="hidden" name="image-urls" class="image-urls" value="' . $retrieved_image_urls[$i] . '">
                                                         <input type="hidden" name="image-paths" class="image-paths" value="../Image_Data/' . $finalFolder . '">
                                                         <input type="hidden" name="rules-urls" class="rules-urls" value="' .$retrieved_rules_urls[$i] . '">
-                                                        <input type="hidden" id="password-for-delete" name="password-for-delete" value="' . $password . '">
+                                                        <input type="hidden" id="password-for-delete-' . $i+1 . '" name="password-for-delete" value="' . $password . '">
                                                     </form>
 
                                                     <form class="template-submit-buttons edit-details-form" id="template-edit-details-' . $i+1 . '" action="../Php/edit-rental-preparation.php" method="post" enctype="multipart/form-data">                               
                                                         <button type="submit" class="edit-rental"> Edit Rental Details </button>
 
                                                         <input type="hidden" name="email" class="email" value="' . $email . '">
-                                                        <input type="hidden" id="password-for-edit" name="password-for-edit" value="' . $password . '">
+                                                        <input type="hidden" id="password-for-edit-' . $i+1 . '" name="password-for-edit" value="' . $password . '">
                                                         
                                                         <input type="hidden" name="rental-ID" class="rental-ID" value="' .$rentalID . '">
                                                         <input type="hidden" name="table-name" class="table-name" value="' .$tablenames[$i] . '">
