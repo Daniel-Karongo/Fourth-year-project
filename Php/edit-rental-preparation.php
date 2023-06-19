@@ -1,6 +1,7 @@
 <?php
 
     $email = $_POST['email'];
+    $password = $_POST['password-for-edit'];
     
     $rentalID = $_POST['rental-ID'];    
     $rentalName = $_POST['rental-name'];

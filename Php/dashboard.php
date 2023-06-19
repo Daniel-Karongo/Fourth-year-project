@@ -33,7 +33,6 @@
                     <button onclick="wrapperFunction('.contact-information', '.my-rentals', null)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"> My Contact Information</button>
                 </div>                
                 <div class="my-rentals">
-
                     <?php 
                         if(($res) && (mysqli_num_rows($res) > 0)) {
                             for($i=0; $i<count($rentalsOwned); $i++) {
@@ -102,12 +101,30 @@
                                             '<div class="top-section">' .
                                                 '<div class="image-div">'.
                                                     '<img src="../Image_Data/' . $finalFolder . $imageToDisplay . '" ' . 'alt="Rental-' . ($i + 1) . '">' .
-                                                '</div>' .                                
+                                                '</div>' .
+
                                                 '<div class="payment">' .
                                                     '<h4 class="amount">Ksh.' . $retrieved_amount_of_rent[$i] . '</h4>' .
                                                     '<h5 class="rental-term">Per' . $termDisplay . '</h5>' .
+                                                    <h4>Type Of Rental</h4>
+                                                    <h5></hs>
+                                                    <h4>Number Of Similar Units</h4>
+                                                    <h5></h5>
+                                                    <h4>Maximum Of Occupants/Number Of Beds</h4>
+                                                    <h5></h5>
+                                                    <h4>Number Of Bedrooms</h4>
+                                                    <h5></h5>
+                                                    <h4>Location</h4>
+                                                    <h5></h5>
+                                                    <h4>Google Location</h4>
+                                                    <h5></h5>
+                                                    
+
+                                                    
                                                 '</div>' .
                                             '</div>' .
+
+                                            
                                             '<div class="bottom-section">' .
                                                 '<h4 class="description-title">Description</h4>' .
                                                 '<p class="description">' . $retrieved_description[$i] . '</p>' .
@@ -122,12 +139,14 @@
                                                         <input type="hidden" name="image-urls" class="image-urls" value="' . $retrieved_image_urls[$i] . '">
                                                         <input type="hidden" name="image-paths" class="image-paths" value="../Image_Data/' . $finalFolder . '">
                                                         <input type="hidden" name="rules-urls" class="rules-urls" value="' .$retrieved_rules_urls[$i] . '">
+                                                        <input type="hidden" id="password-for-delete" name="password-for-delete" value="' . $password . '">
                                                     </form>
 
                                                     <form class="template-submit-buttons edit-details-form" id="template-edit-details-' . $i+1 . '" action="../Php/edit-rental-preparation.php" method="post" enctype="multipart/form-data">                               
                                                         <button type="submit" class="edit-rental"> Edit Rental Details </button>
 
                                                         <input type="hidden" name="email" class="email" value="' . $email . '">
+                                                        <input type="hidden" id="password-for-edit" name="password-for-edit" value="' . $password . '">
                                                         
                                                         <input type="hidden" name="rental-ID" class="rental-ID" value="' .$rentalID . '">
                                                         <input type="hidden" name="table-name" class="table-name" value="' .$tablenames[$i] . '">

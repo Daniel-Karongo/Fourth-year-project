@@ -666,3 +666,8 @@ function validateForm(event) {
     }
 }
 
+function textareaSizor() {
+    const textarea = document.getElementById('description');
+    const height = textarea.scrollHeight;
+    textarea.style.height = height + 'px';
+}

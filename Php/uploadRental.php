@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
     <script defer src="../Javascript/upload.js"></script>       
 </head>
-<body>
+<body onload="textareaSizor()" onresize="textareaSizor()">
     <div class="container">
         <nav>
             <h3><?php echo $firstName . " " . $lastName;?></h3>
@@ -140,7 +140,7 @@
 
                     <div class="descriptionDiv" id="descriptionDiv">
                         <label class="description" for="description">Description</label>
-                        <textarea id="description" name="description" placeholder="Write anything you may want to pitch your rental to potential tenants"></textarea>
+                        <textarea id="description" name="description" placeholder="Write anything you may want to pitch your rental to potential tenants" oninput="textareaSizor()"></textarea>
                         <div class="error"></div>
                     </div>
 

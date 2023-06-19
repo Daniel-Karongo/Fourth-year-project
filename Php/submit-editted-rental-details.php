@@ -6,16 +6,16 @@
         
         $preferences = array();
 
-        $gender = isset($_POST['gender']) ? $_POST["gender"] : null; 
-        $students = isset($_POST['students']) ? $_POST["students"] : null; 
-        $family = isset($_POST['family']) ? $_POST["family"] : null;
-        $vehicles = isset($_POST['vehicles']) ? $_POST["vehicles"] : null;
+        $gender = isset($_POST["gender"]) ? $_POST["gender"] : null; 
+        $students = isset($_POST["students"]) ? $_POST["students"] : null; 
+        $family = isset($_POST["family"]) ? $_POST["family"] : null;
+        $vehicles = isset($_POST["vehicles"]) ? $_POST["vehicles"] : null;
 
-        $Christianity = isset($_POST['Christianity']) ? $_POST["Christianity"] : null;
-        $islam = isset($_POST['islam']) ? $_POST["islam"] : null;
-        $hinduism = isset($_POST['hinduism']) ? $_POST["hinduism"] : null;
-        $specified_religion = empty($_POST['specified-religion']) ? null : $_POST['specified-religion'];        
-        $anyReligion = isset($_POST['any-religion']) ? $_POST["any-religion"] : null;
+        $Christianity = isset($_POST["Christianity"]) ? $_POST["Christianity"] : null;
+        $islam = isset($_POST["islam"]) ? $_POST["islam"] : null;
+        $hinduism = isset($_POST["hinduism"]) ? $_POST["hinduism"] : null;
+        $specified_religion = empty($_POST["specified-religion"]) ? null : $_POST["specified-religion"];        
+        $anyReligion = isset($_POST["any-religion"]) ? $_POST["any-religion"] : null;
 
         if ($gender !== null) {  
             array_push($preferences, "Gender: ".$gender);  
@@ -216,7 +216,7 @@
         $description = $_POST['description'];
         $typeOfRental = $_POST['premise-type'];
         $availableUnits = $_POST['number-of-units'];
-
+        
         $suiteBeds = isset($_POST['number-of-beds']);
         $apartmentBedrooms = isset($_POST['number-of-apartment-bedrooms']);
         $houseBedrooms = isset($_POST['number-of-house-bedrooms']);
@@ -380,6 +380,7 @@
         }
 
         $email = $_POST["email"];
+        $password = $_POST['password'];
         
         include "../Php/correct-password.php";
     

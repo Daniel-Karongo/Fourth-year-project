@@ -49,6 +49,7 @@
                     <input type="hidden" name="old-plot-photos" value="<?php echo $plotPhotos; ?>">
                     <input type="hidden" name="old-plot-photos-paths" value="<?php echo $oldPlotPhotosPaths; ?>">
                     <input type="hidden" name="old-rules-photos" value="<?php echo $rulesUrls; ?>">
+                    <input type="hidden" id="password" name="password" value="<?php echo $password; ?>">
                     
                     <label for="rental-name" class="rental-description-labels">Rental Name </label>
                     <input type="text" class="rental-description-input" name="rental-name" id="rental-name" value="<?php echo $rentalName; ?>">
@@ -283,10 +284,10 @@
                                         
                             <h5> Practicing members of:</h5>
                             <div class="parameters faith">
-                                <input type="checkbox" name="Christianity" id="christianity" value="Christianity" <?php if(in_array("VChristianity", $individualPreferencesRefined)) {echo "checked";}                                                        
+                                <input type="checkbox" name="Christianity" id="christianity" value="Christianity" <?php if(in_array("Christianity", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
                                 <label for="christianity">Christianity</label>
-                                <input type="checkbox" name="islam" id="islam" value="Islam" <?php if(in_array("islam", $individualPreferencesRefined)) {echo "checked";}                                                        
+                                <input type="checkbox" name="islam" id="islam" value="Islam" <?php if(in_array("Islam", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
                                 <label for="islam">Islam</label>
                                 <input type="checkbox" name="hinduism" id="hinduism" value="Hinduism" <?php if(in_array("Hinduism", $individualPreferencesRefined)) {echo "checked";}                                                        

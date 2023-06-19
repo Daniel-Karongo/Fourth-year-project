@@ -5,6 +5,7 @@
     $tablename = $_POST['tableName'];
     $email = $_POST['user-email'];
     $phoneNumber = $_POST['phone-number'];
+    $password = $_POST['password-for-delete'];
     $rentalsOwned = $_POST['rentals-owned'];
     $images = $_POST['image-urls'];
     $imagepaths = $_POST['image-paths'];
