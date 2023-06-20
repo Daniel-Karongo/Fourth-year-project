@@ -59,7 +59,9 @@
     function ammenities() {
         $ammenities = array();
         
-        $cleanWater = isset($_POST["clean-water"]) ? $_POST["clean-water"] : null; 
+        $tapWater = isset($_POST["tap-water"]) ? $_POST["tap-water"] : null; 
+        $WaterTank = isset($_POST["water-tank"]) ? $_POST["water-tank"] : null; 
+        $borehole = isset($_POST["borehole"]) ? $_POST["borehole"] : null; 
         $token = isset($_POST["token"]) ? $_POST["token"] : null; 
         $meter = isset($_POST["meter"]) ? $_POST["meter"] : null;
         $securityGuard = isset($_POST["security-guard"]) ? $_POST["security-guard"] : null; 
@@ -82,8 +84,14 @@
         $swimmingPool = isset($_POST["swimming-pool"]) ? $_POST["swimming-pool"] : null; 
         $gym = isset($_POST["gym"]) ? $_POST["gym"] : null;
 
-        if ($cleanWater !== null) {  
-            array_push($ammenities, "Clean Water: ".$cleanWater);  
+        if ($tapWater !== null) {  
+            array_push($ammenities, "Tap Water: ".$tapWater);  
+        }
+        if ($WaterTank !== null) {  
+            array_push($ammenities, "Water Tank: ".$WaterTank);  
+        }
+        if ($borehole !== null) {  
+            array_push($ammenities, "Bore Hole: ".$borehole);  
         }
         if ($token !== null) {  
             array_push($ammenities, "Token: ".$token);  

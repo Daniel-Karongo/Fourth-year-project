@@ -188,14 +188,14 @@ h4 {
     align-self: center;
 }
 
-.ammenities .clean-water, .electricity-token, .electricity-meter, .security-guard, .cctv, .security-lights, .pit-latrine, .automatic-toilet, .garbage-collection, .cleaner, .sink, .handicap-access, .packing, .tiles,  .ceiling, .balcony, .wi-fi, .joint-tv-subscription, .air-conditioning, .furnished, .swimming-pool, .gym {
+.ammenities .tap-water, .water-tank, .borehole, .electricity-token, .electricity-meter, .security-guard, .cctv, .security-lights, .pit-latrine, .automatic-toilet, .garbage-collection, .cleaner, .sink, .handicap-access, .packing, .tiles,  .ceiling, .balcony, .wi-fi, .joint-tv-subscription, .air-conditioning, .furnished, .swimming-pool, .gym {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: baseline;
 }
 
-.ammenities #clean-water, #token, #meter, #security-guard, #cctv, #security-lights, #pit-latrine, #automatic-toilet, #garbage-collection, #cleaner, #sink, #handicap-access, #packing, #tiles, #ceiling, #balcony, #wi-fi, #joint-tv-subscription, #air-conditioning, #furnished, #swimming-pool, #gym {
+.ammenities #tap-water, #water-tank, #borehole, #token, #meter, #security-guard, #cctv, #security-lights, #pit-latrine, #automatic-toilet, #garbage-collection, #cleaner, #sink, #handicap-access, #packing, #tiles, #ceiling, #balcony, #wi-fi, #joint-tv-subscription, #air-conditioning, #furnished, #swimming-pool, #gym {
     margin-right: 5px;
     margin-bottom: 15px;
 }

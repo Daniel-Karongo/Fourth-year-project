@@ -1,6 +1,6 @@
 function findCurrentImage(arrayOfImages) {
     for(let i=0; i<arrayOfImages.length; i++) {
-        if(window.getComputedStyle(arrayOfImages[i]).display === "inline") {
+        if(window.getComputedStyle(arrayOfImages[i]).display !== "none") {
             currentImage = arrayOfImages[i];
             return currentImage;            
         }
@@ -8,7 +8,7 @@ function findCurrentImage(arrayOfImages) {
 }
 
 function viewLeft() {
-    let images = document.querySelectorAll('img.viewimage');
+    let images = document.querySelectorAll('viewimage img');
     let currentImage; 
     let paragraph = document.querySelector('#tally-paragraph');   
 
@@ -55,13 +55,4 @@ function viewRight() {
     } 
 }
 
-function display() {
-    const inputField = document.querySelectorAll('.contacts input');
-    console.log(inputField);
-    inputField.forEach((field) => {
-        field.disabled = false;
-        field.value = 'ASDFGH';
-    });
-
-}
 

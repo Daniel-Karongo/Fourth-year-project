@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../Css/style-home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet"> 
+    <script src="../Javascript/home-page.js"></script>   
 </head>
 <body>
     <div class="container">
@@ -22,9 +23,9 @@
             <p>Find hundreds of rentals, of all classes; from matope houses to villas, from hostels to shops
             All you need to do is specify where.</p>
         </div>
-        <form action="" method="get" class="search-bar">
-            <input type="text" placeholder="Search location">
-            <button><img src="../Images/search.png" alt=""></button>
+        <form action="../Php/search-results-preparation.php" method="post" class="search-bar">
+            <input type="text" placeholder="Search location" name="location" id="location">
+            <button onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/search.png" alt=""></button>
         </form>        
     </div>
 </body>

@@ -134,9 +134,17 @@
                             <div class="basic-ammenities">
                                 <h5>Water</h5>
                                 <div class="rental-ammenities basic water">
-                                    <input type="checkbox"  name="clean-water" id="clean-water" value="Clean Water" <?php if(in_array("Clean Water", $individualAmmenitiesRefined)) {echo "checked";}                                                        
+                                    <input type="checkbox"  name="tap-water" id="tap-water" value="Tap Water" <?php if(in_array("Tap Water", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                    <label for="clean-water"> Clean Tap Water/ Water Reserves (Tanks and/or Borehole)</label>
+                                    <label for="tap-water">Tap Water</label>
+
+                                    <input type="checkbox"  name="water-tank" id="water-tank" value="Water Tank" <?php if(in_array("Water Tank", $individualAmmenitiesRefined)) {echo "checked";}                                                        
+                                    ?>>
+                                    <label for="water-tank">Water Tank</label>
+
+                                    <input type="checkbox"  name="borehole" id="borehole" value="Borehole" <?php if(in_array("Borehole", $individualAmmenitiesRefined)) {echo "checked";}                                                        
+                                    ?>>
+                                    <label for="borehole">Borehole</label>
                                 </div>
                                                 
                                 <h5>Electricity</h5>

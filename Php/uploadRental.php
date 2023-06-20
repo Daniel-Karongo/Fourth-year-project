@@ -156,9 +156,20 @@
                 <div class="ammenities">
                     <h4>Ammenities</h4>
                     
-                    <div class="clean-water">
-                        <input type="checkbox"  name="clean-water" id="clean-water" value="Clean Water">
-                        <label for="clean-water"> Clean Tap Water/ Water Reserves (Tanks and/or Borehole)</label>
+                    <h5>Clean Water</h5>
+                    <div class="tap-water">
+                        <input type="checkbox"  name="tap-water" id="tap-water" value="Tap Water">
+                        <label for="tap-water">Tap Water</label>
+                    </div>
+
+                    <div class="water-tank">
+                        <input type="checkbox"  name="water-tank" id="water-tank" value="Water Tank">
+                        <label for="water-tank">Water Tank</label>
+                    </div>
+
+                    <div class="borehole">
+                        <input type="checkbox"  name="borehole" id="borehole" value="Borehole">
+                        <label for="borehole"> Clean Tap Water/ Water Reserves (Tanks and/or Borehole)</label>
                     </div>
                     
                     <h5>Electricity</h5>
@@ -197,8 +208,8 @@
                     </div>
                     
                     <div class="automatic-toilet">
-                        <input type="checkbox" name="automatic-toilet" id="automatic-toilet" value="Automatic Toilet">
-                        <label for="automatic-toilet"> Communal Automatic Toilets</label>
+                        <input type="checkbox" name="automatic-toilet" id="automatic-toilet" value="Flashing Toilet">
+                        <label for="automatic-toilet"> Communal Flashing Toilets</label>
                     </div>
                     
                     <h5>Cleaning</h5>
