@@ -10,7 +10,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #282B30;
-    color: rgba(255,255,255,0.85);
+    color: rgba(255,255,255,1);
 }
 
 *{
@@ -22,6 +22,12 @@ body {
     padding: 10px;
     width: 100%;
     background-color: #1D2024;
+    overflow: hidden;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 nav {
@@ -41,13 +47,14 @@ nav h1,button {
 
 nav button {
     padding: 7px 15px;
-    background-color: rgba(255, 255, 255 , 0.2);
+    background-color: transparent;
+    color: rgba(255,255,255,1);
+    font-size: 1rem;
+    border: 2.5px solid#2C18DE;
 }
 
 nav a {
     text-decoration: none;
-    color:rgba(255, 255, 255 , 0.85);
-    font-size: 1rem;
 }
 
 section {
@@ -62,30 +69,22 @@ section {
 
 section .images-and-tally {
     flex: 1; 
-    z-index: 1; 
+    z-index: 1;
     display: flex;
-    flex-direction: column;     
+    flex-direction: column;
+    align-items: center;     
+    text-align: center;
 }
 
-section .images-and-tally .images {
-    flex-basis: 90%;
-}
-
-section .images-and-tally .tally {
-    flex-basis: 10%;
-    text-align: center; 
+.tally p {
+    padding: 7px 10px;
     width: 100px;
-    align-self: center;   
-}
-
-section .images-and-tally .tally p {
-    padding: 7px;
-    margin: 0;
-    background-color: rgba(255, 255, 255 , 0.2);  
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.2); 
 }
 
 section .left {
-    position: absolute;
+    position: relative;
     z-index: 2;
 }
 
@@ -112,9 +111,8 @@ section .left {
 }
 
 section .right {
-    position: absolute;
-    z-index: 2;
-    right: 15px;         
+    position: relative;
+    z-index: 2;          
 }
 
 .images img {
@@ -123,8 +121,34 @@ section .right {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);    
 }
 
-.images img:not(#image1) {
+section .right{
+    right: 10px;
+}
+
+.section .left {
+    margin-left: 5px;
+}
+
+.images-and-tally {
+    width: 100%;
+    padding: 0;
+}
+
+.images-and-tally img:not(#image1) {
     display: none;
+}
+
+.images-and-tally img {
+    width: 100%;
+    height: auto;    
+}
+
+.tally p {
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 100px;
+    text-align: center;
+    padding: 7px 10px;
+    margin: 0;
 }
 
 .rental-description, .contact-information {
@@ -132,6 +156,7 @@ section .right {
     padding: 10px;
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
 }
 
 .rental-description h2 {
@@ -147,11 +172,24 @@ section .right {
 
 .rental-description h4 {
     margin-top: 5px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
+}
+.details {
+    margin-top: 10px;
+}
+
+.details span {
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.description {
+    text-align: center;
 }
 
 .rental-description p {
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .contact-information h2 {
@@ -171,11 +209,79 @@ section .right {
     padding: 5px 10px;
     margin-bottom: 15px;
     background-color: rgba(255, 255, 255 , 0.2);
-    color: rgba(255, 255, 255 , 0.85);
+    color: rgba(255, 255, 255 , 1);
+    font-size: 1rem;
 }
 
 .contact-information form label {
     margin-bottom: 5px;
+}
+
+.ammenities-and-preferences {
+    display: flex;
+    flex-direction: row; 
+    padding: 10px;  
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    margin-top: 10px;
+    width: 100%;
+     
+}
+
+.ammenities, .preferences {
+    flex-basis: 50%;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.ammenities {
+    border-right: 1px solid rgba(255, 255, 255 , 1);
+}
+
+.rules {
+    margin-top: 10px;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.rules .left, .right {
+    position: absolute;
+    order: 2;
+}
+
+.rules .right{
+    right: 10px;
+}
+
+.rules .left {
+    margin-left: 5px;
+}
+
+.rules-images-and-tally {
+    flex: 1;
+    padding: 0;
+}
+
+.rules-images-and-tally img:not(#rules-image-1) {
+    display: none;
+}
+
+.rules img {
+    width: 100%;
+    height: auto;    
+}
+
+.rules-tally p {
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 100px;
+    text-align: center;
+    padding: 7px 10px;
+    margin: 0;
 }
 
 @media (min-width: 576px){
@@ -185,11 +291,10 @@ section .right {
         box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
     }
 
-    /* .images {
+    .images {
         margin-left: 10px;
         margin-right: 10px;
-    } */
-
+    } 
     
     section .left {
         position: relative;                      

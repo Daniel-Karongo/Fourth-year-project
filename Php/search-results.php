@@ -149,7 +149,7 @@
         <main>
             <?php 
                 for($i=0; $i<count($retrievedRentalID); $i++){
-                    
+
                     $rentalImages = explode(", ", $retrievedImageUrls[$i]);
                     $imageToDisplay = $rentalImages[0];
                                 
@@ -161,18 +161,18 @@
                             break;
 
                         case "Apartment":                                                    
-                            if(($retrievednumberofapartmentbedrooms[$i] == 1) || ($retrievednumberofapartmentbedrooms[$i] == 2) || ($retrievednumberofapartmentbedrooms == 3)) {
-                                $finalFolder = $retrievedRentalType[$i] . "s/" . $retrievednumberofapartmentbedrooms[$i]. "-Bedroom/";
+                            if(($retrievedNumberOfApartmentBedrooms[$i] == 1) || ($retrievedNumberOfApartmentBedrooms[$i] == 2) || ($retrievedNumberOfApartmentBedrooms[$i] == 3)) {
+                                $finalFolder = $retrievedRentalType[$i] . "s/" . $retrievedNumberOfApartmentBedrooms[$i]. "-Bedroom/";
                             } else {
-                                $finalFolder = $retrievedRentalType[$i] . "s/More Bedrooms/" . $retrievednumberofapartmentbedrooms[$i]. "-Bedrooms/";
+                                $finalFolder = $retrievedRentalType[$i] . "s/More Bedrooms/" . $retrievedNumberOfApartmentBedrooms[$i]. "-Bedrooms/";
                             }                                                    
                             break;
 
                         case "House":
-                            if(($retrievednumberofhousebedrooms[$i] == 1) || ($retrievednumberofhousebedrooms[$i] == 2) || ($retrievednumberofhousebedrooms[$i] == 3)) {
-                                $finalFolder = $retrievedRentalType[$i] . "s/" . $retrievednumberofhousebedrooms[$i]. "-Bedroom/";
+                            if(($retrievedNumberOfHouseBedrooms[$i] == 1) || ($retrievedNumberOfHouseBedrooms[$i] == 2) || ($retrievedNumberOfHouseBedrooms[$i] == 3)) {
+                                $finalFolder = $retrievedRentalType[$i] . "s/" . $retrievedNumberOfHouseBedrooms[$i]. "-Bedroom/";
                             } else {
-                                $finalFolder = $retrievedRentalType[$i] . "s/More Bedrooms/" . $retrievednumberofhousebedrooms[$i] . "-Bedrooms/";
+                                $finalFolder = $retrievedRentalType[$i] . "s/More Bedrooms/" . $retrievedNumberOfHouseBedrooms[$i] . "-Bedrooms/";
                             }
                             break;
                         
@@ -219,9 +219,9 @@
                                     echo $retrievedTypeOfBusinessBusiness[$i];
                                 } else {
                                     if($retrievedRentalType[$i] === "Apartment") {
-                                        echo $retrievedNumberOfApartmentBedrooms . '-Bedroom Apartment';
+                                        echo $retrievedNumberOfApartmentBedrooms[$i] . '-Bedroom Apartment';
                                     } else {
-                                        echo $retrievedNumberOfHouseBedrooms . '-Bedroom Apartment';
+                                        echo $retrievedNumberOfHouseBedrooms[$i] . '-Bedroom House';
                                     }
                                 }
                                 echo '</h4>';
@@ -229,6 +229,7 @@
                                 <p> ' . $retrievedDescription[$i] . ' </p>
                                 <form class="template-more-details" id="template-more-details-' . $i+1 . '" action="../Php/view-description-preparation.php" method="post" enctype="multipart/form-data"> 
                                     <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">More details</button>
+
                                     <input type="hidden" name="rental-type" value="' . $retrievedRentalType[$i] . '">
                                     <input type="hidden" name="rental-name" value="' . $retrievedrentalName[$i] . '">
                                     <input type="hidden" name="rental-location" value="' . $retrievedLocation[$i] . '">
@@ -242,8 +243,8 @@
                                     <input type="hidden" name="rental-business-premise-type" value="' . $retrievedTypeOfBusinessBusiness[$i] . '">
                                     <input type="hidden" name="rental-owners-phone-number" value="' . $retrievedOwnersPhoneNumber[$i] . '">
                                     <input type="hidden" name="rental-owners-email" value="' . $retrievedOwnersEmailAddress[$i] . '">
-                                    <input type="hidden" name="rental-term" value="' . $retrievedRentalTerm[$i] . '">
-                                    <input type="hidden" name="rental-amount-of-rent" value="' . $termToDisplay[$i] . '">
+                                    <input type="hidden" name="rental-term" value="' . $termToDisplay . '">
+                                    <input type="hidden" name="rental-amount-of-rent" value="' . $retrievedAmountOfRent[$i] . '">
                                     <input type="hidden" name="rental-description" value="' . $retrievedDescription[$i] . '">
                                     <input type="hidden" name="rental-tenant-preferences" value="' . $retrievedPreferences[$i] . '">
                                     <input type="hidden" name="rental-number-of-ocupants" value="' . $retrievedMaximumNumberOfOccupants[$i] . '">
