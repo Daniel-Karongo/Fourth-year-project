@@ -235,10 +235,6 @@ section .right {
     padding-bottom: 20px;
 }
 
-*[disabled] {
-    border: 1px solid white;
-}
-
 .basic-ammenities {
     border-bottom: 1px solid white;
     padding-bottom: 20px;
@@ -379,12 +375,12 @@ section .right {
     }
 
     .images img {
-        height: 450px;
+        height: auto;
 
     }
 
     .rules-images img {
-        height: 450px;
+        height: auto;
         border: 1px solid black;        
     }
     

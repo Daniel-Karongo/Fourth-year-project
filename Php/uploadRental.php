@@ -231,11 +231,11 @@
 
                     <div class="handicap-access">
                         <input type="checkbox" name="handicap-access" id="handicap-access" value="Handicap Access">
-                        <label for="handicap-access"></label>Handicap/ WheelChair Access</label>
+                        <label for="handicap-access">Handicap/ WheelChair Access</label>
                     </div>
                     <div class="packing">
                         <input type="checkbox" name="packing" id="packing" value="Packing">
-                        <label for="packing"></label>Packing</label>
+                        <label for="packing">Packing</label>
                     </div>
                     
                     <h5> Finishing</h5>
@@ -250,7 +250,7 @@
                     </div>
                     <div class="balcony">
                         <input type="checkbox" name="balcony" id="balcony" value="Balcony">
-                        <label for="balcony"></label>Balcony</label>
+                        <label for="balcony">Balcony</label>
                     </div>
                    
                     <h5>luxury</h5>
@@ -265,19 +265,19 @@
                     </div>
                     <div class="air-conditioning">
                         <input type="checkbox"  name="air-conditioning" id="air-conditioning" value="Air Conditioning">
-                        <label for="air-conditioning"></label>Air Conditioning</label>
+                        <label for="air-conditioning">Air Conditioning</label>
                     </div>
                     <div class="furnished">
                         <input type="checkbox" name="furnished" id="furnished" value="Furnished">
-                        <label for="furnished"></label>Furnished</label>
+                        <label for="furnished">Furnished</label>
                     </div>
                     <div class="swimming-pool">
                         <input type="checkbox" name="swimming-pool" id="swimming-pool" value="Swimming Pool">
-                        <label for="swimming-pool"></label>Swimming Pool</label>
+                        <label for="swimming-pool">Swimming Pool</label>
                     </div>
                     <div class="gym">
                         <input type="checkbox" name="gym" id="gym" value="Gym">
-                        <label for="gym"></label>Gym</label>
+                        <label for="gym">Gym</label>
                     </div>  
                 </div>
                 <div class="preferences">

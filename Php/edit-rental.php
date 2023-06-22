@@ -200,10 +200,10 @@
                                 <div class="rental-ammenities bonus accessibility">
                                     <input type="checkbox" name="handicap-access" id="handicap-access"value="Handicap Access" <?php if(in_array("Handicap Access", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                    <label for="handicap-access"></label>Handicap/ WheelChair Access</label>
+                                    <label for="handicap-access">Handicap/ WheelChair Access</label>
                                     <input type="checkbox" name="packing" id="packing"value="Packing" <?php if(in_array("Packing", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                    <label for="packing"></label>Packing</label>
+                                    <label for="packing">Packing</label>
                                 </div>
 
                                 <h5> Finishing</h5>
@@ -216,7 +216,7 @@
                                     <label for="ceiling"> Ceiling</label>
                                     <input type="checkbox" name="balcony" id="balcony"value="Balcony" <?php if(in_array("Balcony", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                    <label for="balcony"></label>Balcony</label>
+                                    <label for="balcony">Balcony</label>
                                 </div>                            
 
                                 <h5>luxury</h5>
@@ -229,16 +229,16 @@
                                     <label for="joint-tv-subscription"> Joint TV Subscription</label>
                                     <input type="checkbox"  name="air-conditioning" id="air-conditioning" value="Air Conditioning" <?php if(in_array("Air Conditioning", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                    <label for="air-conditioning"></label>Air Conditioning</label>
+                                    <label for="air-conditioning">Air Conditioning</label>
                                     <input type="checkbox" name="furnished" id="furnished" value="Furnished" <?php if(in_array("Furnished", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                    <label for="furnished"></label>Furnished</label>
+                                    <label for="furnished">Furnished</label>
                                     <input type="checkbox" name="swimming-pool" id="swimming-pool" value="Swimming Pool" <?php if(in_array("Swimming Pool", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                    <label for="swimming-pool"></label>Swimming Pool</label>
+                                    <label for="swimming-pool">Swimming Pool</label>
                                     <input type="checkbox" name="gym" id="gym" value="Gym" <?php if(in_array("Gym", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                    <label for="gym"></label>Gym</label>
+                                    <label for="gym">Gym</label>
                                 </div>
                                 
                             </div>
@@ -264,10 +264,10 @@
                             <div class="parameters students">
                                 <input type="radio" name="students" id="no-students" value="No Students" <?php if(in_array("No Students", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                <label for="students">No Students</label>
+                                <label for="no-students">No Students</label>
                                 <input type="radio" name="students" id="students-welcome" value="Students Welcome" <?php if(in_array("Students Welcome", $individualPreferencesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                <label for="students">Students Welcome</label>
+                                <label for="students-welcome">Students Welcome</label>
                             </div>                        
 
                             <h5>Families that are welcome: </h5>

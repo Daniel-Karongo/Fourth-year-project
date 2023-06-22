@@ -37,7 +37,7 @@
                 </option>                                        
             </select>
             <button onclick="showFilters()" class="button-filters" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">More Filters+</button>
-            <form action="../Php/filter-rentals.php" class="filter-form">
+            <form action="../Php/filter-rentals.php" class="filter-form" method="post" enctype="multipart/form-data">
                 <div class="actual-filters">
                     <div class="basic-information">
                         
@@ -109,7 +109,7 @@
                             
                             <h5>Water</h5>
                             <input type="checkbox"  name="tap-water" id="tap-water" value="Tap Water">
-                            <label for="clean-water"> Tap Water</label>
+                            <label for="tap-water"> Tap Water</label>
                             <input type="checkbox"  name="water-tank" id="water-tank" value="Water Tank">
                             <label for="water-tank"> Water Tank</label>
                             <input type="checkbox"  name="borehole" id="borehole" value="Borehole">
@@ -141,13 +141,13 @@
                             <input type="checkbox" name="cleaner" id="cleaner" value="Cleaner">
                             <label for="cleaner"> Cleaner for the shared spaces (e.g toilets/ablution block)</label>
                             <input type="checkbox" name="sink" id="sink" value="Sink">
-                            <label for="sink"> Sink</label>
+                            <label for="sink">Sink</label>
                 
                             <h5>Accessibility</h5>
                             <input type="checkbox" name="handicap-access" id="handicap-access" value="Handicap Access">
-                            <label for="handicap-access"></label>Handicap/ WheelChair Access</label>
+                            <label for="handicap-access">Handicap/ WheelChair Access</label>
                             <input type="checkbox" name="packing" id="packing" value="Packing">
-                            <label for="packing"></label>Packing</label>
+                            <label for="packing">Packing</label>
                 
                             <h5> Finishing</h5>
                             <input type="checkbox" name="tiles" id="tiles" value="Tiles">
@@ -155,50 +155,50 @@
                             <input type="checkbox" class="ceiling" name="ceiling" id="ceiling" value="Ceiling">
                             <label for="ceiling"> Ceiling</label>
                             <input type="checkbox" name="balcony" id="balcony" value="Balcony">
-                            <label for="balcony"></label>Balcony</label>
+                            <label for="balcony">Balcony</label>
                 
                             <h5>luxury</h5>
                             <input type="checkbox" name="wi-fi" id="wi-fi" value="Wi-Fi">
                             <label for="wi-fi"> Wi-Fi</label>
                             <input type="checkbox" name="joint-tv-subscription" id="joint-tv-subscription" value="Joint TV Subscription">
                             <label for="joint-tv-subscription"> Joint TV Subscription</label>
-                            <input type="checkbox"  name="air-conditioning" id="air-conditioning" value="Air Conditioning">
-                            <label for="air-conditioning"></label>Air Conditioning</label>
+                            <input type="checkbox" name="air-conditioning" id="air-conditioning" value="Air Conditioning">
+                            <label for="air-conditioning">Air Conditioning</label>
                             <input type="checkbox" name="furnished" id="furnished" value="Furnished">
-                            <label for="furnished"></label>Furnished</label>
+                            <label for="furnished">Furnished</label>
                             <input type="checkbox" name="swimming-pool" id="swimming-pool" value="Swimming Pool">
-                            <label for="swimming-pool"></label>Swimming Pool</label>
+                            <label for="swimming-pool">Swimming Pool</label>
                             <input type="checkbox" name="gym" id="gym" value="Gym">
-                            <label for="gym"></label>Gym</label>
+                            <label for="gym">Gym</label>
                         </div>
                 
                         <div class="preferences-filter">
                             <h4>Preferred sorts of tenants</h4>
                                 
                             <h5>Gender</h5>
-                            <input type="radio" name="male" id="male" value="Males">
+                            <input type="radio" name="gender" id="male" value="Males">
                             <label for="male">Males</label>
-                            <input type="radio" name="female" id="female" value="Female">
+                            <input type="radio" name="gender" id="female" value="Female">
                             <label for="female">Females</label>
-                            <input type="radio" name="any-gender" id="any-gender" value="Any Gender">
+                            <input type="radio" name="gender" id="any-gender" value="Any Gender">
                             <label for="any-gender">Any gender</label>
                 
                             <h5>Students: </h5>
-                            <input type="radio" name="no-students" id="no-students" value="No Students">
-                            <label for="students">No Students</label>
-                            <input type="radio" name="students-welcome" id="students-welcome" value="Students Welcome">
-                            <label for="students">Students Welcome</label>
+                            <input type="radio" name="students" id="no-students" value="No Students">
+                            <label for="no-students">No Students</label>
+                            <input type="radio" name="students" id="students-welcome" value="Students Welcome">
+                            <label for="students-welcome">Students Welcome</label>
                 
                             <h5>Families that are welcome: </h5>                        
-                            <input type="radio" name="no-children" id="no-children" value="No Children">
+                            <input type="radio" name="family" id="no-children" value="No Children">
                             <label for="no-children">Without small childen</label>
-                            <input type="radio" name="any-welcome" id="any-welcome" value="Any Family Welcome">
+                            <input type="radio" name="family" id="any-welcome" value="Any Family Welcome">
                             <label for="any-welcome">Any Family</label>
                 
                             <h5>Driving: </h5>
-                            <input type="radio" name="having-vehicles" id="having-vehicles" value="Vehicles Allowed">
+                            <input type="radio" name="vehicles" id="having-vehicles" value="Vehicles Allowed">
                             <label for="having-vehicles">Having Vehicles</label>
-                            <input type="radio" name="not-having-vehicles" id="not-having-vehicles" value="Vehicles Not Allowed">
+                            <input type="radio" name="vehicles" id="not-having-vehicles" value="Vehicles Not Allowed">
                             <label for="not-having-vehicles">Not having vehicles (No packing)</label>
                 
                             <h5> Practicing members of:</h5>
@@ -208,6 +208,49 @@
                             <label for="islam">Islam</label>
                             <input type="checkbox" name="hinduism" id="hinduism" value="Hinduism">
                             <label for="hinduism">Hinduism</label>
+                            <input type="checkbox" name="buddhism" id="buddhism" value="Buddhism">
+                            <label for="buddhism">Buddhism</label>
+                            
+                            <?php
+                                echo "<br>";
+                                $otherReligions = array();
+                                for($i=0; $i<count($retrievedPreferences); $i++) {
+                                    
+                                    $individualRentalsPreferences = $retrievedPreferences[$i];
+                                    if($individualRentalsPreferences != "") {
+                                        $rawPreferences = explode(", ", $individualRentalsPreferences);
+                                        $refinedPreferences = array();
+                                        if(!empty($rawPreferences)) {
+                                            for($j=0; $j<count($rawPreferences); $j++) {
+                                                $refinedPreferences[$j] = explode(": ", $rawPreferences[$j]);
+                                                unset($refinedPreferences[$j][0]);
+                                                if(!empty($refinedPreferences[$j])) {
+                                                    $refinedPreferences[$j] = $refinedPreferences[$j][1];
+                                                }
+                                            }
+        
+                                            for($k=0; $k<count($refinedPreferences); $k++) {
+                                                if(($refinedPreferences[$k] !== "Males") && ($refinedPreferences[$k] !== "Females") && ($refinedPreferences[$k] !== "Any Gender") && ($refinedPreferences[$k] !== "No Students") && ($refinedPreferences[$k] !== "Students Welcome") && ($refinedPreferences[$k] !== "No Children") && ($refinedPreferences[$k] !== "Any Family Welcome") && ($refinedPreferences[$k] !== "Vehicles Allowed") && ($refinedPreferences[$k] !== "Vehicles Not Allowed") && ($refinedPreferences[$k] !== "Christianity") && ($refinedPreferences[$k] !== "Islam") && ($refinedPreferences[$k] !== "Hinduism") && ($refinedPreferences[$k] !== "Any religion") && ($refinedPreferences[$k] !== "Buddhism")) {
+                                                    array_push($otherReligions, $refinedPreferences[$k]);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if(count($otherReligions) > 0) {
+                                    $finalCollection = array_values(array_unique($otherReligions));
+                                    
+                                    $otherReligionsCollection = implode(", ", $finalCollection);
+                                    for($i=0; $i<count($finalCollection); $i++) {
+                                        echo '
+                                        <input type="checkbox" name="' . $finalCollection[$i] . '" id="' . $finalCollection[$i] . '" value="' . $finalCollection[$i] . '">
+                                        <label for="' . $finalCollection[$i] . '">' . $finalCollection[$i] . '</label>';
+                                        echo '
+                                        <input type="hidden" name="other-religions" id="other-religions" value="' . $otherReligionsCollection . '">';
+                                    }
+                                }
+                            ?>
+
                             <input type="checkbox" name="any-religion" id="any-religion" value="Any Religion">
                             <label for="any-religion">Any Religion</label>
                 
