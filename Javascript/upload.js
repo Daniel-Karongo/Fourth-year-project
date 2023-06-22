@@ -38,8 +38,8 @@ function toViewAndHideMultiplesections(toHideArg, toViewArg) {
 }
 
 function clearLabel(numberofAvailableLabel, selectedOption, suffix) {
-    numberofAvailableLabel.innerHTML = "";
-    numberofAvailableLabel.innerHTML += ("Number of Available " + selectedOption + suffix); 
+    numberofAvailableLabel.textContent = "";
+    numberofAvailableLabel.textContent += ("Number of Available " + selectedOption + suffix); 
 }
 
 function viewNumberofRentalsSectionOfEachType() {

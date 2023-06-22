@@ -57,88 +57,62 @@ nav a {
     text-decoration: none;
 }
 
-section {
+.top-section {
+    margin-top: 15px;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    width: 100%;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
     align-items: center;
-    margin-top: 15px;
-    width: 100%;
-    padding: 5px;
-    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);    
+    flex-wrap: wrap;   
 }
 
-section .images-and-tally {
-    flex: 1; 
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;     
-    text-align: center;
+.top-section .left, .right {
+    position: absolute;
+    order: 2;
 }
 
-.tally p {
-    padding: 7px 10px;
-    width: 100px;
-    margin: auto;
-    background-color: rgba(255, 255, 255, 0.2); 
-}
-
-section .left {
-    position: relative;
-    z-index: 2;
-}
-
-.left button {
-    background-color: rgba(255, 255, 255 , 0.2);
-    border: none;
-    padding: 0;
-    border-radius: 50%;
-}
-
-.right button {
-    background-color: rgba(255, 255, 255 , 0.2);
-    border: none;
-    padding: 0;
-    border-radius: 50%;
-}
-
-.left button img {
-    width: 50px;
-}
-
-.right button img{
-    width: 50px;
-}
-
-section .right {
-    position: relative;
-    z-index: 2;          
-}
-
-.images img {
-    width: 100%;
-    height: auto;
-    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);    
-}
-
-section .right{
+.top-section .right{
     right: 10px;
 }
 
-.section .left {
+.top-section .left {
     margin-left: 5px;
 }
 
-.images-and-tally {
-    width: 100%;
+.top-section .left button img {
+    width: 40px;
+}
+
+.top-section .right button img{
+    width: 40px;
+}
+
+.top-section .left button {
+    background-color: rgba(255, 255, 255 , 0.4);
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.top-section .right button {
+    background-color: rgba(255, 255, 255 , 0.4);
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.top-section .images-and-tally {
+    flex: 1;
     padding: 0;
 }
 
-.images-and-tally img:not(#image1) {
+.top-section .images-and-tally img:not(#image1) {
     display: none;
 }
 
-.images-and-tally img {
+.top-section .images-and-tally img {
     width: 100%;
     height: auto;    
 }
@@ -150,6 +124,8 @@ section .right{
     padding: 7px 10px;
     margin: 0;
 }
+
+
 
 .rental-description, .contact-information {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
@@ -219,7 +195,7 @@ section .right{
 
 .ammenities-and-preferences {
     display: flex;
-    flex-direction: row; 
+    flex-direction: column; 
     padding: 10px;  
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
     margin-top: 10px;
@@ -235,7 +211,30 @@ section .right{
 }
 
 .ammenities {
-    border-right: 1px solid rgba(255, 255, 255 , 1);
+    border-bottom: 1px solid rgba(255, 255, 255 , 1);    
+}
+
+.actual-ammenities {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 0;    
+}
+
+.actual-ammenities div {
+    text-align: start;
+}
+
+.ammenities .actual-ammenities div p,h4 {
+    margin: 10px;
+}
+
+.ammenities div {
+    margin-bottom: 10px;
+}
+
+.preferences p {
+    margin: 10px;
 }
 
 .rules {
@@ -260,6 +259,28 @@ section .right{
 
 .rules .left {
     margin-left: 5px;
+}
+
+.rules .left button img {
+    width: 40px;
+}
+
+.rules .right button img{
+    width: 40px;
+}
+
+.rules .left button {
+    background-color: rgba(255, 255, 255 , 0.4);
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.rules .right button {
+    background-color: rgba(255, 255, 255 , 0.4);
+    border: none;
+    padding: 0;
+    border-radius: 50%;
 }
 
 .rules-images-and-tally {
@@ -291,39 +312,94 @@ section .right{
         box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
     }
 
-    .images {
-        margin-left: 10px;
-        margin-right: 10px;
-    } 
+    .top-section .buttons {
+        order: 0;
+        position: static;
+    }
+
+    .top-section .images-and-tally {
+        order: 0;
+    }
+
+    .top-section .left {
+        margin-left: 0;
+    }
+
+    .top-section .left button {
+        border-radius: 5px;
+        margin-left: 0;
+        padding: 0;
+        background-color: transparent;
+    }
     
-    section .left {
-        position: relative;                      
+    .top-section .right button {
+        border-radius: 5px;
+        padding: 0;
+        background-color: transparent;
+    }
+    
+    .top-section .left button img {
+        width: 50px;
+        filter: brightness(90);
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
+    }
+    
+    .top-section .right button img{
+        width: 50px;
+        filter: brightness(90);
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
     }
 
-    section .right {
-        position: relative;
-        right: 0;        
-    } 
-
-    main {
+    .ammenities-and-preferences {
         display: flex;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+        flex-direction: row; 
         padding: 10px;  
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+        margin-top: 10px;
+        width: 100%;
+         
+    }
+    
+    .ammenities {
+        border-right: 1px solid rgba(255, 255, 255 , 1);
+        border-bottom: 0;
     }
 
-    .rental-description, .contact-information {
-        flex-basis: 50%;
-        box-shadow: none;
+    .rules .rules-button {
+        order: 0;
+        position: static;
     }
 
-    .rental-description {
-        padding-right: 10px;
-        border-right: 1px solid;
+    .rules .rules-images-and-tally {
+        order: 0;
     }
 
-    .contact-information {
-        padding-left: 20px;        
+    .rules .left {
+        margin-left: 0;
+    }
+
+    .rules .left button {
+        border-radius: 5px;
+        margin-left: 0;
+        padding: 0;
+        background-color: transparent;
+    }
+    
+    .rules .right button {
+        border-radius: 5px;
+        padding: 0;
+        background-color: transparent;
+    }
+    
+    .rules .left button img {
+        width: 50px;
+        filter: brightness(90);
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
+    }
+    
+    .rules .right button img{
+        width: 50px;
+        filter: brightness(90);
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
     }
 }

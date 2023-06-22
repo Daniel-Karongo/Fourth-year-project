@@ -22,6 +22,7 @@ body {
 .container {
     padding: 10px;
     width: 100%;
+    min-height: 100vh;
     background-color: #1D2024;
 }
 
@@ -48,6 +49,9 @@ nav .top {
 
 .advertise {
     padding: 10px;
+    background-color: transparent;
+    border: 2.5px solid#2C18DE;
+    color: rgba(255,255,255,1);
 }
 
 .advertise a {
@@ -60,8 +64,13 @@ nav .top {
     display: flex;
     align-items: center;    /* To align the input box and button towards the center (vertically) */
     border-radius: 70px;    /* To round the corners of the larger form */
-    padding: 5px 10px;     /* To give the form a bigger body */
-    background-color: rgba(255, 255, 255, 0.2);      
+    padding-left: 20px;     /* To give the form a bigger body */
+    padding-right: 10px;     /* To give the form a bigger body */
+    padding-top: 5px;     /* To give the form a bigger body */
+    padding-bottom: 5px;     /* To give the form a bigger body */
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px) saturate(200%);
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.4);     
 }
 
 .search-bar input {
@@ -90,56 +99,142 @@ nav .top {
     border: 0;    
 }
 
-.filters-ammenities-and-preferences {
+/* .filter-form {
     display: none;
-}
+} */
 
-.filters-ammenities-and-preferences {
+.filter-form {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.4);
-    padding: 10px;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;    
+    padding: 10px;    
 }
 
-.filters-ammenities-and-preferences {
-    display: none;
+.filter-form .actual-filters {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+    margin-left: 0;   
 }
 
-.optional-ammenities, .optional-preferences {
-    padding: 0;
+.filter-form .actual-filters .basic-information {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid;
+    padding-top: 20px;
     padding-bottom: 10px;
-}
-
-.optional-ammenities h4, .optional-preferences h4 {
-    margin-top: 0; 
-}
-
-input, label {
-    margin: 0;
-}
-
-input {
-    margin-left: 10px;
-}
-
-h5 {
-    margin: 10px;
-}
-
-.optional-ammenities, .optional-preferences {
-    border-bottom: 1px solid black;
     margin-bottom: 10px;
 }
 
+.filter-form .actual-filters .basic-information div {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.filter-form .actual-filters .basic-information div div {
+    flex-basis: auto;
+}
+
+.filter-form .actual-filters .basic-information div .original-text-label {
+    margin-bottom: 0;
+}
+
+.filter-form .actual-filters .basic-information div .original-text-input {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+.filter-form .actual-filters .basic-information div div label{
+    font-size: 1rem;
+    margin-bottom: 7px;
+}
+
+.filter-form .actual-filters .basic-information div div input{
+    padding: 7px 10px;
+    background-color: transparent;
+    font-size: 1rem;
+    outline: 0;
+}
+
+.filter-form .actual-filters .basic-information div div select{
+    padding: 7px 10px;
+    background-color: transparent;
+    font-size: 1rem;
+    outline: 0;
+}
+
+.filter-form .actual-filters .basic-information div .original-text-input input{
+    border: 1px solid rgba(255,255,255,0.5);
+    width: 100%;
+}
+
+.filter-form .actual-filters .basic-information div .original-text-input select{
+    border: 1px solid rgba(255,255,255,0.5);
+    width: 100%;
+}
+
+.other-ammenities-and-preferences {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.ammenities-filters, .preferences-filter {
+    flex-basis: 50%;
+}
+
+.ammenities-filters {
+    border-bottom: 1px solid rgba(255,255,255,1);
+    padding-bottom: 20px;
+}
+
+.ammenities-filters h4 {
+    text-align: center;
+}
+
+.preferences-filter h4 {
+    text-align: center;
+}
+
+.ammenities-filters h5 {
+    margin-bottom: 10px;
+}
+
+.preferences-filter h5 {
+    margin-bottom: 10px;
+}
+
+.filter-form button {
+    width: fit-content;
+    align-self: center;
+}
+
+.filter-form, #businessPremiseType, #moreBedrooms, #rentalTerm {
+    display: none;
+}
 
 section {
     margin-top: 10px;    
 }
 
-section select, button {
+section select {
     padding: 7px 15px;
+    font-size: 0.9rem;
+    background-color: transparent;
+    border: 2.5px solid#2C18DE;
+    color: rgba(255,255,255,1); 
+}
+
+option {
+    color: black;
+}
+
+section button {
+    padding: 8px 15px;
     font-size: 0.9rem;
     background-color: transparent;
     border: 2.5px solid#2C18DE;
@@ -200,37 +295,46 @@ section select, button {
     color: rgba(255,255,255,1);  
 }
 
+
+.template-error {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    max-height: 65vh;
+    height: 100vh; 
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.template-error p {
+    font-size: 1.5rem;
+}
+
 @media (min-width: 576px) {
     
     .container {
         max-width: 1000px;
-        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5); 
-        margin: auto; 
-        min-height: 100vh;      
+        margin: auto;              
     }
 
-    .actual-filters {
+    .other-ammenities-and-preferences {
         display: flex;
         flex-direction: row;
-        border-bottom: 1px solid;
-        margin-bottom: 10px;    
+        padding-top: 10px;
     }
 
-    .optional-ammenities, .optional-preferences {
-        border: 0;
-    }
-
-    .optional-ammenities {
-        border-right: 1px solid;
-        padding-right: 5px;
-    }
-
-
-    .optional-ammenities, .optional-preferences {
-        flex-basis: 50%;
-        margin: 10px;
+    .ammenities-filters {
+        border-right: 1px solid rgba(255,255,255,1);
+        border-bottom: 0;
+        padding-right: 15px;
     }
     
+    .preferences-filter {
+        padding-left: 15px;
+    }
+
     .rental-div {
         flex-direction: row;                
     }

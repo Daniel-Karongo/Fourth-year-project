@@ -7,10 +7,10 @@ function findCurrentImage(arrayOfImages) {
     }
 }
 
-function viewLeft() {
-    let images = document.querySelectorAll('viewimage img');
+function viewLeft(imageClass, paragraphId) {
+    let images = document.querySelectorAll(imageClass);
     let currentImage; 
-    let paragraph = document.querySelector('#tally-paragraph');   
+    let paragraph = document.querySelector(paragraphId);   
 
     currentImage = findCurrentImage(images);
 
@@ -31,10 +31,10 @@ function viewLeft() {
     }   
 }
 
-function viewRight() {
-    let images = document.querySelectorAll('img.viewimage');
+function viewRight(imageClass, paragraphId) {
+    let images = document.querySelectorAll(imageClass);
     let currentImage;
-    let paragraph = document.querySelector('#tally-paragraph');     
+    let paragraph = document.querySelector(paragraphId);     
 
     currentImage = findCurrentImage(images);
 
