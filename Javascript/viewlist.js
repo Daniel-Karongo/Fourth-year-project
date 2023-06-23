@@ -70,3 +70,110 @@ function displayParameters() {
         document.querySelector('#rentalTerm').style.display = "none"
     }
 }
+
+function orderFormSubmitter() {
+    let selectedOption = document.querySelector('#order-by').value;
+    let divs = document.querySelectorAll('.template');
+    let amountArray = [];
+    divs.forEach((div) => {
+        let rentAmount = div.querySelector('.rent-amount').innerHTML;
+        let rentAmountArray = rentAmount.split(". ");
+        let actualAmount = rentAmountArray[1];
+        let usableAmount = Number(actualAmount);
+        amountArray.push(usableAmount);
+    });
+    amountArray.sort(function(a, b) {
+        return a - b;
+    });
+    originalAmountsFormat = [];
+    amountArray.forEach((amount) => {
+        amount = "Ksh. " + amount;
+        originalAmountsFormat.push(amount);
+    });
+    divsOrder = [];
+    originalAmountsFormat.forEach((amount) => {
+        divs.forEach((div) => {
+            let rentAmount = div.querySelector('.rent-amount').innerHTML;
+            if(rentAmount === amount) {
+                divsOrder.push(div);
+            }
+        });
+    });
+
+    if(selectedOption === "price-low-high") {
+        for(i=0; i<divsOrder.length; i++) {
+            divsOrder[i].style.order = i+1;
+        }
+    } else if (selectedOption === "price-high-low") {
+        for(i=0; i<divsOrder.length; i++) {
+            divsOrder[i].style.order = (divsOrder.length - i);
+        }
+    }
+}
+
+function wrapperFunction() {
+    hideFilters();
+    filterDisplay();
+}
+
+function filterRentalType() {
+    let typeOfRentalField = document.querySelector('.filter-form #type-of-rental');
+    let typeOfRental = typeOfRentalField.value;
+
+    let typeOfRentalInDiv = document.querySelectorAll('.rental-type-display');
+    typeOfRentalInDiv.forEach((div) => {
+        descriptionDiv = div.parentElement;
+        rentaldivDiv = descriptionDiv.parentElement;
+        templateDiv = rentaldivDiv.parentElement;
+        switch(typeOfRental) {
+            case "Hostel":
+                templateDiv.style.display = "block";
+                if(div.innerHTML !== "Hostel") {templateDiv.style.display = "none";}
+                break;
+            case "Single Room":
+                templateDiv.style.display = "block";
+                if(div.innerHTML !== "Single Room") {templateDiv.style.display = "none";}
+                break;
+            case "Bedsitter":
+                templateDiv.style.display = "block";
+                if(div.innerHTML !== "Bedsitter") {templateDiv.style.display = "none";}
+                break;
+            case "Apartment":
+                templateDiv.style.display = "block";
+                if(div.innerHTML.includes("Apartment") !== true) {templateDiv.style.display = "none";}
+                
+                // let numberOfBedroomsField = document.querySelector('.filter-form #more-bedrooms');
+                // let numberOfBedrooms = numberOfBedroomsField.value;
+
+                // if(numberOfBedrooms !== "") {
+                //     templateDiv.style.display = "block";
+                //     if(div.innerHTML !== (numberOfBedrooms + "-Bedroom Apartment")) {templateDiv.style.display = "none";}
+                //     console.log(numberOfBedrooms + "-Bedroom Apartment");
+                // }
+
+                break;
+            case "Business Premise":
+                templateDiv.style.display = "block";
+                if((div.innerHTML !== "Stall") && (div.innerHTML !== "Shop") && (div.innerHTML !== "Event Hall") && (div.innerHTML !== "WareHouse") && (div.innerHTML !== "Office") && (div.innerHTML !== "Industrial")) {
+                    templateDiv.style.display = "none";
+                }
+                break;
+            case "House":
+                templateDiv.style.display = "block";
+                if(div.innerHTML.includes("House") !== true) {templateDiv.style.display = "none";}
+                break;
+            case "Suite":
+                templateDiv.style.display = "block";
+                if(div.innerHTML !== "Suite") {templateDiv.style.display = "none";}
+                break;
+            default:
+                templateDiv.style.display = "block";
+    
+        }
+    });
+}
+
+
+function filterDisplay() {
+    filterRentalType();
+}

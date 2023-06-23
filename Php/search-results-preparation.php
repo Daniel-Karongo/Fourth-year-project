@@ -211,7 +211,6 @@
             array_push($retrievedNumberOfBedsPerSuite, null);
             array_push($retrievedNumberOfApartmentBedrooms, null);
             array_push($retrievedNumberOfHouseBedrooms, null);
-            array_push($retrievedTypeOfBusinessBusiness, null);
         }            
     }
 

@@ -19,25 +19,18 @@
                 <button class="advertise" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><a href="../Html/login.html">Advertise</a></button>
             </div>
             <form action="../Php/search-results-preparation.php" method="post" class="search-bar">
-                <input type="text" placeholder="Search location" id="location" name="location">
+                <input type="text" placeholder="Search location" id="location" name="location" value="<?php echo $location; ?>">
                 <button onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/search.png" alt="seach-button-icon"></button>
             </form>
         </nav>
         <section>
-            <select class="order-by" name="order-by" id="order-by" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                <option value="price-low-high">
-                    <form action="../Php/order-by-low-to-high.php">
-                        <button type="submit">Price: Low - High</button>
-                    </form> 
-                </option>
-                <option value="price-high-low">
-                    <form action="../Php/order-by-high-to-low.php">
-                        <button type="submit">Price: High - Low</button>
-                    </form>
-                </option>                                        
+           <select class="order-by" name="order-by" id="order-by" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onchange="orderFormSubmitter()">
+                    <option value="no-value">Order By (Default: No Order)</option>
+                    <option value="price-low-high">Price: Low - High</option>
+                    <option value="price-high-low">Price: High - Low</option> 
             </select>
             <button onclick="showFilters()" class="button-filters" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">More Filters+</button>
-            <form action="../Php/filter-rentals.php" class="filter-form" method="post" enctype="multipart/form-data">
+            <form class="filter-form">
                 <div class="actual-filters">
                     <div class="basic-information">
                         
@@ -81,7 +74,7 @@
                                 <label class="more-bedrooms" for="more-bedrooms">Number Of Bedrooms</label>
                             </div>    
                             <div class="original-text-input">    
-                                <input class="more-bedrooms" type="number" name="more-bedrooms" id="more-bedrooms" onchange="specifyTheFinalTheNumberOfHouses()" onblur="forMoreHouseBedrooms()">
+                                <input class="more-bedrooms" type="number" name="more-bedrooms" id="more-bedrooms">
                             </div>
                         </div>
 
@@ -257,14 +250,14 @@
                         </div>
                     </div>                    
                 </div>                
-                <button onclick="hideFilters()" type="submit"  onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"> Filter </button>
+                <button onclick="wrapperFunction()" type="button"  onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"> Filter </button>
             </form>                       
         </section>
         <main>
             <?php 
                 if(count($retrievedRentalID) > 0) {
                     for($i=0; $i<count($retrievedRentalID); $i++){
-
+                        
                         $rentalImages = explode(", ", $retrievedImageUrls[$i]);
                         $imageToDisplay = $rentalImages[0];
                                     
@@ -318,16 +311,16 @@
                                 break;
                         }
                         echo'
-                        <div class="template">
+                        <div class="template" style="order: ' . $i+1 . ';">
                             <div class="rental-div" id="rental-' . $i+1 . '" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="activateAnchor(event)">
                                 <div class="image" id="image' . $i+1 . '">
                                     <img src="../Image_Data/' . $finalFolder. $imageToDisplay. '" alt="Rental-' . $i+1 . '">              
                                 </div>
                                 <div class="description" id="description' . $i+1 . '">
-                                    <h3>Ksh. ' . $retrievedAmountOfRent[$i] . '</h3>
-                                    <h4>Per ' . $termToDisplay . '</h4>
+                                    <h3 class="rent-amount">Ksh. ' . $retrievedAmountOfRent[$i] . '</h3>
+                                    <h4 class="rent-term-display">Per ' . $termToDisplay . '</h4>
                                     <br>' .
-                                    '<h4>';  
+                                    '<h4 class="rental-type-display">';  
                                     if(($retrievedRentalType[$i] === "Hostel") || ($retrievedRentalType[$i] === "Bedsitter") || ($retrievedRentalType[$i] === "Single Room") || ($retrievedRentalType[$i] === "Suite")) {
                                         echo $retrievedRentalType[$i];
                                     } else if (($retrievedRentalType[$i] === "Business Premise")) {
@@ -340,8 +333,8 @@
                                         }
                                     }
                                     echo '</h4>';
-                                echo '<h4>Number Of Units Available: ' . $retrievedNumberOfSimilarUnits[$i] . '</h4>
-                                    <p> ' . $retrievedDescription[$i] . ' </p>
+                                echo '<h4 class="units-available-display">Number Of Units Available: ' . $retrievedNumberOfSimilarUnits[$i] . '</h4>
+                                    <p class="dsecription-display"> ' . $retrievedDescription[$i] . ' </p>
                                     <form class="template-more-details" id="template-more-details-' . $i+1 . '" action="../Php/view-description-preparation.php" method="post" enctype="multipart/form-data"> 
                                         <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">More details</button>
     

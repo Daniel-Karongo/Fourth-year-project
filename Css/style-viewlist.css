@@ -245,6 +245,11 @@ section button {
     margin-top: 10px;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+}
+
 .template {
     background-color: transparent;
     border: 0;
