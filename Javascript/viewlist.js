@@ -60,15 +60,18 @@ function displayParameters() {
         document.querySelector('#rentalTerm').style.display = "none";
     } else if (selectedOption === "Suite") {
         document.querySelector('#moreBedrooms').style.display = "flex";
-        document.querySelector('#moreBedrooms label').textContent = "";
-        document.querySelector('#moreBedrooms label').textContent = "Number Of Beds";
         document.querySelector('#businessPremiseType').style.display = "none";
-        document.querySelector('#rentalTerm').style.display = "none";
+        document.querySelector('#rentalTerm').style.display = "flex";
+        document.querySelector('#label-more-bedrooms').textContent = "Number Of Beds";
     } else {
         document.querySelector('#moreBedrooms').style.display = "none";
         document.querySelector('#businessPremiseType').style.display = "none";
         document.querySelector('#rentalTerm').style.display = "none"
     }
+
+    document.querySelector('#type-of-premise').selectedIndex = 0;
+    document.querySelector('#rental-term').selectedIndex = 0;
+    document.querySelector('#more-bedrooms').value = "";
 }
 
 function orderFormSubmitter() {
@@ -116,7 +119,7 @@ function wrapperFunction() {
     filterDisplay();
 }
 
-function filterRentalType() {
+function filterDisplay() {
     let typeOfRentalField = document.querySelector('.filter-form #type-of-rental');
     let typeOfRental = typeOfRentalField.value;
 
@@ -130,50 +133,177 @@ function filterRentalType() {
                 templateDiv.style.display = "block";
                 if(div.innerHTML !== "Hostel") {templateDiv.style.display = "none";}
                 break;
+
             case "Single Room":
                 templateDiv.style.display = "block";
                 if(div.innerHTML !== "Single Room") {templateDiv.style.display = "none";}
                 break;
+
             case "Bedsitter":
                 templateDiv.style.display = "block";
                 if(div.innerHTML !== "Bedsitter") {templateDiv.style.display = "none";}
                 break;
+
             case "Apartment":
                 templateDiv.style.display = "block";
                 if(div.innerHTML.includes("Apartment") !== true) {templateDiv.style.display = "none";}
                 
-                // let numberOfBedroomsField = document.querySelector('.filter-form #more-bedrooms');
-                // let numberOfBedrooms = numberOfBedroomsField.value;
+                let numberOfBedroomsFieldApartment = document.querySelector('.filter-form #more-bedrooms');
+                let numberOfApartmentBedrooms = numberOfBedroomsFieldApartment.value;
 
-                // if(numberOfBedrooms !== "") {
-                //     templateDiv.style.display = "block";
-                //     if(div.innerHTML !== (numberOfBedrooms + "-Bedroom Apartment")) {templateDiv.style.display = "none";}
-                //     console.log(numberOfBedrooms + "-Bedroom Apartment");
-                // }
-
+                if(numberOfApartmentBedrooms !== "") {
+                    templateDiv.style.display = "block";
+                    if(div.innerHTML !== (numberOfApartmentBedrooms + "-Bedroom Apartment")) {templateDiv.style.display = "none";};
+                }
                 break;
+
             case "Business Premise":
                 templateDiv.style.display = "block";
                 if((div.innerHTML !== "Stall") && (div.innerHTML !== "Shop") && (div.innerHTML !== "Event Hall") && (div.innerHTML !== "WareHouse") && (div.innerHTML !== "Office") && (div.innerHTML !== "Industrial")) {
                     templateDiv.style.display = "none";
                 }
+                
+                let premiseTypeField = document.querySelector('.filter-form #type-of-premise');
+                let premiseType = premiseTypeField.value;
+
+                if(premiseType !== "no-value") {
+                    templateDiv.style.display = "block";
+                    switch(premiseType) {
+                        case "Stall":
+                            if(div.innerHTML !== "Stall") {templateDiv.style.display = "none";};
+                            break;
+                        case "Shop":
+                            if(div.innerHTML !== "Shop") {templateDiv.style.display = "none";};
+                            break;
+                        case "Event Hall":
+                            if(div.innerHTML !== "Event Hall") {templateDiv.style.display = "none";};
+                            break;
+                        case "Warehouse":
+                            if(div.innerHTML !== "Warehouse") {templateDiv.style.display = "none";};
+                            break;
+                        case "Office":
+                            if(div.innerHTML !== "Office") {templateDiv.style.display = "none";};
+                            break;
+                        case "Industrial":
+                            if(div.innerHTML !== "Industrial") {templateDiv.style.display = "none";};
+                            break;
+                    }                    
+                }
+
+                let businessRentalTermField = document.querySelector('.filter-form #rental-term');
+                let businessRentalTerm = businessRentalTermField.value; 
+                if(businessRentalTerm !== "no-value") {
+                    let rentalTermInDiv = document.querySelectorAll('.rent-term-display');
+                    rentalTermInDiv.forEach((div) => {
+                        descriptionDiv = div.parentElement;
+                        rentaldivDiv = descriptionDiv.parentElement;
+                        templateDiv = rentaldivDiv.parentElement;
+                        switch(businessRentalTerm) {
+                            case "daily":
+                                if(div.innerHTML !== "Per Day") {templateDiv.style.display = "none";}
+                                break;
+                
+                            case "weekly":
+                                if(div.innerHTML !== "Per Week") {templateDiv.style.display = "none";}
+                                break;
+                
+                            case "monthly":
+                                if(div.innerHTML !== "Per Month") {templateDiv.style.display = "none";}
+                                break;
+                
+                            case "yearly":
+                                if(div.innerHTML !== "Per Year") {templateDiv.style.display = "none";}
+                                break;
+                
+                            case "quarterly":
+                                if(div.innerHTML !== "Every 3 Months") {templateDiv.style.display = "none";}
+                                break;
+                
+                            case "bi-annually":
+                                if(div.innerHTML !== "Every 6 Months") {templateDiv.style.display = "none";}
+                                break;
+                        }
+                    });
+                }
+
                 break;
+
             case "House":
                 templateDiv.style.display = "block";
                 if(div.innerHTML.includes("House") !== true) {templateDiv.style.display = "none";}
+
+                let numberOfHouseBedroomsField = document.querySelector('.filter-form #more-bedrooms');
+                let numberOfHouseBedrooms = numberOfHouseBedroomsField.value;
+
+                if(numberOfHouseBedrooms !== "") {
+                    templateDiv.style.display = "block";
+                    if(div.innerHTML !== (numberOfHouseBedrooms + "-Bedroom House")) {templateDiv.style.display = "none";}
+                }
+
                 break;
+
             case "Suite":
                 templateDiv.style.display = "block";
-                if(div.innerHTML !== "Suite") {templateDiv.style.display = "none";}
+                if(div.innerHTML.includes("Suite") !== true) {templateDiv.style.display = "none";}
+                
+
+                let numberOfSuiteBedsField = document.querySelector('.filter-form #more-bedrooms');
+                let numberOfSuiteBeds = numberOfSuiteBedsField.value;
+
+                if(numberOfSuiteBeds !== "") {
+                    let numberOfSuiteBedsInDiv = document.querySelectorAll('.rental-type-display');
+                    numberOfSuiteBedsInDiv.forEach((div) => {
+                        descriptionDiv = div.parentElement;
+                        rentaldivDiv = descriptionDiv.parentElement;
+                        templateDiv = rentaldivDiv.parentElement;
+                        
+                        if(div.innerHTML != (numberOfSuiteBeds + "-Bed Suite")) {templateDiv.style.display = "none";}
+                    });
+                }
+
+                
+                let rentalTermField = document.querySelector('.filter-form #rental-term');
+                let rentalTerm = rentalTermField.value; 
+                if(rentalTerm !== "no-value") {
+                    let rentalTermInDiv = document.querySelectorAll('.rent-term-display');
+                    rentalTermInDiv.forEach((div) => {
+                        descriptionDiv = div.parentElement;
+                        rentaldivDiv = descriptionDiv.parentElement;
+                        templateDiv = rentaldivDiv.parentElement;
+                        switch(rentalTerm) {
+                            case "daily":
+                                if(div.innerHTML !== "Per Day") {templateDiv.style.display = "none";}
+                                break;
+                
+                            case "weekly":
+                                if(div.innerHTML !== "Per Week") {templateDiv.style.display = "none";}
+                                break;
+                
+                            case "monthly":
+                                if(div.innerHTML !== "Per Month") {templateDiv.style.display = "none";}
+                                break;
+                
+                            case "yearly":
+                                if(div.innerHTML !== "Per Year") {templateDiv.style.display = "none";}
+                                break;
+                
+                            case "quarterly":
+                                if(div.innerHTML !== "Every 3 Months") {templateDiv.style.display = "none";}
+                                break;
+                
+                            case "bi-annually":
+                                if(div.innerHTML !== "Every 6 Months") {templateDiv.style.display = "none";}
+                                break;
+                        }
+                    });
+                }
+
+
                 break;
+
             default:
                 templateDiv.style.display = "block";
     
         }
     });
-}
-
-
-function filterDisplay() {
-    filterRentalType();
 }

@@ -40,7 +40,7 @@
                             </div>
                             <div class="original-text-input">
                                 <select class="type-of-rental" id="type-of-rental" name="type-of-rental" onchange="displayParameters()">
-                                    <option value="no-value"></option>
+                                    <option value="no-value" selected>Optional</option>
                                     <option value="Hostel">Hostel</option>
                                     <option value="Single Room">Single Room</option>
                                     <option value="Bedsitter">Bedsitter</option>
@@ -58,7 +58,7 @@
                             </div>    
                             <div class="original-text-input">    
                                 <select class="type-of-business-premise" name="type-of-premise" id="type-of-premise">
-                                    <option value="no-value"></option>
+                                    <option value="no-value">Optional</option>
                                     <option value="Stall">Stall</option>
                                     <option value="Shop">Shop</option>
                                     <option value="Event Hall">Event Hall</option>
@@ -71,10 +71,10 @@
                         
                         <div class="moreBedrooms" id="moreBedrooms">
                             <div class="original-text-label">
-                                <label class="more-bedrooms" for="more-bedrooms">Number Of Bedrooms</label>
+                                <label class="more-bedrooms" id="label-more-bedrooms" for="more-bedrooms">Number Of Bedrooms</label>
                             </div>    
-                            <div class="original-text-input">    
-                                <input class="more-bedrooms" type="number" name="more-bedrooms" id="more-bedrooms">
+                            <div class="original-text-input">
+                                <input type="number" class="more-bedrooms" name="more-bedrooms" id="more-bedrooms" placeholder="Optional" min="1" step="1">
                             </div>
                         </div>
 
@@ -84,13 +84,14 @@
                             </div>   
                             <div class="original-text-input">   
                                 <select class="rental-term" name="rental-term" id="rental-term">
-                                    <option value="no-value"></option>
+                                    <option value="no-value">Optional</option>
                                     <option value="daily">Daily</option>
                                     <option value="weekly">Weekly</option>
                                     <option value="monthly">Monthly</option>
-                                    <option value="yearly">Yearly</option>
                                     <option value="quarterly">Quarterly (Once every three months)</option>option>
-                                    <option value="bi-annually">Bi-anually (Once every six months)</option>                                            
+                                    <option value="bi-annually">Bi-anually (Once every six months)</option>
+                                    <option value="yearly">Yearly</option>
+
                                 </select>
                             </div>
                         </div>
@@ -250,7 +251,7 @@
                         </div>
                     </div>                    
                 </div>                
-                <button onclick="wrapperFunction()" type="button"  onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"> Filter </button>
+                <button onclick="wrapperFunction()" type="button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"> Filter </button>
             </form>                       
         </section>
         <main>
@@ -292,22 +293,22 @@
                         $termToDisplay = "";
                         switch($rentalTerm) {
                             case "daily":
-                                $termToDisplay = "Day";
+                                $termToDisplay = "Per Day";
                                 break;
                             case "weekly":
-                                $termToDisplay = "Week";
+                                $termToDisplay = "Per Week";
                                 break;
                             case "monthly":
-                                $termToDisplay = "Month";
+                                $termToDisplay = "Per Month";
                                 break;
                             case "yearly":
-                                $termToDisplay = "Year";
+                                $termToDisplay = "Per Year";
                                 break;
                             case "quarterly":
-                                $termToDisplay = "3 Months";
+                                $termToDisplay = "Every 3 Months";
                                 break;
                             case "bi-annually":
-                                $termToDisplay = "6 Months";
+                                $termToDisplay = "Every 6 Months";
                                 break;
                         }
                         echo'
@@ -318,13 +319,15 @@
                                 </div>
                                 <div class="description" id="description' . $i+1 . '">
                                     <h3 class="rent-amount">Ksh. ' . $retrievedAmountOfRent[$i] . '</h3>
-                                    <h4 class="rent-term-display">Per ' . $termToDisplay . '</h4>
+                                    <h4 class="rent-term-display">' . $termToDisplay . '</h4>
                                     <br>' .
                                     '<h4 class="rental-type-display">';  
-                                    if(($retrievedRentalType[$i] === "Hostel") || ($retrievedRentalType[$i] === "Bedsitter") || ($retrievedRentalType[$i] === "Single Room") || ($retrievedRentalType[$i] === "Suite")) {
+                                    if(($retrievedRentalType[$i] === "Hostel") || ($retrievedRentalType[$i] === "Bedsitter") || ($retrievedRentalType[$i] === "Single Room")) {
                                         echo $retrievedRentalType[$i];
-                                    } else if (($retrievedRentalType[$i] === "Business Premise")) {
+                                    } else if ($retrievedRentalType[$i] === "Business Premise") {
                                         echo $retrievedTypeOfBusinessBusiness[$i];
+                                    } else if ($retrievedRentalType[$i] === "Suite") {
+                                        echo $retrievedNumberOfBedsPerSuite[$i] . '-Bed Suite';
                                     } else {
                                         if($retrievedRentalType[$i] === "Apartment") {
                                             echo $retrievedNumberOfApartmentBedrooms[$i] . '-Bedroom Apartment';
