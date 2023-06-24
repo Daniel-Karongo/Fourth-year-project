@@ -337,7 +337,7 @@
                                     }
                                     echo '</h4>';
                                 echo '<h4 class="units-available-display">Number Of Units Available: ' . $retrievedNumberOfSimilarUnits[$i] . '</h4>
-                                    <p class="dsecription-display"> ' . $retrievedDescription[$i] . ' </p>
+                                    <p class="description-display"> ' . $retrievedDescription[$i] . ' </p>
                                     <form class="template-more-details" id="template-more-details-' . $i+1 . '" action="../Php/view-description-preparation.php" method="post" enctype="multipart/form-data"> 
                                         <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">More details</button>
     
@@ -346,7 +346,7 @@
                                         <input type="hidden" name="rental-location" value="' . $retrievedLocation[$i] . '">
                                         <input type="hidden" name="rental-google-location" value="' . $retrievedGoogleLocation[$i] . '">
                                         <input type="hidden" name="rental-photos" value="' . $retrievedImageUrls[$i] . '">
-                                        <input type="hidden" name="rental-ammenities" value="' . $retrievedAmmenities[$i] . '">
+                                        <input type="hidden" class="rental-ammenities" name="rental-ammenities" value="' . $retrievedAmmenities[$i] . '">
                                         <input type="hidden" name="rental-units-available" value="' . $retrievedNumberOfSimilarUnits[$i] . '">
                                         <input type="hidden" name="rental-beds-per-suite" value="' . $retrievedNumberOfBedsPerSuite[$i] . '">
                                         <input type="hidden" name="rental-bedrooms-per-apartment" value="' . $retrievedNumberOfApartmentBedrooms[$i] . '">

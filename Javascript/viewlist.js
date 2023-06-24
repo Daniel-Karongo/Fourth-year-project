@@ -306,4 +306,196 @@ function filterDisplay() {
     
         }
     });
+
+    filterAmmenities();
+    filterPreferences();
 }
+
+function filterAmmenities() {
+    // Get All The Ammenities Selected
+    let ammenitiesFiltersInputs = document.querySelectorAll('.ammenities-filters input');
+    let ammenities = [];
+    ammenitiesFiltersInputs.forEach((inputField) => {
+        if(inputField.checked === true) {
+            ammenities.push(inputField.value);
+        }
+    });
+
+    // Gets All The Ammenities For Each Visible Rental
+    let individualrentalAmmenitiesFields =  document.querySelectorAll('.rental-ammenities');
+    let ammenitiesCollection = [];
+
+    let tempContainer = [];
+
+    individualrentalAmmenitiesFields.forEach((div) => {
+        formDiv = div.parentElement;
+        descriptionDiv = formDiv.parentElement;
+        rentaldivDiv = descriptionDiv.parentElement;
+        templateDiv = rentaldivDiv.parentElement;
+        
+        if((window.getComputedStyle(templateDiv).display) === "block") {
+            tempContainer.push(div);
+        }
+    });
+
+    individualrentalAmmenitiesFields = [];
+    individualrentalAmmenitiesFields = tempContainer;
+
+    // Converts Each Rental's Ammenities An array An Then Creates A larger Array With Each Rentals Array
+    individualrentalAmmenitiesFields.forEach((individualrentalAmmenitiesField) => {
+
+        let individualRentalsAmmenities = individualrentalAmmenitiesField.value;
+        let splitIndividualRentalsAmmenities = individualRentalsAmmenities.split(", ");
+    
+        let individualRentalsAmmenitiesToBeSubmitted = [];
+
+        splitIndividualRentalsAmmenities.forEach((splitIndividualRentalsAmmenity) => {
+            let temp = splitIndividualRentalsAmmenity.split(": ");
+            let ammenityToBeSubmitted = temp[temp.length - 1];
+            
+            individualRentalsAmmenitiesToBeSubmitted.push(ammenityToBeSubmitted);
+        });
+
+        ammenitiesCollection.push(individualRentalsAmmenitiesToBeSubmitted);
+    });
+
+    // Determines If Each Rental Has All The Ammenities
+    let rentalHasAmmenities = [];
+    ammenitiesCollection.forEach((rentalAmmenities) => {
+        let ammenityInRental = [];
+        for(let i=0; i<ammenities.length; i++) {
+            let inRental = rentalAmmenities.includes(ammenities[i]);
+            ammenityInRental.push(inRental);
+        }
+        if(ammenityInRental.includes(false)) {
+            rentalHasAmmenities.push(false);
+        } else {
+            rentalHasAmmenities.push(true);
+        }
+    });
+
+    // Gets The Container For Each Rental
+    templateDivCollection = [];
+    individualrentalAmmenitiesFields.forEach((div) => {
+        formDiv = div.parentElement;
+        descriptionDiv = formDiv.parentElement;
+        rentaldivDiv = descriptionDiv.parentElement;
+        templateDiv = rentaldivDiv.parentElement;
+        
+        templateDivCollection.push(templateDiv);
+    });
+
+    // Determines Which Rentals Are To Be Displayed
+    let divsToDisplay = [];
+    for(let i=0; i<templateDivCollection.length; i++) {
+        if(rentalHasAmmenities[i] === true) {
+            divsToDisplay.push(templateDivCollection[i]);
+        }
+    }
+
+    // Hides All The Rentals That Are Not To Be Displayed
+    if(ammenities.length>0) {
+        templateDivCollection.forEach((template) => {
+            if(divsToDisplay.includes(template) !== true) {
+                template.style.display = "none";
+            } else {
+                template.style.display = "block";
+            }
+        });
+    }
+}
+
+function filterPreferences() {
+    // Get All The Ammenities Selected
+    let ammenitiesFiltersInputs = document.querySelectorAll('.ammenities-filters input');
+    let ammenities = [];
+    ammenitiesFiltersInputs.forEach((inputField) => {
+        if(inputField.checked === true) {
+            ammenities.push(inputField.value);
+        }
+    });
+
+    // Gets All The Ammenities For Each Visible Rental
+    let individualrentalAmmenitiesFields =  document.querySelectorAll('.rental-ammenities');
+    let ammenitiesCollection = [];
+
+    let tempContainer = [];
+
+    individualrentalAmmenitiesFields.forEach((div) => {
+        formDiv = div.parentElement;
+        descriptionDiv = formDiv.parentElement;
+        rentaldivDiv = descriptionDiv.parentElement;
+        templateDiv = rentaldivDiv.parentElement;
+        
+        if((window.getComputedStyle(templateDiv).display) === "block") {
+            tempContainer.push(div);
+        }
+    });
+
+    individualrentalAmmenitiesFields = [];
+    individualrentalAmmenitiesFields = tempContainer;
+
+    // Converts Each Rental's Ammenities An array An Then Creates A larger Array With Each Rentals Array
+    individualrentalAmmenitiesFields.forEach((individualrentalAmmenitiesField) => {
+
+        let individualRentalsAmmenities = individualrentalAmmenitiesField.value;
+        let splitIndividualRentalsAmmenities = individualRentalsAmmenities.split(", ");
+    
+        let individualRentalsAmmenitiesToBeSubmitted = [];
+
+        splitIndividualRentalsAmmenities.forEach((splitIndividualRentalsAmmenity) => {
+            let temp = splitIndividualRentalsAmmenity.split(": ");
+            let ammenityToBeSubmitted = temp[temp.length - 1];
+            
+            individualRentalsAmmenitiesToBeSubmitted.push(ammenityToBeSubmitted);
+        });
+
+        ammenitiesCollection.push(individualRentalsAmmenitiesToBeSubmitted);
+    });
+
+    // Determines If Each Rental Has All The Ammenities
+    let rentalHasAmmenities = [];
+    ammenitiesCollection.forEach((rentalAmmenities) => {
+        let ammenityInRental = [];
+        for(let i=0; i<ammenities.length; i++) {
+            let inRental = rentalAmmenities.includes(ammenities[i]);
+            ammenityInRental.push(inRental);
+        }
+        if(ammenityInRental.includes(false)) {
+            rentalHasAmmenities.push(false);
+        } else {
+            rentalHasAmmenities.push(true);
+        }
+    });
+
+    // Gets The Container For Each Rental
+    templateDivCollection = [];
+    individualrentalAmmenitiesFields.forEach((div) => {
+        formDiv = div.parentElement;
+        descriptionDiv = formDiv.parentElement;
+        rentaldivDiv = descriptionDiv.parentElement;
+        templateDiv = rentaldivDiv.parentElement;
+        
+        templateDivCollection.push(templateDiv);
+    });
+
+    // Determines Which Rentals Are To Be Displayed
+    let divsToDisplay = [];
+    for(let i=0; i<templateDivCollection.length; i++) {
+        if(rentalHasAmmenities[i] === true) {
+            divsToDisplay.push(templateDivCollection[i]);
+        }
+    }
+
+    // Hides All The Rentals That Are Not To Be Displayed
+    if(ammenities.length>0) {
+        templateDivCollection.forEach((template) => {
+            if(divsToDisplay.includes(template) !== true) {
+                template.style.display = "none";
+            } else {
+                template.style.display = "block";
+            }
+        });
+    }
+}
+
