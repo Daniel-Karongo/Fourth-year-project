@@ -406,22 +406,22 @@ function filterAmmenities() {
 }
 
 function filterPreferences() {
-    // Get All The Ammenities Selected
-    let ammenitiesFiltersInputs = document.querySelectorAll('.ammenities-filters input');
-    let ammenities = [];
-    ammenitiesFiltersInputs.forEach((inputField) => {
+    // Get All The Preferences Selected
+    let preferencesFiltersInputs = document.querySelectorAll('.preferences-filter input');
+    let preferences = [];
+    preferencesFiltersInputs.forEach((inputField) => {
         if(inputField.checked === true) {
-            ammenities.push(inputField.value);
+            preferences.push(inputField.value);
         }
     });
 
-    // Gets All The Ammenities For Each Visible Rental
-    let individualrentalAmmenitiesFields =  document.querySelectorAll('.rental-ammenities');
-    let ammenitiesCollection = [];
+    // Gets All The Preferences For Each Visible Rental
+    let individualrentalPreferencesFields =  document.querySelectorAll('.rental-tenant-preferences');
+    let preferencesCollection = [];
 
     let tempContainer = [];
 
-    individualrentalAmmenitiesFields.forEach((div) => {
+    individualrentalPreferencesFields.forEach((div) => {
         formDiv = div.parentElement;
         descriptionDiv = formDiv.parentElement;
         rentaldivDiv = descriptionDiv.parentElement;
@@ -432,45 +432,45 @@ function filterPreferences() {
         }
     });
 
-    individualrentalAmmenitiesFields = [];
-    individualrentalAmmenitiesFields = tempContainer;
+    individualrentalPreferencesFields = [];
+    individualrentalPreferencesFields = tempContainer;
 
-    // Converts Each Rental's Ammenities An array An Then Creates A larger Array With Each Rentals Array
-    individualrentalAmmenitiesFields.forEach((individualrentalAmmenitiesField) => {
+    // Converts Each Rental's Preferences An array An Then Creates A larger Array With Each Rentals Array
+    individualrentalPreferencesFields.forEach((individualrentalPreferencesField) => {
 
-        let individualRentalsAmmenities = individualrentalAmmenitiesField.value;
-        let splitIndividualRentalsAmmenities = individualRentalsAmmenities.split(", ");
+        let individualRentalsPreferences = individualrentalPreferencesField.value;
+        let splitIndividualRentalsPreferences = individualRentalsPreferences.split(", ");
     
-        let individualRentalsAmmenitiesToBeSubmitted = [];
+        let individualRentalsPreferencesToBeSubmitted = [];
 
-        splitIndividualRentalsAmmenities.forEach((splitIndividualRentalsAmmenity) => {
+        splitIndividualRentalsPreferences.forEach((splitIndividualRentalsAmmenity) => {
             let temp = splitIndividualRentalsAmmenity.split(": ");
             let ammenityToBeSubmitted = temp[temp.length - 1];
             
-            individualRentalsAmmenitiesToBeSubmitted.push(ammenityToBeSubmitted);
+            individualRentalsPreferencesToBeSubmitted.push(ammenityToBeSubmitted);
         });
 
-        ammenitiesCollection.push(individualRentalsAmmenitiesToBeSubmitted);
+        preferencesCollection.push(individualRentalsPreferencesToBeSubmitted);
     });
 
-    // Determines If Each Rental Has All The Ammenities
-    let rentalHasAmmenities = [];
-    ammenitiesCollection.forEach((rentalAmmenities) => {
+    // Determines If Each Rental Has All The Preferences
+    let rentalHasPreferences = [];
+    preferencesCollection.forEach((rentalPreferences) => {
         let ammenityInRental = [];
-        for(let i=0; i<ammenities.length; i++) {
-            let inRental = rentalAmmenities.includes(ammenities[i]);
+        for(let i=0; i<preferences.length; i++) {
+            let inRental = rentalPreferences.includes(preferences[i]);
             ammenityInRental.push(inRental);
         }
         if(ammenityInRental.includes(false)) {
-            rentalHasAmmenities.push(false);
+            rentalHasPreferences.push(false);
         } else {
-            rentalHasAmmenities.push(true);
+            rentalHasPreferences.push(true);
         }
     });
 
     // Gets The Container For Each Rental
     templateDivCollection = [];
-    individualrentalAmmenitiesFields.forEach((div) => {
+    individualrentalPreferencesFields.forEach((div) => {
         formDiv = div.parentElement;
         descriptionDiv = formDiv.parentElement;
         rentaldivDiv = descriptionDiv.parentElement;
@@ -482,13 +482,13 @@ function filterPreferences() {
     // Determines Which Rentals Are To Be Displayed
     let divsToDisplay = [];
     for(let i=0; i<templateDivCollection.length; i++) {
-        if(rentalHasAmmenities[i] === true) {
+        if(rentalHasPreferences[i] === true) {
             divsToDisplay.push(templateDivCollection[i]);
         }
     }
 
     // Hides All The Rentals That Are Not To Be Displayed
-    if(ammenities.length>0) {
+    if(preferences.length>0) {
         templateDivCollection.forEach((template) => {
             if(divsToDisplay.includes(template) !== true) {
                 template.style.display = "none";

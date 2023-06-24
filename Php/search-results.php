@@ -357,7 +357,7 @@
                                         <input type="hidden" name="rental-term" value="' . $termToDisplay . '">
                                         <input type="hidden" name="rental-amount-of-rent" value="' . $retrievedAmountOfRent[$i] . '">
                                         <input type="hidden" name="rental-description" value="' . $retrievedDescription[$i] . '">
-                                        <input type="hidden" name="rental-tenant-preferences" value="' . $retrievedPreferences[$i] . '">
+                                        <input type="hidden" class="rental-tenant-preferences" name="rental-tenant-preferences" value="' . $retrievedPreferences[$i] . '">
                                         <input type="hidden" name="rental-number-of-ocupants" value="' . $retrievedMaximumNumberOfOccupants[$i] . '">
                                         <input type="hidden" name="rental-rules" value="' . $retrievedRulesUrls[$i] . '">
                                         <input type="hidden" name="rental-photos-path" value="../Image_Data/' . $finalFolder . '">
