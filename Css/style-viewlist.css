@@ -78,12 +78,12 @@ nav .top {
     flex: 1;    /* To fill the width of the form */
     border: 0px;
     outline: none;      /* To Remove the border and outline of the input box */
-    color: rgba(255,255,255,0.85); 
+    color: rgba(255,255,255,1); 
     font-size: 1rem;
 }
 
 ::placeholder {
-    color: rgba(255,255,255,0.85);  /* Makes the placeholder white and makes it slightly transparent */
+    color: rgba(255,255,255,1);  /* Makes the placeholder white and makes it slightly transparent */
     font-size: 1rem;
 }
 
@@ -258,7 +258,7 @@ main {
     background-color: transparent;
     border: 0;
     text-decoration: none;
-    color: rgba(255,255,255,0.85);
+    color: rgba(255,255,255,1);
 }
 
 .template img {

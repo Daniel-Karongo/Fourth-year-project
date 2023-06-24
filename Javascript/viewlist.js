@@ -499,3 +499,30 @@ function filterPreferences() {
     }
 }
 
+function toggleReligion() {
+    checkboxes = document.querySelectorAll('.preferences-filter input[type="checkbox"]');
+    anyReligionCheckBox = document.querySelector('#any-religion');
+
+    if(anyReligionCheckBox.checked === true) {
+        checkboxes.forEach((checkbox) => {
+            if(checkbox.id !== "any-religion") {
+                checkbox.disabled = true;
+            }
+        });
+    } else {
+        checkboxes.forEach((checkbox) => {
+            checkbox.disabled = false;
+        });
+    }
+}
+
+function restrictInput(event) {
+    const inputValue = event.target.value;
+    const numericValue = parseFloat(inputValue);
+
+    if (isNaN(numericValue) || numericValue < 0 || inputValue.includes('.')) {
+        event.target.value = '';
+        document.querySelector('#more-bedrooms').placeholder = "Please Do Not Enter Decimal, or Negative Numbers";
+    }
+
+}

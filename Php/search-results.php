@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
     <script src="../Javascript/viewlist.js"></script>
 </head>
-<body>
+<body onload="toggleReligion()">
     <div class="container">
         <nav>
             <div class="top">
@@ -74,7 +74,7 @@
                                 <label class="more-bedrooms" id="label-more-bedrooms" for="more-bedrooms">Number Of Bedrooms</label>
                             </div>    
                             <div class="original-text-input">
-                                <input type="number" class="more-bedrooms" name="more-bedrooms" id="more-bedrooms" placeholder="Optional" min="1" step="1">
+                                <input type="number" class="more-bedrooms" name="more-bedrooms" id="more-bedrooms" placeholder="Optional" oninput="restrictInput(event)">
                             </div>
                         </div>
 
@@ -245,7 +245,7 @@
                                 }
                             ?>
 
-                            <input type="checkbox" name="any-religion" id="any-religion" value="Any Religion">
+                            <input type="checkbox" name="any-religion" id="any-religion" value="Any Religion" onclick="toggleReligion()">
                             <label for="any-religion">Any Religion</label>
                 
                         </div>
