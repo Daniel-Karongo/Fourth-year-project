@@ -13,12 +13,9 @@ body {
 .container {        /*The larger container containing everything*/
     width: 100%;    /*To ensure everything fits perfectly along the whole width*/
     min-height: 100vh;      /*To ensure everything is distributed along the whole height of the page bein viewed*/    
-    padding: 2%;        /*To leave some space at the at the edges of the page*/ 
     position: relative;     /*So that the navbar(child) can be declared as absolute*/
     margin: auto;
-    display: flex;          
-    align-items: center;
-    justify-content: center;        /*To bring the search bar to the center of the page*/
+    
     animation: animate 30s ease-in infinite;    /*To change the background image*/
     background-position: center;
     background-size: cover;     /*To ensure the background image fills the pages*/
@@ -47,8 +44,9 @@ body {
     padding: 20px;
     width: 100%;    
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     background-color: transparent;
     flex-wrap: wrap;    /*To force the "advertise" button drop once the screen becomes smaller, rather than overflow*/
     color: rgba(255,255,255,1);
@@ -77,12 +75,20 @@ a {
     color: rgba(255,255,255, 1);
 }
 
-.introduction {
+.bottom-section {
     position: absolute;
-    top: 110px;
+    top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
+    box-sizing: inherit;
+}
+
+.introduction {
     text-align: center;
     color: rgba(245,245,245,1);
-    padding: 20px;       
+    padding: 0;       
 }
 
 .introduction h1 {
@@ -96,7 +102,7 @@ a {
 }
 
 .search-bar {
-    margin-top: 50px;
+    margin-top: 20px;
     width: 90%;
     max-width: 600px;
     background: rgba(255, 255, 255, 0.2);
@@ -106,6 +112,7 @@ a {
     border: '';
     padding: 10px 20px;     /* To give the form a bigger body */
     backdrop-filter: blur(4px) saturate(120%);
+    overflow: hidden;
 }
 
 .search-bar input {
@@ -144,11 +151,15 @@ a {
         max-width: 900px;
     }
     
-    .introduction {
+    .bottom-section {
         top: 120px;          
     }
 
     .search-bar {
-        margin-top: 30px;        
+        margin-top: 80px;        
+    }
+    
+    #navigation-bar {
+        flex-direction: row;
     }
 }

@@ -17,16 +17,17 @@
             <h1>HousesearchKE.com</h1>
             <button class="advertise"><a href="./login.html">Advertise</a></button>
         </nav>
-        <div class="introduction">
-            <h1>Need a place to stay? You came to the right place.</h1>
-            <br>
-            <p>Find hundreds of rentals, of all classes; from matope houses to villas, from hostels to shops
-            All you need to do is specify where.</p>
-        </div>
-        <form action="../Php/search-results-preparation.php" method="post" class="search-bar">
-            <input type="text" placeholder="Search location" name="location" id="location">
-            <button onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/search.png" alt=""></button>
-        </form>        
+        <div class="bottom-section">
+            <div class="introduction">
+                <h1>Need a place to stay? You came to the right place.</h1>
+                <br>
+                <p>Find hundreds of rentals, of all classes; from matope houses to villas, from hostels to shops.             All you need to do is specify where.</p>
+            </div>
+            <form action="../Php/search-results-preparation.php" method="post" class="search-bar">
+                <input type="text" placeholder="Search location" name="location" id="location" oninput="maintainColour(this)">
+                <button onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/search.png" alt=""></button>
+            </form>
+        </div>  
     </div>
 </body>
 </html>

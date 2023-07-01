@@ -24,7 +24,7 @@
             <div class="images-and-tally">
                 <?php
                     for($i=0; $i<count($images); $i++) {
-                        echo '<img class="viewimage" id="image' . $i+1 . '" src="'. $rentalPhotoPath . $images[$i] . '" alt="image' . $i+1 . '">';
+                        echo '<img class="viewimage" id="image' . ($i+1) . '" src="'. $rentalPhotoPath . $images[$i] . '" alt="image' . ($i+1) . '">';
                     }
                 ?>               
             </div>             
@@ -235,7 +235,7 @@
                 <?php
                     for($i=0; $i<count($rules); $i++) {
                         echo '
-                        <img class="viewrulesimage" id="rules-image-' . $i+1 . '" src="../Image_Data/Rules/' . $rules[$i] . '" alt="image' . $i+1 . '">';
+                        <img class="viewrulesimage" id="rules-image-' . ($i+1) . '" src="../Image_Data/Rules/' . $rules[$i] . '" alt="image' . ($i+1) . '">';
                     }
                 ?>                   
             </div>             

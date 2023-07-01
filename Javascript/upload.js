@@ -596,7 +596,7 @@ function validateForm(event) {
             if((maximumNumberOfOccupantsOkay === true) && (numberOfRentalsOkay === true)) {
                 const proceed = confirm("Click \"Ok\" To Submit");
                 if(proceed) {
-                    alert("Submitted Successfully");
+                    alert("Rental Submitted Successfully");
                     document.querySelector('form').submit();
                 }
             } 
@@ -607,7 +607,7 @@ function validateForm(event) {
             if((businessPremiseOkay === true) && (numberOfRentalsOkay === true)) {
                 const proceed = confirm("Click \"Ok\" To Submit");
                 if(proceed) {
-                    alert("Submitted Successfully");
+                    alert("Rental Submitted Successfully");
                     document.querySelector('form').submit();
                 }
             }   
@@ -621,7 +621,7 @@ function validateForm(event) {
                     if((moreApartmentBedroomsOkay === true) && (numberOfRentalsOkay === true)) {
                         const proceed = confirm("Click \"Ok\" To Submit");
                         if(proceed) {
-                            alert("Submitted Successfully");
+                            alert("Rental Submitted Successfully");
                             document.querySelector('form').submit();
                         }
                     }
@@ -629,7 +629,7 @@ function validateForm(event) {
                     if(numberOfRentalsOkay === true) {
                         const proceed = confirm("Click \"Ok\" To Submit");
                         if(proceed) {
-                            alert("Submitted Successfully");
+                            alert("Rental Submitted Successfully");
                             document.querySelector('form').submit();
                         }
                     }
@@ -646,7 +646,7 @@ function validateForm(event) {
                     if((moreHouseBedroomsOkay === true) && (numberOfRentalsOkay === true)) {
                         const proceed = confirm("Click \"Ok\" To Submit");
                         if(proceed) {
-                            alert("Submitted Successfully");
+                            alert("Rental Submitted Successfully");
                             document.querySelector('form').submit();
                         }
                     }
@@ -654,7 +654,7 @@ function validateForm(event) {
                     if(numberOfRentalsOkay === true) {
                         const proceed = confirm("Click \"Ok\" To Submit");
                         if(proceed) {
-                            alert("Submitted Successfully");
+                            alert("Rental Submitted Successfully");
                             document.querySelector('form').submit();
                         }
                     }

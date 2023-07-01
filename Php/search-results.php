@@ -312,12 +312,12 @@
                                 break;
                         }
                         echo'
-                        <div class="template" style="order: ' . $i+1 . ';">
-                            <div class="rental-div" id="rental-' . $i+1 . '" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="activateAnchor(event)">
-                                <div class="image" id="image' . $i+1 . '">
-                                    <img src="../Image_Data/' . $finalFolder. $imageToDisplay. '" alt="Rental-' . $i+1 . '">              
+                        <div class="template" style="order: ' . ($i+1) . ';">
+                            <div class="rental-div" id="rental-' . ($i+1) . '" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="activateAnchor(event)">
+                                <div class="image" id="image' . ($i+1) . '">
+                                    <img src="../Image_Data/' . $finalFolder. $imageToDisplay. '" alt="Rental-' . ($i+1) . '">              
                                 </div>
-                                <div class="description" id="description' . $i+1 . '">
+                                <div class="description" id="description' . ($i+1) . '">
                                     <h3 class="rent-amount">Ksh. ' . $retrievedAmountOfRent[$i] . '</h3>
                                     <h4 class="rent-term-display">' . $termToDisplay . '</h4>
                                     <br>' .
@@ -338,7 +338,7 @@
                                     echo '</h4>';
                                 echo '<h4 class="units-available-display">Number Of Units Available: ' . $retrievedNumberOfSimilarUnits[$i] . '</h4>
                                     <p class="description-display"> ' . $retrievedDescription[$i] . ' </p>
-                                    <form class="template-more-details" id="template-more-details-' . $i+1 . '" action="../Php/view-description-preparation.php" method="post" enctype="multipart/form-data"> 
+                                    <form class="template-more-details" id="template-more-details-' . ($i+1) . '" action="../Php/view-description-preparation.php" method="post" enctype="multipart/form-data"> 
                                         <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">More details</button>
     
                                         <input type="hidden" name="rental-type" value="' . $retrievedRentalType[$i] . '">

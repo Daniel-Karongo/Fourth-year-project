@@ -136,7 +136,7 @@ function validateForm(event) {
     if((firstNameOkay === true) && (lastNameOkay === true) && (phoneNumberOkay === true) && (emailOkay === true) && (createPasswordOkay === true)) {
         const proceed = confirm("Are You Sure You Want To Create An Account?");
         if(proceed) {
-            alert("Account Created Successfully");
+            alert("Updates Made Successfully");
             document.querySelector('.contact-information #contact-information-form').submit();
         }        
     }

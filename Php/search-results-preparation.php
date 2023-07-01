@@ -5,7 +5,7 @@
 
     // To Get All The Rentals In The Location Specified.
 
-    $sqlquery = "SELECT * FROM Hostels WHERE Location = '$location';";
+    $sqlquery = "SELECT * FROM hostels WHERE Location = '$location';";
     $resHostels = mysqli_query($connectionInitialisation, $sqlquery);
     
     if (!mysqli_query($connectionInitialisation, $sqlquery)) {
