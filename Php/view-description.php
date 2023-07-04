@@ -86,166 +86,175 @@
                 </form>
             </div>                            
         </div>
-        <div class="ammenities-and-preferences">
-            <div class="ammenities">
-                <?php
-                    $nonNullAmmenities = 0;
-                    for($i=0; $i<count($refinedAmmenities); $i++) {
-                        if($refinedAmmenities[$i] != null) {
-                            $nonNullAmmenities++;
-                        }
-                    }
-
-                    if($nonNullAmmenities > 0) {
-                        
+        <?php 
+            if((gettype($refinedAmmenities[0]) === "string") || (gettype($refinedPreferences[0]) === "string")) {
+                echo '<div class="ammenities-and-preferences">';
+                    if(gettype($refinedAmmenities[0]) === "string") {
                         echo '
-                        <div class="ammenities-title">
-                            <h3>Ammenities</h3>
-                        </div>
-                        <div class="actual-ammenities">';
-                            if((in_array("Tap Water", $refinedAmmenities)) || (in_array("Water Tank", $refinedAmmenities)) || (in_array("Borehole", $refinedAmmenities))) {
-                                echo '<div class="clean-water">
-                                    <h4>Water</h4>';
-                                    for($i=0; $i<count($refinedAmmenities); $i++) {
-                                        if(($refinedAmmenities[$i] === "Tap Water") || ($refinedAmmenities[$i] === "Water Tank") || ($refinedAmmenities[$i] === "Borehole")) {
-                                            echo '<p>'. $refinedAmmenities[$i] . '</p>';
-                                        }                                
-                                    }                                
-                                echo '</div>';                            
-                            }
+                            <div class="ammenities">';
+                                $nonNullAmmenities = 0;
+                                for($i=0; $i<count($refinedAmmenities); $i++) {
+                                    if($refinedAmmenities[$i] != null) {
+                                        $nonNullAmmenities++;
+                                    }
+                                }
 
-                            if((in_array("Token", $refinedAmmenities)) || (in_array("Individual Sub-Meter", $refinedAmmenities))) {
-                                echo '<div class="electricity">
-                                    <h4>Electricity</h4>';
-                                    for($i=0; $i<count($refinedAmmenities); $i++) {
-                                        if(($refinedAmmenities[$i] === "Individual Sub-Meter") || ($refinedAmmenities[$i] === "Individual Token")) {
-                                            echo '<p>'. $refinedAmmenities[$i] . '</p>';
-                                        }                                
-                                    }                                
-                                echo '</div>';
-                            }
-                            
-                            if((in_array("Security Guard", $refinedAmmenities)) || (in_array("Cctv", $refinedAmmenities)) || (in_array("Security Lights", $refinedAmmenities))) {
-                                echo '<div class="security">
-                                    <h4>Security</h4>';
-                                    for($i=0; $i<count($refinedAmmenities); $i++) {
-                                        if(($refinedAmmenities[$i] === "Security Guard") || ($refinedAmmenities[$i] === "Cctv") || ($refinedAmmenities[$i] === "Security Lights")) {
-                                            echo '<p>'. $refinedAmmenities[$i] . '</p>';
-                                        }                                
-                                    }                                
-                                echo '</div>'; 
-                            }
+                                if($nonNullAmmenities > 0) {
+                                    
+                                    echo '
+                                    <div class="ammenities-title">
+                                        <h3>Ammenities</h3>
+                                    </div>
+                                    <div class="actual-ammenities">';
+                                        if((in_array("Tap Water", $refinedAmmenities)) || (in_array("Water Tank", $refinedAmmenities)) || (in_array("Borehole", $refinedAmmenities))) {
+                                            echo '<div class="clean-water">
+                                                <h4>Water</h4>';
+                                                for($i=0; $i<count($refinedAmmenities); $i++) {
+                                                    if(($refinedAmmenities[$i] === "Tap Water") || ($refinedAmmenities[$i] === "Water Tank") || ($refinedAmmenities[$i] === "Borehole")) {
+                                                        echo '<p>'. $refinedAmmenities[$i] . '</p>';
+                                                    }                                
+                                                }                                
+                                            echo '</div>';                            
+                                        }
 
-                            if((in_array("Pit Latrine", $refinedAmmenities)) || (in_array("Flashing Toilet", $refinedAmmenities))) {
-                                echo '<div class="washrooms">
-                                    <h4>Washrooms</h4>';
-                                    for($i=0; $i<count($refinedAmmenities); $i++) {
-                                        if(($refinedAmmenities[$i] === "Pit Latrine") || ($refinedAmmenities[$i] === "Flashing Toilet")) {
-                                            echo '<p>'. $refinedAmmenities[$i] . '</p>';
-                                        }                                
-                                    }                                
-                                echo '</div>';
-                            }
+                                        if((in_array("Token", $refinedAmmenities)) || (in_array("Individual Sub-Meter", $refinedAmmenities))) {
+                                            echo '<div class="electricity">
+                                                <h4>Electricity</h4>';
+                                                for($i=0; $i<count($refinedAmmenities); $i++) {
+                                                    if(($refinedAmmenities[$i] === "Individual Sub-Meter") || ($refinedAmmenities[$i] === "Individual Token")) {
+                                                        echo '<p>'. $refinedAmmenities[$i] . '</p>';
+                                                    }                                
+                                                }                                
+                                            echo '</div>';
+                                        }
+                                        
+                                        if((in_array("Security Guard", $refinedAmmenities)) || (in_array("Cctv", $refinedAmmenities)) || (in_array("Security Lights", $refinedAmmenities))) {
+                                            echo '<div class="security">
+                                                <h4>Security</h4>';
+                                                for($i=0; $i<count($refinedAmmenities); $i++) {
+                                                    if(($refinedAmmenities[$i] === "Security Guard") || ($refinedAmmenities[$i] === "Cctv") || ($refinedAmmenities[$i] === "Security Lights")) {
+                                                        echo '<p>'. $refinedAmmenities[$i] . '</p>';
+                                                    }                                
+                                                }                                
+                                            echo '</div>'; 
+                                        }
 
-                            if((in_array("Garbage Collection", $refinedAmmenities)) || (in_array("Cleaner", $refinedAmmenities)) || (in_array("Sink", $refinedAmmenities))) {
-                                echo '<div class="cleaning">
-                                    <h4>Cleaning</h4>';
-                                    for($i=0; $i<count($refinedAmmenities); $i++) {
-                                        if(($refinedAmmenities[$i] === "Garbage Collection") || ($refinedAmmenities[$i] === "Cleaner") || ($refinedAmmenities[$i] === "Sink")) {
-                                            echo '<p>'. $refinedAmmenities[$i] . '</p>';
-                                        }                                
-                                    }                                
-                                echo '</div>';
-                            }
+                                        if((in_array("Pit Latrine", $refinedAmmenities)) || (in_array("Flashing Toilet", $refinedAmmenities))) {
+                                            echo '<div class="washrooms">
+                                                <h4>Washrooms</h4>';
+                                                for($i=0; $i<count($refinedAmmenities); $i++) {
+                                                    if(($refinedAmmenities[$i] === "Pit Latrine") || ($refinedAmmenities[$i] === "Flashing Toilet")) {
+                                                        echo '<p>'. $refinedAmmenities[$i] . '</p>';
+                                                    }                                
+                                                }                                
+                                            echo '</div>';
+                                        }
 
-                            if((in_array("Handicap Access", $refinedAmmenities)) || (in_array("Packing", $refinedAmmenities))) {
-                                echo '<div class="accessibility">
-                                    <h4>Accessibility</h4>';
-                                    for($i=0; $i<count($refinedAmmenities); $i++) {
-                                        if(($refinedAmmenities[$i] === "Handicap Access") || ($refinedAmmenities[$i] === "Packing")) {
-                                            echo '<p>'. $refinedAmmenities[$i] . '</p>';
-                                        }                                
-                                    }                                
-                                echo '</div>';
-                            }
+                                        if((in_array("Garbage Collection", $refinedAmmenities)) || (in_array("Cleaner", $refinedAmmenities)) || (in_array("Sink", $refinedAmmenities))) {
+                                            echo '<div class="cleaning">
+                                                <h4>Cleaning</h4>';
+                                                for($i=0; $i<count($refinedAmmenities); $i++) {
+                                                    if(($refinedAmmenities[$i] === "Garbage Collection") || ($refinedAmmenities[$i] === "Cleaner") || ($refinedAmmenities[$i] === "Sink")) {
+                                                        echo '<p>'. $refinedAmmenities[$i] . '</p>';
+                                                    }                                
+                                                }                                
+                                            echo '</div>';
+                                        }
 
-                            if((in_array("Tiles", $refinedAmmenities)) || (in_array("Ceiling", $refinedAmmenities)) || (in_array("Balcony", $refinedAmmenities))) {
-                                echo '<div class="finishing">
-                                    <h4>Finishing</h4>';
-                                    for($i=0; $i<count($refinedAmmenities); $i++) {
-                                        if(($refinedAmmenities[$i] === "Tiles") || ($refinedAmmenities[$i] === "Ceiling") || ($refinedAmmenities[$i] === "Balcony")) {
-                                            echo '<p>'. $refinedAmmenities[$i] . '</p>';
-                                        }                                
-                                    }                                
-                                echo '</div>';
-                            }
+                                        if((in_array("Handicap Access", $refinedAmmenities)) || (in_array("Packing", $refinedAmmenities))) {
+                                            echo '<div class="accessibility">
+                                                <h4>Accessibility</h4>';
+                                                for($i=0; $i<count($refinedAmmenities); $i++) {
+                                                    if(($refinedAmmenities[$i] === "Handicap Access") || ($refinedAmmenities[$i] === "Packing")) {
+                                                        echo '<p>'. $refinedAmmenities[$i] . '</p>';
+                                                    }                                
+                                                }                                
+                                            echo '</div>';
+                                        }
 
-                            if((in_array("Wi-Fi", $refinedAmmenities)) || (in_array("Joint TV Subscription", $refinedAmmenities)) || (in_array("Air Conditioning", $refinedAmmenities)) || (in_array("Furnished", $refinedAmmenities)) || (in_array("Gym", $refinedAmmenities)) || (in_array("Swimming Pool", $refinedAmmenities))) {
-                                echo '<div class="luxury">
-                                    <h4>Luxury</h4>';
-                                    for($i=0; $i<count($refinedAmmenities); $i++) {
-                                        if(($refinedAmmenities[$i] === "Wi-Fi") || ($refinedAmmenities[$i] === "Joint TV Subscription") || ($refinedAmmenities[$i] === "Air Conditioning") || ($refinedAmmenities[$i] === "Furnished") || ($refinedAmmenities[$i] === "Gym") || ($refinedAmmenities[$i] === "Swimming Pool")) {
-                                            echo '<p>'. $refinedAmmenities[$i] . '</p>';
-                                        }                                
-                                    }                                
-                                echo '</div>';
-                            }
-                        echo '</div>';                        
+                                        if((in_array("Tiles", $refinedAmmenities)) || (in_array("Ceiling", $refinedAmmenities)) || (in_array("Balcony", $refinedAmmenities))) {
+                                            echo '<div class="finishing">
+                                                <h4>Finishing</h4>';
+                                                for($i=0; $i<count($refinedAmmenities); $i++) {
+                                                    if(($refinedAmmenities[$i] === "Tiles") || ($refinedAmmenities[$i] === "Ceiling") || ($refinedAmmenities[$i] === "Balcony")) {
+                                                        echo '<p>'. $refinedAmmenities[$i] . '</p>';
+                                                    }                                
+                                                }                                
+                                            echo '</div>';
+                                        }
+
+                                        if((in_array("Wi-Fi", $refinedAmmenities)) || (in_array("Joint TV Subscription", $refinedAmmenities)) || (in_array("Air Conditioning", $refinedAmmenities)) || (in_array("Furnished", $refinedAmmenities)) || (in_array("Gym", $refinedAmmenities)) || (in_array("Swimming Pool", $refinedAmmenities))) {
+                                            echo '<div class="luxury">
+                                                <h4>Luxury</h4>';
+                                                for($i=0; $i<count($refinedAmmenities); $i++) {
+                                                    if(($refinedAmmenities[$i] === "Wi-Fi") || ($refinedAmmenities[$i] === "Joint TV Subscription") || ($refinedAmmenities[$i] === "Air Conditioning") || ($refinedAmmenities[$i] === "Furnished") || ($refinedAmmenities[$i] === "Gym") || ($refinedAmmenities[$i] === "Swimming Pool")) {
+                                                        echo '<p>'. $refinedAmmenities[$i] . '</p>';
+                                                    }                                
+                                                }                                
+                                            echo '</div>';
+                                        }
+                                    echo '</div>';                        
+                                }
+                            echo '</div>';
                     }
-                ?>
-            </div>            
-            <div class="preferences">
-                <?php
-                    $nonNullPreference = 0;
-                    for($i=0; $i<count($refinedPreferences); $i++) {
-                        if($refinedPreferences[$i] != null) {
-                            $nonNullPreference++;
-                        }
-                    }
-
-                    if($nonNullPreference > 0) {
-                        echo '<h3>Tenant Preferences</h3>';
-                        for($i=0; $i<count($refinedPreferences); $i++) {
-                            if($refinedPreferences[$i] != null) {
-                                if($refinedPreferences[$i] === "Christianity") {
-                                    echo '<p>Christians</p>';
-                                } else if($refinedPreferences[$i] === "Buddhism") {
-                                    echo '<p>Buddists</p>';
-                                } else if($refinedPreferences[$i] === "Islam") {
-                                    echo '<p>Muslims</p>';
-                                } else if($refinedPreferences[$i] === "Hinduism") {
-                                    echo '<p>Hindus</p>';
-                                } else if($refinedPreferences[$i] === "Vehicles Allowed") {
-                                    echo '<p>People With Vehicles Are Welcome (Parking Available)</p>';
-                                } else {
-                                    echo '<p>'. $refinedPreferences[$i] . '</p>';
-                                }                            
-                            }
-                        }
-                    } 
                     
-                ?>
-            </div>            
-        </div>       
-        <div class="rules">
-            <div class="rules-button left">
-                <button onclick="viewLeft('img.viewrulesimage','#rules-tally-paragraph')"><img src="../Images/left button.png" alt="left-button"></button>
-            </div>
-            <div class="rules-images-and-tally">
-                <?php
-                    for($i=0; $i<count($rules); $i++) {
-                        echo '
-                        <img class="viewrulesimage" id="rules-image-' . ($i+1) . '" src="../Image_Data/Rules/' . $rules[$i] . '" alt="image' . ($i+1) . '">';
+                    if(gettype($refinedPreferences[0]) === "string") {
+                        echo '<div class="preferences">';
+                            $nonNullPreference = 0;
+                            for($i=0; $i<count($refinedPreferences); $i++) {
+                                if($refinedPreferences[$i] != null) {
+                                    $nonNullPreference++;
+                                }
+                            }
+
+                            if($nonNullPreference > 0) {
+                                echo '<h3>Tenant Preferences</h3>';
+                                for($i=0; $i<count($refinedPreferences); $i++) {
+                                    if($refinedPreferences[$i] != null) {
+                                        if($refinedPreferences[$i] === "Christianity") {
+                                            echo '<p>Christians</p>';
+                                        } else if($refinedPreferences[$i] === "Buddhism") {
+                                            echo '<p>Buddists</p>';
+                                        } else if($refinedPreferences[$i] === "Islam") {
+                                            echo '<p>Muslims</p>';
+                                        } else if($refinedPreferences[$i] === "Hinduism") {
+                                            echo '<p>Hindus</p>';
+                                        } else if($refinedPreferences[$i] === "Vehicles Allowed") {
+                                            echo '<p>People With Vehicles Are Welcome (Parking Available)</p>';
+                                        } else {
+                                            echo '<p>'. $refinedPreferences[$i] . '</p>';
+                                        }                            
+                                    }
+                                }
+                            } 
+                        
+                        echo '</div>';
                     }
-                ?>                   
-            </div>             
-            <div class="rules-button right">
-                <button onclick="viewRight('img.viewrulesimage','#rules-tally-paragraph')"><img src="../Images/right button.png" alt="right-button"></button>
-            </div>
-        </div>
-        <div class="rules-tally">
-            <p id="rules-tally-paragraph"> 1 of <?php echo count($rules); ?></p>
-        </div>
+                echo '</div>';
+            }
+        ?>              
+        <?php 
+            if ($rules[0] != "") {
+                echo '
+                    <div class="rules">
+                        <div class="rules-button left">
+                            <button onclick="viewLeft(\'img.viewrulesimage\', \'#rules-tally-paragraph\')"><img src="../Images/left button.png" alt="left-button"></button>
+                        </div>
+                        <div class="rules-images-and-tally">'; 
+                            for($i = 0; $i < count($rules); $i++) {
+                                echo '
+                                <img class="viewrulesimage" id="rules-image-' . ($i+1) . '" src="../Image_Data/Rules/' . $rules[$i] . '" alt="image' . ($i+1) . '">';
+                            }                
+                echo '</div>             
+                        <div class="rules-button right">
+                            <button onclick="viewRight(\'img.viewrulesimage\', \'#rules-tally-paragraph\')"><img src="../Images/right button.png" alt="right-button"></button>
+                        </div>
+                    </div>
+                    <div class="rules-tally">
+                        <p id="rules-tally-paragraph"> 1 of ' . count($rules) . '</p>
+                    </div>';
+            }
+        ?>
     </div>
 </body>
 </html>

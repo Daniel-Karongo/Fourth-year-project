@@ -72,3 +72,14 @@ function toggleBtwShowingAndHidingPassword() {
     }        
 }
 
+function getEmail(event) {
+    event.preventDefault(); // Prevents the default anchor behavior (navigating to a new page)
+
+    let inputValue = document.getElementById("email").value;
+    let isEmailValid = forEmail('submit');
+    console.log(isEmailValid);
+    if (isEmailValid) {
+        // Redirect to forgotten-password.php with the value as a query parameter
+        window.location.href = "../Php/forgot-password-preparation.php?inputValue=" + encodeURIComponent(inputValue);
+    }
+}
