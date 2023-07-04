@@ -4,9 +4,12 @@
     $email = $_POST["email"];
     $password = $_POST["passwordField"];
 
-    $sqlquery = "SELECT Email_Address, Pass_Word FROM property_owners WHERE BINARY Email_Address = '$email';";
-    $res = mysqli_query($connectionInitialisation, $sqlquery);
-    
+    $sqlquery = "SELECT Email_Address, Pass_Word FROM property_owners WHERE BINARY Email_Address = ?;";
+    $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $res = mysqli_stmt_get_result($stmt);
+
     if (mysqli_num_rows($res) > 0) {
         while ($property_owner = mysqli_fetch_assoc($res)) {
             $retrieved_email = $property_owner['Email_Address'];
@@ -20,5 +23,5 @@
 
     } else {
         include "../Php/no-Such-Account.php";        
-    }  
+    }
 ?>

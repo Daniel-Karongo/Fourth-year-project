@@ -408,9 +408,17 @@
             case "Business Premise":
                 
                 $sqlquery = "INSERT INTO business_premises (Rental_ID, Rental_Name, Type_Of_Premise, Location, Google_Location, Image_Urls, Ammenities, Number_Of_Similar_Units) 
-                VALUES('$rentalID', '$nameOfRental', '$typeOfOfBusinessPremise', '$location', '$googleLocation', '$plotNames', '$ammenitiesCollection', '$numberOfAvailableRentals');";
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+                $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
                 
-                if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+                if (!$stmt) {
+                    die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+                }
+
+                mysqli_stmt_bind_param($stmt, "sssssssi", $rentalID, $nameOfRental, $typeOfOfBusinessPremise, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals);
+
+                if (!mysqli_stmt_execute($stmt)) {
                     die("Update query failed: " . mysqli_error($connectionInitialisation));
                 }
 
@@ -436,24 +444,40 @@
 
     function otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation) {
         include '../Php/databaseConnector.php';
-        
+
         $sqlquery = "INSERT INTO $tableName (Rental_ID, Rental_Name, Location, Google_Location, Image_Urls, Ammenities, Number_Of_Similar_Units) 
-        VALUES('$rentalID', '$nameOfRental', '$location', '$googleLocation', '$plotNames', '$ammenitiesCollection', '$numberOfAvailableRentals');";
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
         
-        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+        if (!$stmt) {
+            die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+        }
+        
+        mysqli_stmt_bind_param($stmt, "ssssssi", $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals);
+
+        if (!mysqli_stmt_execute($stmt)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
-        }        
+        }
     }
 
     function eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $numberOfAvailableRentals, $connectionInitialisation) {
         include '../Php/databaseConnector.php';
-        
+
         $sqlquery = "INSERT INTO $tableName (Rental_ID, Rental_Name, Location, Google_Location, Image_Urls, Ammenities, $extraColumn, Number_Of_Similar_Units) 
-        VALUES('$rentalID', '$nameOfRental', '$location', '$googleLocation', '$plotNames', '$ammenitiesCollection', '$numberOfOccupants', '$numberOfAvailableRentals');";
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
         
-        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+        if (!$stmt) {
+            die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+        }
+        
+        mysqli_stmt_bind_param($stmt, "ssssssii", $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $numberOfAvailableRentals);
+
+        if (!mysqli_stmt_execute($stmt)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
-        }        
+        }
     }
 
     function properties_owners_detailsTablePopulator($rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation) {
@@ -461,19 +485,35 @@
         include '../Php/databaseConnector.php';
 
         $sqlquery = "INSERT INTO properties_owners_details (Rental_ID, Owners_Phone_Number, Email_Address, Rental_Term, Amount_of_Rent, Pitching, Preferred_Sorts_of_Applicants, Maximum_Number_Of_Occupants, Rules_Urls) 
-        VALUES('$rentalID', '$phoneNumber', '$email', '$rentalTerm', '$amountOfRent', '$description', '$preferencesCollection', '$numberOfOccupants', '$rulesFiles');";
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+        $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
+        
+        if (!$stmt) {
+            die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+        }
+        
+        mysqli_stmt_bind_param($stmt, "ssssissis", $rentalID, $phoneNumber, $email, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles);
+
+        if (!mysqli_stmt_execute($stmt)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
-        }                
+        }
     }
 
     function property_owners_table_updator($email, $rentalsOwned, $phoneNumber) {
         include '../Php/databaseConnector.php';
 
-        $sqlquery = "UPDATE property_owners SET Rentals_Owned = '$rentalsOwned' WHERE Email_Address = '$email' AND Phone_Number = '$phoneNumber';";
+        $sqlquery = "UPDATE property_owners SET Rentals_Owned = ? WHERE Email_Address = ? AND Phone_Number = ?";
+
+        $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
         
-        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+        if (!$stmt) {
+            die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+        }
+        
+        mysqli_stmt_bind_param($stmt, "sss", $rentalsOwned, $email, $phoneNumber);
+
+        if (!mysqli_stmt_execute($stmt)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
         }
     }

@@ -174,13 +174,13 @@
                     
                     <h5>Electricity</h5>
                     <div class="electricity-token">
-                        <input type="checkbox" name="token" id="token" value="Token">
+                        <input type="checkbox" name="token" id="token" value="Individual Token">
                         <label for="token"> Individual Token</label>
                     </div>
                     
                     <div class="electricity-meter">
-                        <input type="checkbox" name="meter" id="meter" value="Meter">
-                        <label for="meter"> Shared Meter</label>
+                        <input type="checkbox" name="meter" id="meter" value="Individual Sub-Meter">
+                        <label for="meter"> Individual Sub-Meter</label>
                     </div>
                     
                     <h5>Security</h5>

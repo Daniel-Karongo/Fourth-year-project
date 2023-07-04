@@ -149,12 +149,12 @@
                                                 
                                 <h5>Electricity</h5>
                                 <div class="rental-ammenities basic electricity">
-                                    <input type="checkbox" name="token" id="token" value="Token" <?php if(in_array("Token", $individualAmmenitiesRefined)) {echo "checked";}                                                        
+                                    <input type="checkbox" name="token" id="token" value="Individual Token" <?php if(in_array("Token", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                    <label for="token"> Individual Token</label>
-                                    <input type="checkbox" name="meter" id="meter" value="Meter" <?php if(in_array("Meter", $individualAmmenitiesRefined)) {echo "checked";}                                                        
+                                    <label for="token">Individual Token</label>
+                                    <input type="checkbox" name="meter" id="meter" value="Individual Sub-Meter" <?php if(in_array("Meter", $individualAmmenitiesRefined)) {echo "checked";}                                                        
                                     ?>>
-                                    <label for="meter"> Shared Meter</label>
+                                    <label for="meter">Individual Sub-Meter</label>
                                 </div>                            
 
                                 <h5>Security</h5>

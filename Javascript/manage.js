@@ -134,7 +134,7 @@ function validateForm(event) {
     const createPasswordOkay = validateField('password', 'Please Enter A Password To Secure Your Account', 'submit');
 
     if((firstNameOkay === true) && (lastNameOkay === true) && (phoneNumberOkay === true) && (emailOkay === true) && (createPasswordOkay === true)) {
-        const proceed = confirm("Are You Sure You Want To Create An Account?");
+        const proceed = confirm("Are You Sure You Want To Edit Your Account Details?");
         if(proceed) {
             alert("Updates Made Successfully");
             document.querySelector('.contact-information #contact-information-form').submit();

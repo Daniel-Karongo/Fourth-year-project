@@ -105,7 +105,7 @@
 
                                                 '<div class="payment">' .
                                                     '<h4 class="amount">Ksh.' . $retrieved_amount_of_rent[$i] . '</h4>' .
-                                                    '<h5 class="rental-term">Per' . $termDisplay . '</h5>' .
+                                                    '<h5 class="rental-term">Per ' . $termDisplay . '</h5>' .
                                                 '</div>' .
                                             '</div>' .
                                             '<div class="bottom-section">' .
@@ -235,6 +235,10 @@
                                     '</div>'
                                 ; 
                             } 
+                        } else {
+                            echo '<div class="template-error">
+                                    <p>Upload Rentals</p> 
+                                </div>';
                         } 
                     ?>
 

@@ -145,6 +145,27 @@ a {
     font-size: 1.2rem;
 }
 
+@media (max-width: 360px) {
+    .container {
+        overflow: hidden;
+    }
+
+    .search-bar {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .search-bar input {
+        flex-grow: 1;
+        min-width: 10px;
+        width: fit-content;
+    }
+    
+    .search-bar button {
+        flex-grow: 0; 
+    }
+    
+}
 
 @media (min-width: 576px) {
     .container {

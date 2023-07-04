@@ -5,54 +5,78 @@
 
     // To Get All The Rentals In The Location Specified.
 
-    $sqlquery = "SELECT * FROM hostels WHERE Location = '$location';";
-    $resHostels = mysqli_query($connectionInitialisation, $sqlquery);
-    
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
+    $query = "SELECT * FROM hostels WHERE Location = ?";
+    $stmt = mysqli_prepare($connectionInitialisation, $query);
+    mysqli_stmt_bind_param($stmt, 's', $location);
+    mysqli_stmt_execute($stmt);
+    $resHostels = mysqli_stmt_get_result($stmt);
+
+    if (!$resHostels) {
+        die("Query failed: " . mysqli_error($connectionInitialisation));
     }
 
-    $sqlquery = "SELECT * FROM single_rooms WHERE Location = '$location';";
-    $resSingleRooms = mysqli_query($connectionInitialisation, $sqlquery);
-    
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
+    $query = "SELECT * FROM single_rooms WHERE Location = ?";
+    $stmt = mysqli_prepare($connectionInitialisation, $query);
+    mysqli_stmt_bind_param($stmt, 's', $location);
+    mysqli_stmt_execute($stmt);
+    $resSingleRooms = mysqli_stmt_get_result($stmt);
+
+    if (!$resSingleRooms) {
+        die("Query failed: " . mysqli_error($connectionInitialisation));
     }
 
-    $sqlquery = "SELECT * FROM bedsitters WHERE Location = '$location';";
-    $resBedsitters = mysqli_query($connectionInitialisation, $sqlquery);
-    
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
+    $query = "SELECT * FROM bedsitters WHERE Location = ?";
+    $stmt = mysqli_prepare($connectionInitialisation, $query);
+    mysqli_stmt_bind_param($stmt, 's', $location);
+    mysqli_stmt_execute($stmt);
+    $resBedsitters = mysqli_stmt_get_result($stmt);
+
+    if (!$resBedsitters) {
+        die("Query failed: " . mysqli_error($connectionInitialisation));
     }
 
-    $sqlquery = "SELECT * FROM suites WHERE Location = '$location';";
-    $resSuites = mysqli_query($connectionInitialisation, $sqlquery);
-    
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
+    $query = "SELECT * FROM suites WHERE Location = ?";
+    $stmt = mysqli_prepare($connectionInitialisation, $query);
+    mysqli_stmt_bind_param($stmt, 's', $location);
+    mysqli_stmt_execute($stmt);
+    $resSuites = mysqli_stmt_get_result($stmt);
+
+    if (!$resSuites) {
+        die("Query failed: " . mysqli_error($connectionInitialisation));
     }
 
-    $sqlquery = "SELECT * FROM apartments WHERE Location = '$location';";
-    $resApartments = mysqli_query($connectionInitialisation, $sqlquery);
-    
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
+    $query = "SELECT * FROM apartments WHERE Location = ?";
+    $stmt = mysqli_prepare($connectionInitialisation, $query);
+    mysqli_stmt_bind_param($stmt, 's', $location);
+    mysqli_stmt_execute($stmt);
+    $resApartments = mysqli_stmt_get_result($stmt);
+
+    if (!$resApartments) {
+        die("Query failed: " . mysqli_error($connectionInitialisation));
     }
 
-    $sqlquery = "SELECT * FROM houses WHERE Location = '$location';";
-    $resHouses = mysqli_query($connectionInitialisation, $sqlquery);
-    
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
+    $query = "SELECT * FROM houses WHERE Location = ?";
+    $stmt = mysqli_prepare($connectionInitialisation, $query);
+    mysqli_stmt_bind_param($stmt, 's', $location);
+    mysqli_stmt_execute($stmt);
+    $resHouses = mysqli_stmt_get_result($stmt);
+
+    if (!$resHouses) {
+        die("Query failed: " . mysqli_error($connectionInitialisation));
     }
 
-    $sqlquery = "SELECT * FROM business_premises WHERE Location = '$location';";
-    $resBusinessPremises = mysqli_query($connectionInitialisation, $sqlquery);
-    
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
+    $query = "SELECT * FROM business_premises WHERE Location = ?";
+    $stmt = mysqli_prepare($connectionInitialisation, $query);
+    mysqli_stmt_bind_param($stmt, 's', $location);
+    mysqli_stmt_execute($stmt);
+    $resBusinessPremises = mysqli_stmt_get_result($stmt);
+
+    if (!$resBusinessPremises) {
+        die("Query failed: " . mysqli_error($connectionInitialisation));
     }
+
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
 
     // To Store All The Details Of The Rentals Retrieved.
 
@@ -215,15 +239,23 @@
     }
 
     // To Get And Assign All The Details About The Rentals, From The Common Table, To The Arrays.
-
+    
     for($i=0; $i<count($retrievedRentalID); $i++) {
         
-        $sqlquery = "SELECT * FROM properties_owners_details WHERE Rental_ID = '$retrievedRentalID[$i]';";
-        $respropertiesOwnersDetails = mysqli_query($connectionInitialisation, $sqlquery);
-        
-        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-            die("Update query failed: " . mysqli_error($connectionInitialisation));
+        $sqlquery = "SELECT * FROM properties_owners_details WHERE Rental_ID = ?";
+        $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
+
+        if (!$stmt) {
+            die("Prepared statement preparation failed: " . mysqli_error($connectionInitialisation));
         }
+
+        mysqli_stmt_bind_param($stmt, "s", $retrievedRentalID[$i]);
+
+        if (!mysqli_stmt_execute($stmt)) {
+            die("Prepared statement execution failed: " . mysqli_error($connectionInitialisation));
+        }
+
+        $respropertiesOwnersDetails = mysqli_stmt_get_result($stmt);
 
         if(mysqli_num_rows($respropertiesOwnersDetails) > 0) {
             while ($properties_owners_details = mysqli_fetch_assoc($respropertiesOwnersDetails)) {
@@ -237,20 +269,32 @@
                 array_push($retrievedRulesUrls, $properties_owners_details['Rules_Urls']);
             }            
         }
+        mysqli_stmt_close($stmt);
 
-        $sqlquery = "SELECT * FROM property_owners WHERE Phone_Number = '$retrievedOwnersPhoneNumber[$i]' AND Email_Address='$retrievedOwnersEmailAddress[$i]';";
-        $resPropertyOwnersName = mysqli_query($connectionInitialisation, $sqlquery);
-        
-        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-            die("Update query failed: " . mysqli_error($connectionInitialisation));
+        $sqlquery = "SELECT * FROM property_owners WHERE Phone_Number = ? AND Email_Address = ?";
+        $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
+
+        if (!$stmt) {
+            die("Prepared statement preparation failed: " . mysqli_error($connectionInitialisation));
         }
 
-        if(mysqli_num_rows($resPropertyOwnersName) > 0) {
+        mysqli_stmt_bind_param($stmt, "ss", $retrievedOwnersPhoneNumber[$i], $retrievedOwnersEmailAddress[$i]);
+
+        if (!mysqli_stmt_execute($stmt)) {
+            die("Prepared statement execution failed: " . mysqli_error($connectionInitialisation));
+        }
+
+        $resPropertyOwnersName = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($resPropertyOwnersName) > 0) {
             while ($properties_owners = mysqli_fetch_assoc($resPropertyOwnersName)) {
                 array_push($retrievedOwnersFirstName, $properties_owners['First_Name']);
                 array_push($retrievedOwnersLastName, $properties_owners['Last_Name']);                
             }            
         }
+
+        mysqli_stmt_close($stmt);
+
     }
 
     include "../Php/search-results.php";

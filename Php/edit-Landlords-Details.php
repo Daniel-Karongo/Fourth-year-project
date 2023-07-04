@@ -11,45 +11,56 @@
     $password = $_POST["password"];
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
+    // Update property_owners table
     $sqlquery = "UPDATE property_owners 
-                 SET Phone_Number = '$phoneNumber', 
-                     Email_Address = '$email', 
-                     Pass_word = '$hashedPassword', 
-                     First_Name = '$firstName', 
-                     Last_Name = '$lastName' 
-                 WHERE Email_Address = '$retrieved_email' 
-                     AND Phone_Number = '$retrieved_phone_number'";
+                 SET Phone_Number = ?, 
+                     Email_Address = ?, 
+                     Pass_word = ?, 
+                     First_Name = ?, 
+                     Last_Name = ? 
+                 WHERE Email_Address = ? 
+                     AND Phone_Number = ?";
     
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
+    $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
+    mysqli_stmt_bind_param($stmt, "sssssss", $phoneNumber, $email, $hashedPassword, $firstName, $lastName, $retrieved_email, $retrieved_phone_number);
+    
+    if (!mysqli_stmt_execute($stmt)) {
+        die("Update query failed: " . mysqli_stmt_error($stmt));
     }
 
+    // Update properties_owners_details table
     $sqlquery = "UPDATE properties_owners_details 
-                 SET Owners_Phone_Number = '$phoneNumber', 
-                     Email_Address = '$email'                      
-                 WHERE Email_Address = '$retrieved_email' 
-                     AND Owners_Phone_Number = '$retrieved_phone_number'";
+                 SET Owners_Phone_Number = ?, 
+                     Email_Address = ?                      
+                 WHERE Email_Address = ? 
+                     AND Owners_Phone_Number = ?";
     
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
+    $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
+    mysqli_stmt_bind_param($stmt, "ssss", $phoneNumber, $email, $retrieved_email, $retrieved_phone_number);
+    
+    if (!mysqli_stmt_execute($stmt)) {
+        die("Update query failed: " . mysqli_stmt_error($stmt));
     }
     
     $retrieved_phone_number = $phoneNumber;
     $retrieved_first_name = $firstName;                    
     $retrieved_last_name = $lastName;
     
-    $sqlquery = "SELECT * FROM property_owners 
-                 WHERE Email_Address = '$email'
-                 AND Phone_Number = '$phoneNumber'";
+    // Fetch updated Rentals_Owned value
+    $sqlquery = "SELECT Rentals_Owned FROM property_owners 
+                 WHERE Email_Address = ? 
+                 AND Phone_Number = ?";
     
-    $res = mysqli_query($connectionInitialisation, $sqlquery);
-    if (!$res) {
-        die("Select query failed: " . mysqli_error($connectionInitialisation));
+    $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
+    mysqli_stmt_bind_param($stmt, "ss", $email, $phoneNumber);
+    
+    if (!mysqli_stmt_execute($stmt)) {
+        die("Select query failed: " . mysqli_stmt_error($stmt));
     }
     
-    while ($property_owner = mysqli_fetch_assoc($res)) {
-        $retrieved_rentals_owned = $property_owner['Rentals_Owned'];                    
-    }
+    mysqli_stmt_bind_result($stmt, $retrieved_rentals_owned);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
     
     include "../Php/correct-password.php";
     

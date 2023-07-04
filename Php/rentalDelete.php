@@ -46,24 +46,42 @@
         }
     }
 
-    $sqlquery = "DELETE FROM $tablename WHERE Rental_ID = '$rentalID';";
+    $sqlquery = "DELETE FROM $tablename WHERE Rental_ID = ?";
+    $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
     
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
-    } 
-    
-    $sqlquery = "DELETE FROM properties_owners_details WHERE Rental_ID = '$rentalID';";
-    
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
+    if (!$stmt) {
+        die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
     }
     
-    $sqlquery = "UPDATE property_owners 
-                 SET Rentals_Owned = '$rentalsOwnedRejoined'                      
-                 WHERE Email_Address = '$email' 
-                     AND Phone_Number = '$phoneNumber'";
+    mysqli_stmt_bind_param($stmt, "s", $rentalID);
+
+    if (!mysqli_stmt_execute($stmt)) {
+        die("Delete query failed: " . mysqli_error($connectionInitialisation));
+    }
+
+    $sqlquery = "DELETE FROM properties_owners_details WHERE Rental_ID = ?";
+    $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
     
-    if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+    if (!$stmt) {
+        die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+    }
+    
+    mysqli_stmt_bind_param($stmt, "s", $rentalID);
+
+    if (!mysqli_stmt_execute($stmt)) {
+        die("Delete query failed: " . mysqli_error($connectionInitialisation));
+    }
+
+    $sqlquery = "UPDATE property_owners SET Rentals_Owned = ? WHERE Email_Address = ? AND Phone_Number = ?";
+    $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
+    
+    if (!$stmt) {
+        die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+    }
+    
+    mysqli_stmt_bind_param($stmt, "sss", $rentalsOwnedRejoined, $email, $phoneNumber);
+
+    if (!mysqli_stmt_execute($stmt)) {
         die("Update query failed: " . mysqli_error($connectionInitialisation));
     }
 

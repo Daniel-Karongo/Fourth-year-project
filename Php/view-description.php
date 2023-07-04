@@ -114,11 +114,11 @@
                                 echo '</div>';                            
                             }
 
-                            if((in_array("Token", $refinedAmmenities)) || (in_array("Meter", $refinedAmmenities))) {
+                            if((in_array("Token", $refinedAmmenities)) || (in_array("Individual Sub-Meter", $refinedAmmenities))) {
                                 echo '<div class="electricity">
                                     <h4>Electricity</h4>';
                                     for($i=0; $i<count($refinedAmmenities); $i++) {
-                                        if(($refinedAmmenities[$i] === "Meter") || ($refinedAmmenities[$i] === "Token")) {
+                                        if(($refinedAmmenities[$i] === "Individual Sub-Meter") || ($refinedAmmenities[$i] === "Individual Token")) {
                                             echo '<p>'. $refinedAmmenities[$i] . '</p>';
                                         }                                
                                     }                                

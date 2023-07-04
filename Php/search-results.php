@@ -110,10 +110,10 @@
                             <label for="borehole">Borehole</label>
                                         
                             <h5>Electricity</h5>
-                            <input type="checkbox" name="token" id="token" value="Token">
-                            <label for="token"> Individual Token</label>
-                            <input type="checkbox" name="meter" id="meter" value="Meter">
-                            <label for="meter"> Shared Meter</label>
+                            <input type="checkbox" name="token" id="token" value="Individual Token">
+                            <label for="token">Individual Token</label>
+                            <input type="checkbox" name="meter" id="meter" value="Individual Sub-Meter">
+                            <label for="meter">Individual Sub-Meter</label>
                 
                             <h5>Security</h5>
                             <input type="checkbox" name="security-guard" id="security-guard" value="Security Guard">

@@ -1,9 +1,22 @@
 <?php
-    $sqlquery = "SELECT * FROM property_owners WHERE Email_Address = '$email';";
-    $res = mysqli_query($connectionInitialisation, $sqlquery);
+    $sqlQuery = "SELECT * FROM property_owners WHERE Email_Address = ?";
 
-    if (!$res) {
+    $stmt = mysqli_prepare($connectionInitialisation, $sqlQuery);
+    
+    if (!$stmt) {
+        die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+    }
+    
+    mysqli_stmt_bind_param($stmt, 's', $email);
+    
+    if (!mysqli_stmt_execute($stmt)) {
         die("Query execution failed: " . mysqli_error($connectionInitialisation));
+    }
+    
+    $res = mysqli_stmt_get_result($stmt);
+    
+    if (!$res) {
+        die("Result retrieval failed: " . mysqli_error($connectionInitialisation));
     }
     
     while ($property_owner = mysqli_fetch_assoc($res)) {
@@ -179,6 +192,8 @@
         }
         $iteration++; 
     }
+    
+    mysqli_stmt_close($stmt);
     
     include "../Php/dashboard.php";        
 ?>

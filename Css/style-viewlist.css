@@ -321,6 +321,51 @@ main {
     font-size: 1.5rem;
 }
 
+@media (max-width: 360px) {
+    .top {
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: nowrap;
+        overflow: hidden;
+    }
+
+    .top h1 {
+        align-self: center;
+    }
+
+    .advertise {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+    }
+
+    .advertise a {
+        flex: 1;
+        padding: 0;
+    }
+
+    .search-bar {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .search-bar input {
+        flex-grow: 1;
+        min-width: 10px;
+        width: fit-content;
+    }
+    
+    .search-bar button {
+        flex-grow: 0; 
+    }
+
+    #order-by {
+        overflow: hidden;
+        width: 100%;
+    }
+    
+}
+
 @media (min-width: 576px) {
     
     .container {

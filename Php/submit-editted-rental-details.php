@@ -361,19 +361,29 @@
                 break;
             
             default:
-                $sqlquery = "UPDATE business_premises 
-                        SET Rental_Name = '$nameOfRental',
-                            Type_Of_Premise = '$typeOfRental',
-                            Location = '$location', 
-                            Google_Location = '$googleLocation', 
-                            Image_Urls = '$plotNames', 
-                            Ammenities = '$ammenitiesCollection', 
-                            Number_Of_Similar_Units = '$availableUnits'                
-                        WHERE Rental_ID = '$rentalID'";
-                
-                if (!mysqli_query($connectionInitialisation, $sqlquery)) {
-                    die("Update query failed: " . mysqli_error($connectionInitialisation));
+                $sqlQuery = "UPDATE business_premises 
+                                SET Rental_Name = ?, 
+                                    Type_Of_Premise = ?, 
+                                    Location = ?, 
+                                    Google_Location = ?, 
+                                    Image_Urls = ?, 
+                                    Ammenities = ?, 
+                                    Number_Of_Similar_Units = ?                
+                                WHERE Rental_ID = ?";
+
+                $stmt = mysqli_prepare($connectionInitialisation, $sqlQuery);
+
+                if (!$stmt) {
+                die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
                 }
+
+                mysqli_stmt_bind_param($stmt, 'ssssssis', $nameOfRental, $typeOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $availableUnits, $rentalID);
+
+                if (!mysqli_stmt_execute($stmt)) {
+                die("Update query failed: " . mysqli_error($connectionInitialisation));
+                }
+
+                mysqli_stmt_close($stmt);
 
                 properties_owners_detailsTablePopulator($rentalID, $rentalTerm, $amountOfRent, $description, $preferencesCollection, "", $rulesFiles, $connectionInitialisation);
 
@@ -421,53 +431,92 @@
     function otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $availableUnits, $connectionInitialisation) {
         include '../Php/databaseConnector.php';
 
-        $sqlquery = "UPDATE $tableName 
-                        SET Rental_Name = '$nameOfRental', 
-                            Location = '$location', 
-                            Google_Location = '$googleLocation', 
-                            Image_Urls = '$plotNames', 
-                            Ammenities = '$ammenitiesCollection', 
-                            Number_Of_Similar_Units = '$availableUnits'                
-                        WHERE Rental_ID = '$rentalID'";
-        
-        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+        // Prepare the SQL statement with placeholders
+        $sqlQuery = "UPDATE $tableName 
+                        SET Rental_Name = ?, 
+                            Location = ?, 
+                            Google_Location = ?, 
+                            Image_Urls = ?, 
+                            Ammenities = ?, 
+                            Number_Of_Similar_Units = ?                
+                        WHERE Rental_ID = ?";
+
+        // Create a prepared statement
+        $stmt = mysqli_prepare($connectionInitialisation, $sqlQuery);
+
+        // Check if the prepared statement was created successfully
+        if (!$stmt) {
+            die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+        }
+
+        // Bind the parameters to the prepared statement
+        mysqli_stmt_bind_param($stmt, 'sssssis', $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $availableUnits, $rentalID);
+
+        // Execute the prepared statement
+        if (!mysqli_stmt_execute($stmt)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
-        }        
+        }
+
+        // Close the prepared statement
+        mysqli_stmt_close($stmt);
+
     }
 
     function eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $availableUnits, $connectionInitialisation) {
         include '../Php/databaseConnector.php';
 
-        $sqlquery = "UPDATE $tableName 
-                        SET Rental_Name = '$nameOfRental', 
-                            Location = '$location', 
-                            Google_Location = '$googleLocation', 
-                            Image_Urls = '$plotNames', 
-                            Ammenities = '$ammenitiesCollection',
-                            $extraColumn = '$numberOfOccupants', 
-                            Number_Of_Similar_Units = '$availableUnits'                
-                        WHERE Rental_ID = '$rentalID'";
-        
-        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+        $sqlQuery = "UPDATE $tableName 
+                        SET Rental_Name = ?, 
+                            Location = ?, 
+                            Google_Location = ?, 
+                            Image_Urls = ?, 
+                            Ammenities = ?, 
+                            $extraColumn = ?, 
+                            Number_Of_Similar_Units = ?                
+                        WHERE Rental_ID = ?";
+
+        $stmt = mysqli_prepare($connectionInitialisation, $sqlQuery);
+
+        if (!$stmt) {
+            die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'sssssiis', $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $availableUnits, $rentalID);
+
+        if (!mysqli_stmt_execute($stmt)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
-        }        
+        }
+
+        mysqli_stmt_close($stmt);
+            
     }
 
     function properties_owners_detailsTablePopulator($rentalID, $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $connectionInitialisation) {
 
         include '../Php/databaseConnector.php';
 
-        $sqlquery = "UPDATE properties_owners_details
-                        SET Rental_Term = '$rentalTerm', 
-                            Amount_of_Rent = '$amountOfRent', 
-                            Pitching = '$description', 
-                            Preferred_Sorts_of_Applicants = '$preferencesCollection', 
-                            Maximum_Number_Of_Occupants = '$numberOfOccupants', 
-                            Rules_Urls = '$rulesFiles'                
-                        WHERE Rental_ID = '$rentalID'";
+        $sqlQuery = "UPDATE properties_owners_details
+                        SET Rental_Term = ?, 
+                            Amount_of_Rent = ?, 
+                            Pitching = ?, 
+                            Preferred_Sorts_of_Applicants = ?, 
+                            Maximum_Number_Of_Occupants = ?, 
+                            Rules_Urls = ?                
+                        WHERE Rental_ID = ?";
 
-        if (!mysqli_query($connectionInitialisation, $sqlquery)) {
+        $stmt = mysqli_prepare($connectionInitialisation, $sqlQuery);
+
+        if (!$stmt) {
+            die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+        }
+
+        mysqli_stmt_bind_param($stmt, 'sississ', $rentalTerm, $amountOfRent, $description, $preferencesCollection, $numberOfOccupants, $rulesFiles, $rentalID);
+
+        if (!mysqli_stmt_execute($stmt)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
-        }                
+        }
+
+        mysqli_stmt_close($stmt);
+                
     }
 ?>
