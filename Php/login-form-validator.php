@@ -3,6 +3,7 @@
 
     $email = $_POST["email"];
     $password = $_POST["passwordField"];
+    $toBeRemember = isset($_POST["remember"]) ? $_POST["remember"] : null;
 
     $sqlquery = "SELECT Email_Address, Pass_Word FROM property_owners WHERE BINARY Email_Address = ?;";
     $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
@@ -12,11 +13,15 @@
 
     if (mysqli_num_rows($res) > 0) {
         while ($property_owner = mysqli_fetch_assoc($res)) {
-            $retrieved_email = $property_owner['Email_Address'];
             $retrieved_password = $property_owner['Pass_Word'];            
         }
         if (password_verify($password, $retrieved_password)) {
-            include "../Php/correct-password.php";
+            if($toBeRemember === null) {
+                include "../Php/correct-password.php";
+            } else {
+                include "../Php/remember-me.php";
+            }
+            
         } else {
             include "../Php/incorrect-Password.php";            
         }
