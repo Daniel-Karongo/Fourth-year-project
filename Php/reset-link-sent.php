@@ -13,8 +13,14 @@
 <body onload="alertNotification()">
     <div class="container">
         <h1>housesearchke</h1>
-        <h3>Password Reset Link Sent</h3>
-        <p>A Link Has Been Sent To Your Email, <span><?php echo $email ?></span>.</br> Use This Link To Change Your Account Password To A New One.</p>
+        <h3>Confirmation Code Sent</h3>
+        <p>A Confirmation Code Has Been Sent To Your Email, <span><?php echo $email ?></span>.</br></br> Enter This Code To Change Your Account Password To A New One.</p>
+        <form action="../Php/reset-password-preparation.php" onsubmit="validateForm(event)" method="post">
+            <input type="text" name="confirmation-code" id="confirmation-code">
+            <div class="error"></div>
+            <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Submit</button>
+            <input type="hidden" name="email" value="<?php echo $email;?>">
+        </form>
     </div>
 </body>
 </html>

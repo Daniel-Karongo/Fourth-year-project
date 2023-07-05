@@ -17,19 +17,24 @@
         <form action="../Php/password-changer.php" method="post" onsubmit="validateForm(event)">
             <div class="password">
                 <label for="password">Enter The New Password</label>
-                <input type="text" name="password" id="password" onfocus="forPasswordCreationFocus(event)" onblur="forPasswordCreationBlur(event)">
+                <input type="password" name="password" id="password" onfocus="forPasswordCreationFocus(event)" onblur="forPasswordCreationBlur(event)">
                 <div class="error"></div>
             </div>
             
             <div class="passwordConfirmation">
                 <label for="password-confirmation">Confirm Password</label>
-                <input type="text" name="password-confirmation" id="password-confirmation" onfocus="forPasswordConfirmationFocus(event)" onblur="forPasswordConfirmationBlur(event)">
+                <input type="password" name="password-confirmation" id="password-confirmation" onfocus="forPasswordConfirmationFocus(event)" onblur="forPasswordConfirmationBlur(event)">
                 <div class="error"></div>
             </div>
             
+            <div class="show-password">
+                <input type="checkbox" name="show-password" id="show-password" onclick="showPasswordFields()">
+                <label for="show-password">Show Password</label>
+            </div>
+
             <input type="hidden" name="email" value="<?php echo $email;?>">
             <input type="hidden" name="phone-number" value="<?php echo $phoneNumber;?>">
-            <input type="hidden" name="token" value="<?php echo $token;?>">
+            <input type="hidden" name="confirm-code" value="<?php echo $confirmationCode;?>">
             <button onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Submit</button>
         </form>
     </div>

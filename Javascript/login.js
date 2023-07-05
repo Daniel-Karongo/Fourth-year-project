@@ -67,7 +67,7 @@ function toggleBtwShowingAndHidingPassword() {
     if(checkbox.checked) {
         password.type = "text";        
     } else {
-        password.type = "password"
+        password.type = "password";
         
     }        
 }

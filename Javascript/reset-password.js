@@ -115,3 +115,19 @@ function forPasswordConfirmationBlur(event) {
     validatePasswordConfirmation(event);
     unzoomDiv(div);
 }
+
+function showPasswordFields() {
+    let passwordConfirmationField = document.querySelector('#password-confirmation');
+    let passwordField = document.querySelector('#password');
+    let checkbox = document.querySelector('#show-password');
+
+    if(checkbox.checked) {
+        passwordConfirmationField.type = "text";        
+        passwordField.type = "text";        
+    } else {
+        passwordConfirmationField.type = "password";
+        passwordField.type = "password";
+        
+    }
+
+}

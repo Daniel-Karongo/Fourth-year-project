@@ -24,7 +24,7 @@
                 <input type="text" name="phone-number" id="phone-number" placeholder="0700000000" onfocus="zoomDiv(this)" onblur="unzoomDiv(this)">
                 <div class="error"></div>
 
-                <p>An Email Will Then Be Sent To You Prompting You To Change Your Email</p>
+                <p>An Confirmation Code Will Then Be Sent To You</p>
             </div>
             <div class="submit-button">
                 <button onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Submit</button>

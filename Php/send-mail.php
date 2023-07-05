@@ -7,12 +7,11 @@
     require '../phpmailer/src/SMTP.php';
     
     try {
-        $token = bin2hex(random_bytes(32));
-        $resetLink = "https://housesearchke-1.000webhostapp.com/Php/reset-password-preparation.php?token=" . urlencode($token);
+        $confirmationCode = rand(100000, 999999); // Replace with your own code to generate the confirmation code
     
         $to = $email;
-        $subject = "Password Reset";
-        $message = "Click the link below to reset your password:\n\n" . $resetLink;
+        $subject = "Confirmation Code";
+        $message = "Your confirmation code is: " . $confirmationCode;
         $headers = "From: housesearchke.com <danieltorrent001@gmail.com>";
     
         // Using PHPMailer
@@ -31,7 +30,7 @@
         $mail->Body = $message;
         
         if ($mail->send()) {
-            $sqlquery = "UPDATE property_owners SET Password_Reset_Token = ? WHERE Email_Address = ? AND Phone_Number = ?";
+            $sqlquery = "UPDATE property_owners SET Password_Reset_Confirmation_Code = ? WHERE Email_Address = ? AND Phone_Number = ?";
 
             $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
             
@@ -39,7 +38,7 @@
                 die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
             }
             
-            mysqli_stmt_bind_param($stmt, "sss", $token, $email, $phoneNumber);
+            mysqli_stmt_bind_param($stmt, "sss", $confirmationCode, $email, $phoneNumber);
 
             if (!mysqli_stmt_execute($stmt)) {
                 die("Update query failed: " . mysqli_error($connectionInitialisation));
