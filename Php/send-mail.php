@@ -8,7 +8,7 @@
     
     try {
         $token = bin2hex(random_bytes(32));
-        $resetLink = "../Php/reset-password.php?token=" . urlencode($token);
+        $resetLink = "https://housesearchke-1.000webhostapp.com/Php/reset-password-preparation.php?token=" . urlencode($token);
     
         $to = $email;
         $subject = "Password Reset";
@@ -47,7 +47,7 @@
 
             echo "<script>alert('Email Sent Successfully')</script>";
 
-            include "../Php/reset-password.php";
+            include "../Php/reset-link-sent.php";
         } else {
             // Error occurred while sending email
         }
