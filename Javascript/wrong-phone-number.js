@@ -56,3 +56,7 @@ function nullifySuccessOrFailure(element) {
     parentDiv.classList.remove('success');
     parentDiv.classList.remove('error'); 
 }
+
+function alertError() {
+    alert("You Entered The Wrong Phone Number. Try Again")
+}

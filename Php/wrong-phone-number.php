@@ -8,16 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
-    <script src="../Javascript/forgot-password.js"></script>
+    <script src="../Javascript/wrong-phone-number.js"></script>
 </head>
-<body>
+<body onload="alertError()">
     <div class="container">
         <h1>housesearchke</h1>
         <h3>Account Recovery</h3>
         <form action="../Php/phone-number-validation.php" method="post">
             <div class="email">
                 <label for="email">To Reset The Password To Account: </label>
-                <input type="text" name="email" id="email" value="<?php echo $inputValue;?>" readonly>
+                <input type="text" name="email" id="email" value="<?php echo $email;?>" readonly>
             </div>
             <div class="phone-number">
                 <label for="phone-number">We need to guarantee that really you who created the account. Therefore, please specify the phone number you had given when creating the account.</label>

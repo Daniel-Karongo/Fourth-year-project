@@ -323,27 +323,30 @@
 
                         </div>
                     </div>
-                    <div class="rules-title">
-                        <h3>These are the rules you Uploaded</h3>
-                    </div>
-                    <div class="rules">
-                        <div class="buttons left rules-images-buttons">
-                            <button type="button" onclick="viewLeft('.rules-images img.viewimage-rules', '.tally #tally-paragraph-rules')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/left button.png" alt="left-button"></button>
-                        </div>
-                        <div class="rules-images">
-                            <?php
-                                for($j=0; $j<count($IndividualRules); $j++) {
-                                    echo '<img class="viewimage-rules" id="rules-image' . ($j+1) . '" src="../Image_Data/Rules/' . $IndividualRules[$j] .'" alt="image"' . ($j+1) . '>';
-                                }                                
-                            ?>
-                        </div>             
-                        <div class="buttons right rules-images-buttons">
-                            <button type="button" onclick="viewRight('.rules-images img.viewimage-rules', '.tally #tally-paragraph-rules')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/right button.png" alt="right-button"></button>
-                        </div>
-                    </div>
-                    <div class="tally">
-                        <p id="tally-paragraph-rules"> 1 of <?php echo count($IndividualRules); ?> </p>
-                    </div>
+                    <?php 
+                        if ($IndividualRules[0] != "") {
+                            echo '
+                                <div class="rules-title">
+                                    <h3>These are the rules you Uploaded</h3>
+                                </div>
+                                <div class="rules">
+                                    <div class="buttons left rules-images-buttons">
+                                        <button type="button" onclick="viewLeft(\'.rules-images img.viewimage-rules\', \'.tally #tally-paragraph-rules\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/left button.png" alt="left-button"></button>
+                                    </div>
+                                    <div class="rules-images">'; 
+                                        for($j=0; $j<count($IndividualRules); $j++) {
+                                            echo '<img class="viewimage-rules" id="rules-image' . ($j+1) . '" src="../Image_Data/Rules/' . $IndividualRules[$j] .'" alt="image"' . ($j+1) . '>';
+                                        }                
+                              echo '</div>             
+                                    <div class="buttons right rules-images-buttons">
+                                        <button type="button" onclick="viewRight(\'.rules-images img.viewimage-rules\', \'.tally #tally-paragraph-rules\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><img src="../Images/right button.png" alt="right-button"></button>
+                                    </div>
+                                </div>
+                                <div class="tally">
+                                    <p id="tally-paragraph-rules"> 1 of ' . count($IndividualRules) . '</p>
+                                </div>';
+                        }
+                    ?>
                     <div class="input-rules-files">
                         <label for="rules-photos" class="rental-description-labels" id="rules-photos-label"> Re-Upload Photos Of Your Rules </label>
                         <input type="file" class="rental-description-input" name="rules-photos[]" id="rules-photos" value="" multiple>

@@ -26,8 +26,10 @@
         $filePath = $imagepaths . $individualImages[$i];
         if (is_file($filePath)) {
             if (file_exists($filePath)) {
-                if (unlink($filePath)) {
-                } else {
+                if (file_exists($filePath)) {
+                    if (unlink($filePath)) {
+                    } else {
+                    }
                 }
             } else {
             }
@@ -39,8 +41,10 @@
     for($i=0; $i<count($individualrulesPhotos); $i++) {
         $filePath = "../Image_Data/Rules/" . $individualrulesPhotos[$i];
         if (file_exists($filePath)) {
-            if (unlink($filePath)) {
-            } else {
+            if (is_file($filePath)) {
+                if (unlink($filePath)) {
+                } else {
+                }
             }
         } else {
         }

@@ -14,7 +14,7 @@
     <div class="container">
         <h1>housesearchke</h1>
         <h3>Account Recovery</h3>
-        <form action="../Php/phone-number-validation.php" method="post">
+        <form action="../Php/phone-number-validation.php" method="post" onsubmit="validateForm(event)">
             <div class="email">
                 <label for="email">To Reset The Password To Account: </label>
                 <input type="text" name="email" id="email" value="<?php echo $inputValue;?>" readonly>
@@ -22,6 +22,7 @@
             <div class="phone-number">
                 <label for="phone-number">We need to guarantee that really you who created the account. Therefore, please specify the phone number you had given when creating the account.</label>
                 <input type="text" name="phone-number" id="phone-number" placeholder="0700000000" onfocus="zoomDiv(this)" onblur="unzoomDiv(this)">
+                <div class="error"></div>
 
                 <p>An Email Will Then Be Sent To You Prompting You To Change Your Email</p>
             </div>

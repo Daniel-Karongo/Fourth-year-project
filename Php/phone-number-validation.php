@@ -18,7 +18,6 @@
             include "../Php/send-mail.php";
         } else {
             include "../Php/wrong-phone-number.php";
-            echo "<script>alert('Wrong Number Provided')</script>";
         }
  
     } else {

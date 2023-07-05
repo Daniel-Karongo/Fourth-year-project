@@ -8,8 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
+    <script src="../Javascript/reset-link-sent.js"></script>
 </head>
-<body>
+<body onload="alertNotification()">
     <div class="container">
         <h1>housesearchke</h1>
         <h3>Password Reset Link Sent</h3>

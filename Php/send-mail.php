@@ -45,11 +45,9 @@
                 die("Update query failed: " . mysqli_error($connectionInitialisation));
             }
 
-            echo "<script>alert('Email Sent Successfully')</script>";
-
             include "../Php/reset-link-sent.php";
         } else {
-            // Error occurred while sending email
+            echo "<script>alert('Email Not Sent. Please Check Your Internet Connectivity Then Try Again')</script>";
         }
     } catch (Exception $e) {
         // Exception occurred while sending email

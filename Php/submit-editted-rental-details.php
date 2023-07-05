@@ -278,8 +278,10 @@
         for($i=0; $i<count($individualOldPhotos); $i++) {
             $filePath = $oldPlotPhotosPaths . $individualOldPhotos[$i];
             if (file_exists($filePath)) {
-                if (unlink($filePath)) {
-                } else {
+                if (is_file($filePath)) {
+                    if (unlink($filePath)) {
+                    } else {
+                    }
                 }
             } else {
             }
@@ -291,8 +293,10 @@
             $filePath = "../Image_Data/Rules/" . $individualOldRulesPhotos[$i];
             if (is_file($filePath)) {
                 if (file_exists($filePath)) {
-                    if (unlink($filePath)) {
-                    } else {
+                    if (is_file($filePath)) {
+                        if (unlink($filePath)) {
+                        } else {
+                        }
                     }
                 } else {
                 }
