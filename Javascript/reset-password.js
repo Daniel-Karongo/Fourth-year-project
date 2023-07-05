@@ -14,18 +14,23 @@ function validatePasswordCreation(event) {
     const fieldValue = field.value;
     const regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\S]).*$/;
 
-    if(fieldValue.length < 8) {
-        displayError(field, "The Password Is Too Short");
-    } else {
-        if(regex.test(fieldValue) === false) {
-            displayError(field, "The Password Must Contain At Least One Of Each Of The Following: lowercase, UPPERCASE, special characters as well as digits");
+    if(fieldValue.length !== 0) {
+        if(fieldValue.length < 8) {
+            displayError(field, "The Password Is Too Short");
         } else {
-            nullifySuccessOrFailure(field);
-            if(event === 'submit') {
-                return true;
+            if(regex.test(fieldValue) === false) {
+                displayError(field, "The Password Must Contain At Least One Of Each Of The Following: lowercase, UPPERCASE, special characters as well as digits");
+            } else {
+                nullifySuccessOrFailure(field);
+                if(event === 'submit') {
+                    return true;
+                }
             }
         }
+    } else {
+        displayError(field, "Please Enter A Password");
     }
+    
 }
 
 function validatePasswordConfirmation(event) {
@@ -35,13 +40,17 @@ function validatePasswordConfirmation(event) {
     const confirmPasswordfield = document.getElementById('password-confirmation');
     const confirmPasswordfieldValue = confirmPasswordfield.value;
 
-    if(enterPasswordfieldValue !== confirmPasswordfieldValue) {
-        displayError(confirmPasswordfield, "The Passwords Do Not Match");
-    } else {
-        nullifySuccessOrFailure(confirmPasswordfield);
-        if(event === 'submit') {
-            return true;
+    if(confirmPasswordfieldValue.length !== 0){
+        if(enterPasswordfieldValue !== confirmPasswordfieldValue) {
+            displayError(confirmPasswordfield, "The Passwords Do Not Match");
+        } else {
+            nullifySuccessOrFailure(confirmPasswordfield);
+            if(event === 'submit') {
+                return true;
+            }
         }
+    } else {
+        displayError(confirmPasswordfield, "Please Enter A Password");
     }
 }
 
@@ -81,4 +90,28 @@ function unzoomDiv(div) {
     div.style.borderColor = originalBorderColor;
 
     div.style.outline = 'none';
+}
+
+function forPasswordCreationFocus(event) {
+    let div = document.getElementById('password');
+    zoomDiv(div);
+    validatePasswordCreation(event);
+}
+
+function forPasswordCreationBlur(event) {
+    let div = document.getElementById('password');
+    zoomDiv(div);
+    validatePasswordCreation(event);
+}
+
+function forPasswordConfirmationFocus(event) {
+    let div = document.getElementById('password-confirmation');
+    validatePasswordConfirmation(event);
+    zoomDiv(div);
+}
+
+function forPasswordConfirmationBlur(event) {
+    let div = document.getElementById('password-confirmation');
+    validatePasswordConfirmation(event);
+    unzoomDiv(div);
 }

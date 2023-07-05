@@ -14,7 +14,7 @@
     <div class="container">
         <h1>housesearchke</h1>
         <h3>Password Reset Link Sent</h3>
-        <p>A Link Has Been Sent To Your Email, <?php echo $email ?>. Use This Link To Change Your Account Password To A New One.</p>
+        <p>A Link Has Been Sent To Your Email, <span><?php echo $email ?></span>.</br> Use This Link To Change Your Account Password To A New One.</p>
     </div>
 </body>
 </html>

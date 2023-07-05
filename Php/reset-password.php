@@ -17,13 +17,13 @@
         <form action="../Php/password-changer.php" method="post" onsubmit="validateForm(event)">
             <div class="password">
                 <label for="password">Enter The New Password</label>
-                <input type="text" name="password" id="password" onfocus="zoomDiv(this)" onblur="unzoomDiv(this)">
+                <input type="text" name="password" id="password" onfocus="forPasswordCreationFocus(event)" onblur="forPasswordCreationBlur(event)">
                 <div class="error"></div>
             </div>
             
             <div class="passwordConfirmation">
                 <label for="password-confirmation">Confirm Password</label>
-                <input type="text" name="password-confirmation" id="password-confirmation" onfocus="zoomDiv(this)" onblur="unzoomDiv(this)">
+                <input type="text" name="password-confirmation" id="password-confirmation" onfocus="forPasswordConfirmationFocus(event)" onblur="forPasswordConfirmationBlur(event)">
                 <div class="error"></div>
             </div>
             
