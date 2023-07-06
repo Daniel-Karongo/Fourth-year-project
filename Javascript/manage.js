@@ -136,7 +136,6 @@ function validateForm(event) {
     if((firstNameOkay === true) && (lastNameOkay === true) && (phoneNumberOkay === true) && (emailOkay === true) && (createPasswordOkay === true)) {
         const proceed = confirm("Are You Sure You Want To Edit Your Account Details?");
         if(proceed) {
-            alert("Updates Made Successfully");
             document.querySelector('.contact-information #contact-information-form').submit();
         }        
     }

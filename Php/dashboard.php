@@ -265,7 +265,7 @@
                         
                         <div class="email">
                             <label for="email">Email Address:</label>
-                            <input type="text" id="email" name="email" value="<?php echo $email;?>" disabled onblur="validateField('email', 'Please Specify An Email that will be Associated With Your Rentals')">
+                            <input type="text" id="email" name="modified-email" value="<?php echo $email;?>" disabled onblur="validateField('email', 'Please Specify An Email that will be Associated With Your Rentals')">
                             <div class="error"></div>
                         </div>
 
@@ -284,6 +284,9 @@
                         <div class="edit-details">
                             <button type="button" tabindex="0" onclick="toggleEnabled()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Edit Details</button>
                         </div>
+
+                        <input type="hidden" name="email" value="<?php echo $email;?>">
+                        <input type="hidden" name="passwordField" value="<?php echo $password;?>">
                         
                         <div class="confirm-button">
                             <button type="submit" tabindex="0" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Confirm Details</button>
