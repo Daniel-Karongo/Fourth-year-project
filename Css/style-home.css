@@ -61,7 +61,7 @@ body {
 }
 
 .advertise {
-    border: 2px solid white;
+    border: 2px solid rgba(255,255,255, 1);
     border-radius: 10px;    /* To round the corners*/
     padding: 10px 20px;     /* To give the button a bigger body: 5px more in the upwards and downwards directions and 20px more in the left and right directions*/
     outline: none;

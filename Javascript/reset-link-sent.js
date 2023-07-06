@@ -1,7 +1,3 @@
-function alertNotification() {
-    alert("Email Sent Successfully");
-}
-
 function zoomDiv(div) {
     // Store the original border color
     var originalBorderColor = div.style.borderColor;

@@ -1,4 +1,10 @@
 <?php
+    $firstName = $_POST["first-name"];
+    $lastName = $_POST["last-name"];
+    $phoneNumber = $_POST["phone-number"];
+    $confirmPassword = $_POST["confirm-password"];
+    $email = $_POST["email"];
+    
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
     
@@ -30,21 +36,10 @@
         $mail->Body = $message;
         
         if ($mail->send()) {
-            $sqlquery = "UPDATE property_owners SET Password_Reset_Confirmation_Code = ? WHERE Email_Address = ? AND Phone_Number = ?";
+            $expiration = time() + (60 * 60 * 2); // Example: 30 days expiration time
+            setcookie('confirmation_code', $confirmationCode, $expiration, '/', '', true, true); // Set the secure flag and httponly flag
 
-            $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
-            
-            if (!$stmt) {
-                die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
-            }
-            
-            mysqli_stmt_bind_param($stmt, "sss", $confirmationCode, $email, $phoneNumber);
-
-            if (!mysqli_stmt_execute($stmt)) {
-                die("Update query failed: " . mysqli_error($connectionInitialisation));
-            }
-
-            include "../Php/reset-link-sent.php";
+            include "../Php/account-verification.php";
             echo "<script>alert('Email Sent Successfully');</script>";
         } else {
             echo "<script>alert('Email Not Sent. Please Check Your Internet Connectivity Then Try Again')</script>";

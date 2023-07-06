@@ -27,7 +27,7 @@
                                 <label for="">First Name</label>
                             </div>
                             <div class="input-first-name">
-                                <input type="text" name="first-name" id="first-name" onblur="validateField('first-name', 'Please Specify Your First Name')">
+                                <input type="text" name="first-name" id="first-name" onblur="validateField('first-name', 'Please Specify Your First Name')" value="<?php echo $firstName;?>">
                                 <div class="error"></div>
                             </div>                           
                         </div>
@@ -36,7 +36,7 @@
                                 <label for="">Last Name</label>
                             </div>
                             <div class="input-last-name">
-                                <input type="text" name="last-name" id="last-name" onblur="validateField('last-name', 'Please Specify Your Last Name')">
+                                <input type="text" name="last-name" id="last-name" onblur="validateField('last-name', 'Please Specify Your Last Name')" value="<?php echo $lastName;?>">
                                 <div class="error"></div>
                             </div>                     
                         </div>                  
@@ -47,7 +47,7 @@
                                 <label for="">Phone Number</label>
                             </div>
                             <div class="input-phone">
-                                <input type="number" name="phone-number" id="phone-number" placeholder="e.g. 0700000000" onblur="validatePhoneNumber()">
+                                <input type="number" name="phone-number" id="phone-number" placeholder="e.g. 0700000000" onblur="validatePhoneNumber()" value="<?php echo $phoneNumber;?>">
                                 <div class="error"></div>
                             </div>                      
                         </div>
@@ -56,7 +56,7 @@
                                 <label for="">Email Address</label>
                             </div>
                             <div class="input-email">
-                                <input type="text" name="email" id="email" placeholder="e.g. abcd@gmail.com" onblur="validateField('email', 'Please Specify An Email that will be Associated With Your Rentals')">
+                                <input type="text" name="email" id="email" placeholder="e.g. abcd@gmail.com" onblur="validateField('email', 'Please Specify An Email that will be Associated With Your Rentals')" value="<?php echo $email;?>">
                                 <div class="error"></div>
                             </div>                     
                         </div>                        
@@ -68,7 +68,7 @@
                                     <label for="">Create a Password</label>
                                 </div>
                                 <div class="input-create-password">
-                                    <input type="password" name="create-password" id="create-password" onblur="validateField('create-password', 'Please Enter A Password To Secure Your Account')">
+                                    <input type="password" name="create-password" id="create-password" onblur="validateField('create-password', 'Please Enter A Password To Secure Your Account')" value="<?php echo $confirmPassword;?>">
                                     <div class="error"></div>
                                 </div>                          
                             </div>
@@ -77,7 +77,7 @@
                                     <label for="confirm-password">Confirm Password</label>
                                 </div>
                                 <div class="input-confirm-password">
-                                    <input type="password" name="confirm-password" id="confirm-password" onblur="validateField('confirm-password', 'Please Confirm The Password')">
+                                    <input type="password" name="confirm-password" id="confirm-password" onblur="validateField('confirm-password', 'Please Confirm The Password')" value="<?php echo $confirmPassword;?>">
                                     <div class="error"></div>
                                 </div>                          
                             </div>                        

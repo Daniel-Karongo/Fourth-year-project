@@ -18,10 +18,11 @@
     mysqli_stmt_bind_param($stmt, 'sssss', $phoneNumber, $email, $hashedPassword, $firstName, $lastName);
 
     if (!mysqli_stmt_execute($stmt)) {
-        die("Query execution failed: " . mysqli_error($connectionInitialisation));
+        echo "<script>alert('Account Already Exists')</script>";
+        include "../Php/account-already-exists.php";
+        mysqli_stmt_close($stmt);
+    } else {
+        $password = $_POST["confirm-password"];
+        include '../Php/correct-password.php';
     }
-
-    mysqli_stmt_close($stmt);
-
-    include '../Php/correct-password.php';
 ?>

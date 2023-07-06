@@ -122,7 +122,7 @@ function validateForm(event) {
         const proceed = confirm("Are You Sure You Want To Create An Account?");
         console.log(proceed);
         if(proceed) {
-            alert("Account Created Successfully");
+            alert("An Account Verification Code Will Be Sent To The Email Address You Have Provided. Enter It In The Next Section");
             document.querySelector('form').submit();
         }        
     }

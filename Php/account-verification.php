@@ -19,12 +19,16 @@
         <br>
         <h1>housesearchke</h1>
         <h3>Confirmation Code Sent</h3>
-        <p>A Confirmation Code Has Been Sent To Your Email, <span><?php echo $email ?></span>.</br></br> Enter This Code To Change Your Account Password To A New One.</p>
-        <form action="../Php/reset-password-preparation.php" onsubmit="validateForm(event)" method="post">
+        <p>We Need To Guarantee That It Is Really You Creating An Account. For This Reason We Have Sent A Confirmation Code To Your Email, <span><?php echo $email ?></span>.</br></br> Enter This Code To Guarantee Ownership Of The Account You Have Given.</p>
+        <form action="../Php/account-verfication-code-confirmation.php" onsubmit="validateForm(event)" method="post">
             <input type="text" name="confirmation-code" id="confirmation-code">
             <div class="error"></div>
             <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Submit</button>
             <input type="hidden" name="email" value="<?php echo $email;?>">
+            <input type="hidden" name="first-name" value="<?php echo $firstName;?>">
+            <input type="hidden" name="last-name" value="<?php echo $lastName;?>">
+            <input type="hidden" name="phone-number" value="<?php echo $phoneNumber;?>">
+            <input type="hidden" name="confirm-password" value="<?php echo $confirmPassword;?>">
         </form>
     </div>
 </body>
