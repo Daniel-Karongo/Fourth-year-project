@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Jul 05, 2023 at 12:28 AM
+-- Generation Time: Jul 08, 2023 at 05:07 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -38,13 +38,6 @@ CREATE TABLE `apartments` (
   `Number_Of_Similar_Units` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `apartments`
---
-
-INSERT INTO `apartments` (`Rental_ID`, `Rental_Name`, `Location`, `Google_Location`, `Image_Urls`, `Ammenities`, `Number_Of_Bedrooms`, `Number_Of_Similar_Units`) VALUES
-('1687279264_karongodaniel022@gmail.com_0743879002_Kwa Pastor_Apartment', 'Kwa Pastor', 'Witeithie', 'ljlkjkjljlkjkljlk', 'IMG-6491d6a06d5dd1.87423093.jpg, IMG-6491d6a06d90f8.67960135.jpg, IMG-6491d6a06db5e4.71196261.jpg, IMG-6491d6a06ddf14.94590938.jpg', 'Tap Water: Tap Water, Water Tank: Water Tank, Meter: Meter, handicap-access: Handicap Access, balcony: Balcony', 5, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -60,13 +53,6 @@ CREATE TABLE `bedsitters` (
   `Ammenities` varchar(1000) NOT NULL,
   `Number_Of_Similar_Units` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `bedsitters`
---
-
-INSERT INTO `bedsitters` (`Rental_ID`, `Rental_Name`, `Location`, `Google_Location`, `Image_Urls`, `Ammenities`, `Number_Of_Similar_Units`) VALUES
-('1687279170_karongodaniel022@gmail.com_0743879002_House Of Hope_Bedsitter', 'House Of Hope', 'Witeithie', 'kljkljljlkjj', 'IMG-6491d6421d3f54.57543644.jpg, IMG-6491d6421d62c7.43547311.jpg, IMG-6491d6421d8c22.20165315.jpg, IMG-6491d6421dae93.95260455.jpg', 'Tap Water: Tap Water, Water Tank: Water Tank, Security Guard: Security Guard, Pit Latrine: Pit Latrine, Automatic Toilet: Flashing Toilet, cleaner: Cleaner, ceiling: Ceiling, furnished: Furnished', 4);
 
 -- --------------------------------------------------------
 
@@ -85,14 +71,6 @@ CREATE TABLE `business_premises` (
   `Number_Of_Similar_Units` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `business_premises`
---
-
-INSERT INTO `business_premises` (`Rental_ID`, `Rental_Name`, `Type_Of_Premise`, `Location`, `Google_Location`, `Image_Urls`, `Ammenities`, `Number_Of_Similar_Units`) VALUES
-('1687279328_karongodaniel022@gmail.com_0743879002_Mitahato_Business Premise', 'Mitahato', 'Shop', 'Witeithie', 'lkjhkljkjjklkjlkjkl', 'IMG-64a40aaae25080.98906479.jpg, IMG-64a40aaae29706.29975704.jpg, IMG-64a40aaae2c148.13403521.jpg, IMG-64a40aaae2ed08.48639475.jpg', 'Token: Individual Token, Security Guard: Security Guard, Cctv: Cctv, cleaner: Cleaner, handicap-access: Handicap Access, balcony: Balcony, wi-fi: Wi-Fi', 2),
-('1687558791_karongodaniel022@gmail.com_0743879002_Joskam Hostels_Business Premise', 'Joskam Hostels', 'Industrial', 'Witeithie', 'kljhjkhjlhukjjklhklj;lhk;;lhlk', 'IMG-64a40ae88ecaa9.84379407.jpg, IMG-64a40ae88eee50.34630850.jpg, IMG-64a40ae88f1899.94010235.jpg, IMG-64a40ae893f9c3.26642185.jpg', 'Garbage Collection: Garbage Collection, cleaner: Cleaner, sink: Sink, handicap-access: Handicap Access, packing: Packing, tiles: Tiles, ceiling: Ceiling, balcony: Balcony, wi-fi: Wi-Fi, joint-tv-subscription: Joint TV Subscription, air-conditioning: Air Conditioning, furnished: Furnished, swimming-pool: Swimming Pool, gym: Gym', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -108,14 +86,6 @@ CREATE TABLE `hostels` (
   `Ammenities` varchar(1000) NOT NULL,
   `Number_Of_Similar_Units` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `hostels`
---
-
-INSERT INTO `hostels` (`Rental_ID`, `Rental_Name`, `Location`, `Google_Location`, `Image_Urls`, `Ammenities`, `Number_Of_Similar_Units`) VALUES
-('1687278945_karongodaniel022@gmail.com_0743879002_Roadside Residence_Hostel', 'Roadside Residence', 'Witeithie', 'jkhjkhjkhjhhjkh', 'IMG-64a40a624af2e1.94821496.jpg, IMG-64a40a624b3ce7.13804944.jpg, IMG-64a40a624b6f11.86367433.jpg, IMG-64a40a624bae06.29701720.jpg', '', 2),
-('1688455731_karongodaniel022@gmail.com_0743879002_Nyayo 4_Hostel', 'Nyayo 4', 'KM', '', 'IMG-64a3ca33214216.23391957.jpg, IMG-64a3ca33215c34.73795750.jpg, IMG-64a3ca33217079.24521669.webp, IMG-64a3ca332187c7.78687701.jpg, IMG-64a3ca33219b46.61848373.jpg', '', 50);
 
 -- --------------------------------------------------------
 
@@ -133,13 +103,6 @@ CREATE TABLE `houses` (
   `Number_Of_Bedrooms` int(10) NOT NULL,
   `Number_Of_Similar_Units` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `houses`
---
-
-INSERT INTO `houses` (`Rental_ID`, `Rental_Name`, `Location`, `Google_Location`, `Image_Urls`, `Ammenities`, `Number_Of_Bedrooms`, `Number_Of_Similar_Units`) VALUES
-('1687279445_karongodaniel022@gmail.com_0743879002_Kwa Bishop_House', 'Kwa Bishop', 'Witeithie', 'kljklhjhklhjkhkljhj', 'IMG-6491d755cd71e6.32194317.jpg, IMG-6491d755cdb956.71643139.jpg, IMG-6491d755cdd8a8.06259298.jpg, IMG-6491d755ce24b0.85238093.jpg', 'Tap Water: Tap Water, Token: Token, Security Guard: Security Guard, Pit Latrine: Pit Latrine, gym: Gym', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -159,21 +122,6 @@ CREATE TABLE `properties_owners_details` (
   `Rules_Urls` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `properties_owners_details`
---
-
-INSERT INTO `properties_owners_details` (`Rental_ID`, `Owners_Phone_Number`, `Email_Address`, `Rental_Term`, `Amount_of_Rent`, `Pitching`, `Preferred_Sorts_of_Applicants`, `Maximum_Number_Of_Occupants`, `Rules_Urls`) VALUES
-('1687278945_karongodaniel022@gmail.com_0743879002_Roadside Residence_Hostel', '0743879002', 'karongodaniel022@gmail.com', 'monthly', 3200, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. ', 'Gender: Males, Students: No Students, Family: No Children, Vehicles: Vehicles Allowed', 1, 'IMG-64a40a62505215.14690148.jpg, IMG-64a40a62508257.65423705.jpg'),
-('1687279068_karongodaniel022@gmail.com_0743879002_Twins Garden_Single Room', '0743879002', 'karongodaniel022@gmail.com', 'weekly', 1000, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.', 'Gender: Males, Students: No Students, Family: No Children, Vehicles: Vehicles Allowed, Christianity: Christianity', 5, 'IMG-6491d5dc8186f2.77966111.jpg, IMG-6491d5dc81a753.85958399.jpg'),
-('1687279170_karongodaniel022@gmail.com_0743879002_House Of Hope_Bedsitter', '0743879002', 'karongodaniel022@gmail.com', 'yearly', 50000, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.', 'Gender: Any Gender, Students: No Students, Family: No Children, Vehicles: Vehicles Allowed, Any Religion: Any religion', 2, 'IMG-6491d6421dcfa5.80352599.jpg, IMG-6491d6421df1a4.27416291.jpg'),
-('1687279264_karongodaniel022@gmail.com_0743879002_Kwa Pastor_Apartment', '0743879002', 'karongodaniel022@gmail.com', 'monthly', 10000, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.', 'Gender: Any Gender, Specified Religion: Buddhism', 0, 'IMG-6491d6a06e0591.93642290.jpg, IMG-6491d6a06e2d46.29035598.jpg'),
-('1687279328_karongodaniel022@gmail.com_0743879002_Mitahato_Business Premise', '0743879002', 'karongodaniel022@gmail.com', 'daily', 300, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. ', '', 0, 'IMG-64a40aaae33115.46031981.jpg, IMG-64a40aaae35a20.11256473.jpg'),
-('1687279445_karongodaniel022@gmail.com_0743879002_Kwa Bishop_House', '0743879002', 'karongodaniel022@gmail.com', 'quarterly', 30000, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.', 'Gender: Males, Students: No Students, Vehicles: Vehicles Allowed', 0, 'IMG-6491d755ce4525.46426457.jpg, IMG-6491d755ce6974.88651468.jpg'),
-('1687279580_karongodaniel022@gmail.com_0743879002_Siku Njema_Suite', '0743879002', 'karongodaniel022@gmail.com', 'bi-annually', 60000, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.', 'Gender: Any Gender, Students: Students Welcome, Family: Any Family Welcome, Vehicles: Vehicles Allowed, Christianity: Christianity, Islam: Islam, Hinduism: Hinduism, Specified Religion: Buddhism', 2, 'IMG-6491d7dce465c7.45520784.jpg, IMG-6491d7dce48511.22494523.jpg'),
-('1687558791_karongodaniel022@gmail.com_0743879002_Joskam Hostels_Business Premise', '0743879002', 'karongodaniel022@gmail.com', 'yearly', 100000, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.  ', 'Gender: Any Gender, Students: Students Welcome, Family: Any Family Welcome, Vehicles: Vehicles Not Allowed, Specified Religion: Vehicles Not Allowed, Any Religion: Any religion', 0, 'IMG-64a40ae8948184.73251564.jpg, IMG-64a40ae89550a5.73596013.jpg'),
-('1688455731_karongodaniel022@gmail.com_0743879002_Nyayo 4_Hostel', '0743879002', 'karongodaniel022@gmail.com', 'quarterly', 2700, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.', '', 2, '');
-
 -- --------------------------------------------------------
 
 --
@@ -187,16 +135,9 @@ CREATE TABLE `property_owners` (
   `First_Name` varchar(30) DEFAULT NULL,
   `Last_Name` varchar(30) DEFAULT NULL,
   `Rentals_Owned` mediumtext DEFAULT NULL,
-  `Password_Reset_Token` mediumtext DEFAULT NULL
+  `Password_Reset_Confirmation_Code` mediumtext DEFAULT NULL,
+  `Remember_Me` mediumtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `property_owners`
---
-
-INSERT INTO `property_owners` (`Phone_Number`, `Email_Address`, `Pass_Word`, `First_Name`, `Last_Name`, `Rentals_Owned`, `Password_Reset_Token`) VALUES
-('0723715225', 'kungu.ik@gmail.com', '$2y$10$bbJbQdS6ycB8VpMA211/UuAx1dO5am1ctb8qUkayZRyFV6OdDYqrK', 'Isaac', 'Kungu', '', ''),
-('0743879002', 'karongodaniel022@gmail.com', '$2y$10$QGvQAtPv9O1TfQjZ7tIo2.XO.gzVKkVFzkwpvnugtLYlhm7ZnKlm2', 'Daniel', 'Kungu', '1687278945_karongodaniel022@gmail.com_0743879002_Roadside Residence_Hostel, 1687279068_karongodaniel022@gmail.com_0743879002_Twins Garden_Single Room, 1687279170_karongodaniel022@gmail.com_0743879002_House Of Hope_Bedsitter, 1687279264_karongodaniel022@gmail.com_0743879002_Kwa Pastor_Apartment, 1687279328_karongodaniel022@gmail.com_0743879002_Mitahato_Business Premise, 1687279445_karongodaniel022@gmail.com_0743879002_Kwa Bishop_House, 1687279580_karongodaniel022@gmail.com_0743879002_Siku Njema_Suite, 1687558791_karongodaniel022@gmail.com_0743879002_Joskam Hostels_Business Premise, 1688455731_karongodaniel022@gmail.com_0743879002_Nyayo 4_Hostel', NULL);
 
 -- --------------------------------------------------------
 
@@ -214,13 +155,6 @@ CREATE TABLE `single_rooms` (
   `Number_Of_Similar_Units` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `single_rooms`
---
-
-INSERT INTO `single_rooms` (`Rental_ID`, `Rental_Name`, `Location`, `Google_Location`, `Image_Urls`, `Ammenities`, `Number_Of_Similar_Units`) VALUES
-('1687279068_karongodaniel022@gmail.com_0743879002_Twins Garden_Single Room', 'Twins Garden', 'Witeithie', 'lkjkljkljkljlkj', 'IMG-6491d5dc810883.31645430.jpeg, IMG-6491d5dc8127d5.75921183.jpg, IMG-6491d5dc8149d1.94369382.jpg, IMG-6491d5dc816a49.58205116.jpg', 'Tap Water: Tap Water, Token: Token, Security Guard: Security Guard, Pit Latrine: Pit Latrine, Garbage Collection: Garbage Collection, handicap-access: Handicap Access, tiles: Tiles, wi-fi: Wi-Fi', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -237,13 +171,6 @@ CREATE TABLE `suites` (
   `Number_Of_Beds_Per_Suite` int(10) NOT NULL,
   `Number_Of_Similar_Units` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `suites`
---
-
-INSERT INTO `suites` (`Rental_ID`, `Rental_Name`, `Location`, `Google_Location`, `Image_Urls`, `Ammenities`, `Number_Of_Beds_Per_Suite`, `Number_Of_Similar_Units`) VALUES
-('1687279580_karongodaniel022@gmail.com_0743879002_Siku Njema_Suite', 'Siku Njema', 'Witeithie', 'KLJ;LJKLJ;LJKJ;', 'IMG-6491d7dce374f5.48375706.jpg, IMG-6491d7dce39f19.51113474.jpg, IMG-6491d7dce3bdf2.30646490.jfif, IMG-6491d7dce446c8.10179377.jpg', 'Tap Water: Tap Water, Bore Hole: Borehole, Token: Token, Security Guard: Security Guard, Pit Latrine: Pit Latrine, Garbage Collection: Garbage Collection, packing: Packing, balcony: Balcony, wi-fi: Wi-Fi', 2, 4);
 
 --
 -- Indexes for dumped tables

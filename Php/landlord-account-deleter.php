@@ -1,4 +1,4 @@
-<?php
+`<?php
     $email = $_POST['email'];
     $phoneNumber = $_POST['phone-number'];
 
@@ -34,7 +34,7 @@
         
         // If The Landlord Has Rentals
 
-        if($retrieved_rentals_owned !== "") {
+        if($retrieved_rentals_owned !== null) {
             $rentalsOwnedSplit = array();
             $rentalsOwnedSplit = explode(", ", $retrieved_rentals_owned);
             
@@ -311,4 +311,4 @@
             die("Delete query failed: " . mysqli_error($connectionInitialisation));
         }
     }
-?>
+?>`
