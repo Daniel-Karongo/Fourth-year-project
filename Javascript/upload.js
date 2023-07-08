@@ -376,14 +376,34 @@ function imagesSuccessOrFailure(event) {
         } else {
             displayError(imagesLabel, "Please Upload Photographs of the " + rentalTypeValue + "s");                
         }
+        document.querySelector('#imageError').style.setProperty('color', '#ff3860', 'important');
     } else {
         nullifySuccessOrFailure(imagesLabel);
+        document.querySelector('#imageError').innerHTML = imagesValue.length + " Files Selected";
+        document.querySelector('#imageError').style.setProperty('color', '#09c372', 'important');
+        document.querySelector('#imageError').style.textAlign = "center";
         if(event === "submit") {
             return true;
         }
         
     }
 }
+
+function viewTally() {
+    const rules = document.getElementById('rules-upload');
+    const rulesError = document.querySelector('#rules-error');
+    const rulesValue = rules.files;
+
+    if(rulesValue.length !== 0) {
+        rulesError.innerHTML = rulesValue.length + " Files Selected";
+        rulesError.style.setProperty('color', '#09c372', 'important');
+        rulesError.style.textAlign = "center";
+        rulesError.style.marginTop = "20px";
+    } else {
+        rulesError.innerHTML = "";
+    }
+}
+
 
 function forApartmentBedrooms(event) {
     const apartmentBedrooms = document.getElementById('number-of-apartment-bedrooms');        
@@ -703,4 +723,23 @@ function textareaSizor() {
     const textarea = document.getElementById('description');
     const height = textarea.scrollHeight;
     textarea.style.height = height + 'px';
+}
+
+function zoomDiv(div) {
+    // Store the original border color
+    var originalBorderColor = div.style.borderColor;
+
+    div.style.transform = 'scale(1.02, 1.0)';
+    div.style.borderColor = '#2C18DE';
+
+    // Add the original border color to the div as a data attribute
+    div.setAttribute('data-original-border-color', originalBorderColor);
+}
+  
+function unzoomDiv(div) {
+    div.style.transform = 'scale(1)';
+
+    // Restore the original border color
+    var originalBorderColor = div.getAttribute('data-original-border-color');
+    div.style.borderColor = originalBorderColor;
 }

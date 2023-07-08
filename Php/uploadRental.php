@@ -15,12 +15,12 @@
     <div class="container">
         <nav>
             <h3><?php echo $firstName . " " . $lastName;?></h3>
-            <button type="submit"><a href="../Html/index.html" tabindex="-1">Sign Out</a></button>
+            <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"><a href="../Html/index.html" tabindex="-1">Sign Out</a></button>
         </nav>
         <form class="main-body" id="form" action="../Php/rental-uploader.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event)">
             <div class="buttons">
-                <button onClick="wrapperFunction('.basic-information', 'flex', '.optional-information')" type="button">Basic Information</button>
-                <button onClick="wrapperFunction('.optional-information', 'block', '.basic-information')" type="button">Optional Information</button>
+                <button onClick="wrapperFunction('.basic-information', 'flex', '.optional-information')" type="button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Basic Information</button>
+                <button onClick="wrapperFunction('.optional-information', 'block', '.basic-information')" type="button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Optional Information</button>
             </div>
             <div class="basic-information">
                     <div class="nameofRental" id="nameofRental">
@@ -145,7 +145,7 @@
                     </div>
 
                     <div class="imagesDiv" id="imagesDiv">
-                        <div class="upload-photographs" tabindex="0" onkeydown="triggerFileInput(event)" onblur="imagesSuccessOrFailure()">
+                        <div class="upload-photographs" tabindex="0" onkeydown="triggerFileInput(event)" onblur="imagesSuccessOrFailure()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                             <label for="images-upload"> Upload Photographs</label>                          
                             <input type="file" name="images-upload[]" id="images-upload" accept="image/*" multiple onchange="imagesSuccessOrFailure()">                        
                         </div>
@@ -370,10 +370,11 @@
                 <div class="rules">
                     <h4>Rules of the rental</h4>
                     <p>Please upload one or more image files (pictures/photographs) containing the rules of your place, rather than having to write them all down.</p>
-                    <div class="upload-rules">
+                    <div class="upload-rules" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                         <label for="rules-upload"> Upload Rules</label>
-                        <input type="file" name="rules-upload[]" id="rules-upload" multiple>                        
-                    </div>                   
+                        <input type="file" name="rules-upload[]" id="rules-upload" multiple onchange="viewTally()">                        
+                    </div>
+                    <div class="error" id="rules-error"></div>                   
                 </div>
             </div>
 
@@ -385,7 +386,7 @@
             <input type="hidden" name="rentals-owned" id="rentals-owned" value="<?php echo $retrieved_rentals_owned;?>">
 
             <div class="submit-entry">
-                <button type="submit">Submit</button>
+                <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Submit</button>
             </div>            
         </form>
     </div>

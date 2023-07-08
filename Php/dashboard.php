@@ -26,6 +26,11 @@
                     phone_number=<?php echo $retrieved_phone_number; ?>&
                     password=<?php echo $password; ?>&
                     rentals_owned=<?php echo $retrieved_rentals_owned; ?>" class="button-link" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Advertise a new Rental</a>
+                <form action="../Php/landlord-account-deleter.php" method="post" onsubmit="verifyDeleteAccount(event)" id="account-deleter">
+                    <input type="hidden" name="email" value="<?php echo $email;?>">
+                    <input type="hidden" name="phone-number" value="<?php echo $retrieved_phone_number;?>">
+                    <button type="submit">Delete Account</button>
+                </form>
             </div>
             <div class="panel">
                 <div class="panel-buttons">

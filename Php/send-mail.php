@@ -47,7 +47,7 @@
             include "../Php/reset-link-sent.php";
             echo "<script>alert('Email Sent Successfully');</script>";
         } else {
-            echo "<script>alert('Email Not Sent. Please Check Your Internet Connectivity Then Try Again')</script>";
+            echo "<script>alert('Email Not Sent. Please Check Your Internet Connectivity Then Try Again. Also, Ensure That The Email Address You Have Entered Is Valid Gmail Account And That It Exists')</script>";
         }
     } catch (Exception $e) {
         // Exception occurred while sending email
