@@ -22,7 +22,10 @@
         include "../Php/account-already-exists.php";
         mysqli_stmt_close($stmt);
     } else {
+        $phoneNumber = $_POST["phone-number"];
+        $email = $_POST["email"];
         $password = $_POST["confirm-password"];
-        include '../Php/correct-password.php';
+        
+        include '../Php/create-account-login.php';
     }
 ?>

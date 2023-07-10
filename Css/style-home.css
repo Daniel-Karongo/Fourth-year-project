@@ -24,16 +24,16 @@ body {
 
 @keyframes animate {    /*To configure the animation*/
     0%,100%{    /*The first and last image*/
-        background-image: linear-gradient(rgba(53, 74, 119, 1), rgba(53, 74, 119, 0.6)), url(../Images/apartment-housing-tripoli-lebanon-ATHN9J.jpg);
+        background-image: linear-gradient(rgba(40, 45, 56, 1), rgba(40, 45, 56, 0.6)), url(../Images/apartment-housing-tripoli-lebanon-ATHN9J.jpg);
     }
     25%{
-        background-image: linear-gradient(rgba(53, 74, 119, 1), rgba(53, 74, 119, 0.6)), url(../Images/cheap-accommodation-kerikeri.jpg);
+        background-image: linear-gradient(rgba(40, 45, 56, 1), rgba(40, 45, 56, 0.6)), url(../Images/motel2.webp);
     }
     50%{
-        background-image: linear-gradient(rgba(53, 74, 119, 1), rgba(53, 74, 119, 0.6)), url(../Images/mud-house.jpg);
+        background-image: linear-gradient(rgba(40, 45, 56, 1), rgba(40, 45, 56, 0.6)), url(../Images/slums-and-high-rise-apartments-mumbai-bombay-maharashtra-india-F3GHPY.jpg);
     }
     75%{
-        background-image: linear-gradient(rgba(53, 74, 119, 1), rgba(53, 74, 119, 0.6)), url(../Images/slums-and-high-rise-apartments-mumbai-bombay-maharashtra-india-F3GHPY.jpg);
+        background-image: linear-gradient(rgba(40, 45, 56, 1), rgba(40, 45, 56, 0.6)), url(../Images/mud-house.jpg);
     }
 }
 

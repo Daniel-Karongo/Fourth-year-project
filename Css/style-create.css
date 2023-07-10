@@ -33,7 +33,9 @@ body{
 }
 
 .periphery {
-    margin-top: 15px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .main-body {
@@ -50,7 +52,7 @@ h1, h2, p {
 }
 
 p, .label-hint {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .actual-form {
@@ -64,7 +66,8 @@ p, .label-hint {
 }
 
 .already-signed-in {
-    margin: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .input-last-name, .input-email, .input-confirm-password {
@@ -127,14 +130,19 @@ p, .label-hint {
 }
 
 .submit-button button {
-    width: 20%;
-    color: white;
-    background-color: #2C18DE;
-    border-radius: 5px;
-    padding: 7px 10px;
-    outline: none;
-    border: 0;
+    width: 100px;
+    text-decoration: none;
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
     font-size: 1rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+}
+
+.submit-button button:hover {
+    cursor: pointer;
 }
 
 label, input {
@@ -161,6 +169,18 @@ a {
     font-size: 0.9rem;
 }
 
+.sign-in {
+    width: 100px;
+    text-decoration: none;
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
+    font-size: 1rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+}
+
 @media all and (min-width: 765px){
     
     body {
@@ -172,7 +192,8 @@ a {
 
     .container {
         flex-direction: row;
-        max-width: 1000px;        
+        max-width: 1000px;
+        justify-content: center;        
     }
 
     .main-body {
@@ -184,6 +205,9 @@ a {
         padding-left: 15px;
         flex-basis: 35%;
         text-align: center;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
     }
 
     .password-entry {
