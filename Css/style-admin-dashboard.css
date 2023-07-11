@@ -1,0 +1,196 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    color: rgba(255,255,255,1);    
+}
+
+* {
+    box-sizing: inherit;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+}
+
+body {
+    padding: 0;
+    background-color: #282B30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    text-align: center;
+    background-color: #1D2024;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.6);
+    max-width: 1000px;
+}
+
+.nav {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+}
+
+.admin {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-top: 1px solid white;
+}
+
+.admin a {
+    text-decoration: none;
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
+    font-size: 1rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+}
+
+.property-owners-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: auto;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    margin-top: 0;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+.property-owners-table {
+    border-collapse: collapse;
+    align-self: stretch;
+    width: 100%;
+}
+  
+#property-owners-table-title, #property-owners-table-column-heads {
+    padding: 10px;
+}
+
+.property-owners-table th, .property-owners-table td {
+    border: 1px solid rgba(255,255,255,0.7);
+    padding: 0;
+    max-width: 200px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.property-owners-table td input {
+    width: 100%;
+    font-size: 1rem;
+    background-color: transparent;
+    color: white;
+    padding: 5px;
+    border: 0;
+    outline: none;
+}
+
+.submit-details {
+    display: none;
+}
+
+
+.print-property-owners-table {
+    margin-top: 20px;
+}
+
+.print-property-owners-table button {
+    text-decoration: none;
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
+    font-size: 0.9rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+    margin-top: 5px;
+}
+
+.password-hasher {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    border: 1px solid rgba(255,255,255,0.7);
+    padding: 10px;
+    padding-right: 17px;
+    padding-bottom: 17px;
+}
+
+.password-input, .hashed-password {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+}
+
+.password-hasher label, .hashed-password label {
+    width: 135px;
+    text-align: start;
+    padding: 7px;    
+    font-size: 1rem;
+}
+
+.password-hasher input, .hashed-password input {
+    text-align: start;
+    min-width: 400px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;    
+    font-size: 1rem;
+    outline: none;
+    padding-left: 10px;
+}
+
+.hash-button button{
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
+    font-size: 0.9rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+    margin-top: 5px;
+}
+
+.edit-details button {
+    padding: 0;
+    background-color: white;
+
+}
+
+.property-owners-table-edit-details-button img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(90);
+    border: 0;
+    outline: 0;
+}
+
+.submit-details button {
+    padding: 0;
+    background-color: white;
+}
+
+.property-owners-table-submit-details-button img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(90);
+    border: 0;
+    outline: 0;
+}

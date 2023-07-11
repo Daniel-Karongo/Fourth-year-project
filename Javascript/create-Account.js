@@ -120,7 +120,6 @@ function validateForm(event) {
     
     if((firstNameOkay === true) && (lastNameOkay === true) && (phoneNumberOkay === true) && (emailOkay === true) && (createPasswordOkay === true) && (confirmPasswordOkay === true)) {
         const proceed = confirm("Are You Sure You Want To Create An Account?");
-        console.log(proceed);
         if(proceed) {
             alert("An Account Verification Code Will Be Sent To The Email Address You Have Provided. Enter It In The Next Section");
             document.querySelector('form').submit();

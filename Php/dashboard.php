@@ -140,9 +140,9 @@
                                                             if($rentalType[$i] === "Hostel"){
                                                                 echo $Hostel_retrieved_maximum_occupants[$i];
                                                             } else if ($rentalType[$i] === "Bedsitter") {
-                                                                echo $Single_Room_retrieved_maximum_occupants[$i];
-                                                            } else {
                                                                 echo $Bedsitter_retrieved_maximum_occupants[$i];
+                                                            } else {
+                                                                echo $Single_Room_retrieved_maximum_occupants[$i];
                                                             }
 
                                                             echo '" disabled>' .
