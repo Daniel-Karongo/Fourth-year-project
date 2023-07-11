@@ -10,7 +10,7 @@ function zoomDiv(div) {
     div.setAttribute('data-original-border-color', originalBorderColor);
 }
   
-function unzoomDiv(div) {
+function unzoomDiv(div, event) {
     div.style.transform = 'scale(1)';
 
     // Restore the original border color
@@ -100,5 +100,23 @@ function textareaSizor() {
     });
 }
   
+function toViewAndHide(button, view, hide, displaytype) {
+    let toHide = hide.split(", ");
+    
+    document.querySelector(view).style.display = displaytype;
+    let allButtons = document.querySelectorAll('.control-panel button');
+    Array.from(allButtons).forEach((specificButton) => {
+        specificButton.style.backgroundColor = "transparent";
+    })
+
+    document.querySelector(button).style.backgroundColor = "#2C18DE";
+
+    toHide.forEach((div) => {
+        document.querySelector(div).style.display = 'none';
+        if(displaytype === "flex") {
+            document.querySelector(view).style.flexDirection = "column";
+        }
+    });
+}
   
 

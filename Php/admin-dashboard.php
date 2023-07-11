@@ -21,6 +21,17 @@
                 <a class="sign-out-button" href="../Html/index.html" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Sign Out</a>
             </div>
         </div>
+        <div class="control-panel">
+            <button id="my-contact-information-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#my-contact-information-button', '.contact-information', '.property-owners-container, .rentals, .administrators, .queries', 'flex')">My Contact Information</button>
+
+            <button id="property-owners-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#property-owners-button', '.property-owners-container', '.contact-information, .rentals, .administrators, .queries', 'flex')">Property Owners</button>
+
+            <button id="rentals-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#rentals-button', '.rentals', '.contact-information, .property-owners-container, .administrators, .queries', 'flex')">Rentals</button>
+
+            <button id="administrators-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#administrators-button', '.administrators', '.contact-information, .property-owners-container, .rentals, .queries', 'flex')">Administrators</button>
+
+            <button id="queries-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#queries-button', '.queries', '.contact-information, .property-owners-container, .rentals, .administrators', 'flex')">Queries</button>
+        </div>
         <div class="property-owners-container">
         <?php
             if (gettype($property_owners) !== "NULL") {
@@ -55,7 +66,7 @@
                                         <td><input type="text" name="password-reset-confirmation-code" value="' . $property_owners[$i][6] . '" disabled></td>
                                         <td><input type="text" name="remember-me-token" value="' . $property_owners[$i][7] . '" disabled></td>
                                         <td class="edit-details">
-                                            <button class="property-owners-table-edit-details-button" onclick="editDetails(event)">
+                                            <button class="property-owners-table-edit-details-button" onclick="editDetails(event)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                 <img src="../Images/edit.png" alt="edit-button">
                                             </button>
                                         </td>
@@ -71,7 +82,7 @@
                                             <input type="hidden" name="email" value="' . $email . '">
                                             <input type="hidden" name="passwordField" value="' . $password . '">
                                             <td class="submit-details">
-                                                <button type="submit" class="property-owners-table-submit-details-button">
+                                                <button type="submit" class="property-owners-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                     <img src="../Images/submit.png" alt="submit details">
                                                 </button>
                                             </td>
@@ -84,9 +95,10 @@
                     </form>';
 
                 echo '
-                    <div class="print-property-owners-table">
-                        <button>Print Table</button>
-                    </div>
+                    <form class="print-property-owners-table" action="../Php/table-pdf.php" method="post">
+                        <input type="hidden" name="property-owners" value="' . htmlspecialchars(json_encode($property_owners)) . '">
+                        <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
+                    </form>
                     <form class="password-hasher" action="../Php/password-hasher.php" method="post">
                         <div class="password-hasher-title">
                             <h4>Password Hasher</h4>
@@ -117,7 +129,7 @@
                             <input type="hidden" name="passwordField" value="' . $password . '">
                             <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
                             <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                            <button type="submit">Hash Password</button>
+                            <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Hash Password</button>
                         </div>
                     </form>';
 
@@ -128,13 +140,16 @@
 
         </div>
         <div class="rentals">
-            
+            rental
         </div>
         <div class="queries">
-            
+            queries
         </div>
         <div class="administrators">
-            
+            administrators
+        </div>
+        <div class="contact-information">
+            contact-information
         </div>
     </div>
 </body>

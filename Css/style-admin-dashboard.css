@@ -63,6 +63,27 @@ body {
     border: 2.5px solid#2C18DE;
 }
 
+.control-panel {
+    border-bottom: 1px solid rgba(255,255,255,0.7);
+    padding: 4px;
+    margin-bottom: 1px;
+}
+
+.control-panel button {
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
+    font-size: 0.9rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+    margin-top: 5px;
+}
+
+.contact-information, .rentals, .administrators, .queries {
+    display: none;
+}
+
 .property-owners-container {
     display: flex;
     flex-direction: column;
