@@ -1,4 +1,10 @@
 <?php
+    include "../Php/databaseConnector.php";
+
+    $phoneNumber = $_POST["admin-phone-number"];
+    $email = $_POST["admin-modified-email"];
+    $password = $_POST["admin-password"];
+
     function getPropertyOwners() {
         include "../Php/databaseConnector.php";
 
@@ -421,8 +427,8 @@
     $res = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($res) > 0) {
-        $email = $_POST["email"];
-        $password = $_POST["passwordField"];
+        $email = $_POST["admin-modified-email"];
+        $password = $_POST["admin-password"];
 
         while ($adminRetrieved = mysqli_fetch_assoc($res)) {
             $adminPhone_Number = $adminRetrieved['Phone_Number'];
@@ -438,4 +444,5 @@
             }
         }
     }
+
 ?>

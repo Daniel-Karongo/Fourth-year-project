@@ -33,112 +33,112 @@
             <button id="queries-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#queries-button', '.queries', '.contact-information, .property-owners-container, .rentals, .administrators', 'flex')">Queries</button>
         </div>
         <div class="property-owners-container">
-        <?php
-            if (gettype($property_owners) !== "NULL") {
-                echo '
-                    <form action="../Php/editPropertyOwnerDetailsFromAdmin.php" method="post" onsubmit="confirmPropertyOwnerEdit(event)">
-                        <table class="property-owners-table">
-                            <thead>
-                                <tr>
-                                    <th colspan="8" id="property-owners-table-title">Property Owners</th>
-                                </tr>
-                                <tr>
-                                    <th id="property-owners-table-column-heads">Phone Number</th>
-                                    <th id="property-owners-table-column-heads">Email Address</th>
-                                    <th id="property-owners-table-column-heads">Password</th>
-                                    <th id="property-owners-table-column-heads">First Name</th>
-                                    <th id="property-owners-table-column-heads">Last Name</th>
-                                    <th id="property-owners-table-column-heads">Rentals Owned</th>
-                                    <th id="property-owners-table-column-heads">Password Reset Confirmation Codes</th>
-                                    <th id="property-owners-table-column-heads">Remember Me Tokens</th>
-                                </tr>
-                            </thead>
-                            <tbody>';
-                            for ($i = 0; $i < count($property_owners); $i++) {
-                                echo '
+            <?php
+                if (gettype($property_owners) !== "NULL") {
+                    echo '
+                        <form action="../Php/editPropertyOwnerDetailsFromAdmin.php" method="post" onsubmit="confirmPropertyOwnerEdit(event)">
+                            <table class="property-owners-table">
+                                <thead>
                                     <tr>
-                                        <td><input type="text" name="phone-number" value="' . $property_owners[$i][0] . '" disabled></td>
-                                        <td><input type="text" name="email-address" value="' . $property_owners[$i][1] . '" disabled></td>
-                                        <td><input type="text" name="password" value="' . $property_owners[$i][2] . '" disabled></td>
-                                        <td><input type="text" name="first-name" value="' . $property_owners[$i][3] . '" disabled></td>
-                                        <td><input type="text" name="last-name" value="' . $property_owners[$i][4] . '" disabled></td>
-                                        <td><input type="text" name="rentals-owned" value="' . $property_owners[$i][5] . '" disabled></td>
-                                        <td><input type="text" name="password-reset-confirmation-code" value="' . $property_owners[$i][6] . '" disabled></td>
-                                        <td><input type="text" name="remember-me-token" value="' . $property_owners[$i][7] . '" disabled></td>
-                                        <td class="edit-details">
-                                            <button class="property-owners-table-edit-details-button" onclick="editDetails(event)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                <img src="../Images/edit.png" alt="edit-button">
-                                            </button>
-                                        </td>
-                                        <td class="submit-details" id="submit-details-' . ($i + 1) . '">
-                                            <input type="hidden" name="original-phone-number" value="' . $property_owners[$i][0] . '" disabled>
-                                            <input type="hidden" name="original-email-address" value="' . $property_owners[$i][1] . '" disabled>
-                                            <input type="hidden" name="original-password" value="' . $property_owners[$i][2] . '" disabled>
-                                            <input type="hidden" name="original-first-name" value="' . $property_owners[$i][3] . '" disabled>
-                                            <input type="hidden" name="original-last-name" value="' . $property_owners[$i][4] . '" disabled>
-                                            <input type="hidden" name="original-rentals-owned" value="' . $property_owners[$i][5] . '" disabled>
-                                            <input type="hidden" name="original-password-reset-confirmation-code" value="' . $property_owners[$i][6] . '" disabled>
-                                            <input type="hidden" name="original-remember-me-token" value="' . $property_owners[$i][7] . '" disabled>
-                                            <input type="hidden" name="email" value="' . $email . '">
-                                            <input type="hidden" name="passwordField" value="' . $password . '">
-                                            <td class="submit-details">
-                                                <button type="submit" class="property-owners-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                    <img src="../Images/submit.png" alt="submit details">
+                                        <th colspan="8" id="property-owners-table-title">Property Owners</th>
+                                    </tr>
+                                    <tr>
+                                        <th id="property-owners-table-column-heads">Phone Number</th>
+                                        <th id="property-owners-table-column-heads">Email Address</th>
+                                        <th id="property-owners-table-column-heads">Password</th>
+                                        <th id="property-owners-table-column-heads">First Name</th>
+                                        <th id="property-owners-table-column-heads">Last Name</th>
+                                        <th id="property-owners-table-column-heads">Rentals Owned</th>
+                                        <th id="property-owners-table-column-heads">Password Reset Confirmation Codes</th>
+                                        <th id="property-owners-table-column-heads">Remember Me Tokens</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                for ($i = 0; $i < count($property_owners); $i++) {
+                                    echo '
+                                        <tr>
+                                            <td><input type="text" name="phone-number" value="' . $property_owners[$i][0] . '" disabled></td>
+                                            <td><input type="text" name="email-address" value="' . $property_owners[$i][1] . '" disabled></td>
+                                            <td><input type="text" name="password" value="' . $property_owners[$i][2] . '" disabled></td>
+                                            <td><input type="text" name="first-name" value="' . $property_owners[$i][3] . '" disabled></td>
+                                            <td><input type="text" name="last-name" value="' . $property_owners[$i][4] . '" disabled></td>
+                                            <td><input type="text" name="rentals-owned" value="' . $property_owners[$i][5] . '" disabled></td>
+                                            <td><input type="text" name="password-reset-confirmation-code" value="' . $property_owners[$i][6] . '" disabled></td>
+                                            <td><input type="text" name="remember-me-token" value="' . $property_owners[$i][7] . '" disabled></td>
+                                            <td class="edit-details">
+                                                <button class="property-owners-table-edit-details-button" onclick="editDetails(event)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                    <img src="../Images/edit.png" alt="edit-button">
                                                 </button>
                                             </td>
-                                        </td>
-                                    </tr>';
-                            }
-                echo '
-                            </tbody>
-                        </table>
-                    </form>';
+                                            <td class="submit-details" id="submit-details-' . ($i + 1) . '">
+                                                <input type="hidden" name="original-phone-number" value="' . $property_owners[$i][0] . '" disabled>
+                                                <input type="hidden" name="original-email-address" value="' . $property_owners[$i][1] . '" disabled>
+                                                <input type="hidden" name="original-password" value="' . $property_owners[$i][2] . '" disabled>
+                                                <input type="hidden" name="original-first-name" value="' . $property_owners[$i][3] . '" disabled>
+                                                <input type="hidden" name="original-last-name" value="' . $property_owners[$i][4] . '" disabled>
+                                                <input type="hidden" name="original-rentals-owned" value="' . $property_owners[$i][5] . '" disabled>
+                                                <input type="hidden" name="original-password-reset-confirmation-code" value="' . $property_owners[$i][6] . '" disabled>
+                                                <input type="hidden" name="original-remember-me-token" value="' . $property_owners[$i][7] . '" disabled>
+                                                <input type="hidden" name="email" value="' . $email . '">
+                                                <input type="hidden" name="passwordField" value="' . $password . '">
+                                                <td class="submit-details">
+                                                    <button type="submit" class="property-owners-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                        <img src="../Images/submit.png" alt="submit details">
+                                                    </button>
+                                                </td>
+                                            </td>
+                                        </tr>';
+                                }
+                    echo '
+                                </tbody>
+                            </table>
+                        </form>';
 
-                echo '
-                    <form class="print-property-owners-table" action="../Php/table-pdf.php" method="post">
-                        <input type="hidden" name="property-owners" value="' . htmlspecialchars(json_encode($property_owners)) . '">
-                        <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
-                    </form>
-                    <form class="password-hasher" action="../Php/password-hasher.php" method="post">
-                        <div class="password-hasher-title">
-                            <h4>Password Hasher</h4>
-                        </div>
-                        <div class="password-input">
-                            <label for="password-to-hash">Password</label>
-                            <input type="text" oninput="textareaSizor()" name="password-to-hash" id="password-to-hash"';
-                if (isset($newPassword)) {
-                    echo 'value="' . $newPassword . '">';
-                } else {
-                    echo '>';
-                }
-                echo '
-                        </div>
-                        <div class="hashed-password">
-                            <label for="">Hashed Password</label>
-                            <input type="text" name="hashed-password-return" id="hashed-password-return"';
-                if (isset($hashedPassword)) {
-                    echo 'value="' . $hashedPassword . '">';
-                } else {
-                    echo 'disabled>';
-                }
-                echo '
-                        </div>
-                        <div class="hash-button">
+                    echo '
+                        <form class="print-property-owners-table" action="../Php/table-pdf.php" method="post">
                             <input type="hidden" name="property-owners" value="' . htmlspecialchars(json_encode($property_owners)) . '">
-                            <input type="hidden" name="email" value="' . $email . '">
-                            <input type="hidden" name="passwordField" value="' . $password . '">
-                            <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
-                            <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                            <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'"  onblur="validatePhoneNumber()">
-                            <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Hash Password</button>
-                        </div>
-                    </form>';
+                            <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
+                        </form>
+                        <form class="password-hasher" action="../Php/password-hasher.php" method="post">
+                            <div class="password-hasher-title">
+                                <h4>Password Hasher</h4>
+                            </div>
+                            <div class="password-input">
+                                <label for="password-to-hash">Password</label>
+                                <input type="text" oninput="textareaSizor()" name="password-to-hash" id="password-to-hash"';
+                    if (isset($newPassword)) {
+                        echo 'value="' . $newPassword . '">';
+                    } else {
+                        echo '>';
+                    }
+                    echo '
+                            </div>
+                            <div class="hashed-password">
+                                <label for="">Hashed Password</label>
+                                <input type="text" name="hashed-password-return" id="hashed-password-return"';
+                    if (isset($hashedPassword)) {
+                        echo 'value="' . $hashedPassword . '">';
+                    } else {
+                        echo 'disabled>';
+                    }
+                    echo '
+                            </div>
+                            <div class="hash-button">
+                                <input type="hidden" name="property-owners" value="' . htmlspecialchars(json_encode($property_owners)) . '">
+                                <input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) . '">
+                                <input type="hidden" name="email" value="' . $email . '">
+                                <input type="hidden" name="passwordField" value="' . $password . '">
+                                <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'"  onblur="validatePhoneNumber()">
+                                <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Hash Password</button>
+                            </div>
+                        </form>';
 
-            } else {
-                echo "<h3>No One Has Registered As A Property Owner</h3>";
-            }
-        ?>
-
+                } else {
+                    echo "<h3>No One Has Registered As A Property Owner</h3>";
+                }
+            ?>
         </div>
         <div class="rentals">
             rental
@@ -147,10 +147,112 @@
             queries
         </div>
         <div class="administrators">
-            administrators
+            <?php
+                if (gettype($administrators) !== "NULL") {
+                    echo '
+                        <form action="../Php/editAdministratorDetailsFromAdmin.php" method="post" onsubmit="confirmAdministratorEdit(event)">
+                            <table class="administrators-table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="7" id="administrators-table-title">Administrators</th>
+                                    </tr>
+                                    <tr>
+                                        <th id="administrators-table-column-heads">Email Address</th>
+                                        <th id="administrators-table-column-heads">Phone Number</th>
+                                        <th id="administrators-table-column-heads">Password</th>
+                                        <th id="administrators-table-column-heads">First Name</th>
+                                        <th id="administrators-table-column-heads">Last Name</th>
+                                        <th id="administrators-table-column-heads">Password Reset Confirmation Codes</th>
+                                        <th id="administrators-table-column-heads">Remember Me Tokens</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                for ($i = 0; $i < count($administrators); $i++) {
+                                    echo '
+                                        <tr>
+                                            <td><input type="text" name="phone-number" value="' . $administrators[$i][0] . '" disabled></td>
+                                            <td><input type="text" name="email-address" value="' . $administrators[$i][1] . '" disabled></td>
+                                            <td><input type="text" name="password" value="' . $administrators[$i][2] . '" disabled></td>
+                                            <td><input type="text" name="first-name" value="' . $administrators[$i][3] . '" disabled></td>
+                                            <td><input type="text" name="last-name" value="' . $administrators[$i][4] . '" disabled></td>
+                                            <td><input type="text" name="password-reset-confirmation-code" value="' . $administrators[$i][5] . '" disabled></td>
+                                            <td><input type="text" name="remember-me-token" value="' . $administrators[$i][6] . '" disabled></td>
+                                            <td class="edit-details">
+                                                <button class="administrators-table-edit-details-button" onclick="editDetails(event)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                    <img src="../Images/edit.png" alt="edit-button">
+                                                </button>
+                                            </td>
+                                            <td class="submit-details" id="submit-details-' . ($i + 1) . '">
+                                                <input type="hidden" name="original-phone-number" value="' . $administrators[$i][0] . '" disabled>
+                                                <input type="hidden" name="original-email-address" value="' . $administrators[$i][1] . '" disabled>
+                                                <input type="hidden" name="original-password" value="' . $administrators[$i][2] . '" disabled>
+                                                <input type="hidden" name="original-first-name" value="' . $administrators[$i][3] . '" disabled>
+                                                <input type="hidden" name="original-last-name" value="' . $administrators[$i][4] . '" disabled>
+                                                <input type="hidden" name="original-password-reset-confirmation-code" value="' . $administrators[$i][5] . '" disabled>
+                                                <input type="hidden" name="original-remember-me-token" value="' . $administrators[$i][6] . '" disabled>
+                                                <input type="hidden" name="email" value="' . $email . '">
+                                                <input type="hidden" name="passwordField" value="' . $password . '">
+                                                <td class="submit-details">
+                                                    <button type="submit" class="administrators-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                        <img src="../Images/submit.png" alt="submit details">
+                                                    </button>
+                                                </td>
+                                            </td>
+                                        </tr>';
+                                }
+                    echo '
+                                </tbody>
+                            </table>
+                        </form>';
+
+                    echo '
+                        <form class="print-administrators-table" action="../Php/administrators-table-pdf.php" method="post">
+                            <input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) . '">
+                            <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
+                        </form>
+                        <form class="password-hasher" action="../Php/password-hasher.php" method="post">
+                            <div class="password-hasher-title">
+                                <h4>Password Hasher</h4>
+                            </div>
+                            <div class="password-input">
+                                <label for="password-to-hash">Password</label>
+                                <input type="text" oninput="textareaSizor()" name="password-to-hash" id="password-to-hash"';
+                    if (isset($newPassword)) {
+                        echo 'value="' . $newPassword . '">';
+                    } else {
+                        echo '>';
+                    }
+                    echo '
+                            </div>
+                            <div class="hashed-password">
+                                <label for="">Hashed Password</label>
+                                <input type="text" name="hashed-password-return" id="hashed-password-return"';
+                    if (isset($hashedPassword)) {
+                        echo 'value="' . $hashedPassword . '">';
+                    } else {
+                        echo 'disabled>';
+                    }
+                    echo '
+                            </div>
+                            <div class="hash-button">
+                                <input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) . '">
+                                <input type="hidden" name="property-owners" value="' . htmlspecialchars(json_encode($property_owners)) . '">
+                                <input type="hidden" name="email" value="' . $email . '">
+                                <input type="hidden" name="passwordField" value="' . $password . '">
+                                <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'"  onblur="validatePhoneNumber()">
+                                <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Hash Password</button>
+                            </div>
+                        </form>';
+
+                } else {
+                    echo "<h3>No One Has Registered As A Property Owner</h3>";
+                }
+            ?>
         </div>
         <div class="contact-information">
-            <form id="contact-information-form" action="../Php/Admin/edit-admins-details.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event)">
+            <form id="contact-information-form" action="../Php/edit-admins-details.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event)">
             
                 <div class="first-name">
                     <label for="first-name">First Name:</label>
@@ -192,6 +294,7 @@
                 </div>
 
                 <input type="hidden" name="passwordField" value="<?php echo $password;?>">
+                <input type="hidden" name="administrators" value="<?php echo htmlspecialchars(json_encode($administrators)); ?>">
                 <input type="hidden" name="property-owners" value="<?php echo htmlspecialchars(json_encode($property_owners)); ?>">
                 <input type="hidden" name="retrieved-admin-first-name" value="<?php echo $adminFirst_Name; ?>">
                 <input type="hidden" name="retrieved-admin-last-name" value="<?php echo $adminLast_Name; ?>">

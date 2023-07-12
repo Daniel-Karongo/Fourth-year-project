@@ -19,6 +19,6 @@
         die("Update query failed: " . mysqli_error($connectionInitialisation));
     }
     
-    include "../Php/admin-dashboard.php";
+    include "../Php/admin-dashboard-preparation.php";
 
 ?>

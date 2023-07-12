@@ -80,6 +80,14 @@ function confirmPropertyOwnerEdit(event) {
     }
 }
 
+function confirmPropertyOwnerEdit(event) {
+    event.preventDefault();
+    const proceed = confirm("Are You Sure You Want To Edit This Administrator's Details?");
+    if(proceed) {
+        document.querySelector('form').submit();
+    }
+}
+
 function textareaSizor() {
     const hashedpasswordinput = document.querySelector('#hashed-password-return');
     const passwordinput = document.querySelector('#password-to-hash');

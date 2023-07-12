@@ -30,14 +30,17 @@
         
         $password = $_POST["passwordField"];
         $property_owners = json_decode($_POST['property-owners'], true);
+        $administrators = json_decode($_POST['administrators'], true);
+        
         $adminFirst_Name = $_POST["retrieved-admin-first-name"];
         $adminLast_Name = $_POST["retrieved-admin-last-name"];
+        unset($hashedPassword);
 
         include "../Php/admin-dashboard.php";
         echo "<script>alert('An Administrator Account With The Same Phone Number And Email Exists. Please Use Some Other Details')</script>";
     } else {
-        // echo "Hello";
-        // include "../login-form-validator.php";
+        unset($hashedPassword);
+        include "../Php/successful-admin-details-change.php";
         echo "<script>alert('Updates Made Successfully');</script>";
     }
 
