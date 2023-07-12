@@ -181,6 +181,14 @@ function validateDeletion(event) {
     }        
 }
 
+function verifyDeleteAccount(event) {
+    event.preventDefault();
+    const proceed = confirm("Are You Sure You Want To Delete Your Account? This Will Delete All Your Details As Well As All The Rentals You Had Uploaded.");
+    if(proceed) {
+        document.querySelector('#account-deleter').submit();
+    }
+}
+
 function activateAnchor(event) {
     const clickedElement = event.target;
     const form = document.querySelectorAll('.rental-template');
@@ -227,10 +235,3 @@ function textareaSizor() {
     });    
 }
 
-function verifyDeleteAccount(event) {
-    event.preventDefault();
-    const proceed = confirm("Are You Sure You Want To Delete Your Account? This Will Delete All Your Details As Well As All The Rentals You Had Uploaded.");
-    if(proceed) {
-        document.querySelector('#account-deleter').submit();
-    }
-}

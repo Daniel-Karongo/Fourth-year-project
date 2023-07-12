@@ -17,36 +17,6 @@
     $originalPasswordResetConfirmationCode = $_POST['original-password-reset-confirmation-code'];
     $originalRememberMeToken = $_POST['original-remember-me-token'];
 
-
-    // echo $phonenumber;
-    // echo "<br>";
-    // echo $emailAddress;
-    // echo "<br>";
-    // echo $password;
-    // echo "<br>";
-    // echo $firstName;
-    // echo "<br>";
-    // echo $lastName;
-    // echo "<br>";
-    // echo $passwordResetConfirmationCode;
-    // echo "<br>";
-    // echo $rememberMeToken;
-    // echo "<br>";
-    // echo $originalPhonenumber;
-    // echo "<br>";
-    // echo $originalEmailAddress;
-    // echo "<br>";
-    // echo $originalPassword;
-    // echo "<br>";
-    // echo $originalFirstName;
-    // echo "<br>";
-    // echo $originalLastName;
-    // echo "<br>";
-    // echo $originalPasswordResetConfirmationCode;
-    // echo "<br>";
-    // echo $originalRememberMeToken;
-    // echo "<br>";
-
     $sqlQuery = "UPDATE administrators
                     SET Email_Address = ?, 
                         Phone_Number = ?, 
@@ -64,7 +34,7 @@
     }
 
     mysqli_stmt_bind_param($stmt, 'sssssssss', $emailAddress, $phonenumber, $password, $firstName, $lastName, $passwordResetConfirmationCode, $rememberMeToken, $originalPhonenumber, $originalEmailAddress);
-
+    
     if (!mysqli_stmt_execute($stmt)) {
         die("Update query failed: " . mysqli_error($connectionInitialisation));
     }

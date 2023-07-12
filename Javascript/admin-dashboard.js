@@ -10,7 +10,7 @@ function zoomDiv(div) {
     div.setAttribute('data-original-border-color', originalBorderColor);
 }
   
-function unzoomDiv(div, event) {
+function unzoomDiv(div) {
     div.style.transform = 'scale(1)';
 
     // Restore the original border color
@@ -20,23 +20,23 @@ function unzoomDiv(div, event) {
     div.style.outline = 'none';
 }
 
-function editDetails(event) {
+function editDetails(event, allInputs, rowSubmit, rowEdit) {
     let element = event.target;
     event.preventDefault();
     let cell = "";
     let row = "";
     let button = "";
 
-    let allInputFields = document.querySelectorAll('.property-owners-table input[type="text"]');
+    let allInputFields = document.querySelectorAll(allInputs);
     Array.from(allInputFields).forEach((inputField) => {
         inputField.disabled = true;
         inputField.parentElement.style.backgroundColor = "transparent";
     });
-    let allSubmitDetailsDivs = document.querySelectorAll('.property-owners-table .submit-details');
+    let allSubmitDetailsDivs = document.querySelectorAll(rowSubmit);
     Array.from(allSubmitDetailsDivs).forEach((td) => {
         td.style.display = "none";
     });
-    let editDetailsDiv = document.querySelectorAll('.property-owners-table .edit-details');
+    let editDetailsDiv = document.querySelectorAll(rowEdit);
     Array.from(editDetailsDiv).forEach((td) => {
         td.style.display = "table-cell";
     });
@@ -74,17 +74,27 @@ function editDetails(event) {
 
 function confirmPropertyOwnerEdit(event) {
     event.preventDefault();
+    let form = event.target;
     const proceed = confirm("Are You Sure You Want To Edit This Property Owner's Details?");
     if(proceed) {
-        document.querySelector('form').submit();
+        form.submit();
     }
 }
 
-function confirmPropertyOwnerEdit(event) {
+function confirmAdministratorEdit(event) {
     event.preventDefault();
+    let form = event.target;
     const proceed = confirm("Are You Sure You Want To Edit This Administrator's Details?");
     if(proceed) {
-        document.querySelector('form').submit();
+        form.submit();
+    }
+}
+
+function confirmAdminDelete(event) {
+    event.preventDefault();
+    const proceed = confirm("Are You Sure You Want To Delete Your Account?");
+    if(proceed) {
+        document.querySelector('#delete-admin-account').submit();
     }
 }
 
@@ -108,7 +118,7 @@ function textareaSizor() {
     });
 }
   
-function toViewAndHide(button, view, hide, displaytype) {
+function toViewAndHide(button, view, hide, displaytype, direction) {
     let toHide = hide.split(", ");
     
     document.querySelector(view).style.display = displaytype;
@@ -121,8 +131,10 @@ function toViewAndHide(button, view, hide, displaytype) {
 
     toHide.forEach((div) => {
         document.querySelector(div).style.display = 'none';
-        if(displaytype === "flex") {
+        if((displaytype === "flex") && (direction !== "row")) {
             document.querySelector(view).style.flexDirection = "column";
+        } else {
+            document.querySelector(view).style.flexDirection = "row";
         }
     });
 }
@@ -163,8 +175,37 @@ function toggleEnabled() {
     };
 }
 
-function validatePasswordCreation(event) {
-    const field = document.getElementById('password');
+function toggleShowPassword(checkboxInput, passwordField) {
+    const checkbox = document.getElementById(checkboxInput);
+    const password = document.getElementById(passwordField);
+
+    if(checkbox.checked) {
+        password.type = "text";        
+    } else {
+        password.type = "password"
+        
+    }
+}
+
+function validateEmail(event, id) {
+    const email = document.getElementById(id);
+    const emailValue = email.value;
+        
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailValidity = emailRegex.test(emailValue);    
+
+    if(emailValidity === true) {
+        nullifySuccessOrFailure(email);
+        if(event === 'submit') {
+            return true;
+        }
+    } else {
+        displayError(email, "Please Enter a Valid Email");
+    }
+}
+
+function validatePasswordCreation(event, id) {
+    const field = document.getElementById(id);
     const fieldValue = field.value;
     const regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\S]).*$/;
 
@@ -182,43 +223,13 @@ function validatePasswordCreation(event) {
     }
 }
 
-function toggleShowPassword() {
-    const checkbox = document.getElementById('show-pass');
-    const password = document.getElementById('password');
-
-    if(checkbox.checked) {
-        password.type = "text";        
-    } else {
-        password.type = "password"
-        
-    }
-}
-
-
-function validateEmail(event) {
-    const email = document.getElementById('email');
-    const emailValue = email.value;
-        
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const emailValidity = emailRegex.test(emailValue);    
-
-    if(emailValidity === true) {
-        nullifySuccessOrFailure(email);
-        if(event === 'submit') {
-            return true;
-        }
-    } else {
-        displayError(email, "Please Enter a Valid Email");
-    }
-}
-
-function validatePhoneNumber(event) {
-    const phoneNumber = document.getElementById('phone');
-    const phoneNumberValue = phoneNumber.value;
-    const regex = new RegExp('^07[0-9]+$');
+function validatePhoneNumber(event, id, error) {
+    let phoneNumber = document.getElementById(id);
+    let phoneNumberValue = phoneNumber.value;
+    let regex = new RegExp('^07[0-9]+$');
 
     if(phoneNumberValue === '') {
-        displayError(phoneNumber, "Please Specify A Phone Number that will be Associated With Your Rentals");
+        displayError(phoneNumber, error);
     } else {
         if(phoneNumberValue.length !== 10) {
             displayError(phoneNumber, "Please Enter A Valid Phone Number");
@@ -233,29 +244,46 @@ function validatePhoneNumber(event) {
     }
 }
 
-function validateForm(event) {
+function validateForm(event, div, form) {
     event.preventDefault();
 
-    const firstNameOkay = validateField('first-name', 'Please Specify Your First Name', 'submit');
+    if(div === "contact-information-form") {
+        const firstNameOkay = validateField('first-name', 'Please Specify Your First Name', 'submit', 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password');
+        const lastNameOkay = validateField('last-name', 'Please Specify Your Last Name', 'submit', 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password');
 
-    const lastNameOkay = validateField('last-name', 'Please Specify Your Last Name', 'submit');
+        const phoneNumberOkay = validatePhoneNumber('submit', 'phone', "Please Enter A Phone Number That Will Be Associated With Your Account");
 
-    const phoneNumberOkay = validatePhoneNumber('submit');
+        const emailOkay = validateField('email', 'Please Specify An Email that will be Associated With Your Account', 'submit', 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password');
 
-    const emailOkay = validateField('email', 'Please Specify An Email that will be Associated With Your Rentals', 'submit');
+        const createPasswordOkay = validateField('password', 'Please Enter A Password To Secure Your Account', 'submit', 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password');
 
-    const createPasswordOkay = validateField('password', 'Please Enter A Password To Secure Your Account', 'submit');
+        if((firstNameOkay === true) && (lastNameOkay === true) && (phoneNumberOkay === true) && (emailOkay === true) && (createPasswordOkay === true)) {
+            const proceed = confirm("Are You Sure You Want To Edit Your Account Details?");
+            if(proceed) {
+                document.querySelector(form).submit();
+            }        
+        }
+    } else if (div === "add-new-admin-form") {
+        const firstNameOkay = validateField('new-admin-first-name', 'Please Specify The New Admin\'s First Name', 'submit', 'new-admin-first-name', 'new-admin-last-name', 'new-admin-email', 'new-admin-email', 'new-admin-email', 'new-admin-password', 'new-admin-password', 'new-admin-password');
+        
+        const lastNameOkay = validateField('new-admin-last-name', 'Please Specify The New Admin\'s Last Name', 'submit', 'new-admin-first-name', 'new-admin-last-name', 'new-admin-email', 'new-admin-email', 'new-admin-email', 'new-admin-password', 'new-admin-password', 'new-admin-password');
 
-    if((firstNameOkay === true) && (lastNameOkay === true) && (phoneNumberOkay === true) && (emailOkay === true) && (createPasswordOkay === true)) {
-        const proceed = confirm("Are You Sure You Want To Edit Your Account Details?");
-        if(proceed) {
-            document.querySelector('.contact-information #contact-information-form').submit();
-        }        
+        const phoneNumberOkay = validatePhoneNumber('submit', 'new-admin-phone', "Please Enter A Phone Number That Will Be Associated With The New Admin's Account");
+
+        const emailOkay = validateField('new-admin-email', 'Please Specify An Email that will be Associated With The New Admin\'s Rentals', 'submit', 'new-admin-first-name', 'new-admin-last-name', 'new-admin-email', 'new-admin-email', 'new-admin-email', 'new-admin-password', 'new-admin-password', 'new-admin-password');
+
+        const createPasswordOkay = validateField('new-admin-password', 'Please Enter A Password To Secure The New Admin\'s Account', 'submit', 'new-admin-first-name', 'new-admin-last-name', 'new-admin-email', 'new-admin-email', 'new-admin-email', 'new-admin-password', 'new-admin-password', 'new-admin-password');
+
+        if((firstNameOkay === true) && (lastNameOkay === true) && (phoneNumberOkay === true) && (emailOkay === true) && (createPasswordOkay === true)) {
+            const proceed = confirm("Are You Sure You Want To Add A New Administrator?");
+            if(proceed) {
+                document.querySelector(form).submit();
+            }        
+        }
     }
-    
 }
 
-function validateField(id, error, event) {
+function validateField(id, error, event, firstName, lastName, email, email, email, password, password, password) {
     const field = document.getElementById(id);
     const fieldValue = field.value;
 
@@ -263,22 +291,38 @@ function validateField(id, error, event) {
         displayError(field, error);
     } else {
         nullifySuccessOrFailure(field);
-        if((id === 'first-name') && (event === 'submit')) {
+        if((id === firstName) && (event === 'submit')) {
             return true;
-        } else if((id === 'last-name') && (event === 'submit')) {
+        } else if((id === lastName) && (event === 'submit')) {
             return true;
-        } else if(id === 'email') {
-            validateEmail();
+        } else if(id === email) {
+            validateEmail(null, email);
             if(event === 'submit') {
-                const emailOkay = validateEmail(event);
+                const emailOkay = validateEmail(event, email);
                 return emailOkay;
             }
-        } else if (id === 'password') {
-            validatePasswordCreation();
+        } else if (id === password) {
+            validatePasswordCreation(null, password);
             if(event === 'submit') {
-                const confirmPasswordOkay = validatePasswordCreation(event);
+                const confirmPasswordOkay = validatePasswordCreation(event, password);
                 return confirmPasswordOkay;
             }
         }
     }
 }
+
+// function showPopup() {
+//     let popup = document.createElement('div');
+//     popup.textContent = "Edit Administrator's Details";
+//     popup.classList.add('popup');
+
+//     document.body.appendChild(popup);
+// }
+
+// function hidePopup() {
+//     let popup = document.getElementsByClassName('popup');
+
+//     if (popup.parentNode) {
+//         popup.parentNode.removeChild(popup);
+//     }
+// }

@@ -32,6 +32,8 @@ body {
     background-color: #1D2024;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.6);
     max-width: 1000px;
+    box-sizing: border-box;
+    overflow: auto;
 }
 
 .nav {
@@ -78,6 +80,17 @@ body {
     box-shadow: none;    
     border: 2.5px solid#2C18DE;
     margin-top: 5px;
+}
+
+.control-panel #property-owners-button {
+    background-color: #2C18DE;
+}
+
+.popup {
+    position: absolute;
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .property-owners-container {
@@ -144,8 +157,9 @@ body {
 .password-hasher {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    border: 1px solid rgba(255,255,255,0.7);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
     padding: 10px;
     padding-right: 17px;
     padding-bottom: 17px;
@@ -222,9 +236,35 @@ body {
 
 
 
+.contact-information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.3);
+    padding: 15px;
+}
 
+.delete-admin-account-div {
+    flex-basis: 16%;
+}
+
+.contact-information-form-div {
+    flex-basis: 83%;
+} 
+
+#delete-admin-account button {
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
+    font-size: 0.9rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+    margin-top: 5px;
+}
 
 #contact-information-form {
+    flex-basis: 90%;
     padding: 10px;
     box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.3);
     text-align: left;    
@@ -303,8 +343,17 @@ body {
 
 
 
+.administrator {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+}
 
-.administrators {
+.top-administrators-section {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -313,7 +362,14 @@ body {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
     margin-top: 0;
     padding: 10px;
-    padding-top: 20px;
+}
+
+.admins-table-and-print {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
+    padding-top: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-bottom: 10px;
 }
 
 .administrators-table {
@@ -369,7 +425,6 @@ body {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    border: 1px solid rgba(255,255,255,0.7);
     padding: 10px;
     padding-right: 17px;
     padding-bottom: 17px;
@@ -435,6 +490,95 @@ body {
     border: 0;
     outline: 0;
 }
+
+
+
+
+
+
+
+
+
+.add-new-admin {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.3);
+    padding: 15px;
+    margin-top: 20px;
+}
+
+#add-new-admin-form div:not(.add-new-admin-title,  .add-new-admin-confirm-button) {
+    text-align: left;
+}
+
+#add-new-admin-form label {
+    text-align: left;
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+#add-new-admin-form input {
+    display: inline-block;
+    width: 100%;
+    padding: 7px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;    
+    font-size: 1rem;
+}
+
+#add-new-admin-form input:focus {
+    outline: none;
+    border: 3px solid#2C18DE;
+}
+
+#add-new-admin-form button:focus {
+    border: 3px solid#2C18DE;
+}
+
+#add-new-admin-form div div.error {
+    color: #ff3860;
+    font-size: 0.9rem;
+    margin-top: 6px;
+    margin-bottom: 7px;
+}
+
+#new-admin-password::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+.edit-details, .confirm-button {
+    text-align: center;  
+}
+
+#add-new-admin-form button {
+    padding: 10px;
+    margin-top: 10px;
+      
+}
+
+#add-new-admin-form #new-admin-show-pass {
+    width: auto;    
+}
+
+.confirm-button {
+    display: none;
+}
+
+#add-new-admin-form button{
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
+    font-size: 0.9rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+    margin-top: 5px;
+}
+
+
+
 
 
 

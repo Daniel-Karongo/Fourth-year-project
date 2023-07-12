@@ -391,8 +391,8 @@
             $i=0;
 
             while ($adminRetrieved = mysqli_fetch_assoc($res)) {
-                $administrators[$i][0] = $adminRetrieved['Email_Address'];
-                $administrators[$i][1] = $adminRetrieved['Phone_Number'];
+                $administrators[$i][0] = $adminRetrieved['Phone_Number'];
+                $administrators[$i][1] = $adminRetrieved['Email_Address'];
                 $administrators[$i][2] = $adminRetrieved['Password'];
                 $administrators[$i][3] = $adminRetrieved['First_Name'];
                 $administrators[$i][4] = $adminRetrieved['Last_Name'];
