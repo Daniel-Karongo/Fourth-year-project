@@ -129,6 +129,7 @@
                             <input type="hidden" name="passwordField" value="' . $password . '">
                             <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
                             <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                            <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'"  onblur="validatePhoneNumber()">
                             <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Hash Password</button>
                         </div>
                     </form>';
@@ -149,7 +150,57 @@
             administrators
         </div>
         <div class="contact-information">
-            contact-information
+            <form id="contact-information-form" action="../Php/Admin/edit-admins-details.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event)">
+            
+                <div class="first-name">
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="admin-first-name" value="<?php echo $adminFirst_Name;?>"  onblur="validateField('first-name', 'Please Specify Your First Name')" disabled>
+                    <div class="error"></div>
+                </div>
+                <div class="last-name">
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="admin-last-name" value="<?php echo $adminLast_Name;?>"  onblur="validateField('last-name', 'Please Specify Your Last Name')" disabled>
+                    <div class="error"></div>
+                </div>
+
+                <div class="phone-number">
+                    <label for="phone">Phone Number:</label>
+                    <input type="number" id="phone" name="admin-phone-number" value="<?php echo $adminPhone_Number;?>"  onblur="validatePhoneNumber()" disabled>
+                    <div class="error"></div>
+                </div>
+                
+                <div class="email">
+                    <label for="email">Email Address:</label>
+                    <input type="text" id="email" name="admin-modified-email" value="<?php echo $email;?>"  onblur="validateField('email', 'Please Specify An Email that will be Associated With Your Rentals')" disabled>
+                    <div class="error"></div>
+                </div>
+
+                <div class="password">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="admin-password" value="<?php echo $password;?>"  onblur="validateField('password', 'Please Enter A Password To Secure Your Account')" disabled>
+                    <div class="error"></div>
+                </div>
+
+                <input type="hidden" name="retrieved-email" value="<?php echo $email;?>">
+                <input type="hidden" name="retrieved-phone-number" value="<?php echo $adminPhone_Number;?>">
+
+                <input type="checkbox" id="show-pass" tabindex="0" onclick="toggleShowPassword()">
+                <label for="show-pass">Show Password</label>
+
+                <div class="edit-details">
+                    <button type="button" tabindex="0" onclick="toggleEnabled()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Edit Details</button>
+                </div>
+
+                <input type="hidden" name="passwordField" value="<?php echo $password;?>">
+                <input type="hidden" name="property-owners" value="<?php echo htmlspecialchars(json_encode($property_owners)); ?>">
+                <input type="hidden" name="retrieved-admin-first-name" value="<?php echo $adminFirst_Name; ?>">
+                <input type="hidden" name="retrieved-admin-last-name" value="<?php echo $adminLast_Name; ?>">
+                
+                
+                <div class="confirm-button">
+                    <button type="submit" tabindex="0" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Confirm Details</button>
+                </div>                       
+            </form> 
         </div>
     </div>
 </body>

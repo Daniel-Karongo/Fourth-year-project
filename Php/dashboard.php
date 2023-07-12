@@ -276,7 +276,7 @@
 
                         <div class="password">
                             <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" value="<?php echo $password;?>" disabled onblur="validateField('password', 'Please Confirm The Password')">
+                            <input type="password" id="password" name="password" value="<?php echo $password;?>" disabled onblur="validateField('password', 'Please Enter A Password To Secure Your Account')">
                             <div class="error"></div>
                         </div>
 

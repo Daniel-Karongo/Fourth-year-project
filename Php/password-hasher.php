@@ -5,6 +5,7 @@
     $property_owners = json_decode($_POST['property-owners'], true);
     $adminFirst_Name = $_POST['admin-first-name'];
     $adminLast_Name = $_POST['admin-last-name'];
+    $adminPhone_Number = $_POST['admin-phone-number'];
     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
     
     include "../Php/admin-dashboard.php";
