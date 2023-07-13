@@ -118,11 +118,11 @@ function textareaSizor() {
     });
 }
   
-function toViewAndHide(button, view, hide, displaytype, direction) {
+function toViewAndHide(button, collection, view, hide, displaytype, direction) {
     let toHide = hide.split(", ");
     
     document.querySelector(view).style.display = displaytype;
-    let allButtons = document.querySelectorAll('.control-panel button');
+    let allButtons = document.querySelectorAll(collection);
     Array.from(allButtons).forEach((specificButton) => {
         specificButton.style.backgroundColor = "transparent";
     })
@@ -276,6 +276,23 @@ function validateForm(event, div, form) {
 
         if((firstNameOkay === true) && (lastNameOkay === true) && (phoneNumberOkay === true) && (emailOkay === true) && (createPasswordOkay === true)) {
             const proceed = confirm("Are You Sure You Want To Add A New Administrator?");
+            if(proceed) {
+                document.querySelector(form).submit();
+            }        
+        }
+    } else {
+        const firstNameOkay = validateField('new-property-owner-first-name', 'Please Specify The New Property Owner\'s First Name', 'submit', 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password');
+        
+        const lastNameOkay = validateField('new-property-owner-last-name', 'Please Specify The New Property Owner\'s Last Name', 'submit', 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password');
+
+        const phoneNumberOkay = validatePhoneNumber('submit', 'new-property-owner-phone', "Please Enter A Phone Number That Will Be Associated With The New Property Owner's Account");
+
+        const emailOkay = validateField('new-property-owner-email', 'Please Specify An Email that will be Associated With The New Property Owner\'s Rentals', 'submit', 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password');
+
+        const createPasswordOkay = validateField('new-property-owner-password', 'Please Enter A Password To Secure The New Property Owner\'s Account', 'submit', 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password');
+
+        if((firstNameOkay === true) && (lastNameOkay === true) && (phoneNumberOkay === true) && (emailOkay === true) && (createPasswordOkay === true)) {
+            const proceed = confirm("Are You Sure You Want To Add A New Property Owner?");
             if(proceed) {
                 document.querySelector(form).submit();
             }        

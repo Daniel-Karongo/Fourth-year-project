@@ -138,9 +138,7 @@
         $bedsitters = array();
 
         if (mysqli_num_rows($res) > 0) {
-            
             $i=0;
-            
             while ($bedsittersRetrieved = mysqli_fetch_assoc($res)) {
                 $bedsitters[$i][0] = $bedsittersRetrieved['Rental_ID'];
                 $bedsitters[$i][1] = $bedsittersRetrieved['Rental_Name'];
@@ -220,6 +218,7 @@
         $hostels = array();
 
         if (mysqli_num_rows($res) > 0) {
+            $i=0;
             while ($hostelsRetrieved = mysqli_fetch_assoc($res)) {
                 $hostels[$i][0] = $hostelsRetrieved['Rental_ID'];
                 $hostels[$i][1] = $hostelsRetrieved['Rental_Name'];
@@ -303,12 +302,12 @@
 
             while ($singleroomsRetrieved = mysqli_fetch_assoc($res)) {
                 $singlerooms[$i][0] = $singleroomsRetrieved['Rental_ID'];
-                $singlerooms[$i][2] = $singleroomsRetrieved['Rental_Name'];
-                $singlerooms[$i][3] = $singleroomsRetrieved['Location'];
-                $singlerooms[$i][4] = $singleroomsRetrieved['Google_Location'];
-                $singlerooms[$i][5] = $singleroomsRetrieved['Image_Urls'];
-                $singlerooms[$i][6] = $singleroomsRetrieved['Ammenities'];
-                $singlerooms[$i][7] = $singleroomsRetrieved['Number_Of_Similar_Units'];
+                $singlerooms[$i][1] = $singleroomsRetrieved['Rental_Name'];
+                $singlerooms[$i][2] = $singleroomsRetrieved['Location'];
+                $singlerooms[$i][3] = $singleroomsRetrieved['Google_Location'];
+                $singlerooms[$i][4] = $singleroomsRetrieved['Image_Urls'];
+                $singlerooms[$i][5] = $singleroomsRetrieved['Ammenities'];
+                $singlerooms[$i][6] = $singleroomsRetrieved['Number_Of_Similar_Units'];
 
                 $i++;
             }
