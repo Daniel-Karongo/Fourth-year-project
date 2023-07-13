@@ -123,7 +123,6 @@ function textareaSizor(hashedReturn, input) {
     });
 }
 
-// \'.rental-owner\'
 function viewOwnerDetails(event, ownerClass) {
     event.preventDefault();
     element = event.target;
@@ -148,7 +147,7 @@ function viewOwnerDetails(event, ownerClass) {
     
     let entries = table.querySelectorAll('tr');
     Array.from(entries).forEach((entry) => {
-        if((entry.className === "rental-owner") && (entry.id.split("-").includes(index))) {
+        if((entry.className.includes("extra-details")) && (entry.id.split("-").includes(index)) && (entry.id.split("-").includes(ownerClass))) {
             if(entry.style.display === "table-row") {
                 entry.style.display = "none";
             } else {

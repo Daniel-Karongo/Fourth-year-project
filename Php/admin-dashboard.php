@@ -287,8 +287,8 @@
                                                     <td><input type="text" name="image-urls" value="' . $hostels[$i][4] . '" disabled></td>
                                                     <td><input type="text" name="ammenities" value="' . $hostels[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $hostels[$i][6] . '" disabled></td>
-                                                    <td class="view-owner-details" id="view-owner-details-'. ($i+1) .'">
-                                                        <button class="hostels-view-owner-details-button" onclick="viewOwnerDetails(event, null)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                    <td class="view-owner-details" id="view-hostel-owner-details-'. ($i+1) .'">
+                                                        <button class="hostels-view-owner-details-button" onclick="viewOwnerDetails(event, \'hostel\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/more-details.png" alt="more-details-button">
                                                         </button>
                                                     </td>
@@ -331,15 +331,10 @@
                                                             </button>
                                                         </td>
                                                     </td>
-                                                </tr>
-                                                <tr class="rental-owner" id="rental-owner-heading-'. ($i+1) .'">
-                                                    <th id="property-owners-table-column-heads">Phone Number</th>
-                                                    <th colspan="2" id="property-owners-table-column-heads">Email Address</th>
-                                                    <th id="property-owners-table-column-heads">First Name</th>
-                                                    <th id="property-owners-table-column-heads">Last Name</th>
                                                 </tr>';
 
                                                 $rentalId = $hostels[$i][0];
+                                                
                                                 $ownerPhoneNumber = "";
                                                 $ownerEmail = "";
                                                 $ownerFirstName = "";
@@ -349,6 +344,11 @@
                                                     if($rentalId === $propertyOwnersForEachRentals[$j][0]) {
                                                         $ownerPhoneNumber = $propertyOwnersForEachRentals[$j][1];
                                                         $ownerEmail = $propertyOwnersForEachRentals[$j][2];
+
+                                                        $rentalTerm = $propertyOwnersForEachRentals[$j][3];
+                                                        $rentAmount = $propertyOwnersForEachRentals[$j][4];
+                                                        $preferences = $propertyOwnersForEachRentals[$j][6];
+                                                        $maximumOcupants = $propertyOwnersForEachRentals[$j][7];
                                                     }
                                                 }
 
@@ -359,11 +359,29 @@
                                                     }
                                                 }
 
-                                            echo '<tr class="rental-owner" id="rental-owner-details-'. ($i+1) .'">
-                                                    <td><input type="text" name="phone-number" value="' . $ownerPhoneNumber . '" disabled></td>
-                                                    <td colspan="2"><input type="text" name="email-address" value="' . $ownerEmail . '" disabled></td>
-                                                    <td><input type="text" name="first-name" value="' . $ownerFirstName . '" disabled></td>
-                                                    <td><input type="text" name="last-name" value="' . $ownerLastName . '" disabled></td>
+                                            echo'<tr class="extra-details rental-details" id="hostel-extra-details-heading-'. ($i+1) .'">
+                                                    <th colspan="1">Rental Term</th>
+                                                    <th colspan="1">Rent</th>
+                                                    <th colspan="3">Preferences</th>
+                                                    <th colspan="1">Maximum Number Of Occupants</th>
+                                                </tr>
+                                                <tr class="extra-details rental-details" id="hostel-extra-details-'. ($i+1) .'">
+                                                    <td colspan="1"><input type="text" value="' . $rentalTerm . '" disabled></td>
+                                                    <td colspan="1"><input type="text" value="' . $rentAmount . '" disabled></td>
+                                                    <td colspan="3"><input type="text" value="' . $preferences . '" disabled></td>
+                                                    <td colspan="1"><input type="text" value="' . $maximumOcupants . '" disabled></td>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="hostel-owner-heading-'. ($i+1) .'">
+                                                    <th colspan="2" id="property-owners-table-column-heads">Phone Number</th>
+                                                    <th colspan="2" id="property-owners-table-column-heads">Email Address</th>
+                                                    <th id="property-owners-table-column-heads">First Name</th>
+                                                    <th id="property-owners-table-column-heads">Last Name</th>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="hostel-owner-details-'. ($i+1) .'">
+                                                    <td colspan="2"><input type="text" value="' . $ownerPhoneNumber . '" disabled></td>
+                                                    <td colspan="2"><input type="text" value="' . $ownerEmail . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
                                         }
                             echo '
@@ -414,6 +432,11 @@
                                                     <td><input type="text" name="image-urls" value="' . $singlerooms[$i][4] . '" disabled></td>
                                                     <td><input type="text" name="ammenities" value="' . $singlerooms[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $singlerooms[$i][6] . '" disabled></td>
+                                                    <td class="view-owner-details" id="view-single-room-owner-details-'. ($i+1) .'">
+                                                        <button class="single-rooms-view-owner-details-button" onclick="viewOwnerDetails(event, \'single\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                            <img src="../Images/more-details.png" alt="more-details-button">
+                                                        </button>
+                                                    </td>
                                                     <td class="edit-details">
                                                         <button class="single-rooms-table-edit-details-button" onclick="editDetails(event, \'.single-rooms-table input[type=text]\', \'.single-rooms-table .submit-details\', \'.single-rooms-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/edit.png" alt="edit-button">
@@ -453,6 +476,56 @@
                                                             </button>
                                                         </td>
                                                     </td>
+                                                </tr>';
+                                                $rentalId = $singlerooms[$i][0];
+                                                
+                                                $ownerPhoneNumber = "";
+                                                $ownerEmail = "";
+                                                $ownerFirstName = "";
+                                                $ownerLastName = "";
+                                                
+                                                for($j=0; $j < count($propertyOwnersForEachRentals); $j++) {
+                                                    if($rentalId === $propertyOwnersForEachRentals[$j][0]) {
+                                                        $ownerPhoneNumber = $propertyOwnersForEachRentals[$j][1];
+                                                        $ownerEmail = $propertyOwnersForEachRentals[$j][2];
+
+                                                        $rentalTerm = $propertyOwnersForEachRentals[$j][3];
+                                                        $rentAmount = $propertyOwnersForEachRentals[$j][4];
+                                                        $preferences = $propertyOwnersForEachRentals[$j][6];
+                                                        $maximumOcupants = $propertyOwnersForEachRentals[$j][7];
+                                                    }
+                                                }
+
+                                                for($j=0; $j < count($property_owners); $j++) {
+                                                    if(($property_owners[$j][0] == $ownerPhoneNumber) && ($property_owners[$j][1] == $ownerEmail)) {
+                                                        $ownerFirstName = $property_owners[$j][3];
+                                                        $ownerLastName = $property_owners[$j][4];
+                                                    }
+                                                }
+
+                                            echo'<tr class="extra-details rental-details" id="single-room-extra-details-heading-'. ($i+1) .'">
+                                                    <th colspan="1">Rental Term</th>
+                                                    <th colspan="1">Rent</th>
+                                                    <th colspan="3">Preferences</th>
+                                                    <th colspan="1">Maximum Number Of Occupants</th>
+                                                </tr>
+                                                <tr class="extra-details rental-details" id="single-room-extra-details-'. ($i+1) .'">
+                                                    <td colspan="1"><input type="text" value="' . $rentalTerm . '" disabled></td>
+                                                    <td colspan="1"><input type="text" value="' . $rentAmount . '" disabled></td>
+                                                    <td colspan="3"><input type="text" value="' . $preferences . '" disabled></td>
+                                                    <td colspan="1"><input type="text" value="' . $maximumOcupants . '" disabled></td>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="single-room-owner-heading-'. ($i+1) .'">
+                                                    <th colspan="2" id="property-owners-table-column-heads">Phone Number</th>
+                                                    <th colspan="2" id="property-owners-table-column-heads">Email Address</th>
+                                                    <th id="property-owners-table-column-heads">First Name</th>
+                                                    <th id="property-owners-table-column-heads">Last Name</th>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="single-room-owner-details-'. ($i+1) .'">
+                                                    <td colspan="2"><input type="text" value="' . $ownerPhoneNumber . '" disabled></td>
+                                                    <td colspan="2"><input type="text" value="' . $ownerEmail . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
                                         }
                             echo '
@@ -503,6 +576,11 @@
                                                     <td><input type="text" name="image-urls" value="' . $bedsitters[$i][4] . '" disabled></td>
                                                     <td><input type="text" name="ammenities" value="' . $bedsitters[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $bedsitters[$i][6] . '" disabled></td>
+                                                    <td class="view-owner-details" id="view-bedsitter-owner-details-'. ($i+1) .'">
+                                                        <button class="bedsitters-view-owner-details-button" onclick="viewOwnerDetails(event, \'bedsitter\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                            <img src="../Images/more-details.png" alt="more-details-button">
+                                                        </button>
+                                                    </td>
                                                     <td class="edit-details">
                                                         <button class="bedsitters-table-edit-details-button" onclick="editDetails(event, \'.bedsitters-table input[type=text]\', \'.bedsitters-table .submit-details\', \'.bedsitters-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/edit.png" alt="edit-button">
@@ -542,6 +620,56 @@
                                                             </button>
                                                         </td>
                                                     </td>
+                                                </tr>';
+                                                $rentalId = $bedsitters[$i][0];
+                                                
+                                                $ownerPhoneNumber = "";
+                                                $ownerEmail = "";
+                                                $ownerFirstName = "";
+                                                $ownerLastName = "";
+                                                
+                                                for($j=0; $j < count($propertyOwnersForEachRentals); $j++) {
+                                                    if($rentalId === $propertyOwnersForEachRentals[$j][0]) {
+                                                        $ownerPhoneNumber = $propertyOwnersForEachRentals[$j][1];
+                                                        $ownerEmail = $propertyOwnersForEachRentals[$j][2];
+
+                                                        $rentalTerm = $propertyOwnersForEachRentals[$j][3];
+                                                        $rentAmount = $propertyOwnersForEachRentals[$j][4];
+                                                        $preferences = $propertyOwnersForEachRentals[$j][6];
+                                                        $maximumOcupants = $propertyOwnersForEachRentals[$j][7];
+                                                    }
+                                                }
+
+                                                for($j=0; $j < count($property_owners); $j++) {
+                                                    if(($property_owners[$j][0] == $ownerPhoneNumber) && ($property_owners[$j][1] == $ownerEmail)) {
+                                                        $ownerFirstName = $property_owners[$j][3];
+                                                        $ownerLastName = $property_owners[$j][4];
+                                                    }
+                                                }
+
+                                            echo'<tr class="extra-details rental-details" id="bedsitter-extra-details-heading-'. ($i+1) .'">
+                                                    <th colspan="1">Rental Term</th>
+                                                    <th colspan="1">Rent</th>
+                                                    <th colspan="3">Preferences</th>
+                                                    <th colspan="1">Maximum Number Of Occupants</th>
+                                                </tr>
+                                                <tr class="extra-details rental-details" id="bedsitter-extra-details-'. ($i+1) .'">
+                                                    <td colspan="1"><input type="text" value="' . $rentalTerm . '" disabled></td>
+                                                    <td colspan="1"><input type="text" value="' . $rentAmount . '" disabled></td>
+                                                    <td colspan="3"><input type="text" value="' . $preferences . '" disabled></td>
+                                                    <td colspan="1"><input type="text" value="' . $maximumOcupants . '" disabled></td>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="bedsitter-owner-heading-'. ($i+1) .'">
+                                                    <th colspan="2" id="property-owners-table-column-heads">Phone Number</th>
+                                                    <th colspan="2" id="property-owners-table-column-heads">Email Address</th>
+                                                    <th id="property-owners-table-column-heads">First Name</th>
+                                                    <th id="property-owners-table-column-heads">Last Name</th>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="bedsitter-owner-details-'. ($i+1) .'">
+                                                    <td colspan="2"><input type="text" value="' . $ownerPhoneNumber . '" disabled></td>
+                                                    <td colspan="2"><input type="text" value="' . $ownerEmail . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
                                         }
                             echo '
@@ -594,6 +722,11 @@
                                                     <td><input type="text" name="ammenities" value="' . $apartments[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-bedrooms" value="' . $apartments[$i][6] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $apartments[$i][7] . '" disabled></td>
+                                                    <td class="view-owner-details" id="view-apartment-owner-details-'. ($i+1) .'">
+                                                        <button class="apartments-view-owner-details-button" onclick="viewOwnerDetails(event, \'apartment\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                            <img src="../Images/more-details.png" alt="more-details-button">
+                                                        </button>
+                                                    </td>
                                                     <td class="edit-details">
                                                         <button class="apartments-table-edit-details-button" onclick="editDetails(event, \'.apartments-table input[type=text]\', \'.apartments-table .submit-details\', \'.apartments-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/edit.png" alt="edit-button">
@@ -606,7 +739,7 @@
                                                         <input type="hidden" name="original-google-location" value="' . $apartments[$i][3] . '" disabled>
                                                         <input type="hidden" name="original-image-urls" value="' . $apartments[$i][4] . '" disabled>
                                                         <input type="hidden" name="original-ammenities" value="' . $apartments[$i][5] . '" disabled>
-                                                        <input type="text" name="original-number-of-bedrooms" value="' . $apartments[$i][6] . '" disabled>
+                                                        <input type="hidden" name="original-number-of-bedrooms" value="' . $apartments[$i][6] . '" disabled>
                                                         <input type="hidden" name="original-number-of-units" value="' . $apartments[$i][7] . '" disabled>
                                                         <input type="hidden" name="email" value="' . $email . '">
                                                         <input type="hidden" name="passwordField" value="' . $password . '">';
@@ -634,6 +767,53 @@
                                                             </button>
                                                         </td>
                                                     </td>
+                                                </tr>';
+                                                $rentalId = $apartments[$i][0];
+                                                
+                                                $ownerPhoneNumber = "";
+                                                $ownerEmail = "";
+                                                $ownerFirstName = "";
+                                                $ownerLastName = "";
+                                                
+                                                for($j=0; $j < count($propertyOwnersForEachRentals); $j++) {
+                                                    if($rentalId === $propertyOwnersForEachRentals[$j][0]) {
+                                                        $ownerPhoneNumber = $propertyOwnersForEachRentals[$j][1];
+                                                        $ownerEmail = $propertyOwnersForEachRentals[$j][2];
+
+                                                        $rentalTerm = $propertyOwnersForEachRentals[$j][3];
+                                                        $rentAmount = $propertyOwnersForEachRentals[$j][4];
+                                                        $preferences = $propertyOwnersForEachRentals[$j][6];
+                                                    }
+                                                }
+
+                                                for($j=0; $j < count($property_owners); $j++) {
+                                                    if(($property_owners[$j][0] == $ownerPhoneNumber) && ($property_owners[$j][1] == $ownerEmail)) {
+                                                        $ownerFirstName = $property_owners[$j][3];
+                                                        $ownerLastName = $property_owners[$j][4];
+                                                    }
+                                                }
+
+                                            echo'<tr class="extra-details rental-details" id="apartment-extra-details-heading-'. ($i+1) .'">
+                                                    <th colspan="1" id="property-owners-table-column-heads">Rental Term</th>
+                                                    <th colspan="1" id="property-owners-table-column-heads">Rent</th>
+                                                    <th colspan="3" id="property-owners-table-column-heads">Preferences</th>
+                                                </tr>
+                                                <tr class="extra-details rental-details" id="apartment-extra-details-'. ($i+1) .'">
+                                                    <td colspan="1"><input type="text" value="' . $rentalTerm . '" disabled></td>
+                                                    <td colspan="1"><input type="text" value="' . $rentAmount . '" disabled></td>
+                                                    <td colspan="3"><input type="text" value="' . $preferences . '" disabled></td>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="apartment-owner-heading-'. ($i+1) .'">
+                                                    <th colspan="2" id="property-owners-table-column-heads">Phone Number</th>
+                                                    <th colspan="2" id="property-owners-table-column-heads">Email Address</th>
+                                                    <th id="property-owners-table-column-heads">First Name</th>
+                                                    <th id="property-owners-table-column-heads">Last Name</th>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="apartment-owner-details-'. ($i+1) .'">
+                                                    <td colspan="2"><input type="text" value="' . $ownerPhoneNumber . '" disabled></td>
+                                                    <td colspan="2"><input type="text" value="' . $ownerEmail . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
                                         }
                             echo '
@@ -686,6 +866,11 @@
                                                     <td><input type="text" name="ammenities" value="' . $houses[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-bedrooms" value="' . $houses[$i][6] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $houses[$i][7] . '" disabled></td>
+                                                    <td class="view-owner-details" id="view-house-owner-details-'. ($i+1) .'">
+                                                        <button class="houses-view-owner-details-button" onclick="viewOwnerDetails(event, \'house\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                            <img src="../Images/more-details.png" alt="more-details-button">
+                                                        </button>
+                                                    </td>
                                                     <td class="edit-details">
                                                         <button class="houses-table-edit-details-button" onclick="editDetails(event, \'.houses-table input[type=text]\', \'.houses-table .submit-details\', \'.houses-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/edit.png" alt="edit-button">
@@ -698,7 +883,7 @@
                                                         <input type="hidden" name="original-google-location" value="' . $houses[$i][3] . '" disabled>
                                                         <input type="hidden" name="original-image-urls" value="' . $houses[$i][4] . '" disabled>
                                                         <input type="hidden" name="original-ammenities" value="' . $houses[$i][5] . '" disabled>
-                                                        <input type="text" name="original-number-of-bedrooms" value="' . $houses[$i][6] . '" disabled>
+                                                        <input type="hidden" name="original-number-of-bedrooms" value="' . $houses[$i][6] . '" disabled>
                                                         <input type="hidden" name="original-number-of-units" value="' . $houses[$i][7] . '" disabled>
                                                         <input type="hidden" name="email" value="' . $email . '">
                                                         <input type="hidden" name="passwordField" value="' . $password . '">';
@@ -726,6 +911,53 @@
                                                             </button>
                                                         </td>
                                                     </td>
+                                                </tr>';
+                                                $rentalId = $houses[$i][0];
+                                                
+                                                $ownerPhoneNumber = "";
+                                                $ownerEmail = "";
+                                                $ownerFirstName = "";
+                                                $ownerLastName = "";
+                                                
+                                                for($j=0; $j < count($propertyOwnersForEachRentals); $j++) {
+                                                    if($rentalId === $propertyOwnersForEachRentals[$j][0]) {
+                                                        $ownerPhoneNumber = $propertyOwnersForEachRentals[$j][1];
+                                                        $ownerEmail = $propertyOwnersForEachRentals[$j][2];
+
+                                                        $rentalTerm = $propertyOwnersForEachRentals[$j][3];
+                                                        $rentAmount = $propertyOwnersForEachRentals[$j][4];
+                                                        $preferences = $propertyOwnersForEachRentals[$j][6];
+                                                    }
+                                                }
+
+                                                for($j=0; $j < count($property_owners); $j++) {
+                                                    if(($property_owners[$j][0] == $ownerPhoneNumber) && ($property_owners[$j][1] == $ownerEmail)) {
+                                                        $ownerFirstName = $property_owners[$j][3];
+                                                        $ownerLastName = $property_owners[$j][4];
+                                                    }
+                                                }
+
+                                            echo'<tr class="extra-details rental-details" id="house-extra-details-heading-'. ($i+1) .'">
+                                                    <th colspan="1" id="property-owners-table-column-heads">Rental Term</th>
+                                                    <th colspan="1" id="property-owners-table-column-heads">Rent</th>
+                                                    <th colspan="3" id="property-owners-table-column-heads">Preferences</th>
+                                                </tr>
+                                                <tr class="extra-details rental-details" id="house-extra-details-'. ($i+1) .'">
+                                                    <td colspan="1"><input type="text" value="' . $rentalTerm . '" disabled></td>
+                                                    <td colspan="1"><input type="text" value="' . $rentAmount . '" disabled></td>
+                                                    <td colspan="3"><input type="text" value="' . $preferences . '" disabled></td>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="house-owner-heading-'. ($i+1) .'">
+                                                    <th colspan="2" id="property-owners-table-column-heads">Phone Number</th>
+                                                    <th colspan="2" id="property-owners-table-column-heads">Email Address</th>
+                                                    <th id="property-owners-table-column-heads">First Name</th>
+                                                    <th id="property-owners-table-column-heads">Last Name</th>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="house-owner-details-'. ($i+1) .'">
+                                                    <td colspan="2"><input type="text" value="' . $ownerPhoneNumber . '" disabled></td>
+                                                    <td colspan="2"><input type="text" value="' . $ownerEmail . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
                                         }
                             echo '
@@ -778,6 +1010,11 @@
                                                     <td><input type="text" name="image-urls" value="' . $businesspremises[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="ammenities" value="' . $businesspremises[$i][6] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $businesspremises[$i][7] . '" disabled></td>
+                                                    <td class="view-owner-details" id="view-business-premise-owner-details-'. ($i+1) .'">
+                                                        <button class="business-premises-view-owner-details-button" onclick="viewOwnerDetails(event, \'business\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                            <img src="../Images/more-details.png" alt="more-details-button">
+                                                        </button>
+                                                    </td>
                                                     <td class="edit-details">
                                                         <button class="business-premises-table-edit-details-button" onclick="editDetails(event, \'.business-premises-table input[type=text]\', \'.business-premises-table .submit-details\', \'.business-premises-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/edit.png" alt="edit-button">
@@ -818,6 +1055,53 @@
                                                             </button>
                                                         </td>
                                                     </td>
+                                                </tr>';
+                                                $rentalId = $businesspremises[$i][0];
+                                                
+                                                $ownerPhoneNumber = "";
+                                                $ownerEmail = "";
+                                                $ownerFirstName = "";
+                                                $ownerLastName = "";
+                                                
+                                                for($j=0; $j < count($propertyOwnersForEachRentals); $j++) {
+                                                    if($rentalId === $propertyOwnersForEachRentals[$j][0]) {
+                                                        $ownerPhoneNumber = $propertyOwnersForEachRentals[$j][1];
+                                                        $ownerEmail = $propertyOwnersForEachRentals[$j][2];
+
+                                                        $rentalTerm = $propertyOwnersForEachRentals[$j][3];
+                                                        $rentAmount = $propertyOwnersForEachRentals[$j][4];
+                                                        $preferences = $propertyOwnersForEachRentals[$j][6];
+                                                    }
+                                                }
+
+                                                for($j=0; $j < count($property_owners); $j++) {
+                                                    if(($property_owners[$j][0] == $ownerPhoneNumber) && ($property_owners[$j][1] == $ownerEmail)) {
+                                                        $ownerFirstName = $property_owners[$j][3];
+                                                        $ownerLastName = $property_owners[$j][4];
+                                                    }
+                                                }
+
+                                            echo'<tr class="extra-details rental-details" id="business-premise-extra-details-heading-'. ($i+1) .'">
+                                                    <th colspan="1" id="property-owners-table-column-heads">Rental Term</th>
+                                                    <th colspan="1" id="property-owners-table-column-heads">Rent</th>
+                                                    <th colspan="3" id="property-owners-table-column-heads">Preferences</th>
+                                                </tr>
+                                                <tr class="extra-details rental-details" id="business-premise-extra-details-'. ($i+1) .'">
+                                                    <td colspan="1" id="property-owners-table-column-heads"><input type="text" value="' . $rentalTerm . '" disabled></td>
+                                                    <td colspan="1" id="property-owners-table-column-heads"><input type="text" value="' . $rentAmount . '" disabled></td>
+                                                    <td colspan="3" id="property-owners-table-column-heads"><input type="text" value="' . $preferences . '" disabled></td>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="business-premise-owner-heading-'. ($i+1) .'">
+                                                    <th colspan="2" id="property-owners-table-column-heads">Phone Number</th>
+                                                    <th colspan="2" id="property-owners-table-column-heads">Email Address</th>
+                                                    <th id="property-owners-table-column-heads">First Name</th>
+                                                    <th id="property-owners-table-column-heads">Last Name</th>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="business-premise-owner-details-'. ($i+1) .'">
+                                                    <td colspan="2"><input type="text" value="' . $ownerPhoneNumber . '" disabled></td>
+                                                    <td colspan="2"><input type="text" value="' . $ownerEmail . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
                                         }
                             echo '
@@ -870,6 +1154,11 @@
                                                     <td><input type="text" name="ammenities" value="' . $suites[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-beds" value="' . $suites[$i][6] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $suites[$i][7] . '" disabled></td>
+                                                    <td class="view-owner-details" id="view-suite-owner-details-'. ($i+1) .'">
+                                                        <button class="suites-view-owner-details-button" onclick="viewOwnerDetails(event, \'suite\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                            <img src="../Images/more-details.png" alt="more-details-button">
+                                                        </button>
+                                                    </td>
                                                     <td class="edit-details">
                                                         <button class="suites-table-edit-details-button" onclick="editDetails(event, \'.suites-table input[type=text]\', \'.suites-table .submit-details\', \'.suites-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/edit.png" alt="edit-button">
@@ -882,7 +1171,7 @@
                                                         <input type="hidden" name="original-google-location" value="' . $suites[$i][3] . '" disabled>
                                                         <input type="hidden" name="original-image-urls" value="' . $suites[$i][4] . '" disabled>
                                                         <input type="hidden" name="original-ammenities" value="' . $suites[$i][5] . '" disabled>
-                                                        <input type="text" name="original-number-of-beds" value="' . $suites[$i][6] . '" disabled>
+                                                        <input type="hidden" name="original-number-of-beds" value="' . $suites[$i][6] . '" disabled>
                                                         <input type="hidden" name="original-number-of-units" value="' . $suites[$i][7] . '" disabled>
                                                         <input type="hidden" name="email" value="' . $email . '">
                                                         <input type="hidden" name="passwordField" value="' . $password . '">';
@@ -910,6 +1199,53 @@
                                                             </button>
                                                         </td>
                                                     </td>
+                                                </tr>';
+                                                $rentalId = $businesspremises[$i][0];
+                                                
+                                                $ownerPhoneNumber = "";
+                                                $ownerEmail = "";
+                                                $ownerFirstName = "";
+                                                $ownerLastName = "";
+                                                
+                                                for($j=0; $j < count($propertyOwnersForEachRentals); $j++) {
+                                                    if($rentalId === $propertyOwnersForEachRentals[$j][0]) {
+                                                        $ownerPhoneNumber = $propertyOwnersForEachRentals[$j][1];
+                                                        $ownerEmail = $propertyOwnersForEachRentals[$j][2];
+
+                                                        $rentalTerm = $propertyOwnersForEachRentals[$j][3];
+                                                        $rentAmount = $propertyOwnersForEachRentals[$j][4];
+                                                        $preferences = $propertyOwnersForEachRentals[$j][6];
+                                                    }
+                                                }
+
+                                                for($j=0; $j < count($property_owners); $j++) {
+                                                    if(($property_owners[$j][0] == $ownerPhoneNumber) && ($property_owners[$j][1] == $ownerEmail)) {
+                                                        $ownerFirstName = $property_owners[$j][3];
+                                                        $ownerLastName = $property_owners[$j][4];
+                                                    }
+                                                }
+
+                                            echo'<tr class="extra-details rental-details" id="suite-extra-details-heading-'. ($i+1) .'">
+                                                    <th colspan="1" id="property-owners-table-column-heads">Rental Term</th>
+                                                    <th colspan="1" id="property-owners-table-column-heads">Rent</th>
+                                                    <th colspan="3" id="property-owners-table-column-heads">Preferences</th>
+                                                </tr>
+                                                <tr class="extra-details rental-details" id="suite-extra-details-'. ($i+1) .'">
+                                                    <td colspan="1" id="property-owners-table-column-heads"><input type="text" value="' . $rentalTerm . '" disabled></td>
+                                                    <td colspan="1" id="property-owners-table-column-heads"><input type="text" value="' . $rentAmount . '" disabled></td>
+                                                    <td colspan="3" id="property-owners-table-column-heads"><input type="text" value="' . $preferences . '" disabled></td>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="suite-owner-heading-'. ($i+1) .'">
+                                                    <th colspan="2" id="property-owners-table-column-heads">Phone Number</th>
+                                                    <th colspan="2" id="property-owners-table-column-heads">Email Address</th>
+                                                    <th id="property-owners-table-column-heads">First Name</th>
+                                                    <th id="property-owners-table-column-heads">Last Name</th>
+                                                </tr>
+                                                <tr class="extra-details owner-details" id="suite-owner-details-'. ($i+1) .'">
+                                                    <td colspan="2"><input type="text" value="' . $ownerPhoneNumber . '" disabled></td>
+                                                    <td colspan="2"><input type="text" value="' . $ownerEmail . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
+                                                    <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
                                         }
                             echo '
