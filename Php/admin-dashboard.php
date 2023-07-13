@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
     <script src="../Javascript/admin-dashboard.js"></script>
 </head>
-<body onload="textareaSizor()">
+<body onload="textareaSizorbody()">
     <div class="container">
         <div class="nav">
             <div class="website">
@@ -95,6 +95,12 @@
                                                     if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
 
                                                 echo '
+                                                    <input type="hidden" name="email" value="' . $email . '">
+                                                    <input type="hidden" name="passwordField" value="' . $password . '">
+                                                    <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                                    <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                                    <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+
                                                     <td class="submit-details">
                                                         <button type="submit" class="property-owners-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/submit.png" alt="submit details">
@@ -121,8 +127,8 @@
                                     <h4>Password Hasher</h4>
                                 </div>
                                 <div class="password-input">
-                                    <label for="password-to-hash">Password</label>
-                                    <input type="text" oninput="textareaSizor()" name="password-to-hash" id="password-to-hash"';
+                                    <label for="password-to-hash-property-owner">Password</label>
+                                    <input type="text" oninput="textareaSizor(\'#hashed-password-return-property-owner\', \'#password-to-hash-property-owner\')" name="password-to-hash" id="password-to-hash-property-owner"';
                         if (isset($newPassword)) {
                             echo 'value="' . $newPassword . '">';
                         } else {
@@ -132,7 +138,7 @@
                                 </div>
                                 <div class="hashed-password">
                                     <label for="">Hashed Password</label>
-                                    <input type="text" name="hashed-password-return" id="hashed-password-return"';
+                                    <input type="text" name="hashed-password-return" id="hashed-password-return-property-owner"';
                         if (isset($hashedPassword)) {
                             echo 'value="' . $hashedPassword . '">';
                         } else {
@@ -177,30 +183,30 @@
                     
                     <div class="first-name">
                         <label for="new-property-owner-first-name">First Name:</label>
-                        <input type="text" id="new-property-owner-first-name" name="admin-first-name" onblur="validateField('new-property-owner-first-name', 'Please Specify The New Admin\'s First Name', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
+                        <input type="text" id="new-property-owner-first-name" name="new-property-owner-first-name" onblur="validateField('new-property-owner-first-name', 'Please Specify The New Admin\'s First Name', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
                         <div class="error"></div>
                     </div>
                     <div class="last-name">
                         <label for="new-property-owner-last-name">Last Name:</label>
-                        <input type="text" id="new-property-owner-last-name" name="admin-last-name" onblur="validateField('new-property-owner-last-name', 'Please Specify The New Admin\'s Last Name', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
+                        <input type="text" id="new-property-owner-last-name" name="new-property-owner-last-name" onblur="validateField('new-property-owner-last-name', 'Please Specify The New Admin\'s Last Name', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
                         <div class="error"></div>
                     </div>
 
                     <div class="phone-number">
                         <label for="new-property-owner-phone">Phone Number:</label>
-                        <input type="number" id="new-property-owner-phone" name="admin-phone-number" onblur="validatePhoneNumber('submit', 'new-property-owner-phone', 'Please Enter A Phone Number That Will Be Associated With The New Admin\'s Account')">
+                        <input type="number" id="new-property-owner-phone" name="new-property-owner-phone" onblur="validatePhoneNumber('submit', 'new-property-owner-phone', 'Please Enter A Phone Number That Will Be Associated With The New Admin\'s Account')">
                         <div class="error"></div>
                     </div>
                     
                     <div class="email">
                         <label for="new-property-owner-email">Email Address:</label>
-                        <input type="text" id="new-property-owner-email" name="admin-modified-email" onblur="validateField('new-property-owner-email', 'Please Specify An Email that will be Associated With The New Admin\'s Rentals', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
+                        <input type="text" id="new-property-owner-email" name="new-property-owner-email" onblur="validateField('new-property-owner-email', 'Please Specify An Email that will be Associated With The New Admin\'s Rentals', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
                         <div class="error"></div>
                     </div>
 
                     <div class="password">
                         <label for="new-property-owner-password">Password:</label>
-                        <input type="password" id="new-property-owner-password" name="admin-password" onblur="validateField('new-property-owner-password', 'Please Enter A Password To Secure The New Admin\'s Account', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')" placeholder="Un-encrypted Password">
+                        <input type="password" id="new-property-owner-password" name="new-property-owner-password" onblur="validateField('new-property-owner-password', 'Please Enter A Password To Secure The New Admin\'s Account', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')" placeholder="Un-encrypted Password">
                         <div class="error"></div>
                     </div>
 
@@ -209,6 +215,8 @@
                         <label for="new-property-owner-show-pass">Show Password</label>
                     </div>
                     
+                    <input type="hidden" name="retrieved-admin-first-name" value="<?php echo $adminFirst_Name;?>">
+                    <input type="hidden" name="retrieved-admin-last-name" value="<?php echo $adminLast_Name;?>">
                     <input type="hidden" name="retrieved-email" value="<?php echo $email;?>">
                     <input type="hidden" name="retrieved-phone-number" value="<?php echo $adminPhone_Number;?>">
                     <input type="hidden" name="retrieved-password" value="<?php echo $password;?>">
@@ -223,9 +231,6 @@
                     <?php if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}?>
                     <?php if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}?>
                     <?php if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}?>
-
-                    <input type="hidden" name="retrieved-admin-first-name" value="<?php echo $adminFirst_Name;?>">
-                    <input type="hidden" name="retrieved-admin-last-name" value="<?php echo $adminLast_Name;?>">
 
                     <div class="add-new-property-owner-confirm-button">
                         <button type="submit" tabindex="0" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Confirm Details</button>
@@ -282,6 +287,11 @@
                                                     <td><input type="text" name="image-urls" value="' . $hostels[$i][4] . '" disabled></td>
                                                     <td><input type="text" name="ammenities" value="' . $hostels[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $hostels[$i][6] . '" disabled></td>
+                                                    <td class="view-owner-details" id="view-owner-details-'. ($i+1) .'">
+                                                        <button class="hostels-view-owner-details-button" onclick="viewOwnerDetails(event, null)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                            <img src="../Images/more-details.png" alt="more-details-button">
+                                                        </button>
+                                                    </td>
                                                     <td class="edit-details">
                                                         <button class="hostels-table-edit-details-button" onclick="editDetails(event, \'.hostels-table input[type=text]\', \'.hostels-table .submit-details\', \'.hostels-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/edit.png" alt="edit-button">
@@ -309,12 +319,51 @@
                                                         if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
     
                                                     echo '
+                                                        <input type="hidden" name="email" value="' . $email . '">
+                                                        <input type="hidden" name="passwordField" value="' . $password . '">
+                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+                                                    
                                                         <td class="submit-details">
                                                             <button type="submit" class="hostels-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                                 <img src="../Images/submit.png" alt="submit details">
                                                             </button>
                                                         </td>
                                                     </td>
+                                                </tr>
+                                                <tr class="rental-owner" id="rental-owner-heading-'. ($i+1) .'">
+                                                    <th id="property-owners-table-column-heads">Phone Number</th>
+                                                    <th colspan="2" id="property-owners-table-column-heads">Email Address</th>
+                                                    <th id="property-owners-table-column-heads">First Name</th>
+                                                    <th id="property-owners-table-column-heads">Last Name</th>
+                                                </tr>';
+
+                                                $rentalId = $hostels[$i][0];
+                                                $ownerPhoneNumber = "";
+                                                $ownerEmail = "";
+                                                $ownerFirstName = "";
+                                                $ownerLastName = "";
+                                                
+                                                for($j=0; $j < count($propertyOwnersForEachRentals); $j++) {
+                                                    if($rentalId === $propertyOwnersForEachRentals[$j][0]) {
+                                                        $ownerPhoneNumber = $propertyOwnersForEachRentals[$j][1];
+                                                        $ownerEmail = $propertyOwnersForEachRentals[$j][2];
+                                                    }
+                                                }
+
+                                                for($j=0; $j < count($property_owners); $j++) {
+                                                    if(($property_owners[$j][0] == $ownerPhoneNumber) && ($property_owners[$j][1] == $ownerEmail)) {
+                                                        $ownerFirstName = $property_owners[$j][3];
+                                                        $ownerLastName = $property_owners[$j][4];
+                                                    }
+                                                }
+
+                                            echo '<tr class="rental-owner" id="rental-owner-details-'. ($i+1) .'">
+                                                    <td><input type="text" name="phone-number" value="' . $ownerPhoneNumber . '" disabled></td>
+                                                    <td colspan="2"><input type="text" name="email-address" value="' . $ownerEmail . '" disabled></td>
+                                                    <td><input type="text" name="first-name" value="' . $ownerFirstName . '" disabled></td>
+                                                    <td><input type="text" name="last-name" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
                                         }
                             echo '
@@ -392,6 +441,12 @@
                                                         if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
     
                                                     echo '
+                                                        <input type="hidden" name="email" value="' . $email . '">
+                                                        <input type="hidden" name="passwordField" value="' . $password . '">
+                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+
                                                         <td class="submit-details">
                                                             <button type="submit" class="single-rooms-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                                 <img src="../Images/submit.png" alt="submit details">
@@ -475,6 +530,12 @@
                                                         if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
     
                                                     echo '
+                                                        <input type="hidden" name="email" value="' . $email . '">
+                                                        <input type="hidden" name="passwordField" value="' . $password . '">
+                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+                                                        
                                                         <td class="submit-details">
                                                             <button type="submit" class="bedsitters-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                                 <img src="../Images/submit.png" alt="submit details">
@@ -561,6 +622,12 @@
                                                         if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
     
                                                     echo '
+                                                        <input type="hidden" name="email" value="' . $email . '">
+                                                        <input type="hidden" name="passwordField" value="' . $password . '">
+                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+                                                    
                                                         <td class="submit-details">
                                                             <button type="submit" class="apartments-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                                 <img src="../Images/submit.png" alt="submit details">
@@ -647,6 +714,12 @@
                                                         if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
     
                                                     echo '
+                                                        <input type="hidden" name="email" value="' . $email . '">
+                                                        <input type="hidden" name="passwordField" value="' . $password . '">
+                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+                                                        
                                                         <td class="submit-details">
                                                             <button type="submit" class="houses-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                                 <img src="../Images/submit.png" alt="submit details">
@@ -733,6 +806,12 @@
                                                         if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
     
                                                     echo '
+                                                        <input type="hidden" name="email" value="' . $email . '">
+                                                        <input type="hidden" name="passwordField" value="' . $password . '">
+                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+                                                    
                                                         <td class="submit-details">
                                                             <button type="submit" class="business-premises-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                                 <img src="../Images/submit.png" alt="submit details">
@@ -819,6 +898,12 @@
                                                         if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
     
                                                     echo '
+                                                        <input type="hidden" name="email" value="' . $email . '">
+                                                        <input type="hidden" name="passwordField" value="' . $password . '">
+                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+                                                    
                                                         <td class="submit-details">
                                                             <button type="submit" class="suites-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                                 <img src="../Images/submit.png" alt="submit details">
@@ -914,6 +999,12 @@
                                                     if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
 
                                                 echo '
+                                                    <input type="hidden" name="email" value="' . $email . '">
+                                                    <input type="hidden" name="passwordField" value="' . $password . '">
+                                                    <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                                    <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                                    <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+                                                    
                                                     <td class="submit-details">
                                                         <button type="submit" class="administrators-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/submit.png" alt="submit details">
@@ -941,8 +1032,8 @@
                                     <h4>Password Hasher</h4>
                                 </div>
                                 <div class="password-input">
-                                    <label for="password-to-hash">Password</label>
-                                    <input type="text" oninput="textareaSizor()" name="password-to-hash" id="password-to-hash"';
+                                    <label for="password-to-hash-admin">Password</label>
+                                    <input type="text" id="password-to-hash-admin" oninput="textareaSizor(\'#hashed-password-return-admin\', \'#password-to-hash-admin\')" name="password-to-hash"';
                         if (isset($newPassword)) {
                             echo 'value="' . $newPassword . '">';
                         } else {
@@ -952,7 +1043,7 @@
                                 </div>
                                 <div class="hashed-password">
                                     <label for="">Hashed Password</label>
-                                    <input type="text" name="hashed-password-return" id="hashed-password-return"';
+                                    <input type="text" name="hashed-password-return" id="hashed-password-return-admin"';
                         if (isset($hashedPassword)) {
                             echo 'value="' . $hashedPassword . '">';
                         } else {
@@ -1101,6 +1192,16 @@
                     <div class="edit-details">
                         <button type="button" tabindex="0" onclick="toggleEnabled()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Edit Details</button>
                     </div>
+
+                    <?php if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}?>
+                    <?php if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}?>
+                    <?php if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}?>
+                    <?php if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}?>
+                    <?php if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}?>
+                    <?php if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}?>
+                    <?php if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}?>
+                    <?php if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}?>
+                    <?php if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}?>
 
                     <input type="hidden" name="passwordField" value="<?php echo $password;?>">
                     <input type="hidden" name="administrators" value="<?php echo htmlspecialchars(json_encode($administrators)); ?>">

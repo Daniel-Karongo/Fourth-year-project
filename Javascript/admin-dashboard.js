@@ -98,9 +98,14 @@ function confirmAdminDelete(event) {
     }
 }
 
-function textareaSizor() {
-    const hashedpasswordinput = document.querySelector('#hashed-password-return');
-    const passwordinput = document.querySelector('#password-to-hash');
+function textareaSizorbody() {
+    textareaSizor('#hashed-password-return-admin', '#password-to-hash-admin');
+    textareaSizor('#hashed-password-return-property-owner', '#password-to-hash-property-owner');
+}
+
+function textareaSizor(hashedReturn, input) {
+    const hashedpasswordinput = document.querySelector(hashedReturn);
+    const passwordinput = document.querySelector(input);
     const inputWidth = 400;
   
     hashedpasswordinput.style.width = inputWidth + 'px';
@@ -116,6 +121,47 @@ function textareaSizor() {
         passwordinput.style.width = maxWidth + 10 + 'px';
       }
     });
+}
+
+// \'.rental-owner\'
+function viewOwnerDetails(event, ownerClass) {
+    event.preventDefault();
+    element = event.target;
+
+    let cell = "";
+    let row = "";
+    let table = "";
+    let button = "";
+
+    if(element.tagName === "BUTTON") {
+        cell = element.parentElement;
+        row = cell.parentElement;
+        table = row.parentElement;
+    } else {
+        button = element.parentElement;
+        cell = button.parentElement;
+        row = cell.parentElement;
+        table = row.parentElement;
+    }
+    splitCellId = cell.id.split("-");
+    index = splitCellId[splitCellId.length - 1];
+    
+    let entries = table.querySelectorAll('tr');
+    Array.from(entries).forEach((entry) => {
+        if((entry.className === "rental-owner") && (entry.id.split("-").includes(index))) {
+            if(entry.style.display === "table-row") {
+                entry.style.display = "none";
+            } else {
+                entry.style.display = "table-row";
+            }
+        }   
+    });
+    // Array.from(rowCells).forEach((td) => {
+    //     console.log(td.className);
+    //     // if(td.className === "rental-owner") {
+    //     //     td.style.display = "table-cell";
+    //     // }
+    // });
 }
   
 function toViewAndHide(button, collection, view, hide, displaytype, direction) {

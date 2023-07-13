@@ -39,13 +39,30 @@
     mysqli_stmt_bind_param($stmt, 'ssssssssss', $phonenumber, $emailAddress, $password, $firstName, $lastName, $rentalsOwned, $passwordResetConfirmationCode, $rememberMeToken, $originalPhonenumber, $originalEmailAddress);
 
     if (!mysqli_stmt_execute($stmt)) {
-        die("Update query failed: " . mysqli_error($connectionInitialisation));
-    }
+        $administrators = json_decode($_POST['administrators'], true);
+        $property_owners = json_decode($_POST['property-owners'], true);
+        $hostels = json_decode($_POST['hostels'], true);
+        $singlerooms = json_decode($_POST['single-rooms'], true);
+        $bedsitters = json_decode($_POST['bedsitters'], true);
+        $apartments = json_decode($_POST['apartments'], true);
+        $houses = json_decode($_POST['houses'], true);
+        $businesspremises = json_decode($_POST['business-premises'], true);
+        $suites = json_decode($_POST['suites'], true);
 
-    mysqli_stmt_close($stmt);
-    echo '<script>alert("Details Updated Successfully");</script>';
-    $email = $_POST['email'];
-    $password = $_POST['passwordField'];
-    
-    include "../Php/admin-dashboard-preparation.php";
+        $adminFirst_Name = $_POST['admin-first-name'];
+        $adminLast_Name = $_POST['admin-last-name'];
+        $adminPhone_Number = $_POST['admin-phone-number'];
+        $email = $_POST['email'];
+
+        echo '<script>alert("An Account With The Same Phone Number And Email Address Already Exists. Please Try Using Different Credentials");</script>';
+
+        include "../Php/admin-dashboard.php";
+    } else {
+        mysqli_stmt_close($stmt);
+        echo '<script>alert("Details Updated Successfully");</script>';
+        $email = $_POST['email'];
+        $password = $_POST['passwordField'];
+        
+        include "../Php/admin-dashboard-preparation.php";
+    }
 ?>

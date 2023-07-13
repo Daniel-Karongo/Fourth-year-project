@@ -1,9 +1,9 @@
 <?php
     include "../Php/databaseConnector.php";
 
-    $phoneNumber = $_POST["admin-phone-number"];
-    $email = $_POST["admin-modified-email"];
-    $password = $_POST["admin-password"];
+    $email = $_POST["retrieved-email"];
+    $adminPhone_Number = $_POST["retrieved-phone-number"];
+    $password = $_POST["passwordField"];
 
     function getPropertyOwners() {
         include "../Php/databaseConnector.php";
@@ -419,7 +419,7 @@
         die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
     }
 
-    mysqli_stmt_bind_param($stmt, "ss", $email, $phoneNumber);
+    mysqli_stmt_bind_param($stmt, "ss", $email, $adminPhone_Number);
 
     if (!mysqli_stmt_execute($stmt)) {
         die("Query execution failed: " . mysqli_error($connectionInitialisation));
@@ -428,8 +428,9 @@
     $res = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($res) > 0) {
-        $email = $_POST["admin-modified-email"];
-        $password = $_POST["admin-password"];
+        $email = $_POST["retrieved-email"];
+        $adminPhone_Number = $_POST["retrieved-phone-number"];
+        $password = $_POST["passwordField"];
 
         while ($adminRetrieved = mysqli_fetch_assoc($res)) {
             $adminPhone_Number = $adminRetrieved['Phone_Number'];

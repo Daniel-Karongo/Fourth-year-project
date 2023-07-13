@@ -29,8 +29,15 @@
         $adminPhone_Number = $_POST["retrieved-phone-number"];
         
         $password = $_POST["passwordField"];
-        $property_owners = json_decode($_POST['property-owners'], true);
         $administrators = json_decode($_POST['administrators'], true);
+        $property_owners = json_decode($_POST['property-owners'], true);
+        $hostels = json_decode($_POST['hostels'], true);
+        $singlerooms = json_decode($_POST['single-rooms'], true);
+        $bedsitters = json_decode($_POST['bedsitters'], true);
+        $apartments = json_decode($_POST['apartments'], true);
+        $houses = json_decode($_POST['houses'], true);
+        $businesspremises = json_decode($_POST['business-premises'], true);
+        $suites = json_decode($_POST['suites'], true);
         
         $adminFirst_Name = $_POST["retrieved-admin-first-name"];
         $adminLast_Name = $_POST["retrieved-admin-last-name"];

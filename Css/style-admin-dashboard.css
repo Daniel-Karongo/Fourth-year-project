@@ -798,6 +798,21 @@ body {
     margin-top: 5px;
 }
 
+.view-owner-details button {
+    padding: 0;
+    background-color: white;
+
+}
+
+.hostels-view-owner-details-button img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(90);
+    border: 0;
+    outline: 0;
+}
+
+
 .edit-details button {
     padding: 0;
     background-color: white;
@@ -1428,9 +1443,11 @@ body {
 
 
 
+.rental-owner {
+    background-color: rgba(255, 255, 255, 0.2);
+}
 
 
-
-.contact-information, .rentals, .administrators, .queries, .hostels, .single-rooms, .bedsitters, .apartments, .houses, .business-premises, .suites {
+.contact-information, .rentals, .administrators, .queries, .single-rooms, .bedsitters, .apartments, .houses, .business-premises, .suites, .rental-owner {
     display: none;
 }
