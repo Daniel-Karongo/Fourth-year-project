@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
     <script src="../Javascript/edit-rental.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body onload="textareaSizor()" onresize="textareaSizor()">
     <div class="container">
@@ -40,6 +41,15 @@
             <p id="tally-paragraph"> 1 of <?php echo count($IndividualPlotPhotos); ?> </p>
         </div>        
         <main>
+            <form action="../Php/rental-interested-parties-table.php" method="post" id="print-list-form" style="display: none;">
+                <input type="hidden" name="rental-name" value="<?php echo $rentalName; ?>">
+                <input type="hidden" name="interested-parties" value="<?php echo htmlspecialchars(json_encode($finalInterestedParties)); ?>">
+            </form>
+            <form action="" method="post" id="reset-units-form" style="display: none;">
+                <input type="hidden" name="rental-ID" value="<?php echo $rentalID; ?>">
+                <input type="hidden" name="rental-type" value="<?php echo $rentalType; ?>">
+                <input type="hidden" name="original-number-of-units" value="<?php echo $numberOfUnits; ?>">
+            </form>
             <form action="../Php/submit-editted-rental-details.php" class="overall-form" method="post" enctype="multipart/form-data">
                 <div class="rental-description">
                     <h2>Rental Details</h2>
@@ -94,36 +104,34 @@
                             echo'
                                 <div class="table" style="display: none;">
                                     <table id="interested-parties-table">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="4" id="interested-parties-table-title">Interested Parties In ' . $rentalName. '</th>
-                                        </tr>
-                                        <tr>
-                                            <th class="interested-parties-table-column-heads">Name</th>
-                                            <th class="interested-parties-table-column-heads">Phone Number</th>
-                                            <th class="interested-parties-table-column-heads">Email Address</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>';
-                                for($i=0; $i<count($finalInterestedParties); $i++) {
-                                    echo '
-                                        <tr>
-                                            <td>' . $finalInterestedParties[$i][0] . '</td>
-                                            <td>' . $finalInterestedParties[$i][1] . '</td>
-                                            <td>' . $finalInterestedParties[$i][2] . '</td>
-                                        </tr>';
-                                }
-                                echo '</tbody>
-                                </table>';
+                                        <thead>
+                                            <tr>
+                                                <th colspan="4" id="interested-parties-table-title">Interested Parties In ' . $rentalName. '</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="interested-parties-table-column-heads">Name</th>
+                                                <th class="interested-parties-table-column-heads">Phone Number</th>
+                                                <th class="interested-parties-table-column-heads">Email Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>';
+                                    for($i=0; $i<count($finalInterestedParties); $i++) {
+                                        echo '
+                                            <tr>
+                                                <td>' . $finalInterestedParties[$i][0] . '</td>
+                                                <td>' . $finalInterestedParties[$i][1] . '</td>
+                                                <td>' . $finalInterestedParties[$i][2] . '</td>
+                                            </tr>';
+                                    }
+                                    echo '</tbody>
+                                    </table>
+                                    <div id="print-list-form">
+                                        <button type="button" id="print-list" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="printInterestedParties()">Print List</button>
+                                    </div>
+                                </div>
+                                <button type="button" id="reset-number" style="display: none;" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="resetUnits()">Reset The Number Of Units Remaining</button>
+                            </div>';
                             }
-                            echo '
-                                <form action="../Php/rental-interested-parties.php" method="post">
-                                    <input type="hidden" name="name" value="' . htmlspecialchars(json_encode($finalInterestedParties)) . '">
-                                    <button type="submit" id="print-list" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print List</button>
-                                </form>
-                            </div>
-                            <button type="button" id="reset-number" style="display: none;" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Reset The Number Of Units Remaining</button>
-                        </div>';
                     ?>
                     <?php
                         switch($rentalType) {

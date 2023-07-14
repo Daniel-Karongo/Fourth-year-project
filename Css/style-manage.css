@@ -103,6 +103,32 @@ nav h3 {
     margin-bottom: 5px;
 }
 
+.filters {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+    margin: 10px;
+    margin-left: 5px;
+}
+
+.filters h4 {
+    margin: 5px;
+    margin-bottom: 15px;
+}
+
+.filters select {
+    padding: 7px 10px;
+    color: rgba(255,255,255,1);
+    font-size: 0.9rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+}
+
+.filters select option {
+    color: rgba(0,0,0,1);
+}
+
 .rental-template {
     padding: 10px;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);

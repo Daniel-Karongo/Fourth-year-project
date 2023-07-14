@@ -25,21 +25,49 @@
                     email=<?php echo $email; ?>&
                     phone_number=<?php echo $retrieved_phone_number; ?>&
                     password=<?php echo $password; ?>&
-                    rentals_owned=<?php echo $retrieved_rentals_owned; ?>" class="button-link" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Advertise a new Rental</a>
+                    rentals_owned=<?php echo $retrieved_rentals_owned; ?>" class="button-link" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">Advertise a new Rental</a>
                 <form action="../Php/landlord-account-deleter.php" method="post" onsubmit="verifyDeleteAccount(event)" id="account-deleter">
                     <input type="hidden" name="email" value="<?php echo $email;?>">
                     <input type="hidden" name="phone-number" value="<?php echo $retrieved_phone_number;?>">
-                    <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Delete Account</button>
+                    <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">Delete Account</button>
                 </form>
             </div>
             <div class="panel">
                 <div class="panel-buttons">
-                    <button onclick="wrapperFunction('.my-rentals', '.contact-information', null)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"> My Rentals</button>
-                    <button onclick="wrapperFunction('.contact-information', '.my-rentals', null)" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"> My Contact Information</button>
+                    <button onclick="wrapperFunction('.my-rentals', '.contact-information', null, '#rentals-button')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" id="rentals-button"> My Rentals</button>
+                    <button onclick="wrapperFunction('.contact-information', '.my-rentals', null, '#contacts-button')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" id="contacts-button"> My Contact Information</button>
                 </div>                
                 <div class="my-rentals">
                     <?php 
                         if(($res) && (mysqli_num_rows($res) > 0)) {
+                            
+                            $uniqueLocations = array_values(array_unique($retrieved_location));
+                            echo '
+                                <div class="filters">
+                                    <h4>Filter By:</h4>
+                                    <select class="type-of-rental" id="type-of-rental" name="type-of-rental" onchange="displayParameters()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">
+                                        <option value="no-value" selected>Type Of Rental</option>
+                                        <option value="Hostel">Hostel</option>
+                                        <option value="Single Room">Single Room</option>
+                                        <option value="Bedsitter">Bedsitter</option>
+                                        <option value="Apartment">Apartment</option>
+                                        <option value="Business Premise">Business Premise</option>
+                                        <option value="House">House</option> 
+                                        <option value="Suite">Suite/ Motel</option>
+                                    </select>
+                                    <select class="type-of-rental" id="type-of-rental" name="type-of-rental" onchange="displayParameters()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">
+                                        <option value="no-value" selected>Prospects</option>
+                                        <option value="no-value" selected>Showing Prospects</option>
+                                        <option value="Hostel">Not Interested In Yet</option>
+                                    </select>
+                                    <select class="location-filter" id="location-filter" name="location-filter" onchange="displayParameters()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">
+                                        <option value="no-value">Location</option>';
+                                    foreach($uniqueLocations as $uniqueLocation) {
+                                        echo '<option value="'. $uniqueLocation .'">'. ucwords($uniqueLocation) .'</option>';
+                                    }
+                                    echo '</select>
+                                </div>';
+                            
                             for($i=0; $i<count($rentalsOwned); $i++) {
                                                                     
                                 $imageUrlsComponents = explode(", ", $retrieved_image_urls[$i]);

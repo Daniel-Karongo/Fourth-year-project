@@ -1,8 +1,9 @@
-function wrapperFunction(view, hide, tag) {
+function wrapperFunction(view, hide, tag, element) {
     toViewAndHide(view, hide);
     if(tag != null){
-        clearText(tag);    
-    }    
+        clearText(element);    
+    }
+    highlightClicked(document.querySelector(element));    
 }
 
 function toViewAndHide(view, hide) {
@@ -235,3 +236,10 @@ function textareaSizor() {
     });    
 }
 
+function highlightClicked(element) {
+    otherElements = element.parentElement.children;
+    Array.from(otherElements).forEach((otherElement) => {
+        otherElement.style.backgroundColor = "transparent";
+    });
+    element.style.backgroundColor = "#2C18DE";
+}

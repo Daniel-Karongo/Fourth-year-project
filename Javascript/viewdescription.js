@@ -81,20 +81,6 @@ function viewContactDetails() {
     } else {
         contacts.style.display = "none";
     }
-    
-    
-    let formData = $(contacts).serialize(); // Serialize form data
-    
-    $.ajax({
-        type: 'POST',
-        url: '../Php/reduceNumberOfUnits.php', // PHP script to handle form submission
-        data: formData,
-        success: function(response) {
-        // Handle the response from the server
-        // You can update the current page or perform any other action here
-        }
-    });
-
 }
 
 function viewTenantForm() {

@@ -96,3 +96,25 @@ function viewInterestedParties() {
     }
     
 }
+
+
+function printInterestedParties() {
+    document.querySelector('#print-list-form').submit();
+}
+
+function resetUnits() {
+    let resetForm = document.querySelector('#reset-units-form');
+    let formData = $(resetForm).serialize(); // Serialize form data
+    
+    const proceed = confirm("Are You Sure You Want To Reset The Number Units Remaining? This Will Also Clear The List Of Interested Parties.");
+    if(proceed) {
+        $.ajax({
+            type: 'POST',
+            url: '../Php/reset-rental-units.php', // PHP script to handle form submission
+            data: formData,
+            success: function(response) {
+                alert(response);
+            }
+        });
+    }
+}
