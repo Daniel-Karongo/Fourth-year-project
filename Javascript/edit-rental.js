@@ -82,3 +82,17 @@ function unzoomDiv(div) {
 
     div.style.outline = 'none';
 }
+
+function viewInterestedParties() {
+    let tableDiv = document.querySelector('.table');
+    let resetButton = document.querySelector('#reset-number');
+
+    if((tableDiv.style.display === "none") && (resetButton.style.display === "none")) {
+        tableDiv.style.display = "flex";
+        resetButton.style.display = "flex";
+    } else {
+        tableDiv.style.display = "none";
+        resetButton.style.display = "none";
+    }
+    
+}

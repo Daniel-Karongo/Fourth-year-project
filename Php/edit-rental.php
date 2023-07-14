@@ -88,33 +88,42 @@
                     <input type="number" class="rental-description-input" name="units-remaining" id="units-remaining" value="<?php echo $numberOfUnitsRemaining; ?>">
                     <?php 
                         if($numberOfUnitsRemaining < $numberOfUnits) { 
-                            echo "<button type=\"button\" id=\"view-parties\">View The People Who Left Their Details</button>";
+                            echo "
+                            <div class=\"table-and-reset\">
+                                <button type=\"button\" id=\"view-parties\" onclick=\"viewInterestedParties()\" onmouseenter=\"zoomDiv(this)\" onmouseleave=\"unzoomDiv(this)\">View The People Who Left Their Details</button>";
                             echo'
-                                <table class="interested-parties-table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="4" id="interested-parties-table-title">Interested Parties In ' . $rentalName. '</th>
-                                    </tr>
-                                    <tr>
-                                        <th class="interested-parties-table-column-heads">First Name</th>
-                                        <th class="interested-parties-table-column-heads">Phone Number</th>
-                                        <th class="interested-parties-table-column-heads">Email Address</th>
-                                    </tr>
-                                </thead>
-                                <tbody>';
-                            for($i=0; $i<count($finalInterestedParties); $i++) {
-                                echo '
-                                    <tr>
-                                        <td>' . $finalInterestedParties[$i][0] . '</td>
-                                        <td>' . $finalInterestedParties[$i][1] . '</td>
-                                        <td>' . $finalInterestedParties[$i][2] . '</td>
-                                    </tr>';
+                                <div class="table" style="display: none;">
+                                    <table id="interested-parties-table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4" id="interested-parties-table-title">Interested Parties In ' . $rentalName. '</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="interested-parties-table-column-heads">Name</th>
+                                            <th class="interested-parties-table-column-heads">Phone Number</th>
+                                            <th class="interested-parties-table-column-heads">Email Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>';
+                                for($i=0; $i<count($finalInterestedParties); $i++) {
+                                    echo '
+                                        <tr>
+                                            <td>' . $finalInterestedParties[$i][0] . '</td>
+                                            <td>' . $finalInterestedParties[$i][1] . '</td>
+                                            <td>' . $finalInterestedParties[$i][2] . '</td>
+                                        </tr>';
+                                }
+                                echo '</tbody>
+                                </table>';
                             }
-                            echo '</tbody>
-                            </table>';
-                        }
-                        echo "<button type=\"button\" id=\"print-list\">Print List</button>
-                        <button type=\"button\" id=\"reset-number\">Reset The Number Of Units Remaining</button>";
+                            echo '
+                                <form action="../Php/rental-interested-parties.php" method="post">
+                                    <input type="hidden" name="name" value="' . htmlspecialchars(json_encode($finalInterestedParties)) . '">
+                                    <button type="submit" id="print-list" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print List</button>
+                                </form>
+                            </div>
+                            <button type="button" id="reset-number" style="display: none;" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Reset The Number Of Units Remaining</button>
+                        </div>';
                     ?>
                     <?php
                         switch($rentalType) {

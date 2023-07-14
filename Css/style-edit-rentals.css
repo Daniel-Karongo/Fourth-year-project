@@ -357,6 +357,54 @@ section .right {
 }
 
 
+.table-and-reset {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 5px;
+}
+
+.table {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 5px;
+}
+
+#view-parties, #print-list, #reset-number {
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
+    font-size: 0.9rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+    width: fit-content;
+    align-self: center;
+}
+
+#print-list, #reset-number {
+    margin-top: 10px;
+}
+
+#interested-parties-table {
+    margin-top: 0;
+    
+}
+
+#interested-parties-table th, #interested-parties-table td {
+    border: 1px solid rgba(255,255,255,0.7);
+    padding: 7px;
+    max-width: 200px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+
 @media (min-width: 576px){
     .container {
         max-width: 900px;
