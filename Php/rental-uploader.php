@@ -407,7 +407,7 @@
             
             case "Business Premise":
                 
-                $sqlquery = "INSERT INTO business_premises (Rental_ID, Rental_Name, Type_Of_Premise, Location, Google_Location, Image_Urls, Ammenities, Number_Of_Similar_Units) 
+                $sqlquery = "INSERT INTO business_premises (Rental_ID, Rental_Name, Type_Of_Premise, Location, Google_Location, Image_Urls, Ammenities, Number_Of_Similar_Units, Number_Of_Units_Remaining) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
                 $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
@@ -416,7 +416,7 @@
                     die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
                 }
 
-                mysqli_stmt_bind_param($stmt, "sssssssi", $rentalID, $nameOfRental, $typeOfOfBusinessPremise, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals);
+                mysqli_stmt_bind_param($stmt, "sssssssii", $rentalID, $nameOfRental, $typeOfOfBusinessPremise, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $numberOfAvailableRentals);
 
                 if (!mysqli_stmt_execute($stmt)) {
                     die("Update query failed: " . mysqli_error($connectionInitialisation));
@@ -445,8 +445,8 @@
     function otherTablesPopulator($tableName, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $connectionInitialisation) {
         include '../Php/databaseConnector.php';
 
-        $sqlquery = "INSERT INTO $tableName (Rental_ID, Rental_Name, Location, Google_Location, Image_Urls, Ammenities, Number_Of_Similar_Units) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sqlquery = "INSERT INTO $tableName (Rental_ID, Rental_Name, Location, Google_Location, Image_Urls, Ammenities, Number_Of_Similar_Units, Number_Of_Units_Remaining) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
         
@@ -454,7 +454,7 @@
             die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
         }
         
-        mysqli_stmt_bind_param($stmt, "ssssssi", $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals);
+        mysqli_stmt_bind_param($stmt, "ssssssii", $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfAvailableRentals, $numberOfAvailableRentals);
 
         if (!mysqli_stmt_execute($stmt)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));
@@ -464,8 +464,8 @@
     function eightColumnTablesPopulator($tableName, $extraColumn, $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $numberOfAvailableRentals, $connectionInitialisation) {
         include '../Php/databaseConnector.php';
 
-        $sqlquery = "INSERT INTO $tableName (Rental_ID, Rental_Name, Location, Google_Location, Image_Urls, Ammenities, $extraColumn, Number_Of_Similar_Units) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sqlquery = "INSERT INTO $tableName (Rental_ID, Rental_Name, Location, Google_Location, Image_Urls, Ammenities, $extraColumn, Number_Of_Similar_Units, Number_Of_Units_Remaining) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
         
@@ -473,7 +473,7 @@
             die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
         }
         
-        mysqli_stmt_bind_param($stmt, "ssssssii", $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $numberOfAvailableRentals);
+        mysqli_stmt_bind_param($stmt, "ssssssiii", $rentalID, $nameOfRental, $location, $googleLocation, $plotNames, $ammenitiesCollection, $numberOfOccupants, $numberOfAvailableRentals, $numberOfAvailableRentals);
 
         if (!mysqli_stmt_execute($stmt)) {
             die("Update query failed: " . mysqli_error($connectionInitialisation));

@@ -7,6 +7,9 @@
     $rentalName = $_POST['rental-name'];
     $rentalType = $_POST['rental-type'];
     $numberOfUnits = $_POST['number-of-units'];
+    $numberOfUnitsRemaining = $_POST['number-of-units-remaining'];
+    $interestedParties = $_POST['interested-parties'];
+    
     $location = $_POST['location'];
     $googlelocation = $_POST['googlelocation'];    
     $rentalTerm = $_POST['rental-term'];
@@ -61,5 +64,16 @@
         }
     }    
 
+    $finalInterestedParties = array();
+
+    $parties = explode(", ", $interestedParties);
+    foreach ($parties as $party) {
+        $cleanString = str_replace(array('[', ']'), '', $party);
+        $cleanString = explode("-", $cleanString);
+        $finalInterestedParties[] = $cleanString;
+    }
+    
+    
+    
     include "../Php/edit-rental.php";    
 ?>

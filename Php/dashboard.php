@@ -130,6 +130,10 @@
                                                     '<div class="number-of-units-div">' .
                                                         '<label for="rental-template-similar-units-' . ($i+1) .'">Number Of Similar Units: </label>' .
                                                         '<input type="text" name="rental-template-similar-units-' . (($i+1)) .'" id="rental-template-similar-units-' . (($i+1)) .'" value="' . $retrieved_number_of_units[$i] . '" disabled>' .
+                                                    '</div>' .
+                                                    '<div class="number-of-units-remaining-div">' .
+                                                        '<label for="rental-template-similar-units-remaining-' . ($i+1) .'">Number Of Units Remaining: </label>' .
+                                                        '<input type="text" name="rental-template-similar-units-remaining-' . (($i+1)) .'" id="rental-template-similar-units-remaining-' . (($i+1)) .'" value="' . $retrieved_number_of_remaining_units[$i] . '" disabled>' .
                                                     '</div>';
                                                     if(($rentalType[$i] === "Hostel") || ($rentalType[$i] === "Single Room") || ($rentalType[$i] === "Bedsitter")){
 
@@ -218,6 +222,8 @@
                                                         <input type="hidden" name="plot-photos" class="plot-photos" value="' .$retrieved_image_urls[$i] . '">
                                                         <input type="hidden" name="ammenties" class="ammenties" value="' .$retrieved_ammenities[$i] . '">
                                                         <input type="hidden" name="number-of-units" class="number-of-units" value="' .$retrieved_number_of_units[$i] . '">
+                                                        <input type="hidden" name="number-of-units-remaining" class="number-of-units-remaining" value="' .$retrieved_number_of_remaining_units[$i] . '">
+                                                        <input type="hidden" name="interested-parties" class="interested-parties" value="' .$retrieved_interested_parties[$i] . '">
                                                         <input type="hidden" name="apartment-bedrooms" class="apartment-bedrooms" value="' . $apartments_retrieved_number_of_bedrooms[$i] . '">
                                                         <input type="hidden" name="type-of-business-premise" class="type-of-business-premise" value="' . $business_premises_retrieved_type_of_premise[$i] . '">
                                                         <input type="hidden" name="house-bedrooms" class="house-bedrooms" value="' . $houses_retrieved_number_of_bedrooms[$i] . '">

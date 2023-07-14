@@ -10,12 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
     <script src="../Javascript/viewdescription.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
     <div class="container">
         <nav>
             <h1>HousesearchKE.com</h1>
-            <button id="back-button" onclick="history.back()">Back</button>                                
+            <button id="back-button" onclick="history.back()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Back</button>                                
         </nav>
         <div class="top-section">
             <div class="buttons left">
@@ -65,7 +66,7 @@
 
                     ?>
                     <p><?php echo "<span>Location: </span>" . $location; ?></p>
-                    <p><?php echo "<span>Google Location: </span>" . $googleLocation; ?></p>
+                    <?php if($googleLocation !== "") {echo "<p><span>Google Location: </span>" . $googleLocation . "</p>";}?>
                     <p><?php echo "<span>Number Of Similar Units: </span>" . $numberOfSimilarUnits; ?></p>
                     
                 </div>
@@ -76,14 +77,51 @@
             </div>
             <div class="contact-information">
                 <h2>Contact Information</h2>
-                <form action="" class="contacts">
+                <p id="prompt">Do You Like What You See?</p>
+                <button id="view-details" onclick="viewContactDetails()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">View Details For Free</button>
+                
+                <form action="" class="contacts" style="display: none;" method="post">
                     <label for="landlords-name">Landlord's Name</label>
                     <input type="text" id="landlords-name" value="<?php echo $rentalOwnersFullName; ?>"disabled>
                     <label for="landlords-phone-number">Phone Number</label>
                     <input type="number" id="landlords-phone-number" value="<?php echo $ownersPhoneNumber; ?>"disabled>
                     <label for="landlords-email">Email Address</label>
                     <input type="text" id="landlords-email" value="<?php echo $ownersEmailAddress; ?>"disabled>
+                    <input type="hidden" name="rental-type" value="<?php echo $rentalType;?>">
+                    <input type="hidden" name="rental-ID" value="<?php echo $rentalID;?>">
+                    <input type="hidden" name="number-of-units" value="<?php echo $numberOfSimilarUnits;?>">
                 </form>
+
+                <p id="request"> <span>Optional:</span> You may Also Leave Your Details If You Want Just In Case The Demand For The <?php echo $rentalType;?> Is High - To Guarantee That You "Book" The Rental</p>
+
+                <button id="leave-details" onclick="viewTenantForm()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Leave Details</button>
+
+                <form action="" class="tenant-details" style="display: none;" method="post" onsubmit="validateForm(event)">
+                    <div class="name">
+                        <label for="tenants-name">Name</label>
+                        <input type="text" id="tenants-name" name="tenants-name" onblur="validateField('tenants-name', 'Please Give Your Name')">
+                        <div class="error"></div>
+                    </div>
+                    
+                    <div class="number">
+                        <label for="tenants-phone-number">Phone Number</label>
+                        <input type="number" id="tenants-phone-number" name="tenants-phone-number" onblur="validatePhoneNumber(null)">
+                        <div class="error"></div>
+                    </div>
+                    
+                    <div class="email">
+                        <label for="tenants-email">Email Address</label>
+                        <input type="text" id="tenants-email" placeholder="Optional: abcd@gmail.com" name="tenants-email"  onblur="validateEmail(null)">
+                        <div class="error"></div>
+                    </div>
+
+                    <input type="hidden" name="rental-type" value="<?php echo $rentalType;?>">
+                    <input type="hidden" name="rental-ID" value="<?php echo $rentalID;?>">
+                    <input type="hidden" name="interested-parties" value="<?php echo $interestedParties;?>">
+
+                    <button type="Submit" id="submit-tenant-details" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Submit</button>
+                </form>
+
             </div>                            
         </div>
         <?php 

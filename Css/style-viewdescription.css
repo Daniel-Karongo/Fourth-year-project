@@ -82,24 +82,24 @@ nav a {
 }
 
 .top-section .left button img {
-    width: 40px;
+    width: 20px;
 }
 
 .top-section .right button img{
-    width: 40px;
+    width: 20px;
 }
 
 .top-section .left button {
     background-color: rgba(255, 255, 255 , 0.4);
     border: none;
-    padding: 0;
+    padding: 5px;
     border-radius: 50%;
 }
 
 .top-section .right button {
     background-color: rgba(255, 255, 255 , 0.4);
     border: none;
-    padding: 0;
+    padding: 5px;
     border-radius: 50%;
 }
 
@@ -155,8 +155,9 @@ nav a {
 }
 
 .details span {
-    font-weight: 700;
+    font-weight: 500;
     margin-right: 10px;
+    color: rgba(255, 255, 255 , 0.8);
 }
 
 .description {
@@ -164,8 +165,9 @@ nav a {
 }
 
 .rental-description p {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 .contact-information h2 {
@@ -192,6 +194,102 @@ nav a {
 .contact-information form label {
     margin-bottom: 5px;
 }
+
+
+
+
+
+#view-details, #leave-details, #submit-tenant-details {
+    padding: 7px 15px;
+    background-color: transparent;
+    color: rgba(255,255,255,1);
+    font-size: 0.9rem;
+    border: 2.5px solid#2C18DE;
+    width: fit-content;
+    align-self: center;
+    margin-top: 15px;
+    outline: none;
+}
+
+.contacts, .tenant-details {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+    padding-top: 15px;
+}
+
+span {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+#request {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#prompt {
+    align-self: center;
+    margin-top: 25px;
+}
+
+.tenant-details form {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tenant-details div {
+    display: flex;
+    flex-direction: column;
+}
+
+.tenant-details form input {
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    background-color: rgba(255, 255, 255 , 0.2);
+    color: rgba(255, 255, 255 , 1);
+    font-size: 1rem;
+    outline: none;
+}
+
+#tenants-email::placeholder {
+    color: rgba(255, 255, 255 , 0.5);
+}
+
+.tenant-details form label {
+    margin-bottom: 5px;
+}
+
+.name .error {
+    color: #ff3860;
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.number .error {
+    color: #ff3860;
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.email .error {
+    color: #ff3860;
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+
+
+
+
 
 .ammenities-and-preferences {
     display: flex;
@@ -262,11 +360,11 @@ nav a {
 }
 
 .rules .left button img {
-    width: 40px;
+    width: 20px;
 }
 
 .rules .right button img{
-    width: 40px;
+    width: 20px;
 }
 
 .rules .left button {
@@ -339,13 +437,13 @@ nav a {
     }
     
     .top-section .left button img {
-        width: 50px;
+        width: 30px;
         filter: brightness(90);
         box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
     }
     
     .top-section .right button img{
-        width: 50px;
+        width: 30px;
         filter: brightness(90);
         box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
     }
@@ -392,13 +490,13 @@ nav a {
     }
     
     .rules .left button img {
-        width: 50px;
+        width: 3px;
         filter: brightness(90);
         box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
     }
     
     .rules .right button img{
-        width: 50px;
+        width: 30px;
         filter: brightness(90);
         box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
     }

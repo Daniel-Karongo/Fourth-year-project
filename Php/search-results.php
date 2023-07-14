@@ -257,124 +257,135 @@
         <main>
             <?php 
                 if(count($retrievedRentalID) > 0) {
+                    $toBeDisplayed = 0;
+
                     for($i=0; $i<count($retrievedRentalID); $i++){
-                        
-                        $rentalImages = explode(", ", $retrievedImageUrls[$i]);
-                        $imageToDisplay = $rentalImages[0];
-                                    
-                        $finalFolder = "";
-    
-                        switch($retrievedRentalType[$i]) {
-                            case "Business Premise":
-                                $finalFolder = $retrievedRentalType[$i] . "s/" . $retrievedTypeOfBusinessBusiness[$i] . "/";
-                                break;
-    
-                            case "Apartment":                                                    
-                                if(($retrievedNumberOfApartmentBedrooms[$i] == 1) || ($retrievedNumberOfApartmentBedrooms[$i] == 2) || ($retrievedNumberOfApartmentBedrooms[$i] == 3)) {
-                                    $finalFolder = $retrievedRentalType[$i] . "s/" . $retrievedNumberOfApartmentBedrooms[$i]. "-Bedroom/";
-                                } else {
-                                    $finalFolder = $retrievedRentalType[$i] . "s/More Bedrooms/" . $retrievedNumberOfApartmentBedrooms[$i]. "-Bedrooms/";
-                                }                                                    
-                                break;
-    
-                            case "House":
-                                if(($retrievedNumberOfHouseBedrooms[$i] == 1) || ($retrievedNumberOfHouseBedrooms[$i] == 2) || ($retrievedNumberOfHouseBedrooms[$i] == 3)) {
-                                    $finalFolder = $retrievedRentalType[$i] . "s/" . $retrievedNumberOfHouseBedrooms[$i]. "-Bedroom/";
-                                } else {
-                                    $finalFolder = $retrievedRentalType[$i] . "s/More Bedrooms/" . $retrievedNumberOfHouseBedrooms[$i] . "-Bedrooms/";
-                                }
-                                break;
-                            
-                            default:
-                                $finalFolder = $retrievedRentalType[$i] . "s/";
-                        }
-    
-                        $rentalTerm = $retrievedRentalTerm[$i];
-                        $termToDisplay = "";
-                        switch($rentalTerm) {
-                            case "daily":
-                                $termToDisplay = "Per Day";
-                                break;
-                            case "weekly":
-                                $termToDisplay = "Per Week";
-                                break;
-                            case "monthly":
-                                $termToDisplay = "Per Month";
-                                break;
-                            case "yearly":
-                                $termToDisplay = "Per Year";
-                                break;
-                            case "quarterly":
-                                $termToDisplay = "Every 3 Months";
-                                break;
-                            case "bi-annually":
-                                $termToDisplay = "Every 6 Months";
-                                break;
-                        }
-                        echo'
-                        <div class="template" style="order: ' . ($i+1) . ';">
-                            <div class="rental-div" id="rental-' . ($i+1) . '" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="activateAnchor(event)">
-                                <div class="image" id="image' . ($i+1) . '">
-                                    <img src="../Image_Data/' . $finalFolder. $imageToDisplay. '" alt="Rental-' . ($i+1) . '">              
-                                </div>
-                                <div class="description" id="description' . ($i+1) . '">
-                                    <h3 class="rent-amount">Ksh. ' . $retrievedAmountOfRent[$i] . '</h3>
-                                    <h4 class="rent-term-display">' . $termToDisplay . '</h4>
-                                    <br>' .
-                                    '<h4 class="rental-type-display">';  
-                                    if(($retrievedRentalType[$i] === "Hostel") || ($retrievedRentalType[$i] === "Bedsitter") || ($retrievedRentalType[$i] === "Single Room")) {
-                                        echo $retrievedRentalType[$i];
-                                    } else if ($retrievedRentalType[$i] === "Business Premise") {
-                                        echo $retrievedTypeOfBusinessBusiness[$i];
-                                    } else if ($retrievedRentalType[$i] === "Suite") {
-                                        echo $retrievedNumberOfBedsPerSuite[$i] . '-Bed Suite';
+                    
+                        if($retrievedNumberOfSimilarUnits[$i] >= 1){
+                            $rentalImages = explode(", ", $retrievedImageUrls[$i]);
+                            $imageToDisplay = $rentalImages[0];
+                                        
+                            $finalFolder = "";
+        
+                            switch($retrievedRentalType[$i]) {
+                                case "Business Premise":
+                                    $finalFolder = $retrievedRentalType[$i] . "s/" . $retrievedTypeOfBusinessBusiness[$i] . "/";
+                                    break;
+        
+                                case "Apartment":                                                    
+                                    if(($retrievedNumberOfApartmentBedrooms[$i] == 1) || ($retrievedNumberOfApartmentBedrooms[$i] == 2) || ($retrievedNumberOfApartmentBedrooms[$i] == 3)) {
+                                        $finalFolder = $retrievedRentalType[$i] . "s/" . $retrievedNumberOfApartmentBedrooms[$i]. "-Bedroom/";
                                     } else {
-                                        if($retrievedRentalType[$i] === "Apartment") {
-                                            echo $retrievedNumberOfApartmentBedrooms[$i] . '-Bedroom Apartment';
-                                        } else {
-                                            echo $retrievedNumberOfHouseBedrooms[$i] . '-Bedroom House';
-                                        }
+                                        $finalFolder = $retrievedRentalType[$i] . "s/More Bedrooms/" . $retrievedNumberOfApartmentBedrooms[$i]. "-Bedrooms/";
+                                    }                                                    
+                                    break;
+        
+                                case "House":
+                                    if(($retrievedNumberOfHouseBedrooms[$i] == 1) || ($retrievedNumberOfHouseBedrooms[$i] == 2) || ($retrievedNumberOfHouseBedrooms[$i] == 3)) {
+                                        $finalFolder = $retrievedRentalType[$i] . "s/" . $retrievedNumberOfHouseBedrooms[$i]. "-Bedroom/";
+                                    } else {
+                                        $finalFolder = $retrievedRentalType[$i] . "s/More Bedrooms/" . $retrievedNumberOfHouseBedrooms[$i] . "-Bedrooms/";
                                     }
-                                    echo '</h4>';
-                                echo '<h4 class="units-available-display">Number Of Units Available: ' . $retrievedNumberOfSimilarUnits[$i] . '</h4>
-                                    <p class="description-display"> ' . $retrievedDescription[$i] . ' </p>
-                                    <form class="template-more-details" id="template-more-details-' . ($i+1) . '" action="../Php/view-description-preparation.php" method="post" enctype="multipart/form-data"> 
-                                        <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">More details</button>
-    
-                                        <input type="hidden" name="rental-type" value="' . $retrievedRentalType[$i] . '">
-                                        <input type="hidden" name="rental-name" value="' . $retrievedrentalName[$i] . '">
-                                        <input type="hidden" name="rental-location" value="' . $retrievedLocation[$i] . '">
-                                        <input type="hidden" name="rental-google-location" value="' . $retrievedGoogleLocation[$i] . '">
-                                        <input type="hidden" name="rental-photos" value="' . $retrievedImageUrls[$i] . '">
-                                        <input type="hidden" class="rental-ammenities" name="rental-ammenities" value="' . $retrievedAmmenities[$i] . '">
-                                        <input type="hidden" name="rental-units-available" value="' . $retrievedNumberOfSimilarUnits[$i] . '">
-                                        <input type="hidden" name="rental-beds-per-suite" value="' . $retrievedNumberOfBedsPerSuite[$i] . '">
-                                        <input type="hidden" name="rental-bedrooms-per-apartment" value="' . $retrievedNumberOfApartmentBedrooms[$i] . '">
-                                        <input type="hidden" name="rental-bedrooms-per-house" value="' . $retrievedNumberOfHouseBedrooms[$i] . '">
-                                        <input type="hidden" name="rental-business-premise-type" value="' . $retrievedTypeOfBusinessBusiness[$i] . '">
-                                        <input type="hidden" name="rental-owners-phone-number" value="' . $retrievedOwnersPhoneNumber[$i] . '">
-                                        <input type="hidden" name="rental-owners-email" value="' . $retrievedOwnersEmailAddress[$i] . '">
-                                        <input type="hidden" name="rental-term" value="' . $termToDisplay . '">
-                                        <input type="hidden" name="rental-amount-of-rent" value="' . $retrievedAmountOfRent[$i] . '">
-                                        <input type="hidden" name="rental-description" value="' . $retrievedDescription[$i] . '">
-                                        <input type="hidden" class="rental-tenant-preferences" name="rental-tenant-preferences" value="' . $retrievedPreferences[$i] . '">
-                                        <input type="hidden" name="rental-number-of-ocupants" value="' . $retrievedMaximumNumberOfOccupants[$i] . '">
-                                        <input type="hidden" name="rental-rules" value="' . $retrievedRulesUrls[$i] . '">
-                                        <input type="hidden" name="rental-photos-path" value="../Image_Data/' . $finalFolder . '">
-                                        <input type="hidden" name="rental-owners-first-name" value="' . $retrievedOwnersFirstName[$i] . '">
-                                        <input type="hidden" name="rental-owners-last-name" value="' . $retrievedOwnersLastName[$i] . '">                                                                       
-                                    </form>
-                                </div>                            
+                                    break;
+                                
+                                default:
+                                    $finalFolder = $retrievedRentalType[$i] . "s/";
+                            }
+        
+                            $rentalTerm = $retrievedRentalTerm[$i];
+                            $termToDisplay = "";
+                            switch($rentalTerm) {
+                                case "daily":
+                                    $termToDisplay = "Per Day";
+                                    break;
+                                case "weekly":
+                                    $termToDisplay = "Per Week";
+                                    break;
+                                case "monthly":
+                                    $termToDisplay = "Per Month";
+                                    break;
+                                case "yearly":
+                                    $termToDisplay = "Per Year";
+                                    break;
+                                case "quarterly":
+                                    $termToDisplay = "Every 3 Months";
+                                    break;
+                                case "bi-annually":
+                                    $termToDisplay = "Every 6 Months";
+                                    break;
+                            }
+                            
+                            echo'
+                            <div class="template" style="order: ' . ($i+1) . ';'; if($i>9){echo "display: none;";} else {$toBeDisplayed++;} echo '">
+                                <div class="rental-div" id="rental-' . ($i+1) . '" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="activateAnchor(event)">
+                                    <div class="image" id="image' . ($i+1) . '">
+                                        <img src="../Image_Data/' . $finalFolder. $imageToDisplay. '" alt="Rental-' . ($i+1) . '">              
+                                    </div>
+                                    <div class="description" id="description' . ($i+1) . '">
+                                        <h3 class="rent-amount">Ksh. ' . $retrievedAmountOfRent[$i] . '</h3>
+                                        <h4 class="rent-term-display">' . $termToDisplay . '</h4>
+                                        <br>' .
+                                        '<h4 class="rental-type-display">';  
+                                        if(($retrievedRentalType[$i] === "Hostel") || ($retrievedRentalType[$i] === "Bedsitter") || ($retrievedRentalType[$i] === "Single Room")) {
+                                            echo $retrievedRentalType[$i];
+                                        } else if ($retrievedRentalType[$i] === "Business Premise") {
+                                            echo $retrievedTypeOfBusinessBusiness[$i];
+                                        } else if ($retrievedRentalType[$i] === "Suite") {
+                                            echo $retrievedNumberOfBedsPerSuite[$i] . '-Bed Suite';
+                                        } else {
+                                            if($retrievedRentalType[$i] === "Apartment") {
+                                                echo $retrievedNumberOfApartmentBedrooms[$i] . '-Bedroom Apartment';
+                                            } else {
+                                                echo $retrievedNumberOfHouseBedrooms[$i] . '-Bedroom House';
+                                            }
+                                        }
+                                        echo '</h4>';
+                                    echo '<h4 class="units-available-display">Number Of Units Available: ' . $retrievedNumberOfSimilarUnits[$i] . '</h4>
+                                        <p class="description-display"> ' . $retrievedDescription[$i] . ' </p>
+                                        <form class="template-more-details" id="template-more-details-' . ($i+1) . '" action="../Php/view-description-preparation.php" method="post" enctype="multipart/form-data"> 
+                                            <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">More details</button>
+                                            
+                                            <input type="hidden" name="rental-id" value="' . $retrievedRentalID[$i] . '">
+                                            <input type="hidden" name="rental-type" value="' . $retrievedRentalType[$i] . '">
+                                            <input type="hidden" name="rental-name" value="' . $retrievedrentalName[$i] . '">
+                                            <input type="hidden" name="rental-location" value="' . $retrievedLocation[$i] . '">
+                                            <input type="hidden" name="rental-google-location" value="' . $retrievedGoogleLocation[$i] . '">
+                                            <input type="hidden" name="rental-photos" value="' . $retrievedImageUrls[$i] . '">
+                                            <input type="hidden" class="rental-ammenities" name="rental-ammenities" value="' . $retrievedAmmenities[$i] . '">
+                                            <input type="hidden" name="rental-interested-parties" value="' . $retrievedInterestedParties[$i] . '">
+
+                                            <input type="hidden" name="rental-units-available" value="' . $retrievedNumberOfSimilarUnits[$i] . '">
+                                            <input type="hidden" name="rental-beds-per-suite" value="' . $retrievedNumberOfBedsPerSuite[$i] . '">
+                                            <input type="hidden" name="rental-bedrooms-per-apartment" value="' . $retrievedNumberOfApartmentBedrooms[$i] . '">
+                                            <input type="hidden" name="rental-bedrooms-per-house" value="' . $retrievedNumberOfHouseBedrooms[$i] . '">
+                                            <input type="hidden" name="rental-business-premise-type" value="' . $retrievedTypeOfBusinessBusiness[$i] . '">
+                                            <input type="hidden" name="rental-owners-phone-number" value="' . $retrievedOwnersPhoneNumber[$i] . '">
+                                            <input type="hidden" name="rental-owners-email" value="' . $retrievedOwnersEmailAddress[$i] . '">
+                                            <input type="hidden" name="rental-term" value="' . $termToDisplay . '">
+                                            <input type="hidden" name="rental-amount-of-rent" value="' . $retrievedAmountOfRent[$i] . '">
+                                            <input type="hidden" name="rental-description" value="' . $retrievedDescription[$i] . '">
+                                            <input type="hidden" class="rental-tenant-preferences" name="rental-tenant-preferences" value="' . $retrievedPreferences[$i] . '">
+                                            <input type="hidden" name="rental-number-of-ocupants" value="' . $retrievedMaximumNumberOfOccupants[$i] . '">
+                                            <input type="hidden" name="rental-rules" value="' . $retrievedRulesUrls[$i] . '">
+                                            <input type="hidden" name="rental-photos-path" value="../Image_Data/' . $finalFolder . '">
+                                            <input type="hidden" name="rental-owners-first-name" value="' . $retrievedOwnersFirstName[$i] . '">
+                                            <input type="hidden" name="rental-owners-last-name" value="' . $retrievedOwnersLastName[$i] . '">
+                                                                                                                
+                                        </form>
+                                    </div>                            
+                                </div>
                             </div>
-                        </div> 
-                        ';
-    
+                            ';
+                        }
+                    } if((count($retrievedRentalID) - $toBeDisplayed) > 0) {
+                        echo '
+                            <button style="order: '. count($retrievedRentalID).';" id="load-next-rentals" onclick="loadNextRentals()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Load The Next Rentals</button> ';
                     }
                 } else {
                     echo '<div class="template-error">
-                        <p>Sorry. No Rentals From ' . $location . ' Have Been Uploaded. Maybe Try Searching For Rentals In Another Location</p> 
-                    </div>';
-                }    
+                            <p>Sorry. No Rentals From ' . $location . ' Have Been Uploaded. Maybe Try Searching For Rentals In Another Location</p> 
+                        </div>';
+                }
             ?>            
         </main>
     </div>    

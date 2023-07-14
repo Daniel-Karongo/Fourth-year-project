@@ -321,6 +321,15 @@ main {
     font-size: 1.5rem;
 }
 
+#load-next-rentals {
+    padding: 5px 10px;
+    align-self: center;  
+    font-size: 0.9rem;
+    background-color: #2C18DE;
+    border: 2.5px solid#2C18DE;
+    color: rgba(255,255,255,1);
+}
+
 @media (max-width: 360px) {
     .top {
         flex-direction: column;

@@ -40,6 +40,8 @@
     $retrieved_rules_urls = array();
     $retrieved_ammenities = array();
     $retrieved_number_of_units = array();
+    $retrieved_number_of_remaining_units = array();
+    $retrieved_interested_parties = array();
 
     $apartments_retrieved_number_of_bedrooms = array();
     $business_premises_retrieved_type_of_premise = array();    
@@ -102,6 +104,9 @@
                     array_push($retrieved_image_urls, $table['Image_Urls']);                    
                     array_push($retrieved_ammenities, $table['Ammenities']);
                     array_push($retrieved_number_of_units, $table['Number_Of_Similar_Units']);
+                    array_push($retrieved_number_of_remaining_units, $table['Number_Of_Units_Remaining']);
+                    array_push($retrieved_interested_parties, $table['Interested_Parties']);
+                    
                     array_push($tablenames, $tablename);
         
                     switch($tablename) {

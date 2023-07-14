@@ -89,6 +89,7 @@
     $retrievedImageUrls = array();
     $retrievedAmmenities = array();
     $retrievedNumberOfSimilarUnits = array();
+    $retrievedInterestedParties = array();
 
     $retrievedNumberOfBedsPerSuite = array();
     $retrievedNumberOfApartmentBedrooms = array();
@@ -116,7 +117,8 @@
             array_push($retrievedGoogleLocation, $hostels['Google_Location']);
             array_push($retrievedImageUrls, $hostels['Image_Urls']);
             array_push($retrievedAmmenities, $hostels['Ammenities']);
-            array_push($retrievedNumberOfSimilarUnits, $hostels['Number_Of_Similar_Units']);
+            array_push($retrievedNumberOfSimilarUnits, $hostels['Number_Of_Units_Remaining']);
+            array_push($retrievedInterestedParties, $hostels['Interested_Parties']);
             
             array_push($retrievedRentalType, "Hostel");
             array_push($retrievedNumberOfBedsPerSuite, null);
@@ -134,7 +136,8 @@
             array_push($retrievedGoogleLocation, $singlerooms['Google_Location']);
             array_push($retrievedImageUrls, $singlerooms['Image_Urls']);
             array_push($retrievedAmmenities, $singlerooms['Ammenities']);
-            array_push($retrievedNumberOfSimilarUnits, $singlerooms['Number_Of_Similar_Units']);
+            array_push($retrievedNumberOfSimilarUnits, $singlerooms['Number_Of_Units_Remaining']);
+            array_push($retrievedInterestedParties, $singlerooms['Interested_Parties']);
             
             array_push($retrievedRentalType, "Single Room");
             array_push($retrievedNumberOfBedsPerSuite, null);
@@ -152,7 +155,9 @@
             array_push($retrievedGoogleLocation, $bedsitters['Google_Location']);
             array_push($retrievedImageUrls, $bedsitters['Image_Urls']);
             array_push($retrievedAmmenities, $bedsitters['Ammenities']);
-            array_push($retrievedNumberOfSimilarUnits, $bedsitters['Number_Of_Similar_Units']);
+            array_push($retrievedNumberOfSimilarUnits, $bedsitters['Number_Of_Units_Remaining']);
+            array_push($retrievedInterestedParties, $bedsitters['Interested_Parties']);
+
             
             array_push($retrievedRentalType, "Bedsitter");
             array_push($retrievedNumberOfBedsPerSuite, null);
@@ -171,7 +176,9 @@
             array_push($retrievedImageUrls, $suites['Image_Urls']);
             array_push($retrievedAmmenities, $suites['Ammenities']);
             array_push($retrievedNumberOfBedsPerSuite, $suites['Number_Of_Beds_Per_Suite']);
-            array_push($retrievedNumberOfSimilarUnits, $suites['Number_Of_Similar_Units']);
+            array_push($retrievedNumberOfSimilarUnits, $suites['Number_Of_Units_Remaining']);
+            array_push($retrievedInterestedParties, $suites['Interested_Parties']);
+
 
             
             array_push($retrievedRentalType, "Suite");
@@ -190,7 +197,9 @@
             array_push($retrievedImageUrls, $apartments['Image_Urls']);
             array_push($retrievedAmmenities, $apartments['Ammenities']);
             array_push($retrievedNumberOfApartmentBedrooms, $apartments['Number_Of_Bedrooms']);
-            array_push($retrievedNumberOfSimilarUnits, $apartments['Number_Of_Similar_Units']);
+            array_push($retrievedNumberOfSimilarUnits, $apartments['Number_Of_Units_Remaining']);
+            array_push($retrievedInterestedParties, $apartments['Interested_Parties']);
+
 
             
             array_push($retrievedRentalType, "Apartment");
@@ -209,7 +218,9 @@
             array_push($retrievedImageUrls, $houses['Image_Urls']);
             array_push($retrievedAmmenities, $houses['Ammenities']);
             array_push($retrievedNumberOfHouseBedrooms, $houses['Number_Of_Bedrooms']);
-            array_push($retrievedNumberOfSimilarUnits, $houses['Number_Of_Similar_Units']);
+            array_push($retrievedNumberOfSimilarUnits, $houses['Number_Of_Units_Remaining']);
+            array_push($retrievedInterestedParties, $houses['Interested_Parties']);
+
 
             
             array_push($retrievedRentalType, "House");
@@ -228,7 +239,9 @@
             array_push($retrievedGoogleLocation, $businesspremises['Google_Location']);
             array_push($retrievedImageUrls, $businesspremises['Image_Urls']);
             array_push($retrievedAmmenities, $businesspremises['Ammenities']);
-            array_push($retrievedNumberOfSimilarUnits, $businesspremises['Number_Of_Similar_Units']);
+            array_push($retrievedNumberOfSimilarUnits, $businesspremises['Number_Of_Units_Remaining']);
+            array_push($retrievedInterestedParties, $businesspremises['Interested_Parties']);
+
 
             
             array_push($retrievedRentalType, "Business Premise");

@@ -129,13 +129,13 @@ section .left {
 .left button {
     background-color: rgba(255, 255, 255 , 0.2);
     border: none;
-    padding: 0;
+    padding: 5px;
     border-radius: 50%;
     margin-left: 1px;
 }
 
 .left button img {
-    width: 50px;
+    width: 20px;
 }
 
 section .right {
@@ -322,13 +322,13 @@ section .right {
 .right button {
     background-color: rgba(255, 255, 255 , 0.2);
     border: none;
-    padding: 0;
+    padding: 5px;
     border-radius: 50%;
     margin-right: 1px;
 }
 
 .right button img{
-    width: 50px;
+    width: 20px;
 }
 
 .rules .right {
@@ -400,6 +400,14 @@ section .right {
     .rules .right {
         position: relative;
         right: 0;        
+    }
+
+    .right button img{
+        filter: brightness(90);
+    }
+
+    .left button img{
+        filter: brightness(90);
     }
 
     main {

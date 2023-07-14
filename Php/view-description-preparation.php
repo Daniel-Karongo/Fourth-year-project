@@ -1,4 +1,5 @@
 <?php
+    $rentalID = $_POST['rental-id'];
     $rentalType = $_POST['rental-type'];
     $rentalName = $_POST['rental-name'];
     $location = $_POST['rental-location'];
@@ -18,6 +19,7 @@
     $preferences = $_POST['rental-tenant-preferences'];
     $maximumNumberOfOccupants = $_POST['rental-number-of-ocupants'];
     $rulesUrls = $_POST['rental-rules'];
+    $interestedParties = $_POST['rental-interested-parties'];
 
     $rentalOwnersFirstName = $_POST['rental-owners-first-name'];
     $rentalOwnersLastName = $_POST['rental-owners-last-name'];

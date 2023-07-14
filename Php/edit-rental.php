@@ -84,6 +84,38 @@
                         }
                     ?>s</label>  
                     <input type="number" class="rental-description-input" name="number-of-units" id="number-of-units" value="<?php echo $numberOfUnits; ?>">
+                    <label for="units-remaining" class="rental-description-labels">Number Of Units Remaining </label>
+                    <input type="number" class="rental-description-input" name="units-remaining" id="units-remaining" value="<?php echo $numberOfUnitsRemaining; ?>">
+                    <?php 
+                        if($numberOfUnitsRemaining < $numberOfUnits) { 
+                            echo "<button type=\"button\" id=\"view-parties\">View The People Who Left Their Details</button>";
+                            echo'
+                                <table class="interested-parties-table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="4" id="interested-parties-table-title">Interested Parties In ' . $rentalName. '</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="interested-parties-table-column-heads">First Name</th>
+                                        <th class="interested-parties-table-column-heads">Phone Number</th>
+                                        <th class="interested-parties-table-column-heads">Email Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                            for($i=0; $i<count($finalInterestedParties); $i++) {
+                                echo '
+                                    <tr>
+                                        <td>' . $finalInterestedParties[$i][0] . '</td>
+                                        <td>' . $finalInterestedParties[$i][1] . '</td>
+                                        <td>' . $finalInterestedParties[$i][2] . '</td>
+                                    </tr>';
+                            }
+                            echo '</tbody>
+                            </table>';
+                        }
+                        echo "<button type=\"button\" id=\"print-list\">Print List</button>
+                        <button type=\"button\" id=\"reset-number\">Reset The Number Of Units Remaining</button>";
+                    ?>
                     <?php
                         switch($rentalType) {
                             case "Suite":

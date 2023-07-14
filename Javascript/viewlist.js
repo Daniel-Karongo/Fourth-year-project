@@ -526,3 +526,25 @@ function restrictInput(event) {
     }
 
 }
+
+function loadNextRentals() {
+    let rentals = document.querySelectorAll('.template');
+    
+    let numberOfVisible = 0;
+    let newNumberOfVisible = 10;
+    Array.from(rentals).forEach((rental) => {
+        if(rental.style.display !== "none") {
+            numberOfVisible++;
+        }
+    });
+    let toBeSeen = numberOfVisible + newNumberOfVisible;
+    Array.from(rentals).forEach((rental) => {
+        if((rental.style.display === "none") && (numberOfVisible < toBeSeen)) {
+            rental.style.display = "block";
+            numberOfVisible++;
+        }
+    });
+    if(numberOfVisible >= rentals.length) {
+        document.querySelector('#load-next-rentals').style.display = "none";
+    }
+}
