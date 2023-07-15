@@ -197,6 +197,10 @@ section .right {
     border: 1px solid rgba(255, 255, 255 , 0.5);
 }
 
+#premise-type-select option, #rental-type-select option {
+    color: rgba(0,0,0,1);
+}
+
 .rental-description textarea {
     margin-top: 10px;
     background-color: transparent;
@@ -405,6 +409,10 @@ section .right {
 }
 
 #print-list-form {
+    text-align: center;
+}
+
+.table-and-reset p {
     text-align: center;
 }
 

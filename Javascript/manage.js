@@ -243,3 +243,119 @@ function highlightClicked(element) {
     });
     element.style.backgroundColor = "#2C18DE";
 }
+
+function filterRentalsToBeDisplayedByType() {
+    let typeOfRentalFilterButton = document.querySelector('#type-of-rental');
+    let typeChosen = typeOfRentalFilterButton.value;
+    let typeInputs = document.querySelectorAll('.rental-type-div input');
+
+    Array.from(typeInputs).forEach((inputField) => {
+        let typeDiv = inputField.parentElement;
+        let rentalDetails = typeDiv.parentElement;
+        let bottomSection = rentalDetails.parentElement;
+        let mainSection = bottomSection.parentElement;
+        let rentalDiv = mainSection.parentElement;
+        
+        if(typeChosen !== "no-value") {
+            if(typeChosen === inputField.value) {
+                rentalDiv.style.display = "flex";
+            } else if (typeChosen === "Business Premise"){
+                switch(inputField.value) {
+                    case "Stall":
+                        rentalDiv.style.display = "flex";
+                        break;
+                    case "Shop":
+                        rentalDiv.style.display = "flex";
+                        break;
+                    case "Event Hall":
+                        rentalDiv.style.display = "flex";
+                        break;
+                    case "Warehouse":
+                        rentalDiv.style.display = "flex";
+                        break;
+                    case "Office":
+                        rentalDiv.style.display = "flex";
+                        break;
+                    case "Industrial":
+                        rentalDiv.style.display = "flex";
+                        break;
+                    default:
+                        rentalDiv.style.display = "none";
+                }
+            } else {
+                rentalDiv.style.display = "none";
+            }
+        } else {
+            rentalDiv.style.display = "flex";
+        }
+        
+    });
+
+    document.querySelector('#location-filter').selectedIndex = 0;
+    document.querySelector('#prospects').selectedIndex = 0;
+}
+
+function filterRentalsToBeDisplayedByLocation() {
+    let locationFilterButton = document.querySelector('#location-filter');
+    let locationChosen = locationFilterButton.value;
+    let locationInputs = document.querySelectorAll('.location-div input');
+
+    Array.from(locationInputs).forEach((inputField) => {
+        let locationDiv = inputField.parentElement;
+        let rentalDetails = locationDiv.parentElement;
+        let bottomSection = rentalDetails.parentElement;
+        let mainSection = bottomSection.parentElement;
+        let rentalDiv = mainSection.parentElement;
+        
+        if(locationChosen !== "no-value") {
+            if(locationChosen === inputField.value) {
+                rentalDiv.style.display = "flex";
+            } else {
+                rentalDiv.style.display = "none";
+            }
+        } else {
+            rentalDiv.style.display = "flex";
+        }
+    });
+
+    document.querySelector('#type-of-rental').selectedIndex = 0;
+    document.querySelector('#prospects').selectedIndex = 0;
+}
+
+function filterRentalsToBeDisplayedByProspects() {
+    let prospectsFilterButton = document.querySelector('#prospects');
+    let prospectChosen = prospectsFilterButton.value;
+    let originalNumberOfUnitsInputs = document.querySelectorAll('.number-of-units-div input');
+    // let numberOfUnitsRemainingInputs = document.querySelectorAll('.number-of-units-remaining-div input');
+
+    Array.from(originalNumberOfUnitsInputs).forEach((inputField) => {
+        let unitsDiv = inputField.parentElement;
+        let rentalDetails = unitsDiv.parentElement;
+        let bottomSection = rentalDetails.parentElement;
+        let mainSection = bottomSection.parentElement;
+        let rentalDiv = mainSection.parentElement;
+        
+        let numberOfUnitsRemainingInputs = rentalDiv.querySelector('.number-of-units-remaining-div input');
+        
+        if(prospectChosen === "no-value") {
+            rentalDiv.style.display = "flex";
+        } else {
+            if(prospectChosen === "showing-prospects") {
+                if((inputField.value - numberOfUnitsRemainingInputs.value) > 0) {
+                    rentalDiv.style.display = "flex";
+                } else {
+                    rentalDiv.style.display = "none";
+                }
+            } else {
+                if((inputField.value - numberOfUnitsRemainingInputs.value) > 0) {
+                    rentalDiv.style.display = "none";
+                } else {
+                    rentalDiv.style.display = "flex";
+                }
+            }
+        }
+    });
+
+    document.querySelector('#location-filter').selectedIndex = 0;
+    document.querySelector('#type-of-rental').selectedIndex = 0;
+}

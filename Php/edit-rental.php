@@ -75,15 +75,27 @@
                         <option value="bi-annually" <?php if($termDisplay === "6 Months"){echo "selected";}?>>6 Months</option>                
                     </select>
                     <label for="premise-type" class="rental-description-labels">Type Of Rental </label>
-                    <input type="text" class="rental-description-input" name="premise-type" id="premise-type" value="<?php 
-                        switch($rentalType) {
-                            case "Business Premise":
-                                echo $typeOfBusinessPremise;
-                                break;
-                            default:
-                                echo $rentalType;
+                    <select class="rental-description-input" name="rental-type-select" id="rental-type-select" <?php if($rentalType === "Business Premise") {echo 'style="display: none;"';}?>>
+                        <option value="Hostel" <?php if($rentalType === "Hostel"){echo "selected";}?>>Hostel</option>
+                        <option value="Single Room" <?php if($rentalType === "Single Room"){echo "selected";}?>>Single Room</option>
+                        <option value="Bedsitter" <?php if($rentalType === "Bedsitter"){echo "selected";}?>>Bedsitter</option>
+                        <option value="Apartment" <?php if($rentalType === "Apartment"){echo "selected";}?>>Apartment</option>
+                        <option value="Business Premise" <?php if($rentalType === "Business Premise"){echo "selected";}?>>Business Premise</option>
+                        <option value="House" <?php if($rentalType === "House"){echo "selected";}?>>House</option>
+                        <option value="Suite" <?php if($rentalType === "Suite"){echo "selected";}?>>Suite</option>
+                    </select>
+                    <?php 
+                        if($rentalType === "Business Premise") {
+                        echo '<select class="rental-description-input" name="premise-type-select" id="premise-type-select">
+                                <option value="Stall"'; if($typeOfBusinessPremise === "Stall"){echo "selected";} echo '>Stall</option>
+                                <option value="Shop"'; if($typeOfBusinessPremise === "Shop"){echo "selected";} echo '>Shop</option>
+                                <option value="Event Hall"'; if($typeOfBusinessPremise === "Event Hall"){echo "selected";} echo '>Event Hall</option>
+                                <option value="Warehouse"'; if($typeOfBusinessPremise === "Warehouse"){echo "selected";} echo '>Warehouse</option>
+                                <option value="Office"'; if($typeOfBusinessPremise === "Office"){echo "selected";} echo '>Office</option>
+                                <option value="Industrial"'; if($typeOfBusinessPremise === "Industrial"){echo "selected";} echo '>Industrial</option>
+                            </select>';        
                         }
-                    ?>">
+                    ?>
                     <label for="number-of-unit" class="rental-description-labels">Number Of <?php 
                         switch($rentalType) {
                             case "Business Premise":
@@ -97,41 +109,57 @@
                     <label for="units-remaining" class="rental-description-labels">Number Of Units Remaining </label>
                     <input type="number" class="rental-description-input" name="units-remaining" id="units-remaining" value="<?php echo $numberOfUnitsRemaining; ?>">
                     <?php 
-                        if($numberOfUnitsRemaining < $numberOfUnits) { 
-                            echo "
-                            <div class=\"table-and-reset\">
-                                <button type=\"button\" id=\"view-parties\" onclick=\"viewInterestedParties()\" onmouseenter=\"zoomDiv(this)\" onmouseleave=\"unzoomDiv(this)\">View The People Who Left Their Details</button>";
-                            echo'
-                                <div class="table" style="display: none;">
-                                    <table id="interested-parties-table">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="4" id="interested-parties-table-title">Interested Parties In ' . $rentalName. '</th>
-                                            </tr>
-                                            <tr>
-                                                <th class="interested-parties-table-column-heads">Name</th>
-                                                <th class="interested-parties-table-column-heads">Phone Number</th>
-                                                <th class="interested-parties-table-column-heads">Email Address</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>';
-                                    for($i=0; $i<count($finalInterestedParties); $i++) {
-                                        echo '
-                                            <tr>
-                                                <td>' . $finalInterestedParties[$i][0] . '</td>
-                                                <td>' . $finalInterestedParties[$i][1] . '</td>
-                                                <td>' . $finalInterestedParties[$i][2] . '</td>
-                                            </tr>';
-                                    }
-                                    echo '</tbody>
-                                    </table>
-                                    <div id="print-list-form">
-                                        <button type="button" id="print-list" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="printInterestedParties()">Print List</button>
-                                    </div>
-                                </div>
-                                <button type="button" id="reset-number" style="display: none;" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="resetUnits()">Reset The Number Of Units Remaining</button>
-                            </div>';
+                        $actualDetails = 0;
+                        for($i=0; $i<count($finalInterestedParties); $i++) {
+                            for($j=0; $j<count($finalInterestedParties[$i]); $j++) {
+                                if($finalInterestedParties[$i][$j] != "") {
+                                    $actualDetails++;
+                                }
                             }
+                        }
+                        
+                        if($numberOfUnitsRemaining < $numberOfUnits) {
+                            echo "
+                                <div class=\"table-and-reset\">";
+                            if(($actualDetails > 0)) {
+                                    echo "
+                                        <button type=\"button\" id=\"view-parties\" onclick=\"viewInterestedParties()\" onmouseenter=\"zoomDiv(this)\" onmouseleave=\"unzoomDiv(this)\">View The People Who Left Their Details</button>";
+                                    echo'
+                                        <div class="table" style="display: none;">
+                                            <table id="interested-parties-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="4" id="interested-parties-table-title">Interested Parties In ' . $rentalName. '</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="interested-parties-table-column-heads">Name</th>
+                                                        <th class="interested-parties-table-column-heads">Phone Number</th>
+                                                        <th class="interested-parties-table-column-heads">Email Address</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>';
+                                            for($i=0; $i<count($finalInterestedParties); $i++) {
+                                                echo '
+                                                    <tr>
+                                                        <td>' . $finalInterestedParties[$i][0] . '</td>
+                                                        <td>' . $finalInterestedParties[$i][1] . '</td>
+                                                        <td>' . $finalInterestedParties[$i][2] . '</td>
+                                                    </tr>';
+                                            }
+                                            echo '</tbody>
+                                            </table>
+                                            <div id="print-list-form">
+                                                <button type="button" id="print-list" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="printInterestedParties()">Print List</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="reset-number" style="display: none;" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="resetUnits()">Reset The Number Of Units Remaining</button>
+                                    </div>';
+                            } else {
+                                echo '<p>None Of The Parties That Were Interested Left Their Details.</p>
+                                     <button type="button" id="reset-number" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="resetUnits()">Reset The Number Of Units Remaining</button>
+                                </div>';
+                            }
+                        }
                     ?>
                     <?php
                         switch($rentalType) {

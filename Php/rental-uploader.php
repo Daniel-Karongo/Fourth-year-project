@@ -271,7 +271,7 @@
         $typeOfRental = $_POST["type-of-rental"];
         $numberOfAvailableRentals = $_POST["number-of-available-rentals"];
         $numberOfOccupants = $_POST["maximum-occupants"];
-        $location = $_POST["location"];
+        $location = ucwords($_POST["location"]);
         $googleLocation = $_POST["googlelocation"];
         $rentalTerm = $_POST["rental-term"];
         $amountOfRent = $_POST["rent"];

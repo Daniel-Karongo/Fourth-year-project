@@ -145,7 +145,7 @@
 
     function grabPhotographs() {
 
-        $typeOfRental = $_POST['premise-type'];
+        $typeOfRental = isset($_POST['premise-type-select']) ? $_POST['premise-type-select'] : $_POST['rental-type-select'];
         $imagesToUpload = array();
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -169,7 +169,6 @@
                     array_push($imagesToUpload, $newImageName);
 
                     if(($typeOfRental === "Stall") || ($typeOfRental === "Shop") || ($typeOfRental === "Stall") || ($typeOfRental === "Event Hall") || ($typeOfRental === "Warehouse") || ($typeOfRental === "Office") || ($typeOfRental === "Industrial")) {
-                        $typeOfRental = $_POST['premise-type'];
                         $imageUploadPath = "../Image_Data/Business Premises/" . $typeOfRental . "/" . $newImageName;
                         move_uploaded_file($imageTemporaryName, $imageUploadPath);
 
@@ -214,7 +213,7 @@
         $amountOfRent = $_POST['rent-amount'];
         $rentalTerm = $_POST['rent-term'];
         $description = $_POST['description'];
-        $typeOfRental = $_POST['premise-type'];
+        $typeOfRental = isset($_POST['premise-type-select']) ? $_POST['premise-type-select'] : $_POST['rental-type-select'];
         $availableUnits = $_POST['number-of-units'];
         
         $suiteBeds = isset($_POST['number-of-beds']);

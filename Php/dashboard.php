@@ -45,7 +45,7 @@
                             echo '
                                 <div class="filters">
                                     <h4>Filter By:</h4>
-                                    <select class="type-of-rental" id="type-of-rental" name="type-of-rental" onchange="displayParameters()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">
+                                    <select class="type-of-rental" id="type-of-rental" name="type-of-rental" onchange="filterRentalsToBeDisplayedByType()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">
                                         <option value="no-value" selected>Type Of Rental</option>
                                         <option value="Hostel">Hostel</option>
                                         <option value="Single Room">Single Room</option>
@@ -55,13 +55,13 @@
                                         <option value="House">House</option> 
                                         <option value="Suite">Suite/ Motel</option>
                                     </select>
-                                    <select class="type-of-rental" id="type-of-rental" name="type-of-rental" onchange="displayParameters()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">
+                                    <select class="propects" id="prospects" name="prospects" onchange="filterRentalsToBeDisplayedByProspects()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">
                                         <option value="no-value" selected>Prospects</option>
-                                        <option value="no-value" selected>Showing Prospects</option>
-                                        <option value="Hostel">Not Interested In Yet</option>
+                                        <option value="showing-prospects">Showing Prospects</option>
+                                        <option value="no-prospects">Not Interested In Yet</option>
                                     </select>
-                                    <select class="location-filter" id="location-filter" name="location-filter" onchange="displayParameters()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">
-                                        <option value="no-value">Location</option>';
+                                    <select class="location-filter" id="location-filter" name="location-filter" onchange="filterRentalsToBeDisplayedByLocation()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">
+                                        <option value="no-value" selected>Location</option>';
                                     foreach($uniqueLocations as $uniqueLocation) {
                                         echo '<option value="'. $uniqueLocation .'">'. ucwords($uniqueLocation) .'</option>';
                                     }
@@ -222,7 +222,7 @@
 
                                                 echo '<div class="template-buttons"> 
                                                     <form class="template-submit-buttons" id="delete-rental-' . ($i+1) . '" action="../Php/rentalDelete.php" method="post" enctype="multipart/form-data" onsubmit="validateDeletion(event)">
-                                                        <button type="submit" class="remove-rental"> Remove Rental </button>
+                                                        <button type="submit" class="remove-rental" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"> Remove Rental </button>
                                                         <input type="hidden" name="rentalID" class="rentalID" value="' . $rentalID . '">
                                                         <input type="hidden" name="tableName" class="tableName" value="' . $tableName . '">
                                                         <input type="hidden" name="user-email" class="user-email" value="' . $email . '">
@@ -235,7 +235,7 @@
                                                     </form>
 
                                                     <form class="template-submit-buttons edit-details-form" id="template-edit-details-' . ($i+1) . '" action="../Php/edit-rental-preparation.php" method="post" enctype="multipart/form-data">                               
-                                                        <button type="submit" class="edit-rental"> Edit Rental Details </button>
+                                                        <button type="submit" class="edit-rental" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)"> Edit Rental Details </button>
 
                                                         <input type="hidden" name="email" class="email" value="' . $email . '">
                                                         <input type="hidden" id="password-for-edit-' . ($i+1) . '" name="password-for-edit" value="' . $password . '">
