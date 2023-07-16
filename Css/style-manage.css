@@ -103,6 +103,10 @@ nav h3 {
     margin-bottom: 5px;
 }
 
+#rentals-button {
+    background-color: #2C18DE;
+}
+
 .filters {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
     padding: 10px;
@@ -127,6 +131,15 @@ nav h3 {
 
 .filters select option {
     color: rgba(0,0,0,1);
+    background-color: rgba(255,255,255,1);
+}
+
+.rental-tally {
+    margin-bottom: 10px;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255 , 0.5);
+    width: 100%;
 }
 
 .rental-template {
@@ -217,6 +230,123 @@ nav h3 {
     align-items: baseline;
     text-align: start;
 }
+
+
+.parties-interested-div {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+    padding-top: 5px;
+}
+
+.interested-parties-table {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.interested-parties-table-title {
+    background-color: #2C18DE;
+}
+
+.interested-parties-table th {
+    text-align: center;
+}
+
+.interested-parties-table th, .interested-parties-table td {
+    border: 1px solid rgba(255,255,255,0.7);
+    padding: 7px;
+    max-width: 200px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    overflow: auto;
+}
+
+.interested-parties-table-form {
+    padding: 0;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 15px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.table-view {
+    padding: 10px;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    margin-left: 0;
+    margin-bottom: 15px;
+    transition: transform 0.3s, border 0.3s;
+    height: 100%;
+    max-width: none;
+    overflow: scroll;
+
+}
+
+#table-view-form {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: none;
+}
+
+.table {
+    overflow: auto;
+}
+
+.rentals-table-title {
+    background-color: #2C18DE;
+    padding: 5px !important; 
+}
+
+.rentals-table {
+    max-width: none;
+    width: fit-content;
+}
+
+.rentals-table th {
+    text-align: center;
+    padding: 5px !important;
+}
+
+.rentals-table th, .rentals-table td {
+    border: 1px solid rgba(255,255,255,0.7);
+    padding: 0;
+    max-width: 200px;
+    font-size: 1rem;
+    max-width: none;
+}
+
+.rentals-table td input {
+    background-color: transparent;
+    width: fit-content;
+    max-width: none;
+}
+
+.view-buttons {
+    margin-bottom: 5px;
+}
+
+#view-input-details-clearly {
+    padding: 5px;
+    margin-top: 10px;
+    width: fit-content;
+}
+
+#submit-rentals-table, #view-input-details-clearly {
+    align-self: center;
+    width: fit-content;
+    text-align: center;
+}
+
+.view-input-div {
+    overflow: auto;
+}
+
+#default-view-button {
+    background-color: #2C18DE;
+}
+
 
 @media (max-width: 387px) {
     .rental-details div {
@@ -349,6 +479,48 @@ button {
     box-shadow: none;    
     border: 2.5px solid#2C18DE;
 }
+
+
+.table-view-filters {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.table-view-filters h4 {
+    margin: 5px;
+    margin-bottom: 15px;
+}
+
+.table-view-filters select {
+    padding: 7px 10px;
+    color: rgba(255,255,255,1);
+    font-size: 0.9rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+}
+
+.table-view-filters select option {
+    color: rgba(0,0,0,1);
+    background-color: rgba(255,255,255,1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (min-width: 700px) {
     

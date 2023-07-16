@@ -3,12 +3,12 @@ function wrapperFunction(view, hide, tag, element) {
     if(tag != null){
         clearText(element);    
     }
-    highlightClicked(document.querySelector(element));    
+    highlightClicked(document.querySelector(element));
 }
 
 function toViewAndHide(view, hide) {
-    document.querySelector(view).style.display = 'block';
-    document.querySelector(hide).style.display = 'none';   
+    Array.from(document.querySelectorAll(view)).forEach((item)=> {item.style.display = 'block';});
+    Array.from(document.querySelectorAll(hide)).forEach((item)=> {item.style.display = 'none';});
 }
 
 function clearText(tag) {
@@ -358,4 +358,168 @@ function filterRentalsToBeDisplayedByProspects() {
 
     document.querySelector('#location-filter').selectedIndex = 0;
     document.querySelector('#type-of-rental').selectedIndex = 0;
+}
+
+function filterRentalsToBeDisplayedByTypeFormTableView() {
+    let typeOfRentalFilterButton = document.querySelector('#table-view-type-of-rental');
+    let typeChosen = typeOfRentalFilterButton.value;
+    let typeInputs = document.querySelectorAll('.table-view-rental-type');
+
+    Array.from(typeInputs).forEach((inputField) => {
+        let tableData = inputField.parentElement;
+        let tableRow = tableData.parentElement;
+
+        if(typeChosen !== "no-value") {
+            if(typeChosen === inputField.value) {
+                tableRow.style.display = "table-row";
+            } else if (typeChosen === "Business Premise"){
+                switch(inputField.value) {
+                    case "Stall":
+                        tableRow.style.display = "table-row";
+                        break;
+                    case "Shop":
+                        tableRow.style.display = "table-row";
+                        break;
+                    case "Event Hall":
+                        tableRow.style.display = "table-row";
+                        break;
+                    case "Warehouse":
+                        tableRow.style.display = "table-row";
+                        break;
+                    case "Office":
+                        tableRow.style.display = "table-row";
+                        break;
+                    case "Industrial":
+                        tableRow.style.display = "table-row";
+                        break;
+                    default:
+                        tableRow.style.display = "none";
+                }
+            } else {
+                tableRow.style.display = "none";
+            }
+        } else {
+            tableRow.style.display = "table-row";
+        }
+        
+    });
+
+    document.querySelector('#table-view-location-filter').selectedIndex = 0;
+    document.querySelector('#table-view-prospects').selectedIndex = 0;
+}
+
+function filterRentalsToBeDisplayedByLocationFromTableView() {
+    let locationFilterButton = document.querySelector('#table-view-location-filter');
+    let locationChosen = locationFilterButton.value;
+    let locationInputs = document.querySelectorAll('.table-view-location');
+
+    Array.from(locationInputs).forEach((inputField) => {
+        let tabledata = inputField.parentElement;
+        let tableRow = tabledata.parentElement;
+        
+        if(locationChosen !== "no-value") {
+            if(locationChosen === inputField.value) {
+                tableRow.style.display = "table-row";
+            } else {
+                tableRow.style.display = "none";
+            }
+        } else {
+            tableRow.style.display = "table-row";
+        }
+    });
+
+    document.querySelector('#table-view-type-of-rental').selectedIndex = 0;
+    document.querySelector('#table-view-prospects').selectedIndex = 0;
+}
+
+function filterRentalsToBeDisplayedByProspectsFromTableView() {
+    let prospectsFilterButton = document.querySelector('#table-view-prospects');
+    let prospectChosen = prospectsFilterButton.value;
+    let originalNumberOfUnitsInputs = document.querySelectorAll('.table-view-units');
+
+    Array.from(originalNumberOfUnitsInputs).forEach((inputField) => {
+        let tabledata = inputField.parentElement;
+        let tableRow = tabledata.parentElement;
+        
+        let numberOfUnitsRemainingInputs = tableRow.querySelector('.table-view-units-remaining');
+        
+        if(prospectChosen === "no-value") {
+            tableRow.style.display = "table-row";
+        } else {
+            if(prospectChosen === "showing-prospects") {
+                if((inputField.value - numberOfUnitsRemainingInputs.value) > 0) {
+                    tableRow.style.display = "table-row";
+                } else {
+                    tableRow.style.display = "none";
+                }
+            } else {
+                if((inputField.value - numberOfUnitsRemainingInputs.value) > 0) {
+                    tableRow.style.display = "none";
+                } else {
+                    tableRow.style.display = "table-row";
+                }
+            }
+        }
+    });
+
+    document.querySelector('#table-view-location-filter').selectedIndex = 0;
+    document.querySelector('#table-view-type-of-rental').selectedIndex = 0;
+}
+
+
+
+
+
+function printWholeList() {
+    highlightClicked(document.querySelector('#view-all-interested-parties-button'));
+    document.querySelector('.all-interested-parties-table-form').submit();
+}
+
+function viewTableView() {
+    document.querySelector('.buttons').style.flexBasis = "0%";
+    document.querySelector('.buttons').style.display = "none";
+    document.querySelector('.panel').style.display = "flex";
+    document.querySelector('.panel').style.flexDirection = "column";
+    
+    document.querySelector('.panel').style.width = "100%";
+    document.querySelector('.panel').style.flexBasis = "100%";
+    document.querySelector('.table-view').style.display = "block";
+    document.querySelector('.normal-view').style.display = "none";
+    document.querySelector('.normal-view').style.width = "100%";
+
+    document.querySelector('#default-view-button').style.backgroundColor = "transparent";
+    document.querySelector('#table-view-button').style.backgroundColor = "#2C18DE";
+}
+
+function viewDefaultView() {
+    
+    document.querySelector('.buttons').style.flexBasis = "20%";
+    document.querySelector('.buttons').style.display = "block";
+
+    document.querySelector('.panel').style.flexBasis = "80%";
+    document.querySelector('.panel').style.display = "block";
+
+    document.querySelector('.table-view').style.display = "none";
+    document.querySelector('.normal-view').style.display = "block";
+
+    document.querySelector('#default-view-button').style.backgroundColor = "#2C18DE";
+    document.querySelector('#table-view-button').style.backgroundColor = "transparent";
+        
+}
+
+function showInputInField(input) {
+    let outputField = document.querySelector('#view-input-details-clearly');
+
+    const inputWidth = 200;
+    outputField.style.width = inputWidth + 'px';
+    outputField.value = input.value;
+  
+    requestAnimationFrame(function () {
+      const inputFieldWidth = input.scrollWidth;
+      const maxWidth = Math.max(inputFieldWidth, inputWidth);
+  
+      if (maxWidth > inputWidth) {
+        outputField.style.width = maxWidth + 10 + 'px';
+      }
+    });
 }

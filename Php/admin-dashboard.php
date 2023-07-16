@@ -86,6 +86,9 @@
 
                                                     if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                                     if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                                    if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
+
                                                     if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                                     if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                                     if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -93,6 +96,7 @@
                                                     if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
                                                     if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
                                                     if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
+                                                    
 
                                                 echo '
                                                     <input type="hidden" name="email" value="' . $email . '">
@@ -150,6 +154,8 @@
 
                                     if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                     if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                    if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
                                     if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                     if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                     if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -224,6 +230,8 @@
 
                     <?php if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}?>
                     <?php if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}?>
+                    <?php if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';} ?>
+
                     <?php if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}?>
                     <?php if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}?>
                     <?php if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}?>
@@ -310,6 +318,8 @@
 
                                                         if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                                         if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
                                                         if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                                         if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                                         if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -455,6 +465,8 @@
 
                                                         if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                                         if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
                                                         if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                                         if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                                         if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -599,6 +611,8 @@
 
                                                         if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                                         if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
                                                         if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                                         if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                                         if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -746,6 +760,8 @@
 
                                                         if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                                         if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
                                                         if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                                         if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                                         if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -890,6 +906,8 @@
 
                                                         if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                                         if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
                                                         if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                                         if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                                         if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -1034,6 +1052,8 @@
 
                                                         if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                                         if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
                                                         if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                                         if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                                         if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -1178,6 +1198,8 @@
 
                                                         if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                                         if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
                                                         if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                                         if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                                         if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -1326,6 +1348,8 @@
 
                                                     if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                                     if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                                    if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
                                                     if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                                     if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                                     if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -1390,6 +1414,8 @@
                                 <div class="hash-button">';
                                     if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                     if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                    if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
                                     if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                     if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                     if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -1461,6 +1487,8 @@
                     
                     <?php if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}?>
                     <?php if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}?>
+                    <?php if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';} ?>
+
                     <?php if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}?>
                     <?php if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}?>
                     <?php if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}?>
@@ -1531,6 +1559,8 @@
 
                     <?php if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}?>
                     <?php if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}?>
+                    <?php if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';} ?>
+
                     <?php if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}?>
                     <?php if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}?>
                     <?php if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}?>

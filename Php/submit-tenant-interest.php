@@ -7,11 +7,12 @@
     $rentalType = $_POST['rental-type'];
     $rentalID = $_POST['rental-ID'];
     $interestedParties = $_POST['interested-parties'];
+    $time = date("l-d-m-Y H:i:s");
 
     if($interestedParties == "") {
-        $tableEntry = "[" .$fullName . "-". $phoneNumber . "-" . $email . "]";
+        $tableEntry = "[" .$fullName . "_". $phoneNumber . "_" . $email . "_" . $time . "]";
     } else {
-        $tableEntry = $interestedParties . ", " . "[" .$fullName . "-". $phoneNumber . "-" . $email . "]";
+        $tableEntry = $interestedParties . ", " . "[" .$fullName . "_". $phoneNumber . "_" . $email . "_" . $time ."]";
     }
     
     $tableName= "";

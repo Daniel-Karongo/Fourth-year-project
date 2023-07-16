@@ -69,7 +69,7 @@
     $parties = explode(", ", $interestedParties);
     foreach ($parties as $party) {
         $cleanString = str_replace(array('[', ']'), '', $party);
-        $cleanString = explode("-", $cleanString);
+        $cleanString = explode("_", $cleanString);
         $finalInterestedParties[] = $cleanString;
     }
     

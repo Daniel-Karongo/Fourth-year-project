@@ -33,7 +33,31 @@
             <form class="filter-form">
                 <div class="actual-filters">
                     <div class="basic-information">
-                        
+                        <div class="rentalType" id="rentalType">
+                                <div class="original-text-label">
+                                    <label class="property-owner-in-location" for="property-owner-in-location">Property Owner</label>
+                                </div>
+                                <?php
+                                    $arrayOfNames = array();
+
+                                    for($i=0; $i<count($retrievedOwnersFirstName); $i++) {
+                                        $fullName = $retrievedOwnersFirstName[$i] . ' ' . $retrievedOwnersLastName[$i];
+                                        $arrayOfNames[] = $fullName;
+                                    }
+
+                                    $arrayOfUniqueNames = array_values(array_unique($arrayOfNames));
+
+                            echo '<div class="original-text-input">
+                                    <select class="property-owner-in-location" id="property-owner-in-location" name="property-owner-in-location" onchange="displayParameters()">
+                                        <option value="no-value" selected>Optional</option>';
+                                    foreach($arrayOfUniqueNames as $uniqueName) {
+                                    echo' <option value="'. $uniqueName.'">'. $uniqueName .'</option>';
+                                    }    
+                                echo '</select>
+                                </div>';
+                                ?>
+                            </div>
+
                         <div class="rentalType" id="rentalType">
                             <div class="original-text-label">
                                 <label class="type-of-rental" for="type-of-rental">Type of Rental</label>
@@ -258,6 +282,7 @@
             <?php 
                 if(count($retrievedRentalID) > 0) {
                     $toBeDisplayed = 0;
+                    $toNotBeDisplayed = 0;
 
                     for($i=0; $i<count($retrievedRentalID); $i++){
                     
@@ -316,7 +341,7 @@
                             }
                             
                             echo'
-                            <div class="template" style="order: ' . ($i+1) . ';'; if($i>9){echo "display: none;";} else {$toBeDisplayed++;} echo '">
+                            <div class="template" style="order: ' . ($i+1) . ';'; if($i>9){echo "display: none;";$toNotBeDisplayed++;} else {$toBeDisplayed++;} echo '">
                                 <div class="rental-div" id="rental-' . ($i+1) . '" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="activateAnchor(event)">
                                     <div class="image" id="image' . ($i+1) . '">
                                         <img src="../Image_Data/' . $finalFolder. $imageToDisplay. '" alt="Rental-' . ($i+1) . '">              
@@ -368,8 +393,8 @@
                                             <input type="hidden" name="rental-number-of-ocupants" value="' . $retrievedMaximumNumberOfOccupants[$i] . '">
                                             <input type="hidden" name="rental-rules" value="' . $retrievedRulesUrls[$i] . '">
                                             <input type="hidden" name="rental-photos-path" value="../Image_Data/' . $finalFolder . '">
-                                            <input type="hidden" name="rental-owners-first-name" value="' . $retrievedOwnersFirstName[$i] . '">
-                                            <input type="hidden" name="rental-owners-last-name" value="' . $retrievedOwnersLastName[$i] . '">
+                                            <input type="hidden" class="rental-owners-first-name" name="rental-owners-first-name" value="' . $retrievedOwnersFirstName[$i] . '">
+                                            <input type="hidden" class="rental-owners-last-name" name="rental-owners-last-name" value="' . $retrievedOwnersLastName[$i] . '">
                                                                                                                 
                                         </form>
                                     </div>                            
@@ -377,7 +402,7 @@
                             </div>
                             ';
                         }
-                    } if((count($retrievedRentalID) - $toBeDisplayed) > 0) {
+                    } if(($toNotBeDisplayed - $toBeDisplayed) > 0) {
                         echo '
                             <button style="order: '. count($retrievedRentalID).';" id="load-next-rentals" onclick="loadNextRentals()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Load The Next Rentals</button> ';
                     }

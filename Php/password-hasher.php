@@ -5,6 +5,9 @@
 
     $administrators = json_decode($_POST['administrators'], true);
     $property_owners = json_decode($_POST['property-owners'], true);
+    $propertyOwnersForEachRentals = json_decode($_POST['property-owners-for-each-rental'], true);
+
+
     $hostels = json_decode($_POST['hostels'], true);
     $singlerooms = json_decode($_POST['single-rooms'], true);
     $bedsitters = json_decode($_POST['bedsitters'], true);

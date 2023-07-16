@@ -78,6 +78,20 @@ function viewContactDetails() {
     let contacts = document.querySelector('.contacts');
     if(contacts.style.display === "none") {
         contacts.style.display = "flex";
+
+        const proceed = confirm("One unit out of the number remaining will be marked as BOOKED. Therefore, please contact the property onwner as soon as possible to negotiate terms. Otherwise, if you have lost interest in the same, please press \"CANCEL\". You will, however, still get the contact details of the property's owner.");
+        if(proceed) {
+            let formData = $(contacts).serialize(); // Serialize form data
+        
+            $.ajax({
+                type: 'POST',
+                url: '../Php/reduceNumberOfUnits.php', // PHP script to handle form submission
+                data: formData,
+                success: function(response) {
+                    
+                }
+            });
+        }
     } else {
         contacts.style.display = "none";
     }

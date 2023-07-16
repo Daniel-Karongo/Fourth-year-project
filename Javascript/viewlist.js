@@ -303,12 +303,56 @@ function filterDisplay() {
 
             default:
                 templateDiv.style.display = "block";
-    
         }
     });
 
+
+    filterOwners();
     filterAmmenities();
     filterPreferences();
+}
+
+function filterOwners() {
+    let ownerField = document.querySelector('.filter-form #property-owner-in-location');
+    let ownerChosen = ownerField.value;
+    let onwerFirstNameInDiv = document.querySelectorAll('.rental-owners-first-name');
+    let onwerLastNameInDiv = document.querySelectorAll('.rental-owners-last-name');
+
+    i=0;
+    ownersLastNamesArray = Array.from(onwerLastNameInDiv);
+    divsShown = 0;
+    onwersFullName = ""
+
+    Array.from(onwerFirstNameInDiv).forEach((propertyOwnersFirstName) => {
+        onwersFullName = propertyOwnersFirstName.value + ' ' + ownersLastNamesArray[i].value;
+        
+        formDiv = propertyOwnersFirstName.parentElement;
+        descriptionDiv = formDiv.parentElement;
+        rentaldivDiv = descriptionDiv.parentElement;
+        templateDiv = rentaldivDiv.parentElement;
+
+        if(ownerChosen !== "no-value") {
+            if((templateDiv.style.display !== "none") && (onwersFullName === ownerChosen)) {
+                templateDiv.style.display = "block";
+                divsShown++;
+
+            } else {
+                templateDiv.style.display = "none";
+    
+            }
+        } else {
+            divsShown++;
+        }
+
+        i++;
+    });
+
+    if(divsShown === 0) {
+        alert(onwersFullName + ' has no rentals available at the moment.');
+        document.querySelector('#load-next-rentals').style.display = "none";
+    } else {
+        document.querySelector('#load-next-rentals').style.display = "none";
+    }
 }
 
 function filterAmmenities() {

@@ -135,6 +135,7 @@
                                                         <th class="interested-parties-table-column-heads">Name</th>
                                                         <th class="interested-parties-table-column-heads">Phone Number</th>
                                                         <th class="interested-parties-table-column-heads">Email Address</th>
+                                                        <th class="interested-parties-table-column-heads">Date Submitted</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>';
@@ -144,6 +145,7 @@
                                                         <td>' . $finalInterestedParties[$i][0] . '</td>
                                                         <td>' . $finalInterestedParties[$i][1] . '</td>
                                                         <td>' . $finalInterestedParties[$i][2] . '</td>
+                                                        <td>' . $finalInterestedParties[$i][3] . '</td>
                                                     </tr>';
                                             }
                                             echo '</tbody>
