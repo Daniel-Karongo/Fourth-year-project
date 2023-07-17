@@ -20,7 +20,7 @@
     $pdf->Cell(23,6,'First Name',1,0,'C');
     $pdf->Cell(23,6,'Last Name',1,0,'C');
     $pdf->Cell(30,6,'Password Reset',1,0,'C');
-    $pdf->Cell(40,6,'Remember Me Tokens',1,1,'C');
+    $pdf->Cell(130,6,'Remember Me Tokens',1,1,'C');
 
     $pdf->SetFont('Arial','',10);
     for($i=0; $i<count($administrators); $i++) {
@@ -30,7 +30,7 @@
         $pdf->Cell(23,6,$administrators[$i][3],1,0,'C');
         $pdf->Cell(23,6,$administrators[$i][4],1,0,'C');
         $pdf->Cell(30,6,$administrators[$i][5],1,0,'C');
-        $pdf->Cell(40,6,$administrators[$i][6],1,1,'C');
+        $pdf->Cell(130,6,$administrators[$i][6],1,1,'C');
     }
 
     $pdf->Output();

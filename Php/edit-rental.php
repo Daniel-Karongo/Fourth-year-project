@@ -12,7 +12,7 @@
     <script src="../Javascript/edit-rental.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
-<body onload="textareaSizor()" onresize="textareaSizor()">
+<body onload="textareaSizor('religion')" onload="uncheckAllOthers()" onresize="textareaSizor()">
     <div class="container">
     <?php ?>
         <nav>
@@ -396,7 +396,7 @@
                                     ?>
 
                                 <input type="checkbox" name="any-religion" id="any-religion" value="Any religion" <?php if(in_array("Any religion", $individualPreferencesRefined)) {echo "checked";}                                                        
-                                    ?>>
+                                    ?> onclick="uncheckAllOthers()">
                                 <label for="any-religion">Any Religion</label>
                             </div>                        
 

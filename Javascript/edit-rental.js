@@ -55,10 +55,14 @@ function viewRight(imagesCollection, tallyParagraph) {
     } 
 }
 
-function textareaSizor() {
+function textareaSizor(element) {
     const textarea = document.getElementById('description');
     const height = textarea.scrollHeight;
     textarea.style.height = height + 'px';
+
+    if(element != null) {
+        uncheckAllOthers();
+    }
 }
 
 function zoomDiv(div) {
@@ -118,3 +122,20 @@ function resetUnits() {
         });
     }
 }
+
+function uncheckAllOthers() {
+    let checkboxes = document.querySelectorAll('.faith input[type="checkbox"]');
+    // let inputField = document.querySelector('#specified-religion');
+    let radio = document.querySelector('#any-religion');
+
+    if(radio.checked) {
+        for(let i=0; i<checkboxes.length-1; i++) {
+            checkboxes[i].disabled = true;            
+        }       
+    } else {
+        checkboxes.forEach((checkbox) => {
+            checkbox.disabled = false;
+        });        
+    }        
+}
+

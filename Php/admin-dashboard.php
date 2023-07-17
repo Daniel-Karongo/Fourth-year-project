@@ -300,47 +300,6 @@
                                                             <img src="../Images/more-details.png" alt="more-details-button">
                                                         </button>
                                                     </td>
-                                                    <td class="edit-details">
-                                                        <button class="hostels-table-edit-details-button" onclick="editDetails(event, \'.hostels-table input[type=text]\', \'.hostels-table .submit-details\', \'.hostels-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                            <img src="../Images/edit.png" alt="edit-button">
-                                                        </button>
-                                                    </td>
-                                                    <td class="submit-details" id="submit-details-' . ($i + 1) . '">
-                                                        <input type="hidden" name="original-rental-id" value="' . $hostels[$i][0] . '" disabled>
-                                                        <input type="hidden" name="original-rental-name" value="' . $hostels[$i][1] . '" disabled>
-                                                        <input type="hidden" name="original-location" value="' . $hostels[$i][2] . '" disabled>
-                                                        <input type="hidden" name="original-google-location" value="' . $hostels[$i][3] . '" disabled>
-                                                        <input type="hidden" name="original-image-urls" value="' . $hostels[$i][4] . '" disabled>
-                                                        <input type="hidden" name="original-ammenities" value="' . $hostels[$i][5] . '" disabled>
-                                                        <input type="hidden" name="original-number-of-units" value="' . $hostels[$i][6] . '" disabled>
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">';
-
-                                                        if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
-                                                        if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
-                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
-
-                                                        if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
-                                                        if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
-                                                        if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
-                                                        if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
-                                                        if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
-                                                        if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
-                                                        if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
-    
-                                                    echo '
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">
-                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
-                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
-                                                    
-                                                        <td class="submit-details">
-                                                            <button type="submit" class="hostels-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                                <img src="../Images/submit.png" alt="submit details">
-                                                            </button>
-                                                        </td>
-                                                    </td>
                                                 </tr>';
 
                                                 $rentalId = $hostels[$i][0];
@@ -447,47 +406,6 @@
                                                             <img src="../Images/more-details.png" alt="more-details-button">
                                                         </button>
                                                     </td>
-                                                    <td class="edit-details">
-                                                        <button class="single-rooms-table-edit-details-button" onclick="editDetails(event, \'.single-rooms-table input[type=text]\', \'.single-rooms-table .submit-details\', \'.single-rooms-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                            <img src="../Images/edit.png" alt="edit-button">
-                                                        </button>
-                                                    </td>
-                                                    <td class="submit-details" id="submit-details-' . ($i + 1) . '">
-                                                        <input type="hidden" name="original-rental-id" value="' . $singlerooms[$i][0] . '" disabled>
-                                                        <input type="hidden" name="original-rental-name" value="' . $singlerooms[$i][1] . '" disabled>
-                                                        <input type="hidden" name="original-location" value="' . $singlerooms[$i][2] . '" disabled>
-                                                        <input type="hidden" name="original-google-location" value="' . $singlerooms[$i][3] . '" disabled>
-                                                        <input type="hidden" name="original-image-urls" value="' . $singlerooms[$i][4] . '" disabled>
-                                                        <input type="hidden" name="original-ammenities" value="' . $singlerooms[$i][5] . '" disabled>
-                                                        <input type="hidden" name="original-number-of-units" value="' . $singlerooms[$i][6] . '" disabled>
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">';
-
-                                                        if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
-                                                        if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
-                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
-
-                                                        if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
-                                                        if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
-                                                        if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
-                                                        if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
-                                                        if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
-                                                        if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
-                                                        if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
-    
-                                                    echo '
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">
-                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
-                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
-
-                                                        <td class="submit-details">
-                                                            <button type="submit" class="single-rooms-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                                <img src="../Images/submit.png" alt="submit details">
-                                                            </button>
-                                                        </td>
-                                                    </td>
                                                 </tr>';
                                                 $rentalId = $singlerooms[$i][0];
                                                 
@@ -592,47 +510,6 @@
                                                         <button class="bedsitters-view-owner-details-button" onclick="viewOwnerDetails(event, \'bedsitter\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/more-details.png" alt="more-details-button">
                                                         </button>
-                                                    </td>
-                                                    <td class="edit-details">
-                                                        <button class="bedsitters-table-edit-details-button" onclick="editDetails(event, \'.bedsitters-table input[type=text]\', \'.bedsitters-table .submit-details\', \'.bedsitters-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                            <img src="../Images/edit.png" alt="edit-button">
-                                                        </button>
-                                                    </td>
-                                                    <td class="submit-details" id="submit-details-' . ($i + 1) . '">
-                                                        <input type="hidden" name="original-rental-id" value="' . $bedsitters[$i][0] . '" disabled>
-                                                        <input type="hidden" name="original-rental-name" value="' . $bedsitters[$i][1] . '" disabled>
-                                                        <input type="hidden" name="original-location" value="' . $bedsitters[$i][2] . '" disabled>
-                                                        <input type="hidden" name="original-google-location" value="' . $bedsitters[$i][3] . '" disabled>
-                                                        <input type="hidden" name="original-image-urls" value="' . $bedsitters[$i][4] . '" disabled>
-                                                        <input type="hidden" name="original-ammenities" value="' . $bedsitters[$i][5] . '" disabled>
-                                                        <input type="hidden" name="original-number-of-units" value="' . $bedsitters[$i][6] . '" disabled>
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">';
-
-                                                        if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
-                                                        if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
-                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
-
-                                                        if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
-                                                        if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
-                                                        if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
-                                                        if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
-                                                        if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
-                                                        if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
-                                                        if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
-    
-                                                    echo '
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">
-                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
-                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
-                                                        
-                                                        <td class="submit-details">
-                                                            <button type="submit" class="bedsitters-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                                <img src="../Images/submit.png" alt="submit details">
-                                                            </button>
-                                                        </td>
                                                     </td>
                                                 </tr>';
                                                 $rentalId = $bedsitters[$i][0];
@@ -741,48 +618,6 @@
                                                             <img src="../Images/more-details.png" alt="more-details-button">
                                                         </button>
                                                     </td>
-                                                    <td class="edit-details">
-                                                        <button class="apartments-table-edit-details-button" onclick="editDetails(event, \'.apartments-table input[type=text]\', \'.apartments-table .submit-details\', \'.apartments-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                            <img src="../Images/edit.png" alt="edit-button">
-                                                        </button>
-                                                    </td>
-                                                    <td class="submit-details" id="submit-details-' . ($i + 1) . '">
-                                                        <input type="hidden" name="original-rental-id" value="' . $apartments[$i][0] . '" disabled>
-                                                        <input type="hidden" name="original-rental-name" value="' . $apartments[$i][1] . '" disabled>
-                                                        <input type="hidden" name="original-location" value="' . $apartments[$i][2] . '" disabled>
-                                                        <input type="hidden" name="original-google-location" value="' . $apartments[$i][3] . '" disabled>
-                                                        <input type="hidden" name="original-image-urls" value="' . $apartments[$i][4] . '" disabled>
-                                                        <input type="hidden" name="original-ammenities" value="' . $apartments[$i][5] . '" disabled>
-                                                        <input type="hidden" name="original-number-of-bedrooms" value="' . $apartments[$i][6] . '" disabled>
-                                                        <input type="hidden" name="original-number-of-units" value="' . $apartments[$i][7] . '" disabled>
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">';
-
-                                                        if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
-                                                        if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
-                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
-
-                                                        if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
-                                                        if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
-                                                        if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
-                                                        if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
-                                                        if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
-                                                        if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
-                                                        if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
-    
-                                                    echo '
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">
-                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
-                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
-                                                    
-                                                        <td class="submit-details">
-                                                            <button type="submit" class="apartments-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                                <img src="../Images/submit.png" alt="submit details">
-                                                            </button>
-                                                        </td>
-                                                    </td>
                                                 </tr>';
                                                 $rentalId = $apartments[$i][0];
                                                 
@@ -886,48 +721,6 @@
                                                         <button class="houses-view-owner-details-button" onclick="viewOwnerDetails(event, \'house\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/more-details.png" alt="more-details-button">
                                                         </button>
-                                                    </td>
-                                                    <td class="edit-details">
-                                                        <button class="houses-table-edit-details-button" onclick="editDetails(event, \'.houses-table input[type=text]\', \'.houses-table .submit-details\', \'.houses-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                            <img src="../Images/edit.png" alt="edit-button">
-                                                        </button>
-                                                    </td>
-                                                    <td class="submit-details" id="submit-details-' . ($i + 1) . '">
-                                                        <input type="hidden" name="original-rental-id" value="' . $houses[$i][0] . '" disabled>
-                                                        <input type="hidden" name="original-rental-name" value="' . $houses[$i][1] . '" disabled>
-                                                        <input type="hidden" name="original-location" value="' . $houses[$i][2] . '" disabled>
-                                                        <input type="hidden" name="original-google-location" value="' . $houses[$i][3] . '" disabled>
-                                                        <input type="hidden" name="original-image-urls" value="' . $houses[$i][4] . '" disabled>
-                                                        <input type="hidden" name="original-ammenities" value="' . $houses[$i][5] . '" disabled>
-                                                        <input type="hidden" name="original-number-of-bedrooms" value="' . $houses[$i][6] . '" disabled>
-                                                        <input type="hidden" name="original-number-of-units" value="' . $houses[$i][7] . '" disabled>
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">';
-
-                                                        if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
-                                                        if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
-                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
-
-                                                        if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
-                                                        if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
-                                                        if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
-                                                        if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
-                                                        if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
-                                                        if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
-                                                        if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
-    
-                                                    echo '
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">
-                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
-                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
-                                                        
-                                                        <td class="submit-details">
-                                                            <button type="submit" class="houses-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                                <img src="../Images/submit.png" alt="submit details">
-                                                            </button>
-                                                        </td>
                                                     </td>
                                                 </tr>';
                                                 $rentalId = $houses[$i][0];
@@ -1033,48 +826,6 @@
                                                             <img src="../Images/more-details.png" alt="more-details-button">
                                                         </button>
                                                     </td>
-                                                    <td class="edit-details">
-                                                        <button class="business-premises-table-edit-details-button" onclick="editDetails(event, \'.business-premises-table input[type=text]\', \'.business-premises-table .submit-details\', \'.business-premises-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                            <img src="../Images/edit.png" alt="edit-button">
-                                                        </button>
-                                                    </td>
-                                                    <td class="submit-details" id="submit-details-' . ($i + 1) . '">
-                                                        <input type="hidden" name="original-rental-id" value="' . $businesspremises[$i][0] . '" disabled>
-                                                        <input type="hidden" name="original-rental-name" value="' . $businesspremises[$i][1] . '" disabled>
-                                                        <input type="hidden" name="original-type-of-premise" value="' . $businesspremises[$i][2] . '" disabled>
-                                                        <input type="hidden" name="original-location" value="' . $businesspremises[$i][3] . '" disabled>
-                                                        <input type="hidden" name="original-google-location" value="' . $businesspremises[$i][4] . '" disabled>
-                                                        <input type="hidden" name="original-image-urls" value="' . $businesspremises[$i][5] . '" disabled>
-                                                        <input type="hidden" name="original-ammenities" value="' . $businesspremises[$i][6] . '" disabled>
-                                                        <input type="hidden" name="original-number-of-units" value="' . $businesspremises[$i][7] . '" disabled>
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">';
-
-                                                        if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
-                                                        if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
-                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
-
-                                                        if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
-                                                        if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
-                                                        if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
-                                                        if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
-                                                        if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
-                                                        if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
-                                                        if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
-    
-                                                    echo '
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">
-                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
-                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
-                                                    
-                                                        <td class="submit-details">
-                                                            <button type="submit" class="business-premises-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                                <img src="../Images/submit.png" alt="submit details">
-                                                            </button>
-                                                        </td>
-                                                    </td>
                                                 </tr>';
                                                 $rentalId = $businesspremises[$i][0];
                                                 
@@ -1178,48 +929,6 @@
                                                         <button class="suites-view-owner-details-button" onclick="viewOwnerDetails(event, \'suite\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/more-details.png" alt="more-details-button">
                                                         </button>
-                                                    </td>
-                                                    <td class="edit-details">
-                                                        <button class="suites-table-edit-details-button" onclick="editDetails(event, \'.suites-table input[type=text]\', \'.suites-table .submit-details\', \'.suites-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                            <img src="../Images/edit.png" alt="edit-button">
-                                                        </button>
-                                                    </td>
-                                                    <td class="submit-details" id="submit-details-' . ($i + 1) . '">
-                                                        <input type="hidden" name="original-rental-id" value="' . $suites[$i][0] . '" disabled>
-                                                        <input type="hidden" name="original-rental-name" value="' . $suites[$i][1] . '" disabled>
-                                                        <input type="hidden" name="original-location" value="' . $suites[$i][2] . '" disabled>
-                                                        <input type="hidden" name="original-google-location" value="' . $suites[$i][3] . '" disabled>
-                                                        <input type="hidden" name="original-image-urls" value="' . $suites[$i][4] . '" disabled>
-                                                        <input type="hidden" name="original-ammenities" value="' . $suites[$i][5] . '" disabled>
-                                                        <input type="hidden" name="original-number-of-beds" value="' . $suites[$i][6] . '" disabled>
-                                                        <input type="hidden" name="original-number-of-units" value="' . $suites[$i][7] . '" disabled>
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">';
-
-                                                        if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
-                                                        if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
-                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
-
-                                                        if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
-                                                        if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
-                                                        if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
-                                                        if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
-                                                        if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
-                                                        if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
-                                                        if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
-    
-                                                    echo '
-                                                        <input type="hidden" name="email" value="' . $email . '">
-                                                        <input type="hidden" name="passwordField" value="' . $password . '">
-                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
-                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
-                                                    
-                                                        <td class="submit-details">
-                                                            <button type="submit" class="suites-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                                <img src="../Images/submit.png" alt="submit details">
-                                                            </button>
-                                                        </td>
                                                     </td>
                                                 </tr>';
                                                 $rentalId = $businesspremises[$i][0];
@@ -1507,13 +1216,45 @@
             </div>
         </div>
         <div class="contact-information">
-            <div class="delete-admin-account-div">
-                <form id="delete-admin-account" action="../Php/delete-admin.php" method="post" onsubmit="confirmAdminDelete(event)">
-                    <input type="hidden" name="admin-phone-number" value="<?php echo $adminPhone_Number;?>">
-                    <input type="hidden" name="admin-modified-email" value="<?php echo $email;?>">
+            <div class="contact-information-account-operations">
+                <div class="delete-admin-account-div">
+                    <form id="delete-admin-account" action="../Php/delete-admin.php" method="post" onsubmit="confirmAdminDelete(event)">
+                        <input type="hidden" name="admin-phone-number" value="<?php echo $adminPhone_Number;?>">
+                        <input type="hidden" name="admin-modified-email" value="<?php echo $email;?>">
 
-                    <button type="submit">Delete Account</button>
-                </form>
+                        <button type="submit">Delete Account</button>
+                    </form>
+                </div>
+                <?php 
+                    if(isset($adminPasswordRememberMeToken) && ($adminPasswordRememberMeToken != "")) {
+                        echo '
+                            <div class="forget-admin-account-div">
+                                <form id="forget-admin-account" action="../Php/forget-admin-account.php" method="post" onsubmit="confirmAdminForget(event)">
+                                    <input type="hidden" name="admin-phone-number" value="'. $adminPhone_Number .'">
+                                    <input type="hidden" name="admin-modified-email" value="'.$email.'">
+                                    <input type="hidden" name="admin-first-name" value="'.$adminFirst_Name.'">
+                                    <input type="hidden" name="admin-last-name" value="'.$adminLast_Name.'">
+                                    <input type="hidden" name="admin-password" value="'.$password.'">
+                                    ';
+                                                
+                                    if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
+                                    if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                    if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+            
+                                    if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
+                                    if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
+                                    if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
+                                    if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
+                                    if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
+                                    if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
+                                    if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
+            
+                                echo'<button type="submit">Undo "Remember Me"</button>
+                                </form>
+                            </div>
+                        ';
+                    }
+                ?>
             </div>
             <div class="contact-information-form-div">
                 <form id="contact-information-form" action="../Php/edit-admins-details.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event, 'contact-information-form', '#contact-information-form')">

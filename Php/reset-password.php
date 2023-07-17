@@ -33,6 +33,7 @@
             </div>
 
             <input type="hidden" name="email" value="<?php echo $email;?>">
+            <input type="hidden" name="table" value="<?php echo $table;?>">
             <input type="hidden" name="phone-number" value="<?php echo $phoneNumber;?>">
             <input type="hidden" name="confirm-code" value="<?php echo $confirmationCode;?>">
             <button onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Submit</button>

@@ -31,6 +31,18 @@
                     <input type="hidden" name="phone-number" value="<?php echo $retrieved_phone_number;?>">
                     <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">Delete Account</button>
                 </form>
+                <?php
+                    if($retrieved_remember_me_token != "") {
+                        echo '
+                        <form action="../Php/forget-account.php" method="post" onsubmit="verifyForgetAccount(event)" id="account-forgeter">
+                            <input type="hidden" name="email" value="'. $email .'">
+                            <input type="hidden" name="phone-number" value="'. $retrieved_phone_number .'">
+                            <input type="hidden" name="passwordField" value="'. $password .'">
+                            <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="highlightClicked(this)">Undo "Remember Me"</button>
+                        </form>
+                        ';
+                    }
+                ?>
             </div>
             <div class="panel">
                 <div class="panel-buttons">

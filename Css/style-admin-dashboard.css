@@ -356,8 +356,24 @@ body {
     padding: 15px;
 }
 
-.delete-admin-account-div {
+.contact-information-account-operations {
     flex-basis: 16%;
+}
+
+.forget-admin-account-div {
+    margin-top: 15px;
+}
+
+.forget-admin-account-div button {
+    padding: 7px 20px;
+    color: rgba(255,255,255,1);
+    font-size: 0.9rem;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;    
+    border: 2.5px solid#2C18DE;
+    margin-top: 5px;
+    width: 100%;
 }
 
 .contact-information-form-div {
@@ -373,6 +389,7 @@ body {
     box-shadow: none;    
     border: 2.5px solid#2C18DE;
     margin-top: 5px;
+    width: 100%;
 }
 
 #contact-information-form {

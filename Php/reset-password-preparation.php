@@ -1,10 +1,11 @@
 <?php
     $confirmationCode = $_POST['confirmation-code'];
     $email = $_POST['email'];
+    $table = $_POST['table'];
 
     include "../Php/databaseConnector.php";
 
-    $sqlquery = "SELECT Email_Address, Phone_Number FROM property_owners WHERE Password_Reset_Confirmation_Code = ? AND Email_Address = ?;";
+    $sqlquery = "SELECT Email_Address, Phone_Number FROM $table WHERE Password_Reset_Confirmation_Code = ? AND Email_Address = ?;";
     $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
     
     if (!$stmt) {

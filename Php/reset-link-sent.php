@@ -25,6 +25,7 @@
             <div class="error"></div>
             <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Submit</button>
             <input type="hidden" name="email" value="<?php echo $email;?>">
+            <input type="hidden" name="table" value="<?php echo $table;?>">
         </form>
     </div>
 </body>

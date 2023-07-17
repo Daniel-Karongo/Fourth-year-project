@@ -1,4 +1,5 @@
 <?php
+
     function getPropertyOwners() {
         include "../Php/databaseConnector.php";
 
@@ -420,8 +421,16 @@
     $res = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($res) > 0) {
-        $email = $_POST["email"];
-        $password = $_POST["passwordField"];
+        $password = "";
+        if(isset($_POST["passwordField"])) {
+            $password = $_POST["passwordField"];
+        } else {
+            if(isset($_POST["password-confirmation"])) {
+                $password = $_POST["password-confirmation"];
+            } else {
+                $password = $_COOKIE['remember_password'];
+            }
+        }
 
         while ($adminRetrieved = mysqli_fetch_assoc($res)) {
             $adminPhone_Number = $adminRetrieved['Phone_Number'];

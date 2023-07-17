@@ -44,8 +44,9 @@
             $res = mysqli_stmt_get_result($stmt);
             
             if (mysqli_num_rows($res) > 0) {
-                while ($property_owner = mysqli_fetch_assoc($res)) {
-                    $email = $property_owner['Email_Address'];
+                $email = "";
+                while ($administrator = mysqli_fetch_assoc($res)) {
+                    $email = $administrator['Email_Address'];
                 }
                 mysqli_stmt_close($stmt);
                 include "../Php/admin-dashboard-preparation.php";

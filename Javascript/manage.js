@@ -523,3 +523,11 @@ function showInputInField(input) {
       }
     });
 }
+
+function verifyForgetAccount(event) {
+    event.preventDefault();
+    const proceed = confirm("Are You Sure? This Will force you to enter your credentials every tinme you want to log into your account.");
+    if(proceed) {
+        event.target.submit();
+    }
+}

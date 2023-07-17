@@ -30,7 +30,7 @@
         $mail->Body = $message;
         
         if ($mail->send()) {
-            $sqlquery = "UPDATE property_owners SET Password_Reset_Confirmation_Code = ? WHERE Email_Address = ? AND Phone_Number = ?";
+            $sqlquery = "UPDATE $table SET Password_Reset_Confirmation_Code = ? WHERE Email_Address = ? AND Phone_Number = ?";
 
             $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
             

@@ -373,18 +373,10 @@ function validateField(id, error, event, firstName, lastName, email, email, emai
     }
 }
 
-// function showPopup() {
-//     let popup = document.createElement('div');
-//     popup.textContent = "Edit Administrator's Details";
-//     popup.classList.add('popup');
-
-//     document.body.appendChild(popup);
-// }
-
-// function hidePopup() {
-//     let popup = document.getElementsByClassName('popup');
-
-//     if (popup.parentNode) {
-//         popup.parentNode.removeChild(popup);
-//     }
-// }
+function confirmAdminForget(event) {
+    event.preventDefault();
+    const proceed = confirm("Are You Sure? This Will force you to enter your credentials every time you want to log into your account.");
+    if(proceed) {
+        event.target.submit();
+    }
+}
