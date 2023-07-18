@@ -38,7 +38,7 @@
                     if (gettype($property_owners) !== "NULL") {
                         echo '
                         <div class="property-owners-table-and-print">
-                            <form action="../Php/editPropertyOwnerDetailsFromAdmin.php" method="post" onsubmit="confirmPropertyOwnerEdit(event)">
+                            <form action="../Php/editPropertyOwnerDetailsFromAdmin.php" method="post" onsubmit="confirmPropertyOwnerEdit(event)" id="property-owners-table-form">
                                 <table class="property-owners-table">
                                     <thead>
                                         <tr>
@@ -59,14 +59,24 @@
                                     for ($i = 0; $i < count($property_owners); $i++) {
                                         echo '
                                             <tr>
-                                                <td><input type="text" name="phone-number" value="' . $property_owners[$i][0] . '" disabled></td>
-                                                <td><input type="text" name="email-address" value="' . $property_owners[$i][1] . '" disabled></td>
-                                                <td><input type="text" name="password" value="' . $property_owners[$i][2] . '" disabled></td>
-                                                <td><input type="text" name="first-name" value="' . $property_owners[$i][3] . '" disabled></td>
-                                                <td><input type="text" name="last-name" value="' . $property_owners[$i][4] . '" disabled></td>
-                                                <td><input type="text" name="rentals-owned" value="' . $property_owners[$i][5] . '" disabled></td>
-                                                <td><input type="text" name="password-reset-confirmation-code" value="' . $property_owners[$i][6] . '" disabled></td>
-                                                <td><input type="text" name="remember-me-token" value="' . $property_owners[$i][7] . '" disabled></td>
+                                                <td><input type="text" onfocus="showInputInField(this)" name="phone-number" value="' . $property_owners[$i][0] . '" readonly></td>
+                                                <td><input type="text" onfocus="showInputInField(this)" name="email-address" value="' . $property_owners[$i][1] . '" readonly></td>
+                                                <td><input type="text" onfocus="showInputInField(this)" name="password" value="' . $property_owners[$i][2] . '" readonly></td>
+                                                <td><input type="text" onfocus="showInputInField(this)" name="first-name" value="' . $property_owners[$i][3] . '" readonly></td>
+                                                <td><input type="text" onfocus="showInputInField(this)" name="last-name" value="' . $property_owners[$i][4] . '" readonly></td>
+                                                <td><input type="text" onfocus="showInputInField(this)" name="rentals-owned" value="' . $property_owners[$i][5] . '" readonly></td>
+                                                <td><input type="text" onfocus="showInputInField(this)" name="password-reset-confirmation-code" value="' . $property_owners[$i][6] . '" readonly></td>
+                                                <td><input type="text" onfocus="showInputInField(this)" name="remember-me-token" value="' . $property_owners[$i][7] . '" readonly></td>';
+                                                if($property_owners[$i][5] != "") {
+                                                    echo '
+                                                    <td class="view-landlord-details" id="view-landlord-details-'.($i+1).'">
+                                                        <button type="button" class="property-owners-table-view-extra-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="viewLandlordRentals(event)">
+                                                            <img src="../Images/more-details.png" alt="submit details">
+                                                        </button>
+                                                    </td>
+                                                    ';
+                                                }
+                                                echo'
                                                 <td class="edit-details">
                                                     <button class="property-owners-table-edit-details-button" onclick="editDetails(event, \'.property-owners-table input[type=text]\', \'.property-owners-table .submit-details\', \'.property-owners-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                         <img src="../Images/edit.png" alt="edit-button">
@@ -112,11 +122,279 @@
                                                     </td>
                                                 </td>
                                             </tr>';
+
+                                            if($property_owners[$i][5] != "") {
+                                            
+                                            echo '<tr class="extra-landlord-details-of-rentals" id="extra-landlord-details-of-rentals-heading-'. ($i+1) .'">
+                                                    <td colspan="11" class="rentals-table-title"> Rentals </th>
+                                                </tr>
+                                                <tr class="extra-landlord-details-of-rentals" id="extra-landlord-details-of-rentals-actual-'. ($i+1) .'">
+                                                    <td class="rentals-table-column-heads">Rental Name</th>
+                                                    <td class="rentals-table-column-heads">Rental Type</th>
+                                                    <td class="rentals-table-column-heads">Type Of Premise</th>
+                                                    <td class="rentals-table-column-heads">Location</th>
+                                                    <td class="rentals-table-column-heads">Google Location</th>
+                                                    <td class="rentals-table-column-heads">Ammenities</th>
+                                                    <td class="rentals-table-column-heads">Preferences</th>
+                                                    <td class="rentals-table-column-heads">Number Of Beds/ Bedrooms</th>
+                                                    <td class="rentals-table-column-heads">Number Of Similar Units</th>
+                                                    <td class="rentals-table-column-heads">Number Of Units Remaining</th>
+                                                    <td class="rentals-table-column-heads">Interested Parties</th>
+                                                </tr>';
+
+
+
+                                                $rentalsOwned = array();
+                                                $rentalsOwned = explode(", ", $property_owners[$i][5]);
+
+                                                $tablenames = array();
+
+                                                $retrieved_rentalID = array();
+                                                $retrieved_rental_name = array();
+                                                $rentalType = array();
+                                                $retrieved_location = array();
+                                                $retrieved_google_location = array();
+                                                $retrieved_image_urls = array();
+                                                $retrieved_rules_urls = array();
+                                                $retrieved_ammenities = array();
+                                                $retrieved_number_of_units = array();
+                                                $retrieved_number_of_remaining_units = array();
+                                                $retrieved_interested_parties = array();
+
+                                                $apartments_retrieved_number_of_bedrooms = array();
+                                                $business_premises_retrieved_type_of_premise = array();    
+                                                $houses_retrieved_number_of_bedrooms = array();
+                                                $suites_retrieved_number_of_beds = array();
+
+                                                $retrieved_rental_term = array();
+                                                $retrieved_amount_of_rent = array();
+                                                $retrieved_description = array();
+                                                $retrieved_tenant_preferences = array();
+
+                                                $Hostel_retrieved_maximum_occupants = array();
+                                                $Single_Room_retrieved_maximum_occupants = array();
+                                                $Bedsitter_retrieved_maximum_occupants = array();
+                                                $Suite_retrieved_maximum_occupants = array();
+
+                                                $iteration = 0;
+                                                
+                                                foreach($rentalsOwned as $rentalID) {
+                                                    $rentalIDComponents = explode("_", $rentalID);
+                                                    $lastIndex = count($rentalIDComponents) - 1;
+                                                    array_push($rentalType, $rentalIDComponents[$lastIndex]);
+                                                    $tablename = '';
+                                                    
+                                                    switch($rentalType[$iteration]) {
+                                                        case "Hostel":
+                                                            $tablename = "hostels";
+                                                            break;
+                                                        case "Single Room":
+                                                            $tablename = "single_rooms";
+                                                            break;
+                                                        case "Bedsitter":
+                                                            $tablename = "bedsitters";
+                                                            break;            
+                                                        case "Apartment":
+                                                            $tablename = "apartments";
+                                                            break;
+                                                        case "Business Premise":
+                                                            $tablename = "business_premises";
+                                                            break;
+                                                        case "House":
+                                                            $tablename = "houses";
+                                                            break;
+                                                        case "Suite":
+                                                            $tablename = "suites";
+                                                            break;
+                                                    }
+                                                    
+                                                    $sqlquery = "SELECT * FROM $tablename WHERE Rental_ID = '$rentalID';";
+                                                    $res = mysqli_query($connectionInitialisation, $sqlquery);
+
+                                                    if($res) {
+                                                        if (mysqli_num_rows($res) > 0) {
+
+                                                            while ($table = mysqli_fetch_assoc($res)) {
+                                                                array_push($retrieved_rentalID, $rentalID);
+                                                                array_push($retrieved_rental_name, $table['Rental_Name']);
+                                                                array_push($retrieved_location, $table['Location']);                    
+                                                                array_push($retrieved_google_location, $table['Google_Location']);
+                                                                array_push($retrieved_image_urls, $table['Image_Urls']);                    
+                                                                array_push($retrieved_ammenities, $table['Ammenities']);
+                                                                array_push($retrieved_number_of_units, $table['Number_Of_Similar_Units']);
+                                                                array_push($retrieved_number_of_remaining_units, $table['Number_Of_Units_Remaining']);
+                                                                array_push($retrieved_interested_parties, $table['Interested_Parties']);
+                                                                
+                                                                array_push($tablenames, $tablename);
+                                                    
+                                                                switch($tablename) {
+                                                                    case "apartments":
+                                                                        array_push($apartments_retrieved_number_of_bedrooms, $table['Number_Of_Bedrooms']);
+                                                                        array_push($business_premises_retrieved_type_of_premise, null);
+                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
+                                                                        array_push($suites_retrieved_number_of_beds, null);
+                                                                        break;
+                                                                    case "business_premises":
+                                                                        array_push($business_premises_retrieved_type_of_premise, $table['Type_Of_Premise']);
+                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
+                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
+                                                                        array_push($suites_retrieved_number_of_beds, null);
+                                                                        break;
+                                                                    case "houses":
+                                                                        array_push($houses_retrieved_number_of_bedrooms, $table['Number_Of_Bedrooms']);
+                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
+                                                                        array_push($business_premises_retrieved_type_of_premise, null);
+                                                                        array_push($suites_retrieved_number_of_beds, null);
+                                                                        break;
+                                                                    case "suites":
+                                                                        array_push($suites_retrieved_number_of_beds, $table['Number_Of_Beds_Per_Suite']);
+                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
+                                                                        array_push($business_premises_retrieved_type_of_premise, null);
+                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
+                                                                        break;
+                                                                    default:
+                                                                        array_push($suites_retrieved_number_of_beds, null);
+                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
+                                                                        array_push($business_premises_retrieved_type_of_premise, null);
+                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
+                                                                        break;
+                                                                }
+                                                            }
+                                                
+                                                        }
+                                                    }
+                                                    
+                                                    $sqlquery = "SELECT * FROM properties_owners_details WHERE Rental_ID = '$rentalID';";
+                                                    $res = mysqli_query($connectionInitialisation, $sqlquery);
+
+                                                    if($res) {
+                                                        if (mysqli_num_rows($res) > 0) {
+
+                                                            while ($table = mysqli_fetch_assoc($res)) {
+                                                                array_push($retrieved_rental_term, $table['Rental_Term']);
+                                                                array_push($retrieved_amount_of_rent, $table['Amount_of_Rent']);                    
+                                                                array_push($retrieved_description, $table['Pitching']);
+                                                                array_push($retrieved_tenant_preferences, $table['Preferred_Sorts_of_Applicants']);
+                                                                array_push($retrieved_rules_urls, $table['Rules_Urls']);
+                                                                
+                                                                switch($rentalType[$iteration]) {
+                                                                    case "Hostel":
+                                                                        array_push($Hostel_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
+                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
+                                                                        array_push($Suite_retrieved_maximum_occupants, null);
+                                                                        break;
+                                                                    case "Single Room":
+                                                                        array_push($Single_Room_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
+                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
+                                                                        array_push($Suite_retrieved_maximum_occupants, null);
+                                                                        break;
+                                                                    case "Bedsitter":
+                                                                        array_push($Bedsitter_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
+                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
+                                                                        array_push($Suite_retrieved_maximum_occupants, null);
+                                                                        break;
+                                                                    case "Suite":
+                                                                        array_push($Suite_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
+                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
+                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
+                                                                        break;
+                                                                    default:
+                                                                        array_push($Suite_retrieved_maximum_occupants, null);
+                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
+                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
+                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
+                                                                        break;
+                                                                }                    
+                                                            }
+                                                
+                                                        } 
+                                                    }
+                                                    $iteration++; 
+                                                }
+
+                                                for($j=0; $j<count($rentalsOwned); $j++) {
+
+                                                    // Ammenities
+
+                                                    $outputAmmenities="";
+
+                                                    if(!empty($retrieved_ammenities[$j])) {
+                                                        $individualAmmenities = explode(", ", $retrieved_ammenities[$j]);
+        
+                                                        $individualAmmenitiesRefined = array();
+
+                                                        for($k=0; $k<count($individualAmmenities); $k++) {
+                                                            $individualAmmenitiesRefined[$k] = explode(": ", $individualAmmenities[$k]);
+                                                            unset($individualAmmenitiesRefined[$k][0]);
+                                                            if(!empty($individualAmmenitiesRefined[$k])) {
+                                                                $individualAmmenitiesRefined[$k] = $individualAmmenitiesRefined[$k][1];
+                                                            }                    
+                                                        }
+                                                        $outputAmmenities = implode(", ", $individualAmmenitiesRefined);
+                                                    } 
+                                                    
+                                                    // Preferences
+
+                                                    $outputPreferences="";
+
+                                                    if(!empty($retrieved_tenant_preferences[$j])) {
+                                                        $individualPreferences = explode(", ", $retrieved_tenant_preferences[$j]);
+        
+                                                        $individualPreferencesRefined = array();
+
+                                                        for($k=0; $k<count($individualPreferences); $k++) {
+                                                            $individualPreferencesRefined[$k] = explode(": ", $individualPreferences[$k]);
+                                                            unset($individualPreferencesRefined[$k][0]);
+                                                            if(!empty($individualPreferencesRefined[$k])) {
+                                                                $individualPreferencesRefined[$k] = $individualPreferencesRefined[$k][1];
+                                                            }                    
+                                                        }
+                                                        $outputPreferences = implode(", ", $individualPreferencesRefined);
+                                                    }
+                                                
+                                                echo'
+                                                    <tr class="extra-landlord-details-of-rentals" id="extra-landlord-details-of-rentals-actual-'. ($i+1) .'">
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-rental-name" name="name" value="'.$retrieved_rental_name[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-rental-type" name="type" value="'.$rentalType[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-premise-type" name="" value="'.$business_premises_retrieved_type_of_premise[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-location" name="location" value="'.$retrieved_location[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-google-location" name="google-location" value="'.$retrieved_google_location[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-ammenities" name="ammenities" value="'.$outputAmmenities.'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-preferences" name="preferences" value="'.$outputPreferences.'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-bedrooms" name="bedrooms" value="';
+                                                        switch($rentalType[$j]) {
+                                                            case "Apartment":
+                                                                echo $apartments_retrieved_number_of_bedrooms[$j];
+                                                                break;
+                                                            case "House":
+                                                                echo $houses_retrieved_number_of_bedrooms[$j];
+                                                                break;
+                                                            case "Suite":
+                                                                echo $suites_retrieved_number_of_beds[$j];
+                                                                break;
+                                                            default:
+                                                            echo "";
+                                                        }
+                                                        echo '"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-units" name="units" value="'.$retrieved_number_of_units[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-units-remaining" name="remaining-units" value="'.$retrieved_number_of_remaining_units[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-parties" name="interested-parties" value="'.$retrieved_interested_parties[$j].'"></td>
+                                                    </tr>'; 
+                                                    }
+                                            }
                                     }
                         echo '
                                     </tbody>
                                 </table>
                             </form>
+                              
+                            <div class="view-input-div">
+                                <input type="text" id="view-input-details-clearly" readonly> 
+                            </div>
 
                             <form class="print-property-owners-table" action="../Php/table-pdf.php" method="post">
                                 <input type="hidden" name="property-owners" value="' . htmlspecialchars(json_encode($property_owners)) . '">
@@ -365,7 +643,7 @@
                                 </form>
                             </div>';
                         } else {
-                            echo "<h3>No One Has Registered As A Property Owner</h3>";
+                            echo "<h3>No Hostels Have Been Registered</h3>";
                         }
                     ?>
                 </div>
@@ -470,7 +748,7 @@
                                 </form>
                             </div>';
                         } else {
-                            echo "<h3>No One Has Registered As A Property Owner</h3>";
+                            echo "<h3>No Single Rooms Have Been Registered</h3>";
                         }
                     ?>
                 </div>
@@ -575,7 +853,7 @@
                                 </form>
                             </div>';
                         } else {
-                            echo "<h3>No One Has Registered As A Property Owner</h3>";
+                            echo "<h3>No Beditters Have Been Registered</h3>";
                         }
                     ?>
                 </div>
@@ -679,7 +957,7 @@
                                 </form>
                             </div>';
                         } else {
-                            echo "<h3>No One Has Registered As A Property Owner</h3>";
+                            echo "<h3>No Apartments Have Been Registered</h3>";
                         }
                     ?>
                 </div>
@@ -783,7 +1061,7 @@
                                 </form>
                             </div>';
                         } else {
-                            echo "<h3>No One Has Registered As A Property Owner</h3>";
+                            echo "<h3>No Houses Have Been Registered</h3>";
                         }
                     ?>
                 </div>
@@ -887,7 +1165,7 @@
                                 </form>
                             </div>';
                         } else {
-                            echo "<h3>No One Has Registered As A Property Owner</h3>";
+                            echo "<h3>No Business Premises Have Been Registered</h3>";
                         }
                     ?>
                 </div>
@@ -991,19 +1269,10 @@
                                 </form>
                             </div>';
                         } else {
-                            echo "<h3>No One Has Registered As A Property Owner</h3>";
+                            echo "<h3>No Suites Have Been Registered</h3>";
                         }
                     ?>
                 </div>
-            </div>
-        </div>
-        <div class="queries">
-            <h3>Search For:</h5>
-            <div class="property-owners-with-some-attribute">
-                <h4>Property Owners With Some Attribute</h4>
-            </div>
-            <div class="rentals-with-some-attribute">
-                <h4>Rentals With Some Attribute</h4>
             </div>
         </div>
         <div class="administrators">
@@ -1145,7 +1414,7 @@
                         </div>';
 
                     } else {
-                        echo "<h3>No One Has Registered As A Property Owner</h3>";
+                        echo "<h3>No One Has Been Registered As An Administrator</h3>";
                     }
                 ?>
             </div>

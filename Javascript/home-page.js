@@ -19,3 +19,8 @@ function unzoomDiv(div) {
 
     div.style.outline = 'none';
 }
+
+function maintainColor() {
+    document.querySelector('#location').style.appearance = "textfield";
+    // console.log(document.querySelector('#location').style);
+}

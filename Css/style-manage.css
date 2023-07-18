@@ -312,7 +312,6 @@ nav h3 {
 .rentals-table th, .rentals-table td {
     border: 1px solid rgba(255,255,255,0.7);
     padding: 0;
-    max-width: 200px;
     font-size: 1rem;
     max-width: none;
 }

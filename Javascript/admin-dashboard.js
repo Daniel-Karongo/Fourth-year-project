@@ -29,7 +29,7 @@ function editDetails(event, allInputs, rowSubmit, rowEdit) {
 
     let allInputFields = document.querySelectorAll(allInputs);
     Array.from(allInputFields).forEach((inputField) => {
-        inputField.disabled = true;
+        inputField.readOnly = true;
         inputField.parentElement.style.backgroundColor = "transparent";
     });
     let allSubmitDetailsDivs = document.querySelectorAll(rowSubmit);
@@ -60,7 +60,7 @@ function editDetails(event, allInputs, rowSubmit, rowEdit) {
     rowCells.forEach(element => {
         Array.from(element.children).forEach((child) => {
             if(child.tagName === "INPUT") {
-                child.disabled = false;
+                child.readOnly = false;
             }
         });
     });
@@ -155,12 +155,6 @@ function viewOwnerDetails(event, ownerClass) {
             }
         }   
     });
-    // Array.from(rowCells).forEach((td) => {
-    //     console.log(td.className);
-    //     // if(td.className === "rental-owner") {
-    //     //     td.style.display = "table-cell";
-    //     // }
-    // });
 }
   
 function toViewAndHide(button, collection, view, hide, displaytype, direction) {
@@ -379,4 +373,55 @@ function confirmAdminForget(event) {
     if(proceed) {
         event.target.submit();
     }
+}
+
+function viewLandlordRentals(event) {
+    event.preventDefault();
+    element = event.target;
+
+    let cell = "";
+    let row = "";
+    let table = "";
+    let button = "";
+
+    if(element.tagName === "BUTTON") {
+        cell = element.parentElement;
+        row = cell.parentElement;
+        table = row.parentElement;
+    } else {
+        button = element.parentElement;
+        cell = button.parentElement;
+        row = cell.parentElement;
+        table = row.parentElement;
+    }
+    splitCellId = cell.id.split("-");
+    index = splitCellId[splitCellId.length - 1];
+    
+    let entries = table.querySelectorAll('tr');
+    Array.from(entries).forEach((entry) => {
+        if((entry.className.includes("extra-landlord-details-of-rentals")) && (entry.id.split("-").includes(index))) {
+            if(entry.style.display === "table-row") {
+                entry.style.display = "none";
+            } else {
+                entry.style.display = "table-row";
+            }
+        }   
+    });
+}
+
+function showInputInField(input) {
+    let outputField = document.querySelector('#view-input-details-clearly');
+
+    const inputWidth = 200;
+    outputField.style.width = inputWidth + 'px';
+    outputField.value = input.value;
+  
+    requestAnimationFrame(function () {
+      const inputFieldWidth = input.scrollWidth;
+      const maxWidth = Math.max(inputFieldWidth, inputWidth);
+  
+      if (maxWidth > inputWidth) {
+        outputField.style.width = maxWidth + 10 + 'px';
+      }
+    });
 }

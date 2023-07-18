@@ -6,18 +6,44 @@
     $email = $_POST['user-email'];
     $phoneNumber = $_POST['phone-number'];
     $password = $_POST['password-for-delete'];
-    $rentalsOwned = $_POST['rentals-owned'];
+    // $rentalsOwned = $_POST['rentals-owned'];
     $images = $_POST['image-urls'];
     $imagepaths = $_POST['image-paths'];
     $rules = $_POST['rules-urls'];
 
+    $sqlQuery = "SELECT Rentals_Owned FROM property_owners WHERE Email_Address = ? AND Phone_Number = ?";
+
+    $stmt = mysqli_prepare($connectionInitialisation, $sqlQuery);
+    
+    if (!$stmt) {
+        die("Prepare statement failed: " . mysqli_error($connectionInitialisation));
+    }
+    
+    mysqli_stmt_bind_param($stmt, 'ss', $email, $phoneNumber);
+    
+    if (!mysqli_stmt_execute($stmt)) {
+        die("Query execution failed: " . mysqli_error($connectionInitialisation));
+    }
+    
+    $res = mysqli_stmt_get_result($stmt);
+    
+    if (!$res) {
+        die("Result retrieval failed: " . mysqli_error($connectionInitialisation));
+    }
+    
+    while ($property_owner = mysqli_fetch_assoc($res)) {
+        $retrieved_rentals_owned = $property_owner['Rentals_Owned'];
+    }
+
+
     $rentalsOwnedSplit = array();
-    $rentalsOwnedSplit = explode(", ", $rentalsOwned);
+    $rentalsOwnedSplit = explode(", ", $retrieved_rentals_owned);
     $index = array_search($rentalID, $rentalsOwnedSplit);
 
     if ($index !== false) {
         unset($rentalsOwnedSplit[$index]);
-    } 
+    }
+
     
     $rentalsOwnedRejoined = implode(", ", $rentalsOwnedSplit);
     $individualImages = explode(", ", $images);
@@ -88,6 +114,5 @@
     if (!mysqli_stmt_execute($stmt)) {
         die("Update query failed: " . mysqli_error($connectionInitialisation));
     }
-
     include '../Php/correct-password.php';
 ?>
