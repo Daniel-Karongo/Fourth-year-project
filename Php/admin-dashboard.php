@@ -22,418 +22,40 @@
             </div>
         </div>
         <div class="control-panel">
-            <button id="my-contact-information-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#my-contact-information-button', '.control-panel button', '.contact-information', '.property-owners-container, .rentals, .administrators, .queries', 'flex', 'row')">My Contact Information</button>
+            <button id="my-contact-information-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#my-contact-information-button', '.control-panel button', '.contact-information', '.property-owners-container, .rentals, .administrators', 'flex', 'row')">My Contact Information</button>
 
-            <button id="property-owners-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#property-owners-button', '.control-panel button', '.property-owners-container', '.contact-information, .rentals, .administrators, .queries', 'flex', null)">Property Owners</button>
+            <button id="property-owners-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#property-owners-button', '.control-panel button', '.property-owners-container', '.contact-information, .rentals, .administrators', 'flex', null)">Property Owners</button>
 
-            <button id="rentals-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#rentals-button', '.control-panel button', '.rentals', '.contact-information, .property-owners-container, .administrators, .queries', 'flex', null)">Rentals</button>
+            <button id="rentals-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#rentals-button', '.control-panel button', '.rentals', '.contact-information, .property-owners-container, .administrators', 'flex', null)">Rentals</button>
 
-            <button id="administrators-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#administrators-button', '.control-panel button', '.administrators', '.contact-information, .property-owners-container, .rentals, .queries', 'flex', null)">Administrators</button>
-
-            <button id="queries-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#queries-button', '.control-panel button', '.queries', '.contact-information, .property-owners-container, .rentals, .administrators', 'flex', null)">Queries</button>
+            <button id="administrators-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="toViewAndHide('#administrators-button', '.control-panel button', '.administrators', '.contact-information, .property-owners-container, .rentals', 'flex', null)">Administrators</button>
         </div>
-        <div class="property-owners-container">
-            <div class="top-property-owners-section">
-                <?php
-                    if (gettype($property_owners) !== "NULL") {
+        <div class="contact-information">
+            <div class="contact-information-account-operations">
+                <div class="delete-admin-account-div">
+                    <form id="delete-admin-account" action="../Php/delete-admin.php" method="post" onsubmit="confirmAdminDelete(event)">
+                        <input type="hidden" name="admin-phone-number" value="<?php echo $adminPhone_Number;?>">
+                        <input type="hidden" name="admin-modified-email" value="<?php echo $email;?>">
+
+                        <button type="submit">Delete Account</button>
+                    </form>
+                </div>
+                <?php 
+                    if(isset($adminPasswordRememberMeToken) && ($adminPasswordRememberMeToken != "")) {
                         echo '
-                        <div class="property-owners-table-and-print">
-                            <form action="../Php/editPropertyOwnerDetailsFromAdmin.php" method="post" onsubmit="confirmPropertyOwnerEdit(event)" id="property-owners-table-form">
-                                <table class="property-owners-table">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="8" id="property-owners-table-title">Property Owners</th>
-                                        </tr>
-                                        <tr>
-                                            <th id="property-owners-table-column-heads">Phone Number</th>
-                                            <th id="property-owners-table-column-heads">Email Address</th>
-                                            <th id="property-owners-table-column-heads">Password</th>
-                                            <th id="property-owners-table-column-heads">First Name</th>
-                                            <th id="property-owners-table-column-heads">Last Name</th>
-                                            <th id="property-owners-table-column-heads">Rentals Owned</th>
-                                            <th id="property-owners-table-column-heads">Password Reset Confirmation Codes</th>
-                                            <th id="property-owners-table-column-heads">Remember Me Tokens</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>';
-                                    for ($i = 0; $i < count($property_owners); $i++) {
-                                        echo '
-                                            <tr>
-                                                <td><input type="text" onfocus="showInputInField(this)" name="phone-number" value="' . $property_owners[$i][0] . '" readonly></td>
-                                                <td><input type="text" onfocus="showInputInField(this)" name="email-address" value="' . $property_owners[$i][1] . '" readonly></td>
-                                                <td><input type="text" onfocus="showInputInField(this)" name="password" value="' . $property_owners[$i][2] . '" readonly></td>
-                                                <td><input type="text" onfocus="showInputInField(this)" name="first-name" value="' . $property_owners[$i][3] . '" readonly></td>
-                                                <td><input type="text" onfocus="showInputInField(this)" name="last-name" value="' . $property_owners[$i][4] . '" readonly></td>
-                                                <td><input type="text" onfocus="showInputInField(this)" name="rentals-owned" value="' . $property_owners[$i][5] . '" readonly></td>
-                                                <td><input type="text" onfocus="showInputInField(this)" name="password-reset-confirmation-code" value="' . $property_owners[$i][6] . '" readonly></td>
-                                                <td><input type="text" onfocus="showInputInField(this)" name="remember-me-token" value="' . $property_owners[$i][7] . '" readonly></td>';
-                                                if($property_owners[$i][5] != "") {
-                                                    echo '
-                                                    <td class="view-landlord-details" id="view-landlord-details-'.($i+1).'">
-                                                        <button type="button" class="property-owners-table-view-extra-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="viewLandlordRentals(event)">
-                                                            <img src="../Images/more-details.png" alt="submit details">
-                                                        </button>
-                                                    </td>
-                                                    ';
-                                                }
-                                                echo'
-                                                <td class="edit-details">
-                                                    <button class="property-owners-table-edit-details-button" onclick="editDetails(event, \'.property-owners-table input[type=text]\', \'.property-owners-table .submit-details\', \'.property-owners-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                        <img src="../Images/edit.png" alt="edit-button">
-                                                    </button>
-                                                </td>
-                                                <td class="submit-details" id="submit-details-' . ($i + 1) . '">
-                                                    <input type="hidden" name="original-phone-number" value="' . $property_owners[$i][0] . '" disabled>
-                                                    <input type="hidden" name="original-email-address" value="' . $property_owners[$i][1] . '" disabled>
-                                                    <input type="hidden" name="original-password" value="' . $property_owners[$i][2] . '" disabled>
-                                                    <input type="hidden" name="original-first-name" value="' . $property_owners[$i][3] . '" disabled>
-                                                    <input type="hidden" name="original-last-name" value="' . $property_owners[$i][4] . '" disabled>
-                                                    <input type="hidden" name="original-rentals-owned" value="' . $property_owners[$i][5] . '" disabled>
-                                                    <input type="hidden" name="original-password-reset-confirmation-code" value="' . $property_owners[$i][6] . '" disabled>
-                                                    <input type="hidden" name="original-remember-me-token" value="' . $property_owners[$i][7] . '" disabled>
-                                                    <input type="hidden" name="email" value="' . $email . '">
-                                                    <input type="hidden" name="passwordField" value="' . $password . '">';
-
-                                                    if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
-                                                    if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
-                                                    if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
-
-
-                                                    if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
-                                                    if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
-                                                    if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
-                                                    if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
-                                                    if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
-                                                    if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
-                                                    if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
-                                                    
-
-                                                echo '
-                                                    <input type="hidden" name="email" value="' . $email . '">
-                                                    <input type="hidden" name="passwordField" value="' . $password . '">
-                                                    <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
-                                                    <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                                                    <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
-
-                                                    <td class="submit-details">
-                                                        <button type="submit" class="property-owners-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
-                                                            <img src="../Images/submit.png" alt="submit details">
-                                                        </button>
-                                                    </td>
-                                                </td>
-                                            </tr>';
-
-                                            if($property_owners[$i][5] != "") {
-                                            
-                                            echo '<tr class="extra-landlord-details-of-rentals" id="extra-landlord-details-of-rentals-heading-'. ($i+1) .'">
-                                                    <td colspan="11" class="rentals-table-title"> Rentals </th>
-                                                </tr>
-                                                <tr class="extra-landlord-details-of-rentals" id="extra-landlord-details-of-rentals-actual-'. ($i+1) .'">
-                                                    <td class="rentals-table-column-heads">Rental Name</th>
-                                                    <td class="rentals-table-column-heads">Rental Type</th>
-                                                    <td class="rentals-table-column-heads">Type Of Premise</th>
-                                                    <td class="rentals-table-column-heads">Location</th>
-                                                    <td class="rentals-table-column-heads">Google Location</th>
-                                                    <td class="rentals-table-column-heads">Ammenities</th>
-                                                    <td class="rentals-table-column-heads">Preferences</th>
-                                                    <td class="rentals-table-column-heads">Number Of Beds/ Bedrooms</th>
-                                                    <td class="rentals-table-column-heads">Number Of Similar Units</th>
-                                                    <td class="rentals-table-column-heads">Number Of Units Remaining</th>
-                                                    <td class="rentals-table-column-heads">Interested Parties</th>
-                                                </tr>';
-
-
-
-                                                $rentalsOwned = array();
-                                                $rentalsOwned = explode(", ", $property_owners[$i][5]);
-
-                                                $tablenames = array();
-
-                                                $retrieved_rentalID = array();
-                                                $retrieved_rental_name = array();
-                                                $rentalType = array();
-                                                $retrieved_location = array();
-                                                $retrieved_google_location = array();
-                                                $retrieved_image_urls = array();
-                                                $retrieved_rules_urls = array();
-                                                $retrieved_ammenities = array();
-                                                $retrieved_number_of_units = array();
-                                                $retrieved_number_of_remaining_units = array();
-                                                $retrieved_interested_parties = array();
-
-                                                $apartments_retrieved_number_of_bedrooms = array();
-                                                $business_premises_retrieved_type_of_premise = array();    
-                                                $houses_retrieved_number_of_bedrooms = array();
-                                                $suites_retrieved_number_of_beds = array();
-
-                                                $retrieved_rental_term = array();
-                                                $retrieved_amount_of_rent = array();
-                                                $retrieved_description = array();
-                                                $retrieved_tenant_preferences = array();
-
-                                                $Hostel_retrieved_maximum_occupants = array();
-                                                $Single_Room_retrieved_maximum_occupants = array();
-                                                $Bedsitter_retrieved_maximum_occupants = array();
-                                                $Suite_retrieved_maximum_occupants = array();
-
-                                                $iteration = 0;
+                            <div class="forget-admin-account-div">
+                                <form id="forget-admin-account" action="../Php/forget-admin-account.php" method="post" onsubmit="confirmAdminForget(event)">
+                                    <input type="hidden" name="admin-phone-number" value="'. $adminPhone_Number .'">
+                                    <input type="hidden" name="admin-modified-email" value="'.$email.'">
+                                    <input type="hidden" name="admin-first-name" value="'.$adminFirst_Name.'">
+                                    <input type="hidden" name="admin-last-name" value="'.$adminLast_Name.'">
+                                    <input type="hidden" name="admin-password" value="'.$password.'">
+                                    ';
                                                 
-                                                foreach($rentalsOwned as $rentalID) {
-                                                    $rentalIDComponents = explode("_", $rentalID);
-                                                    $lastIndex = count($rentalIDComponents) - 1;
-                                                    array_push($rentalType, $rentalIDComponents[$lastIndex]);
-                                                    $tablename = '';
-                                                    
-                                                    switch($rentalType[$iteration]) {
-                                                        case "Hostel":
-                                                            $tablename = "hostels";
-                                                            break;
-                                                        case "Single Room":
-                                                            $tablename = "single_rooms";
-                                                            break;
-                                                        case "Bedsitter":
-                                                            $tablename = "bedsitters";
-                                                            break;            
-                                                        case "Apartment":
-                                                            $tablename = "apartments";
-                                                            break;
-                                                        case "Business Premise":
-                                                            $tablename = "business_premises";
-                                                            break;
-                                                        case "House":
-                                                            $tablename = "houses";
-                                                            break;
-                                                        case "Suite":
-                                                            $tablename = "suites";
-                                                            break;
-                                                    }
-                                                    
-                                                    $sqlquery = "SELECT * FROM $tablename WHERE Rental_ID = '$rentalID';";
-                                                    $res = mysqli_query($connectionInitialisation, $sqlquery);
-
-                                                    if($res) {
-                                                        if (mysqli_num_rows($res) > 0) {
-
-                                                            while ($table = mysqli_fetch_assoc($res)) {
-                                                                array_push($retrieved_rentalID, $rentalID);
-                                                                array_push($retrieved_rental_name, $table['Rental_Name']);
-                                                                array_push($retrieved_location, $table['Location']);                    
-                                                                array_push($retrieved_google_location, $table['Google_Location']);
-                                                                array_push($retrieved_image_urls, $table['Image_Urls']);                    
-                                                                array_push($retrieved_ammenities, $table['Ammenities']);
-                                                                array_push($retrieved_number_of_units, $table['Number_Of_Similar_Units']);
-                                                                array_push($retrieved_number_of_remaining_units, $table['Number_Of_Units_Remaining']);
-                                                                array_push($retrieved_interested_parties, $table['Interested_Parties']);
-                                                                
-                                                                array_push($tablenames, $tablename);
-                                                    
-                                                                switch($tablename) {
-                                                                    case "apartments":
-                                                                        array_push($apartments_retrieved_number_of_bedrooms, $table['Number_Of_Bedrooms']);
-                                                                        array_push($business_premises_retrieved_type_of_premise, null);
-                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
-                                                                        array_push($suites_retrieved_number_of_beds, null);
-                                                                        break;
-                                                                    case "business_premises":
-                                                                        array_push($business_premises_retrieved_type_of_premise, $table['Type_Of_Premise']);
-                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
-                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
-                                                                        array_push($suites_retrieved_number_of_beds, null);
-                                                                        break;
-                                                                    case "houses":
-                                                                        array_push($houses_retrieved_number_of_bedrooms, $table['Number_Of_Bedrooms']);
-                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
-                                                                        array_push($business_premises_retrieved_type_of_premise, null);
-                                                                        array_push($suites_retrieved_number_of_beds, null);
-                                                                        break;
-                                                                    case "suites":
-                                                                        array_push($suites_retrieved_number_of_beds, $table['Number_Of_Beds_Per_Suite']);
-                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
-                                                                        array_push($business_premises_retrieved_type_of_premise, null);
-                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
-                                                                        break;
-                                                                    default:
-                                                                        array_push($suites_retrieved_number_of_beds, null);
-                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
-                                                                        array_push($business_premises_retrieved_type_of_premise, null);
-                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
-                                                                        break;
-                                                                }
-                                                            }
-                                                
-                                                        }
-                                                    }
-                                                    
-                                                    $sqlquery = "SELECT * FROM properties_owners_details WHERE Rental_ID = '$rentalID';";
-                                                    $res = mysqli_query($connectionInitialisation, $sqlquery);
-
-                                                    if($res) {
-                                                        if (mysqli_num_rows($res) > 0) {
-
-                                                            while ($table = mysqli_fetch_assoc($res)) {
-                                                                array_push($retrieved_rental_term, $table['Rental_Term']);
-                                                                array_push($retrieved_amount_of_rent, $table['Amount_of_Rent']);                    
-                                                                array_push($retrieved_description, $table['Pitching']);
-                                                                array_push($retrieved_tenant_preferences, $table['Preferred_Sorts_of_Applicants']);
-                                                                array_push($retrieved_rules_urls, $table['Rules_Urls']);
-                                                                
-                                                                switch($rentalType[$iteration]) {
-                                                                    case "Hostel":
-                                                                        array_push($Hostel_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
-                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
-                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
-                                                                        array_push($Suite_retrieved_maximum_occupants, null);
-                                                                        break;
-                                                                    case "Single Room":
-                                                                        array_push($Single_Room_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
-                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
-                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
-                                                                        array_push($Suite_retrieved_maximum_occupants, null);
-                                                                        break;
-                                                                    case "Bedsitter":
-                                                                        array_push($Bedsitter_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
-                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
-                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
-                                                                        array_push($Suite_retrieved_maximum_occupants, null);
-                                                                        break;
-                                                                    case "Suite":
-                                                                        array_push($Suite_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
-                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
-                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
-                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
-                                                                        break;
-                                                                    default:
-                                                                        array_push($Suite_retrieved_maximum_occupants, null);
-                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
-                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
-                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
-                                                                        break;
-                                                                }                    
-                                                            }
-                                                
-                                                        } 
-                                                    }
-                                                    $iteration++; 
-                                                }
-
-                                                for($j=0; $j<count($rentalsOwned); $j++) {
-
-                                                    // Ammenities
-
-                                                    $outputAmmenities="";
-
-                                                    if(!empty($retrieved_ammenities[$j])) {
-                                                        $individualAmmenities = explode(", ", $retrieved_ammenities[$j]);
-        
-                                                        $individualAmmenitiesRefined = array();
-
-                                                        for($k=0; $k<count($individualAmmenities); $k++) {
-                                                            $individualAmmenitiesRefined[$k] = explode(": ", $individualAmmenities[$k]);
-                                                            unset($individualAmmenitiesRefined[$k][0]);
-                                                            if(!empty($individualAmmenitiesRefined[$k])) {
-                                                                $individualAmmenitiesRefined[$k] = $individualAmmenitiesRefined[$k][1];
-                                                            }                    
-                                                        }
-                                                        $outputAmmenities = implode(", ", $individualAmmenitiesRefined);
-                                                    } 
-                                                    
-                                                    // Preferences
-
-                                                    $outputPreferences="";
-
-                                                    if(!empty($retrieved_tenant_preferences[$j])) {
-                                                        $individualPreferences = explode(", ", $retrieved_tenant_preferences[$j]);
-        
-                                                        $individualPreferencesRefined = array();
-
-                                                        for($k=0; $k<count($individualPreferences); $k++) {
-                                                            $individualPreferencesRefined[$k] = explode(": ", $individualPreferences[$k]);
-                                                            unset($individualPreferencesRefined[$k][0]);
-                                                            if(!empty($individualPreferencesRefined[$k])) {
-                                                                $individualPreferencesRefined[$k] = $individualPreferencesRefined[$k][1];
-                                                            }                    
-                                                        }
-                                                        $outputPreferences = implode(", ", $individualPreferencesRefined);
-                                                    }
-                                                
-                                                echo'
-                                                    <tr class="extra-landlord-details-of-rentals" id="extra-landlord-details-of-rentals-actual-'. ($i+1) .'">
-                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-rental-name" name="name" value="'.$retrieved_rental_name[$j].'"></td>
-                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-rental-type" name="type" value="'.$rentalType[$j].'"></td>
-                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-premise-type" name="" value="'.$business_premises_retrieved_type_of_premise[$j].'"></td>
-                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-location" name="location" value="'.$retrieved_location[$j].'"></td>
-                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-google-location" name="google-location" value="'.$retrieved_google_location[$j].'"></td>
-                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-ammenities" name="ammenities" value="'.$outputAmmenities.'"></td>
-                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-preferences" name="preferences" value="'.$outputPreferences.'"></td>
-                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-bedrooms" name="bedrooms" value="';
-                                                        switch($rentalType[$j]) {
-                                                            case "Apartment":
-                                                                echo $apartments_retrieved_number_of_bedrooms[$j];
-                                                                break;
-                                                            case "House":
-                                                                echo $houses_retrieved_number_of_bedrooms[$j];
-                                                                break;
-                                                            case "Suite":
-                                                                echo $suites_retrieved_number_of_beds[$j];
-                                                                break;
-                                                            default:
-                                                            echo "";
-                                                        }
-                                                        echo '"></td>
-                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-units" name="units" value="'.$retrieved_number_of_units[$j].'"></td>
-                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-units-remaining" name="remaining-units" value="'.$retrieved_number_of_remaining_units[$j].'"></td>
-                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-parties" name="interested-parties" value="'.$retrieved_interested_parties[$j].'"></td>
-                                                    </tr>'; 
-                                                    }
-                                            }
-                                    }
-                        echo '
-                                    </tbody>
-                                </table>
-                            </form>
-                              
-                            <div class="view-input-div">
-                                <input type="text" id="view-input-details-clearly" readonly> 
-                            </div>
-
-                            <form class="print-property-owners-table" action="../Php/table-pdf.php" method="post">
-                                <input type="hidden" name="property-owners" value="' . htmlspecialchars(json_encode($property_owners)) . '">
-                                <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
-                            </form>
-                        </div>';
-
-                        echo '
-                        <div class="password-hasher-form-div">
-                            <form class="password-hasher" action="../Php/password-hasher.php" method="post">
-                                <div class="password-hasher-title">
-                                    <h4>Password Hasher</h4>
-                                </div>
-                                <div class="password-input">
-                                    <label for="password-to-hash-property-owner">Password</label>
-                                    <input type="text" oninput="textareaSizor(\'#hashed-password-return-property-owner\', \'#password-to-hash-property-owner\')" name="password-to-hash" id="password-to-hash-property-owner"';
-                        if (isset($newPassword)) {
-                            echo 'value="' . $newPassword . '">';
-                        } else {
-                            echo '>';
-                        }
-                        echo '
-                                </div>
-                                <div class="hashed-password">
-                                    <label for="">Hashed Password</label>
-                                    <input type="text" name="hashed-password-return" id="hashed-password-return-property-owner"';
-                        if (isset($hashedPassword)) {
-                            echo 'value="' . $hashedPassword . '">';
-                        } else {
-                            echo 'disabled>';
-                        }
-                        echo '
-                                </div>
-                                <div class="hash-button">';
-
                                     if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                     if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
                                     if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
-
+            
                                     if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                     if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                     if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -441,70 +63,55 @@
                                     if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
                                     if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
                                     if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
-
-                            echo '
-
-                                    <input type="hidden" name="email" value="' . $email . '">
-                                    <input type="hidden" name="passwordField" value="' . $password . '">
-                                    <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
-                                    <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                                    <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
-                                    <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Hash Password</button>
-                                </div>
-                            </form>
-                        </div>';
-
-                    } else {
-                        echo "<h3>No One Has Registered As A Property Owner</h3>";
+            
+                                echo'<button type="submit">Undo "Remember Me"</button>
+                                </form>
+                            </div>
+                        ';
                     }
                 ?>
             </div>
-            <div class="add-new-property-owner">
-                <form id="add-new-property-owner-form" action="../Php/add-new-property-owner.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event, 'add-new-property-owner-form', '#add-new-property-owner-form')">
-                    <div class="add-new-property-owner-title">
-                        <h4>Add A New Property Owner</h4>
-                    </div>
-                    
+            <div class="contact-information-form-div">
+                <form id="contact-information-form" action="../Php/edit-admins-details.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event, 'contact-information-form', '#contact-information-form')">
+                
                     <div class="first-name">
-                        <label for="new-property-owner-first-name">First Name:</label>
-                        <input type="text" id="new-property-owner-first-name" name="new-property-owner-first-name" onblur="validateField('new-property-owner-first-name', 'Please Specify The New Admin\'s First Name', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
+                        <label for="first-name">First Name:</label>
+                        <input type="text" id="first-name" name="admin-first-name" value="<?php echo $adminFirst_Name;?>"  onblur="validateField('first-name', 'Please Specify Your First Name', null, 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password')" disabled>
                         <div class="error"></div>
                     </div>
                     <div class="last-name">
-                        <label for="new-property-owner-last-name">Last Name:</label>
-                        <input type="text" id="new-property-owner-last-name" name="new-property-owner-last-name" onblur="validateField('new-property-owner-last-name', 'Please Specify The New Admin\'s Last Name', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
+                        <label for="last-name">Last Name:</label>
+                        <input type="text" id="last-name" name="admin-last-name" value="<?php echo $adminLast_Name;?>"  onblur="validateField('last-name', 'Please Specify Your Last Name', null, 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password')" disabled>
                         <div class="error"></div>
                     </div>
 
                     <div class="phone-number">
-                        <label for="new-property-owner-phone">Phone Number:</label>
-                        <input type="number" id="new-property-owner-phone" name="new-property-owner-phone" onblur="validatePhoneNumber('submit', 'new-property-owner-phone', 'Please Enter A Phone Number That Will Be Associated With The New Admin\'s Account')">
+                        <label for="phone">Phone Number:</label>
+                        <input type="number" id="phone" name="admin-phone-number" value="<?php echo $adminPhone_Number;?>"  onblur="validatePhoneNumber(null, 'phone', 'Please Enter A Phone Number That Will Be Associated With Your Account')" disabled>
                         <div class="error"></div>
                     </div>
                     
                     <div class="email">
-                        <label for="new-property-owner-email">Email Address:</label>
-                        <input type="text" id="new-property-owner-email" name="new-property-owner-email" onblur="validateField('new-property-owner-email', 'Please Specify An Email that will be Associated With The New Admin\'s Rentals', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
+                        <label for="email">Email Address:</label>
+                        <input type="text" id="email" name="admin-modified-email" value="<?php echo $email;?>"  onblur="validateField('email', 'Please Specify An Email that will be Associated With Your Rentals', null, 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password')" disabled>
                         <div class="error"></div>
                     </div>
 
                     <div class="password">
-                        <label for="new-property-owner-password">Password:</label>
-                        <input type="password" id="new-property-owner-password" name="new-property-owner-password" onblur="validateField('new-property-owner-password', 'Please Enter A Password To Secure The New Admin\'s Account', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')" placeholder="Un-encrypted Password">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="admin-password" value="<?php echo $password;?>"  onblur="validateField('password', 'Please Enter A Password To Secure Your Account', null, 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password')" disabled>
                         <div class="error"></div>
                     </div>
 
-                    <div class="show-pass">
-                        <input type="checkbox" id="new-property-owner-show-pass" tabindex="0" onclick="toggleShowPassword('new-property-owner-show-pass', 'new-property-owner-password')">
-                        <label for="new-property-owner-show-pass">Show Password</label>
-                    </div>
-                    
-                    <input type="hidden" name="retrieved-admin-first-name" value="<?php echo $adminFirst_Name;?>">
-                    <input type="hidden" name="retrieved-admin-last-name" value="<?php echo $adminLast_Name;?>">
                     <input type="hidden" name="retrieved-email" value="<?php echo $email;?>">
                     <input type="hidden" name="retrieved-phone-number" value="<?php echo $adminPhone_Number;?>">
-                    <input type="hidden" name="retrieved-password" value="<?php echo $password;?>">
-                    <input type="hidden" name="passwordField" value="<?php echo $password;?>">
+
+                    <input type="checkbox" id="show-pass" tabindex="0" onclick="toggleShowPassword('show-pass', 'password')">
+                    <label for="show-pass">Show Password</label>
+
+                    <div class="edit-details">
+                        <button type="button" tabindex="0" onclick="toggleEnabled()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Edit Details</button>
+                    </div>
 
                     <?php if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}?>
                     <?php if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}?>
@@ -518,7 +125,14 @@
                     <?php if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}?>
                     <?php if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}?>
 
-                    <div class="add-new-property-owner-confirm-button">
+                    <input type="hidden" name="passwordField" value="<?php echo $password;?>">
+                    <input type="hidden" name="administrators" value="<?php echo htmlspecialchars(json_encode($administrators)); ?>">
+                    <input type="hidden" name="property-owners" value="<?php echo htmlspecialchars(json_encode($property_owners)); ?>">
+                    <input type="hidden" name="retrieved-admin-first-name" value="<?php echo $adminFirst_Name; ?>">
+                    <input type="hidden" name="retrieved-admin-last-name" value="<?php echo $adminLast_Name; ?>">
+                    
+                    
+                    <div class="confirm-button">
                         <button type="submit" tabindex="0" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Confirm Details</button>
                     </div>                       
                 </form> 
@@ -1301,28 +915,26 @@
                                     for ($i = 0; $i < count($administrators); $i++) {
                                         echo '
                                             <tr>
-                                                <td><input type="text" name="phone-number" value="' . $administrators[$i][0] . '" disabled></td>
-                                                <td><input type="text" name="email-address" value="' . $administrators[$i][1] . '" disabled></td>
-                                                <td><input type="text" name="password" value="' . $administrators[$i][2] . '" disabled></td>
-                                                <td><input type="text" name="first-name" value="' . $administrators[$i][3] . '" disabled></td>
-                                                <td><input type="text" name="last-name" value="' . $administrators[$i][4] . '" disabled></td>
-                                                <td><input type="text" name="password-reset-confirmation-code" value="' . $administrators[$i][5] . '" disabled></td>
-                                                <td><input type="text" name="remember-me-token" value="' . $administrators[$i][6] . '" disabled></td>
+                                                <td><input type="text" name="phone-number" value="' . $administrators[$i][0] . '" readonly></td>
+                                                <td><input type="text" name="email-address" value="' . $administrators[$i][1] . '" readonly></td>
+                                                <td><input type="text" name="password" value="' . $administrators[$i][2] . '" readonly></td>
+                                                <td><input type="text" name="first-name" value="' . $administrators[$i][3] . '" readonly></td>
+                                                <td><input type="text" name="last-name" value="' . $administrators[$i][4] . '" readonly></td>
+                                                <td><input type="text" name="password-reset-confirmation-code" value="' . $administrators[$i][5] . '"readonly></td>
+                                                <td><input type="text" name="remember-me-token" value="' . $administrators[$i][6] . '" readonly></td>
                                                 <td class="edit-details">
                                                     <button class="administrators-table-edit-details-button" onclick="editDetails(event, \'.administrators-table input[type=text]\', \'.administrators-table .submit-details\', \'.administrators-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                         <img src="../Images/edit.png" alt="edit-button">
                                                     </button>
                                                 </td>
                                                 <td class="submit-details" id="submit-details-' . ($i + 1) . '">
-                                                    <input type="hidden" name="original-phone-number" value="' . $administrators[$i][0] . '" disabled>
-                                                    <input type="hidden" name="original-email-address" value="' . $administrators[$i][1] . '" disabled>
-                                                    <input type="hidden" name="original-password" value="' . $administrators[$i][2] . '" disabled>
-                                                    <input type="hidden" name="original-first-name" value="' . $administrators[$i][3] . '" disabled>
-                                                    <input type="hidden" name="original-last-name" value="' . $administrators[$i][4] . '" disabled>
-                                                    <input type="hidden" name="original-password-reset-confirmation-code" value="' . $administrators[$i][5] . '" disabled>
-                                                    <input type="hidden" name="original-remember-me-token" value="' . $administrators[$i][6] . '" disabled>
-                                                    <input type="hidden" name="email" value="' . $email . '">
-                                                    <input type="hidden" name="passwordField" value="' . $password . '">';
+                                                    <input type="hidden" name="original-phone-number" value="' . $administrators[$i][0] . '">
+                                                    <input type="hidden" name="original-email-address" value="' . $administrators[$i][1] . '">
+                                                    <input type="hidden" name="original-password" value="' . $administrators[$i][2] . '">
+                                                    <input type="hidden" name="original-first-name" value="' . $administrators[$i][3] . '">
+                                                    <input type="hidden" name="original-last-name" value="' . $administrators[$i][4] . '">
+                                                    <input type="hidden" name="original-password-reset-confirmation-code" value="' . $administrators[$i][5] . '">
+                                                    <input type="hidden" name="original-remember-me-token" value="' . $administrators[$i][6] . '">';
 
                                                     if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                                     if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
@@ -1484,32 +1096,455 @@
                 </form> 
             </div>
         </div>
-        <div class="contact-information">
-            <div class="contact-information-account-operations">
-                <div class="delete-admin-account-div">
-                    <form id="delete-admin-account" action="../Php/delete-admin.php" method="post" onsubmit="confirmAdminDelete(event)">
-                        <input type="hidden" name="admin-phone-number" value="<?php echo $adminPhone_Number;?>">
-                        <input type="hidden" name="admin-modified-email" value="<?php echo $email;?>">
+        <div class="property-owners-container">
+            <div class="top-property-owners-section">
+                <?php
+                    if (gettype($property_owners) !== "NULL") {
+                        
 
-                        <button type="submit">Delete Account</button>
-                    </form>
-                </div>
-                <?php 
-                    if(isset($adminPasswordRememberMeToken) && ($adminPasswordRememberMeToken != "")) {
+                        // for ($i = 0; $i < count($property_owners); $i++) {
+                        //     echo'
+                        //     <form style="display: none;" action="../Php/landlord-account-deleter.php" method="post" id="delete-landlord-account-form-'.($i+1).'">
+                            
+                        //         <input type="hidden" name="original-phone-number" value="' . $property_owners[$i][0] . '" disabled>
+                        //         <input type="hidden" name="original-email-address" value="' . $property_owners[$i][1] . '" disabled>
+                        //         <input type="hidden" name="email" value="'.$email.'">
+                        //         <input type="hidden" name="passwordField" value="'.$password.'">';
+
+                        //         if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
+                        //         if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                        //         if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
+                        //         if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
+                        //         if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
+                        //         if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
+                        //         if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
+                        //         if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
+                        //         if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
+                        //         if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
+                                
+
+                        //         echo '
+                        //         <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                        //         <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                        //         <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+                        //     </form>';
+                        // }
+                        
                         echo '
-                            <div class="forget-admin-account-div">
-                                <form id="forget-admin-account" action="../Php/forget-admin-account.php" method="post" onsubmit="confirmAdminForget(event)">
-                                    <input type="hidden" name="admin-phone-number" value="'. $adminPhone_Number .'">
-                                    <input type="hidden" name="admin-modified-email" value="'.$email.'">
-                                    <input type="hidden" name="admin-first-name" value="'.$adminFirst_Name.'">
-                                    <input type="hidden" name="admin-last-name" value="'.$adminLast_Name.'">
-                                    <input type="hidden" name="admin-password" value="'.$password.'">
-                                    ';
+                        <div class="property-owners-table-and-print">
+                                <table class="property-owners-table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="8" id="property-owners-table-title">Property Owners</th>
+                                        </tr>
+                                        <tr>
+                                            <th id="property-owners-table-column-heads">Phone Number</th>
+                                            <th id="property-owners-table-column-heads">Email Address</th>
+                                            <th id="property-owners-table-column-heads">Password</th>
+                                            <th id="property-owners-table-column-heads">First Name</th>
+                                            <th id="property-owners-table-column-heads">Last Name</th>
+                                            <th id="property-owners-table-column-heads">Rentals Owned</th>
+                                            <th id="property-owners-table-column-heads">Password Reset Confirmation Codes</th>
+                                            <th id="property-owners-table-column-heads">Remember Me Tokens</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>';
+                                    for ($i = 0; $i < count($property_owners); $i++) {
+                                        echo '
+                                            <tr>
+                                                <form action="../Php/editPropertyOwnerDetailsFromAdmin.php" method="post" onsubmit="confirmPropertyOwnerEdit(event)" id="property-owners-table-form-'.($i+1).'">
+                                                    <td><input type="text" onfocus="showInputInField(this)" name="phone-number" value="' . $property_owners[$i][0] . '" readonly></td>
+                                                    <td><input type="text" onfocus="showInputInField(this)" name="email-address" value="' . $property_owners[$i][1] . '" readonly></td>
+                                                    <td><input type="text" onfocus="showInputInField(this)" name="password" value="' . $property_owners[$i][2] . '" readonly></td>
+                                                    <td><input type="text" onfocus="showInputInField(this)" name="first-name" value="' . $property_owners[$i][3] . '" readonly></td>
+                                                    <td><input type="text" onfocus="showInputInField(this)" name="last-name" value="' . $property_owners[$i][4] . '" readonly></td>
+                                                    <td><input type="text" onfocus="showInputInField(this)" name="rentals-owned" value="' . $property_owners[$i][5] . '" readonly></td>
+                                                    <td><input type="text" onfocus="showInputInField(this)" name="password-reset-confirmation-code" value="' . $property_owners[$i][6] . '" readonly></td>
+                                                    <td><input type="text" onfocus="showInputInField(this)" name="remember-me-token" value="' . $property_owners[$i][7] . '" readonly></td>';
+
+
+                                                    if($property_owners[$i][5] != "") {
+                                                        echo '
+                                                        <td class="view-landlord-details" id="view-landlord-details-'.($i+1).'">
+                                                            <button type="button" class="property-owners-table-view-extra-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="viewLandlordRentals(event)">
+                                                                <img src="../Images/more-details.png" alt="submit details">
+                                                            </button>
+                                                        </td>
+                                                        ';
+                                                    }
+                                                    echo'
+
+                                                    <td class="edit-details">
+                                                        <button class="property-owners-table-edit-details-button" onclick="editDetails(event, \'.property-owners-table input[type=text]\', \'.property-owners-table .submit-details\', \'.property-owners-table .edit-details\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                            <img src="../Images/edit.png" alt="edit-button">
+                                                        </button>
+                                                    </td>
+                                                    <td class="delete-landlord-account">
+                                                        <button type="button" class="delete-landlord-account-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="submitDeleteAccountForm()">
+                                                            <img src="../Images/delete.jpeg" alt="delete account">
+                                                        </button>
+                                                    </td>
+                                                    <td class="submit-details" id="submit-details-' . ($i + 1) . '">
+                                                        <input type="hidden" name="original-phone-number" value="' . $property_owners[$i][0] . '">
+                                                        <input type="hidden" name="original-email-address" value="' . $property_owners[$i][1] . '">
+                                                        <input type="hidden" name="original-password" value="' . $property_owners[$i][2] . '">
+                                                        <input type="hidden" name="original-first-name" value="' . $property_owners[$i][3] . '">
+                                                        <input type="hidden" name="original-last-name" value="' . $property_owners[$i][4] . '">
+                                                        <input type="hidden" name="original-rentals-owned" value="' . $property_owners[$i][5] . '">
+                                                        <input type="hidden" name="original-password-reset-confirmation-code" value="' . $property_owners[$i][6] . '">
+                                                        <input type="hidden" name="original-remember-me-token" value="' . $property_owners[$i][7] . '">
+                                                        <input type="hidden" name="email" value="'.$email.'">';
+                                                        $password = $_POST['passwordField'];
+                                                        echo'
+                                                        <input type="hidden" name="passwordField" value="'.$password.'">';
+
+                                                        if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
+                                                        if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
+                                                        if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
+
+
+                                                        if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
+                                                        if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
+                                                        if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
+                                                        if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
+                                                        if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
+                                                        if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
+                                                        if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
+                                                        
+
+                                                        echo '
+                                                        <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                                        <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                                        <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+
+                                                        <td class="submit-details">
+                                                            <button type="submit" class="property-owners-table-submit-details-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
+                                                                <img src="../Images/submit.png" alt="submit details">
+                                                            </button>
+                                                        </td>
+                                                    </td>
+                                                </form>
+                                            </tr>';
+
+
+
+
+                                            if($property_owners[$i][5] != "") {
+                                            
+                                                echo '<tr class="extra-landlord-details-of-rentals" id="extra-landlord-details-of-rentals-heading-'. ($i+1) .'">
+                                                        <td colspan="11" class="rentals-table-title"> Rentals </th>
+                                                    </tr>
+                                                <tr class="extra-landlord-details-of-rentals" id="extra-landlord-details-of-rentals-actual-'. ($i+1) .'">
+                                                    <td class="rentals-table-column-heads">Rental Name</th>
+                                                    <td class="rentals-table-column-heads">Rental Type</th>
+                                                    <td class="rentals-table-column-heads">Type Of Premise</th>
+                                                    <td class="rentals-table-column-heads">Location</th>
+                                                    <td class="rentals-table-column-heads">Google Location</th>
+                                                    <td class="rentals-table-column-heads">Ammenities</th>
+                                                    <td class="rentals-table-column-heads">Preferences</th>
+                                                    <td class="rentals-table-column-heads">Number Of Beds/ Bedrooms</th>
+                                                    <td class="rentals-table-column-heads">Number Of Similar Units</th>
+                                                    <td class="rentals-table-column-heads">Number Of Units Remaining</th>
+                                                    <td class="rentals-table-column-heads">Interested Parties</th>
+                                                </tr>';
+
+
+
+                                                $rentalsOwned = array();
+                                                $rentalsOwned = explode(", ", $property_owners[$i][5]);
+
+                                                $tablenames = array();
+
+                                                $retrieved_rentalID = array();
+                                                $retrieved_rental_name = array();
+                                                $rentalType = array();
+                                                $retrieved_location = array();
+                                                $retrieved_google_location = array();
+                                                $retrieved_image_urls = array();
+                                                $retrieved_rules_urls = array();
+                                                $retrieved_ammenities = array();
+                                                $retrieved_number_of_units = array();
+                                                $retrieved_number_of_remaining_units = array();
+                                                $retrieved_interested_parties = array();
+
+                                                $apartments_retrieved_number_of_bedrooms = array();
+                                                $business_premises_retrieved_type_of_premise = array();    
+                                                $houses_retrieved_number_of_bedrooms = array();
+                                                $suites_retrieved_number_of_beds = array();
+
+                                                $retrieved_rental_term = array();
+                                                $retrieved_amount_of_rent = array();
+                                                $retrieved_description = array();
+                                                $retrieved_tenant_preferences = array();
+
+                                                $Hostel_retrieved_maximum_occupants = array();
+                                                $Single_Room_retrieved_maximum_occupants = array();
+                                                $Bedsitter_retrieved_maximum_occupants = array();
+                                                $Suite_retrieved_maximum_occupants = array();
+
+                                                $iteration = 0;
+
+                                                include "../Php/databaseConnector.php";
                                                 
+                                                foreach($rentalsOwned as $rentalID) {
+                                                    $rentalIDComponents = explode("_", $rentalID);
+                                                    $lastIndex = count($rentalIDComponents) - 1;
+                                                    array_push($rentalType, $rentalIDComponents[$lastIndex]);
+                                                    $tablename = '';
+                                                    
+                                                    switch($rentalType[$iteration]) {
+                                                        case "Hostel":
+                                                            $tablename = "hostels";
+                                                            break;
+                                                        case "Single Room":
+                                                            $tablename = "single_rooms";
+                                                            break;
+                                                        case "Bedsitter":
+                                                            $tablename = "bedsitters";
+                                                            break;            
+                                                        case "Apartment":
+                                                            $tablename = "apartments";
+                                                            break;
+                                                        case "Business Premise":
+                                                            $tablename = "business_premises";
+                                                            break;
+                                                        case "House":
+                                                            $tablename = "houses";
+                                                            break;
+                                                        case "Suite":
+                                                            $tablename = "suites";
+                                                            break;
+                                                    }
+                                                    
+                                                    $sqlquery = "SELECT * FROM $tablename WHERE Rental_ID = '$rentalID';";
+                                                    $res = mysqli_query($connectionInitialisation, $sqlquery);
+
+                                                    if($res) {
+                                                        if (mysqli_num_rows($res) > 0) {
+
+                                                            while ($table = mysqli_fetch_assoc($res)) {
+                                                                array_push($retrieved_rentalID, $rentalID);
+                                                                array_push($retrieved_rental_name, $table['Rental_Name']);
+                                                                array_push($retrieved_location, $table['Location']);                    
+                                                                array_push($retrieved_google_location, $table['Google_Location']);
+                                                                array_push($retrieved_image_urls, $table['Image_Urls']);                    
+                                                                array_push($retrieved_ammenities, $table['Ammenities']);
+                                                                array_push($retrieved_number_of_units, $table['Number_Of_Similar_Units']);
+                                                                array_push($retrieved_number_of_remaining_units, $table['Number_Of_Units_Remaining']);
+                                                                array_push($retrieved_interested_parties, $table['Interested_Parties']);
+                                                                
+                                                                array_push($tablenames, $tablename);
+                                                    
+                                                                switch($tablename) {
+                                                                    case "apartments":
+                                                                        array_push($apartments_retrieved_number_of_bedrooms, $table['Number_Of_Bedrooms']);
+                                                                        array_push($business_premises_retrieved_type_of_premise, null);
+                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
+                                                                        array_push($suites_retrieved_number_of_beds, null);
+                                                                        break;
+                                                                    case "business_premises":
+                                                                        array_push($business_premises_retrieved_type_of_premise, $table['Type_Of_Premise']);
+                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
+                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
+                                                                        array_push($suites_retrieved_number_of_beds, null);
+                                                                        break;
+                                                                    case "houses":
+                                                                        array_push($houses_retrieved_number_of_bedrooms, $table['Number_Of_Bedrooms']);
+                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
+                                                                        array_push($business_premises_retrieved_type_of_premise, null);
+                                                                        array_push($suites_retrieved_number_of_beds, null);
+                                                                        break;
+                                                                    case "suites":
+                                                                        array_push($suites_retrieved_number_of_beds, $table['Number_Of_Beds_Per_Suite']);
+                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
+                                                                        array_push($business_premises_retrieved_type_of_premise, null);
+                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
+                                                                        break;
+                                                                    default:
+                                                                        array_push($suites_retrieved_number_of_beds, null);
+                                                                        array_push($apartments_retrieved_number_of_bedrooms, null);
+                                                                        array_push($business_premises_retrieved_type_of_premise, null);
+                                                                        array_push($houses_retrieved_number_of_bedrooms, null);
+                                                                        break;
+                                                                }
+                                                            }
+                                                
+                                                        }
+                                                    }
+                                                    
+                                                    $sqlquery = "SELECT * FROM properties_owners_details WHERE Rental_ID = '$rentalID';";
+                                                    $res = mysqli_query($connectionInitialisation, $sqlquery);
+
+                                                    if($res) {
+                                                        if (mysqli_num_rows($res) > 0) {
+
+                                                            while ($table = mysqli_fetch_assoc($res)) {
+                                                                array_push($retrieved_rental_term, $table['Rental_Term']);
+                                                                array_push($retrieved_amount_of_rent, $table['Amount_of_Rent']);                    
+                                                                array_push($retrieved_description, $table['Pitching']);
+                                                                array_push($retrieved_tenant_preferences, $table['Preferred_Sorts_of_Applicants']);
+                                                                array_push($retrieved_rules_urls, $table['Rules_Urls']);
+                                                                
+                                                                switch($rentalType[$iteration]) {
+                                                                    case "Hostel":
+                                                                        array_push($Hostel_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
+                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
+                                                                        array_push($Suite_retrieved_maximum_occupants, null);
+                                                                        break;
+                                                                    case "Single Room":
+                                                                        array_push($Single_Room_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
+                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
+                                                                        array_push($Suite_retrieved_maximum_occupants, null);
+                                                                        break;
+                                                                    case "Bedsitter":
+                                                                        array_push($Bedsitter_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
+                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
+                                                                        array_push($Suite_retrieved_maximum_occupants, null);
+                                                                        break;
+                                                                    case "Suite":
+                                                                        array_push($Suite_retrieved_maximum_occupants, $table['Maximum_Number_Of_Occupants']);
+                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
+                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
+                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
+                                                                        break;
+                                                                    default:
+                                                                        array_push($Suite_retrieved_maximum_occupants, null);
+                                                                        array_push($Hostel_retrieved_maximum_occupants, null);
+                                                                        array_push($Single_Room_retrieved_maximum_occupants, null);
+                                                                        array_push($Bedsitter_retrieved_maximum_occupants, null);
+                                                                        break;
+                                                                }                    
+                                                            }
+                                                
+                                                        } 
+                                                    }
+                                                    $iteration++; 
+                                                }
+                                                $password = $_POST['passwordField'];
+
+                                                for($j=0; $j<count($rentalsOwned); $j++) {
+
+                                                    // Ammenities
+
+                                                    $outputAmmenities="";
+
+                                                    if(!empty($retrieved_ammenities[$j])) {
+                                                        $individualAmmenities = explode(", ", $retrieved_ammenities[$j]);
+        
+                                                        $individualAmmenitiesRefined = array();
+
+                                                        for($k=0; $k<count($individualAmmenities); $k++) {
+                                                            $individualAmmenitiesRefined[$k] = explode(": ", $individualAmmenities[$k]);
+                                                            unset($individualAmmenitiesRefined[$k][0]);
+                                                            if(!empty($individualAmmenitiesRefined[$k])) {
+                                                                $individualAmmenitiesRefined[$k] = $individualAmmenitiesRefined[$k][1];
+                                                            }                    
+                                                        }
+                                                        $outputAmmenities = implode(", ", $individualAmmenitiesRefined);
+                                                    } 
+                                                    
+                                                    // Preferences
+
+                                                    $outputPreferences="";
+
+                                                    if(!empty($retrieved_tenant_preferences[$j])) {
+                                                        $individualPreferences = explode(", ", $retrieved_tenant_preferences[$j]);
+        
+                                                        $individualPreferencesRefined = array();
+
+                                                        for($k=0; $k<count($individualPreferences); $k++) {
+                                                            $individualPreferencesRefined[$k] = explode(": ", $individualPreferences[$k]);
+                                                            unset($individualPreferencesRefined[$k][0]);
+                                                            if(!empty($individualPreferencesRefined[$k])) {
+                                                                $individualPreferencesRefined[$k] = $individualPreferencesRefined[$k][1];
+                                                            }                    
+                                                        }
+                                                        $outputPreferences = implode(", ", $individualPreferencesRefined);
+                                                    }
+                                                
+                                                echo'
+                                                    <tr class="extra-landlord-details-of-rentals" id="extra-landlord-details-of-rentals-actual-'. ($i+1) .'">
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-rental-name" name="name" value="'.$retrieved_rental_name[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-rental-type" name="type" value="'.$rentalType[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-premise-type" name="" value="'.$business_premises_retrieved_type_of_premise[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-location" name="location" value="'.$retrieved_location[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-google-location" name="google-location" value="'.$retrieved_google_location[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-ammenities" name="ammenities" value="'.$outputAmmenities.'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-preferences" name="preferences" value="'.$outputPreferences.'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-bedrooms" name="bedrooms" value="';
+                                                        switch($rentalType[$j]) {
+                                                            case "Apartment":
+                                                                echo $apartments_retrieved_number_of_bedrooms[$j];
+                                                                break;
+                                                            case "House":
+                                                                echo $houses_retrieved_number_of_bedrooms[$j];
+                                                                break;
+                                                            case "Suite":
+                                                                echo $suites_retrieved_number_of_beds[$j];
+                                                                break;
+                                                            default:
+                                                            echo "";
+                                                        }
+                                                        echo '"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-units" name="units" value="'.$retrieved_number_of_units[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-units-remaining" name="remaining-units" value="'.$retrieved_number_of_remaining_units[$j].'"></td>
+                                                        <td><input readonly type="text" onfocus="showInputInField(this)" class="table-view-parties" name="interested-parties" value="'.$retrieved_interested_parties[$j].'"></td>
+                                                    </tr>'; 
+                                                    }
+                                            }
+
+                                    }
+
+                                    echo '
+                                    </tbody>
+                                </table>
+                              
+                            <div class="view-input-div">
+                                <input type="text" id="view-input-details-clearly" readonly> 
+                            </div>
+
+                            <form class="print-property-owners-table" action="../Php/table-pdf.php" method="post">
+                                <input type="hidden" name="property-owners" value="' . htmlspecialchars(json_encode($property_owners)) . '">
+                                <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
+                            </form>
+                        </div>';
+
+                        echo '
+                        <div class="password-hasher-form-div">
+                            <form class="password-hasher" action="../Php/password-hasher.php" method="post">
+                                <div class="password-hasher-title">
+                                    <h4>Password Hasher</h4>
+                                </div>
+                                <div class="password-input">
+                                    <label for="password-to-hash-property-owner">Password</label>
+                                    <input type="text" oninput="textareaSizor(\'#hashed-password-return-property-owner\', \'#password-to-hash-property-owner\')" name="password-to-hash" id="password-to-hash-property-owner"';
+                        if (isset($newPassword)) {
+                            echo 'value="' . $newPassword . '">';
+                        } else {
+                            echo '>';
+                        }
+                        echo '
+                                </div>
+                                <div class="hashed-password">
+                                    <label for="">Hashed Password</label>
+                                    <input type="text" name="hashed-password-return" id="hashed-password-return-property-owner"';
+                        if (isset($hashedPassword)) {
+                            echo 'value="' . $hashedPassword . '">';
+                        } else {
+                            echo 'disabled>';
+                        }
+                        echo '
+                                </div>
+                                <div class="hash-button">';
+
                                     if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
                                     if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
                                     if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
-            
+
                                     if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
                                     if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
                                     if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
@@ -1517,55 +1552,71 @@
                                     if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
                                     if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
                                     if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
-            
-                                echo'<button type="submit">Undo "Remember Me"</button>
-                                </form>
-                            </div>
-                        ';
+
+                            echo '
+
+                                    <input type="hidden" name="email" value="' . $email . '">
+                                    <input type="hidden" name="passwordField" value="' . $password . '">
+                                    <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
+                                    <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
+                                    <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
+                                    <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Hash Password</button>
+                                </div>
+                            </form>
+                        </div>';
+                        $password = $_POST['passwordField'];
+
+                    } else {
+                        echo "<h3>No One Has Registered As A Property Owner</h3>";
                     }
                 ?>
             </div>
-            <div class="contact-information-form-div">
-                <form id="contact-information-form" action="../Php/edit-admins-details.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event, 'contact-information-form', '#contact-information-form')">
-                
+            <div class="add-new-property-owner">
+                <form id="add-new-property-owner-form" action="../Php/add-new-property-owner.php" method="post" enctype="multipart/form-data" onsubmit="validateForm(event, 'add-new-property-owner-form', '#add-new-property-owner-form')">
+                    <div class="add-new-property-owner-title">
+                        <h4>Add A New Property Owner</h4>
+                    </div>
+                    
                     <div class="first-name">
-                        <label for="first-name">First Name:</label>
-                        <input type="text" id="first-name" name="admin-first-name" value="<?php echo $adminFirst_Name;?>"  onblur="validateField('first-name', 'Please Specify Your First Name', null, 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password')" disabled>
+                        <label for="new-property-owner-first-name">First Name:</label>
+                        <input type="text" id="new-property-owner-first-name" name="new-property-owner-first-name" onblur="validateField('new-property-owner-first-name', 'Please Specify The New Admin\'s First Name', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
                         <div class="error"></div>
                     </div>
                     <div class="last-name">
-                        <label for="last-name">Last Name:</label>
-                        <input type="text" id="last-name" name="admin-last-name" value="<?php echo $adminLast_Name;?>"  onblur="validateField('last-name', 'Please Specify Your Last Name', null, 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password')" disabled>
+                        <label for="new-property-owner-last-name">Last Name:</label>
+                        <input type="text" id="new-property-owner-last-name" name="new-property-owner-last-name" onblur="validateField('new-property-owner-last-name', 'Please Specify The New Admin\'s Last Name', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
                         <div class="error"></div>
                     </div>
 
                     <div class="phone-number">
-                        <label for="phone">Phone Number:</label>
-                        <input type="number" id="phone" name="admin-phone-number" value="<?php echo $adminPhone_Number;?>"  onblur="validatePhoneNumber(null, 'phone', 'Please Enter A Phone Number That Will Be Associated With Your Account')" disabled>
+                        <label for="new-property-owner-phone">Phone Number:</label>
+                        <input type="number" id="new-property-owner-phone" name="new-property-owner-phone" onblur="validatePhoneNumber('submit', 'new-property-owner-phone', 'Please Enter A Phone Number That Will Be Associated With The New Admin\'s Account')">
                         <div class="error"></div>
                     </div>
                     
                     <div class="email">
-                        <label for="email">Email Address:</label>
-                        <input type="text" id="email" name="admin-modified-email" value="<?php echo $email;?>"  onblur="validateField('email', 'Please Specify An Email that will be Associated With Your Rentals', null, 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password')" disabled>
+                        <label for="new-property-owner-email">Email Address:</label>
+                        <input type="text" id="new-property-owner-email" name="new-property-owner-email" onblur="validateField('new-property-owner-email', 'Please Specify An Email that will be Associated With The New Admin\'s Rentals', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')">
                         <div class="error"></div>
                     </div>
 
                     <div class="password">
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="admin-password" value="<?php echo $password;?>"  onblur="validateField('password', 'Please Enter A Password To Secure Your Account', null, 'first-name', 'last-name', 'email', 'email', 'email', 'password', 'password', 'password')" disabled>
+                        <label for="new-property-owner-password">Password:</label>
+                        <input type="password" id="new-property-owner-password" name="new-property-owner-password" onblur="validateField('new-property-owner-password', 'Please Enter A Password To Secure The New Admin\'s Account', null, 'new-property-owner-first-name', 'new-property-owner-last-name', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-email', 'new-property-owner-password', 'new-property-owner-password', 'new-property-owner-password')" placeholder="Un-encrypted Password">
                         <div class="error"></div>
                     </div>
 
+                    <div class="show-pass">
+                        <input type="checkbox" id="new-property-owner-show-pass" tabindex="0" onclick="toggleShowPassword('new-property-owner-show-pass', 'new-property-owner-password')">
+                        <label for="new-property-owner-show-pass">Show Password</label>
+                    </div>
+                    
+                    <input type="hidden" name="retrieved-admin-first-name" value="<?php echo $adminFirst_Name;?>">
+                    <input type="hidden" name="retrieved-admin-last-name" value="<?php echo $adminLast_Name;?>">
                     <input type="hidden" name="retrieved-email" value="<?php echo $email;?>">
                     <input type="hidden" name="retrieved-phone-number" value="<?php echo $adminPhone_Number;?>">
-
-                    <input type="checkbox" id="show-pass" tabindex="0" onclick="toggleShowPassword('show-pass', 'password')">
-                    <label for="show-pass">Show Password</label>
-
-                    <div class="edit-details">
-                        <button type="button" tabindex="0" onclick="toggleEnabled()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Edit Details</button>
-                    </div>
+                    <input type="hidden" name="retrieved-password" value="<?php echo $password;?>">
+                    <input type="hidden" name="passwordField" value="<?php echo $password;?>">
 
                     <?php if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}?>
                     <?php if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}?>
@@ -1579,14 +1630,7 @@
                     <?php if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}?>
                     <?php if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}?>
 
-                    <input type="hidden" name="passwordField" value="<?php echo $password;?>">
-                    <input type="hidden" name="administrators" value="<?php echo htmlspecialchars(json_encode($administrators)); ?>">
-                    <input type="hidden" name="property-owners" value="<?php echo htmlspecialchars(json_encode($property_owners)); ?>">
-                    <input type="hidden" name="retrieved-admin-first-name" value="<?php echo $adminFirst_Name; ?>">
-                    <input type="hidden" name="retrieved-admin-last-name" value="<?php echo $adminLast_Name; ?>">
-                    
-                    
-                    <div class="confirm-button">
+                    <div class="add-new-property-owner-confirm-button">
                         <button type="submit" tabindex="0" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Confirm Details</button>
                     </div>                       
                 </form> 

@@ -19,6 +19,7 @@
     $originalPasswordResetConfirmationCode = $_POST['original-password-reset-confirmation-code'];
     $originalRememberMeToken = $_POST['original-remember-me-token'];
 
+        
     $sqlQuery = "UPDATE property_owners
                     SET Phone_Number = ?, 
                         Email_Address = ?, 
@@ -39,27 +40,45 @@
     mysqli_stmt_bind_param($stmt, 'ssssssssss', $phonenumber, $emailAddress, $password, $firstName, $lastName, $rentalsOwned, $passwordResetConfirmationCode, $rememberMeToken, $originalPhonenumber, $originalEmailAddress);
 
     if (!mysqli_stmt_execute($stmt)) {
-        $administrators = json_decode($_POST['administrators'], true);
-        $property_owners = json_decode($_POST['property-owners'], true);
-        $hostels = json_decode($_POST['hostels'], true);
-        $singlerooms = json_decode($_POST['single-rooms'], true);
-        $bedsitters = json_decode($_POST['bedsitters'], true);
-        $apartments = json_decode($_POST['apartments'], true);
-        $houses = json_decode($_POST['houses'], true);
-        $businesspremises = json_decode($_POST['business-premises'], true);
-        $suites = json_decode($_POST['suites'], true);
+        $administrators = isset($_POST['administrators']) ? json_decode($_POST['administrators'], true) : NULL;
+        $property_owners = isset($_POST['property-owners']) ? json_decode($_POST['property-owners'], true) : NULL;
+        $propertyOwnersForEachRentals = isset($_POST['property-owners-for-each-rental']) ? json_decode($_POST['property-owners-for-each-rental'], true) : NULL;
+
+        $hostels = isset($_POST['hostels']) ? json_decode($_POST['hostels'], true) : NULL;
+        $singlerooms = isset($_POST['single-rooms']) ? json_decode($_POST['single-rooms'], true) : NULL;
+        $bedsitters = isset($_POST['bedsitters']) ? json_decode($_POST['bedsitters'], true) : NULL;
+        $apartments = isset($_POST['apartments']) ? json_decode($_POST['apartments'], true) : NULL;
+        $houses = isset($_POST['houses']) ? json_decode($_POST['houses'], true) : NULL;
+        $businesspremises = isset($_POST['business-premises']) ? json_decode($_POST['business-premises'], true) : NULL;
+        $suites = isset($_POST['suites']) ? json_decode($_POST['suites'], true) : NULL;
 
         $adminFirst_Name = $_POST['admin-first-name'];
         $adminLast_Name = $_POST['admin-last-name'];
         $adminPhone_Number = $_POST['admin-phone-number'];
         $email = $_POST['email'];
+        $password = $_POST['passwordField'];
 
         echo '<script>alert("An Account With The Same Phone Number And Email Address Already Exists. Please Try Using Different Credentials");</script>';
 
         include "../Php/admin-dashboard.php";
     } else {
         mysqli_stmt_close($stmt);
-        echo '<script>alert("Details Updated Successfully");</script>';
+        echo '<script>alert("Details Updated Successfully")</script>';
+
+        $administrators = isset($_POST['administrators']) ? json_decode($_POST['administrators'], true) : NULL;
+        $property_owners = isset($_POST['property-owners']) ? json_decode($_POST['property-owners'], true) : NULL;
+        $hostels = isset($_POST['hostels']) ? json_decode($_POST['hostels'], true) : NULL;
+        $singlerooms = isset($_POST['single-rooms']) ? json_decode($_POST['single-rooms'], true) : NULL;
+        $bedsitters = isset($_POST['bedsitters']) ? json_decode($_POST['bedsitters'], true) : NULL;
+        $apartments = isset($_POST['apartments']) ? json_decode($_POST['apartments'], true) : NULL;
+        $houses = isset($_POST['houses']) ? json_decode($_POST['houses'], true) : NULL;
+        $businesspremises = isset($_POST['business-premises']) ? json_decode($_POST['business-premises'], true) : NULL;
+        $suites = isset($_POST['suites']) ? json_decode($_POST['suites'], true) : NULL;
+
+        $adminFirst_Name = $_POST['admin-first-name'];
+        $adminLast_Name = $_POST['admin-last-name'];
+        $adminPhone_Number = $_POST['admin-phone-number'];
+
         $email = $_POST['email'];
         $password = $_POST['passwordField'];
         

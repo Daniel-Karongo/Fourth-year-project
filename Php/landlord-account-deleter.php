@@ -2,6 +2,8 @@
     $email = $_POST['email'];
     $phoneNumber = $_POST['phone-number'];
 
+    $panel = isset($_POST['from-panel']) ? $_POST['from-panel'] : NULL;
+
     // To Get The Rentals Owned
 
     include "../Php/databaseConnector.php";
@@ -68,7 +70,12 @@
         deleteActualAccount($email, $phoneNumber);
         
         echo "<script>alert('Account Deleted Successfully')</script>";
-        echo "<script>window.location.href = '../Html/index.html';</script>";
+        if($panel != "admin") {
+            echo "<script>window.location.href = '../Html/index.html';</script>";
+        } else {
+            include "../Php/admin-dashboard.php";
+        }
+
         exit;
         
 

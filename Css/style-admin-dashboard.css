@@ -163,8 +163,22 @@ body {
     display: none;
 }
 
+.delete-landlord-account-button {
+    padding: 0;
+}
+
+.delete-landlord-account-button img {
+    width: 20px;
+    height: 20px;
+    border: 0;
+    outline: 0;
+}
+
+
+
 .extra-landlord-details-of-rentals {
-    background-color: rgba(255, 255, 255, 0.2);;
+    background-color: rgba(255, 255, 255, 0.2);
+    text-align: center;
 }
 
 .view-input-div {
