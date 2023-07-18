@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=PT+Sans&display=swap" rel="stylesheet">
     <script src="../Javascript/admin-dashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
 </head>
 <body onload="textareaSizorbody()">
     <div class="container">
@@ -164,7 +166,7 @@
                                     <table class="hostels-table">
                                         <thead>
                                             <tr>
-                                                <th colspan="7" id="hostels-table-title">Hostels</th>
+                                                <th colspan="8" id="hostels-table-title">Hostels</th>
                                             </tr>
                                             <tr>
                                                 <th id="hostels-table-column-heads">Rental ID</th>
@@ -174,9 +176,12 @@
                                                 <th id="hostels-table-column-heads">Image Urls</th>
                                                 <th id="hostels-table-column-heads">Ammenities</th>
                                                 <th id="hostels-table-column-heads">Number Of Units</th>
+                                                <th id="hostels-table-column-heads">Number Of Units Remaining</th>
                                             </tr>
                                         </thead>
                                         <tbody>';
+                                        $ownersForEach = array();
+                                        $extraDetails = array();
                                         for ($i = 0; $i < count($hostels); $i++) {
                                             echo '
                                                 <tr>
@@ -187,6 +192,7 @@
                                                     <td><input type="text" name="image-urls" value="' . $hostels[$i][4] . '" disabled></td>
                                                     <td><input type="text" name="ammenities" value="' . $hostels[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $hostels[$i][6] . '" disabled></td>
+                                                    <td><input type="text" name="number-of-units-remaining" value="' . $hostels[$i][7] . '" disabled></td>
                                                     <td class="view-owner-details" id="view-hostel-owner-details-'. ($i+1) .'">
                                                         <button class="hostels-view-owner-details-button" onclick="viewOwnerDetails(event, \'hostel\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/more-details.png" alt="more-details-button">
@@ -244,6 +250,10 @@
                                                     <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
                                                     <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
+                                                $ownerDetails = $ownerPhoneNumber . ", " . $ownerEmail . ", " . $ownerFirstName . ", " . $ownerLastName;
+                                                $otherInformation = $rentalTerm . ", ". $rentAmount . ", ". $preferences . ", ". $maximumOcupants;
+                                                $ownersForEach[] = $ownerDetails;
+                                                $extraDetails[] = $otherInformation;
                                         }
                             echo '
                                         </tbody>
@@ -253,6 +263,8 @@
                             
                                 <form class="print-hostels-table" action="../Php/hostels-table-pdf.php" method="post">
                                     <input type="hidden" name="hostels" value="' . htmlspecialchars(json_encode($hostels)) . '">
+                                    <input type="hidden" name="owners" value="' . htmlspecialchars(json_encode($ownersForEach)) . '">
+                                    <input type="hidden" name="extra-information" value="' . htmlspecialchars(json_encode($extraDetails)) . '">
                                     <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
                                 </form>
                             </div>';
@@ -270,7 +282,7 @@
                                     <table class="single-rooms-table">
                                         <thead>
                                             <tr>
-                                                <th colspan="7" id="single-rooms-table-title">Single Rooms</th>
+                                                <th colspan="8" id="single-rooms-table-title">Single Rooms</th>
                                             </tr>
                                             <tr>
                                                 <th id="single-rooms-table-column-heads">Rental ID</th>
@@ -280,9 +292,12 @@
                                                 <th id="single-rooms-table-column-heads">Image Urls</th>
                                                 <th id="single-rooms-table-column-heads">Ammenities</th>
                                                 <th id="single-rooms-table-column-heads">Number Of Units</th>
+                                                <th id="single-rooms-table-column-heads">Number Of Units Remaining</th>
                                             </tr>
                                         </thead>
                                         <tbody>';
+                                        $ownersForEach = array();
+                                        $extraDetails = array();
                                         for ($i = 0; $i < count($singlerooms); $i++) {
                                             echo '
                                                 <tr>
@@ -293,6 +308,7 @@
                                                     <td><input type="text" name="image-urls" value="' . $singlerooms[$i][4] . '" disabled></td>
                                                     <td><input type="text" name="ammenities" value="' . $singlerooms[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $singlerooms[$i][6] . '" disabled></td>
+                                                    <td><input type="text" name="number-of-units-remaining" value="' . $singlerooms[$i][7] . '" disabled></td>
                                                     <td class="view-owner-details" id="view-single-room-owner-details-'. ($i+1) .'">
                                                         <button class="single-rooms-view-owner-details-button" onclick="viewOwnerDetails(event, \'single\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/more-details.png" alt="more-details-button">
@@ -349,6 +365,10 @@
                                                     <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
                                                     <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
+                                                $ownerDetails = $ownerPhoneNumber . ", " . $ownerEmail . ", " . $ownerFirstName . ", " . $ownerLastName;
+                                                $otherInformation = $rentalTerm . ", ". $rentAmount . ", ". $preferences . ", ". $maximumOcupants;
+                                                $ownersForEach[] = $ownerDetails;
+                                                $extraDetails[] = $otherInformation;
                                         }
                             echo '
                                         </tbody>
@@ -356,8 +376,10 @@
                                 </form>
 
                             
-                                <form class="print-single-rooms-table" action="../Php/single-rooms-table-pdf.php" method="post">
+                                <form class="print-single-rooms-table" action="../Php/single-rooms-pdf-table.php" method="post">
                                     <input type="hidden" name="single-rooms" value="' . htmlspecialchars(json_encode($singlerooms)) . '">
+                                    <input type="hidden" name="owners" value="' . htmlspecialchars(json_encode($ownersForEach)) . '">
+                                    <input type="hidden" name="extra-information" value="' . htmlspecialchars(json_encode($extraDetails)) . '">
                                     <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
                                 </form>
                             </div>';
@@ -375,7 +397,7 @@
                                     <table class="bedsitters-table">
                                         <thead>
                                             <tr>
-                                                <th colspan="7" id="bedsitters-table-title">Bedsitters</th>
+                                                <th colspan="8" id="bedsitters-table-title">Bedsitters</th>
                                             </tr>
                                             <tr>
                                                 <th id="bedsitters-table-column-heads">Rental ID</th>
@@ -385,9 +407,12 @@
                                                 <th id="bedsitters-table-column-heads">Image Urls</th>
                                                 <th id="bedsitters-table-column-heads">Ammenities</th>
                                                 <th id="bedsitters-table-column-heads">Number Of Units</th>
+                                                <th id="bedsitters-table-column-heads">Number Of Units Remaining</th>
                                             </tr>
                                         </thead>
                                         <tbody>';
+                                        $ownersForEach = array();
+                                        $extraDetails = array();
                                         for ($i = 0; $i < count($bedsitters); $i++) {
                                             echo '
                                                 <tr>
@@ -398,6 +423,7 @@
                                                     <td><input type="text" name="image-urls" value="' . $bedsitters[$i][4] . '" disabled></td>
                                                     <td><input type="text" name="ammenities" value="' . $bedsitters[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $bedsitters[$i][6] . '" disabled></td>
+                                                    <td><input type="text" name="number-of-units-remaining" value="' . $bedsitters[$i][7] . '" disabled></td>
                                                     <td class="view-owner-details" id="view-bedsitter-owner-details-'. ($i+1) .'">
                                                         <button class="bedsitters-view-owner-details-button" onclick="viewOwnerDetails(event, \'bedsitter\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/more-details.png" alt="more-details-button">
@@ -454,6 +480,10 @@
                                                     <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
                                                     <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
+                                                $ownerDetails = $ownerPhoneNumber . ", " . $ownerEmail . ", " . $ownerFirstName . ", " . $ownerLastName;
+                                                $otherInformation = $rentalTerm . ", ". $rentAmount . ", ". $preferences . ", ". $maximumOcupants;
+                                                $ownersForEach[] = $ownerDetails;
+                                                $extraDetails[] = $otherInformation;
                                         }
                             echo '
                                         </tbody>
@@ -461,8 +491,10 @@
                                 </form>
 
                             
-                                <form class="print-bedsitters-table" action="../Php/bedsitters-table-pdf.php" method="post">
+                                <form class="print-bedsitters-table" action="../Php/bedsitters-pdf-table.php" method="post">
                                     <input type="hidden" name="bedsitters" value="' . htmlspecialchars(json_encode($bedsitters)) . '">
+                                    <input type="hidden" name="owners" value="' . htmlspecialchars(json_encode($ownersForEach)) . '">
+                                    <input type="hidden" name="extra-information" value="' . htmlspecialchars(json_encode($extraDetails)) . '">
                                     <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
                                 </form>
                             </div>';
@@ -480,7 +512,7 @@
                                     <table class="apartments-table">
                                         <thead>
                                             <tr>
-                                                <th colspan="8" id="apartments-table-title">Apartments</th>
+                                                <th colspan="9" id="apartments-table-title">Apartments</th>
                                             </tr>
                                             <tr>
                                                 <th id="apartments-table-column-heads">Rental ID</th>
@@ -491,9 +523,12 @@
                                                 <th id="apartments-table-column-heads">Ammenities</th>
                                                 <th id="apartments-table-column-heads">Number Of Bedrooms</th>
                                                 <th id="apartments-table-column-heads">Number Of Units</th>
+                                                <th id="apartments-table-column-heads">Number Of Units Remaining</th>
                                             </tr>
                                         </thead>
                                         <tbody>';
+                                        $ownersForEach = array();
+                                        $extraDetails = array();
                                         for ($i = 0; $i < count($apartments); $i++) {
                                             echo '
                                                 <tr>
@@ -505,6 +540,7 @@
                                                     <td><input type="text" name="ammenities" value="' . $apartments[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-bedrooms" value="' . $apartments[$i][6] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $apartments[$i][7] . '" disabled></td>
+                                                    <td><input type="text" name="number-of-units-remaining" value="' . $apartments[$i][8] . '" disabled></td>
                                                     <td class="view-owner-details" id="view-apartment-owner-details-'. ($i+1) .'">
                                                         <button class="apartments-view-owner-details-button" onclick="viewOwnerDetails(event, \'apartment\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/more-details.png" alt="more-details-button">
@@ -558,6 +594,10 @@
                                                     <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
                                                     <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
+                                                $ownerDetails = $ownerPhoneNumber . ", " . $ownerEmail . ", " . $ownerFirstName . ", " . $ownerLastName;
+                                                $otherInformation = $rentalTerm . ", ". $rentAmount . ", ". $preferences . ", ". $maximumOcupants;
+                                                $ownersForEach[] = $ownerDetails;
+                                                $extraDetails[] = $otherInformation;
                                         }
                             echo '
                                         </tbody>
@@ -565,8 +605,10 @@
                                 </form>
 
                             
-                                <form class="print-apartments-table" action="../Php/apartments-table-pdf.php" method="post">
+                                <form class="print-apartments-table" action="../Php/apartments-pdf-table.php" method="post">
                                     <input type="hidden" name="apartments" value="' . htmlspecialchars(json_encode($apartments)) . '">
+                                    <input type="hidden" name="owners" value="' . htmlspecialchars(json_encode($ownersForEach)) . '">
+                                    <input type="hidden" name="extra-information" value="' . htmlspecialchars(json_encode($extraDetails)) . '">
                                     <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
                                 </form>
                             </div>';
@@ -584,7 +626,7 @@
                                     <table class="houses-table">
                                         <thead>
                                             <tr>
-                                                <th colspan="8" id="houses-table-title">Houses</th>
+                                                <th colspan="9" id="houses-table-title">Houses</th>
                                             </tr>
                                             <tr>
                                                 <th id="houses-table-column-heads">Rental ID</th>
@@ -595,9 +637,12 @@
                                                 <th id="houses-table-column-heads">Ammenities</th>
                                                 <th id="houses-table-column-heads">Number Of Bedrooms</th>
                                                 <th id="houses-table-column-heads">Number Of Units</th>
+                                                <th id="houses-table-column-heads">Number Of Units Remaining</th>
                                             </tr>
                                         </thead>
                                         <tbody>';
+                                        $ownersForEach = array();
+                                        $extraDetails = array();
                                         for ($i = 0; $i < count($houses); $i++) {
                                             echo '
                                                 <tr>
@@ -662,6 +707,10 @@
                                                     <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
                                                     <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
+                                                $ownerDetails = $ownerPhoneNumber . ", " . $ownerEmail . ", " . $ownerFirstName . ", " . $ownerLastName;
+                                                $otherInformation = $rentalTerm . ", ". $rentAmount . ", ". $preferences . ", ". $maximumOcupants;
+                                                $ownersForEach[] = $ownerDetails;
+                                                $extraDetails[] = $otherInformation;
                                         }
                             echo '
                                         </tbody>
@@ -669,8 +718,10 @@
                                 </form>
 
                             
-                                <form class="print-houses-table" action="../Php/houses-table-pdf.php" method="post">
+                                <form class="print-houses-table" action="../Php/houses-pdf-table.php" method="post">
                                     <input type="hidden" name="houses" value="' . htmlspecialchars(json_encode($houses)) . '">
+                                    <input type="hidden" name="owners" value="' . htmlspecialchars(json_encode($ownersForEach)) . '">
+                                    <input type="hidden" name="extra-information" value="' . htmlspecialchars(json_encode($extraDetails)) . '">
                                     <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
                                 </form>
                             </div>';
@@ -688,7 +739,7 @@
                                     <table class="business-premises-table">
                                         <thead>
                                             <tr>
-                                                <th colspan="8" id="business-premises-table-title">Business Premises</th>
+                                                <th colspan="9" id="business-premises-table-title">Business Premises</th>
                                             </tr>
                                             <tr>
                                                 <th id="business-premises-table-column-heads">Rental ID</th>
@@ -699,9 +750,12 @@
                                                 <th id="business-premises-table-column-heads">Image Urls</th>
                                                 <th id="business-premises-table-column-heads">Ammenities</th>
                                                 <th id="business-premises-table-column-heads">Number Of Units</th>
+                                                <th id="business-premises-table-column-heads">Number Of Units Remaining</th>
                                             </tr>
                                         </thead>
                                         <tbody>';
+                                        $ownersForEach = array();
+                                        $extraDetails = array();
                                         for ($i = 0; $i < count($businesspremises); $i++) {
                                             echo '
                                                 <tr>
@@ -713,6 +767,7 @@
                                                     <td><input type="text" name="image-urls" value="' . $businesspremises[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="ammenities" value="' . $businesspremises[$i][6] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $businesspremises[$i][7] . '" disabled></td>
+                                                    <td><input type="text" name="number-of-units-remaining" value="' . $businesspremises[$i][8] . '" disabled></td>
                                                     <td class="view-owner-details" id="view-business-premise-owner-details-'. ($i+1) .'">
                                                         <button class="business-premises-view-owner-details-button" onclick="viewOwnerDetails(event, \'business\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/more-details.png" alt="more-details-button">
@@ -766,6 +821,10 @@
                                                     <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
                                                     <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
+                                                $ownerDetails = $ownerPhoneNumber . ", " . $ownerEmail . ", " . $ownerFirstName . ", " . $ownerLastName;
+                                                $otherInformation = $rentalTerm . ", ". $rentAmount . ", ". $preferences . ", ". $maximumOcupants;
+                                                $ownersForEach[] = $ownerDetails;
+                                                $extraDetails[] = $otherInformation;
                                         }
                             echo '
                                         </tbody>
@@ -773,8 +832,10 @@
                                 </form>
 
                             
-                                <form class="print-business-premises-table" action="../Php/business-premises-table-pdf.php" method="post">
+                                <form class="print-business-premises-table" action="../Php/business-premises-pdf-table.php" method="post">
                                     <input type="hidden" name="business-premises" value="' . htmlspecialchars(json_encode($businesspremises)) . '">
+                                    <input type="hidden" name="owners" value="' . htmlspecialchars(json_encode($ownersForEach)) . '">
+                                    <input type="hidden" name="extra-information" value="' . htmlspecialchars(json_encode($extraDetails)) . '">
                                     <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
                                 </form>
                             </div>';
@@ -792,7 +853,7 @@
                                     <table class="suites-table">
                                         <thead>
                                             <tr>
-                                                <th colspan="8" id="suites-table-title">Suites</th>
+                                                <th colspan="9" id="suites-table-title">Suites</th>
                                             </tr>
                                             <tr>
                                                 <th id="suites-table-column-heads">Rental ID</th>
@@ -803,9 +864,12 @@
                                                 <th id="suites-table-column-heads">Ammenities</th>
                                                 <th id="suites-table-column-heads">Number Of Beds</th>
                                                 <th id="suites-table-column-heads">Number Of Units</th>
+                                                <th id="suites-table-column-heads">Number Of Units Remaining</th>
                                             </tr>
                                         </thead>
                                         <tbody>';
+                                        $ownersForEach = array();
+                                        $extraDetails = array();
                                         for ($i = 0; $i < count($suites); $i++) {
                                             echo '
                                                 <tr>
@@ -817,6 +881,7 @@
                                                     <td><input type="text" name="ammenities" value="' . $suites[$i][5] . '" disabled></td>
                                                     <td><input type="text" name="number-of-beds" value="' . $suites[$i][6] . '" disabled></td>
                                                     <td><input type="text" name="number-of-units" value="' . $suites[$i][7] . '" disabled></td>
+                                                    <td><input type="text" name="number-of-units-remaining" value="' . $suites[$i][8] . '" disabled></td>
                                                     <td class="view-owner-details" id="view-suite-owner-details-'. ($i+1) .'">
                                                         <button class="suites-view-owner-details-button" onclick="viewOwnerDetails(event, \'suite\')" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">
                                                             <img src="../Images/more-details.png" alt="more-details-button">
@@ -870,6 +935,10 @@
                                                     <td><input type="text" value="' . $ownerFirstName . '" disabled></td>
                                                     <td><input type="text" value="' . $ownerLastName . '" disabled></td>
                                                 </tr>';
+                                                $ownerDetails = $ownerPhoneNumber . ", " . $ownerEmail . ", " . $ownerFirstName . ", " . $ownerLastName;
+                                                $otherInformation = $rentalTerm . ", ". $rentAmount . ", ". $preferences . ", ". $maximumOcupants;
+                                                $ownersForEach[] = $ownerDetails;
+                                                $extraDetails[] = $otherInformation;
                                         }
                             echo '
                                         </tbody>
@@ -877,8 +946,10 @@
                                 </form>
 
                             
-                                <form class="print-suites-table" action="../Php/suites-table-pdf.php" method="post">
+                                <form class="print-suites-table" action="../Php/suites-pdf-table.php" method="post">
                                     <input type="hidden" name="suites" value="' . htmlspecialchars(json_encode($suites)) . '">
+                                    <input type="hidden" name="owners" value="' . htmlspecialchars(json_encode($ownersForEach)) . '">
+                                    <input type="hidden" name="extra-information" value="' . htmlspecialchars(json_encode($extraDetails)) . '">
                                     <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
                                 </form>
                             </div>';
@@ -1101,37 +1172,7 @@
                 <?php
                     if (gettype($property_owners) !== "NULL") {
                         
-
-                        // for ($i = 0; $i < count($property_owners); $i++) {
-                        //     echo'
-                        //     <form style="display: none;" action="../Php/landlord-account-deleter.php" method="post" id="delete-landlord-account-form-'.($i+1).'">
-                            
-                        //         <input type="hidden" name="original-phone-number" value="' . $property_owners[$i][0] . '" disabled>
-                        //         <input type="hidden" name="original-email-address" value="' . $property_owners[$i][1] . '" disabled>
-                        //         <input type="hidden" name="email" value="'.$email.'">
-                        //         <input type="hidden" name="passwordField" value="'.$password.'">';
-
-                        //         if(isset($administrators)){echo '<input type="hidden" name="administrators" value="' . htmlspecialchars(json_encode($administrators)) .'">';}
-                        //         if(isset($property_owners)){echo '<input type="hidden" name="property-owners" value="' .htmlspecialchars(json_encode($property_owners)) .'">';}
-                        //         if(isset($propertyOwnersForEachRentals)){echo '<input type="hidden" name="property-owners-for-each-rental" value="' .htmlspecialchars(json_encode($propertyOwnersForEachRentals)) .'">';}
-
-                        //         if(isset($hostels)){echo '<input type="hidden" name="hostels" value="' .htmlspecialchars(json_encode($hostels)) .'">';}
-                        //         if(isset($singlerooms)){echo '<input type="hidden" name="single-rooms" value="' .htmlspecialchars(json_encode($singlerooms)) .'">';}
-                        //         if(isset($bedsitters)){echo '<input type="hidden" name="bedsitters" value="' .htmlspecialchars(json_encode($bedsitters)) .'">';}
-                        //         if(isset($apartments)){echo '<input type="hidden" name="apartments" value="' .htmlspecialchars(json_encode($apartments)) .'">';}
-                        //         if(isset($houses)){echo '<input type="hidden" name="houses" value="' .htmlspecialchars(json_encode($houses)) .'">';}
-                        //         if(isset($businesspremises)){echo '<input type="hidden" name="business-premises" value="' .htmlspecialchars(json_encode($businesspremises)) .'">';}
-                        //         if(isset($suites)){echo '<input type="hidden" name="suites" value="' .htmlspecialchars(json_encode($suites)) .'">';}
-                                
-
-                        //         echo '
-                        //         <input type="hidden" name="admin-first-name" value="' . $adminFirst_Name . '">
-                        //         <input type="hidden" name="admin-last-name" value="' . $adminLast_Name . '">
-                        //         <input type="hidden" name="admin-phone-number" value="' . $adminPhone_Number .'">
-                        //     </form>';
-                        // }
-                        
-                        echo '
+                    echo '
                         <div class="property-owners-table-and-print">
                                 <table class="property-owners-table">
                                     <thead>
@@ -1181,7 +1222,8 @@
                                                         </button>
                                                     </td>
                                                     <td class="delete-landlord-account">
-                                                        <button type="button" class="delete-landlord-account-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="submitDeleteAccountForm()">
+                                                        <input type="hidden" name="from-panel" value="admin">
+                                                        <button type="button" class="delete-landlord-account-button" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="submitDeleteAccountForm(\'property-owners-table-form-'.($i+1).'\')">
                                                             <img src="../Images/delete.jpeg" alt="delete account">
                                                         </button>
                                                     </td>
@@ -1507,7 +1549,7 @@
                                 <input type="text" id="view-input-details-clearly" readonly> 
                             </div>
 
-                            <form class="print-property-owners-table" action="../Php/table-pdf.php" method="post">
+                            <form class="print-property-owners-table" action="../Php/property-owners-pdf-table.php" method="post">
                                 <input type="hidden" name="property-owners" value="' . htmlspecialchars(json_encode($property_owners)) . '">
                                 <button type="submit" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Print Table</button>
                             </form>

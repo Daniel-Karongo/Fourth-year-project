@@ -30,7 +30,23 @@
         // $pdf->Cell(40,6,$property_owners[$i][2],1,0,'C');
         $pdf->Cell(23,6,$property_owners[$i][3],1,0,'C');
         $pdf->Cell(23,6,$property_owners[$i][4],1,0,'C');
-        $pdf->Cell(150,6,$property_owners[$i][5],1,1,'C');
+
+        $rentals = explode(", ", $property_owners[$i][5]);
+        if($property_owners[$i][5] != "") {
+            for($j=0; $j<count($rentals); $j++) {
+                if($j>0) {
+                    $pdf->Cell(30,6,"",0,0,'C');
+                    $pdf->Cell(50,6,"",0,0,'C');
+                    // $pdf->Cell(40,6,$property_owners[$i][2],1,0,'C');
+                    $pdf->Cell(23,6,"",0,0,'C');
+                    $pdf->Cell(23,6,"",0,0,'C');
+                }
+                $pdf->Cell(150,6,$rentals[$j],1,1,'C');
+            }
+        } else {
+            $pdf->Cell(150,6,$property_owners[$i][5],1,1,'C');
+        }
+        
         // $pdf->Cell(30,6,$property_owners[$i][6],1,0,'C');
         // $pdf->Cell(40,6,$property_owners[$i][7],1,1,'C');
     }

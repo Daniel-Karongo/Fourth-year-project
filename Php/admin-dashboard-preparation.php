@@ -110,6 +110,8 @@
                 $apartments[$i][5] = $apartmentsRetrieved['Ammenities'];
                 $apartments[$i][6] = $apartmentsRetrieved['Number_Of_Bedrooms'];
                 $apartments[$i][7] = $apartmentsRetrieved['Number_Of_Similar_Units'];
+                $apartments[$i][8] = $apartmentsRetrieved['Number_Of_Units_Remaining'];
+
                 $i++;
             }
 
@@ -148,6 +150,7 @@
                 $bedsitters[$i][4] = $bedsittersRetrieved['Image_Urls'];
                 $bedsitters[$i][5] = $bedsittersRetrieved['Ammenities'];
                 $bedsitters[$i][6] = $bedsittersRetrieved['Number_Of_Similar_Units'];
+                $bedsitters[$i][7] = $bedsittersRetrieved['Number_Of_Units_Remaining'];
                 
                 $i++;
             }
@@ -189,6 +192,7 @@
                 $businesspremises[$i][5] = $businesspremisesRetrieved['Image_Urls'];
                 $businesspremises[$i][6] = $businesspremisesRetrieved['Ammenities'];
                 $businesspremises[$i][7] = $businesspremisesRetrieved['Number_Of_Similar_Units'];
+                $businesspremises[$i][8] = $businesspremisesRetrieved['Number_Of_Units_Remaining'];
 
                 $i++;
             }
@@ -228,6 +232,7 @@
                 $hostels[$i][4] = $hostelsRetrieved['Image_Urls'];
                 $hostels[$i][5] = $hostelsRetrieved['Ammenities'];
                 $hostels[$i][6] = $hostelsRetrieved['Number_Of_Similar_Units'];
+                $hostels[$i][7] = $hostelsRetrieved['Number_Of_Units_Remaining'];
 
                 $i++;
             }
@@ -268,6 +273,7 @@
                 $houses[$i][5] = $housesRetrieved['Ammenities'];
                 $houses[$i][6] = $housesRetrieved['Number_Of_Bedrooms'];
                 $houses[$i][7] = $housesRetrieved['Number_Of_Similar_Units'];
+                $houses[$i][8] = $housesRetrieved['Number_Of_Units_Remaining'];
 
                 $i++;
             }
@@ -309,6 +315,7 @@
                 $singlerooms[$i][4] = $singleroomsRetrieved['Image_Urls'];
                 $singlerooms[$i][5] = $singleroomsRetrieved['Ammenities'];
                 $singlerooms[$i][6] = $singleroomsRetrieved['Number_Of_Similar_Units'];
+                $singlerooms[$i][7] = $singleroomsRetrieved['Number_Of_Units_Remaining'];
 
                 $i++;
             }
@@ -351,6 +358,7 @@
                 $suites[$i][5] = $suitesRetrieved['Ammenities'];
                 $suites[$i][6] = $suitesRetrieved['Number_Of_Beds_Per_Suite'];
                 $suites[$i][7] = $suitesRetrieved['Number_Of_Similar_Units'];
+                $suites[$i][8] = $suitesRetrieved['Number_Of_Units_Remaining'];
 
                 $i++;
             }

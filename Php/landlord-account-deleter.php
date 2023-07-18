@@ -1,8 +1,13 @@
 `<?php
-    $email = $_POST['email'];
-    $phoneNumber = $_POST['phone-number'];
-
     $panel = isset($_POST['from-panel']) ? $_POST['from-panel'] : NULL;
+
+    if($panel == "admin") {
+        $email = $_POST['original-email-address'];
+        $phoneNumber = $_POST['original-phone-number'];
+    } else {
+        $email = $_POST['email'];
+        $phoneNumber = $_POST['phone-number'];
+    }
 
     // To Get The Rentals Owned
 
@@ -36,7 +41,7 @@
         
         // If The Landlord Has Rentals
 
-        if($retrieved_rentals_owned !== null) {
+        if($retrieved_rentals_owned != null) {
             $rentalsOwnedSplit = array();
             $rentalsOwnedSplit = explode(", ", $retrieved_rentals_owned);
             
@@ -69,15 +74,14 @@
 
         deleteActualAccount($email, $phoneNumber);
         
-        echo "<script>alert('Account Deleted Successfully')</script>";
         if($panel != "admin") {
+            echo "<script>alert('Account Deleted Successfully')</script>";
             echo "<script>window.location.href = '../Html/index.html';</script>";
-        } else {
-            include "../Php/admin-dashboard.php";
+            exit;
+    } else {
+            echo "The property owner's account has been deleted successfully. Please Reload The Page To See The Change.";
+            exit;
         }
-
-        exit;
-        
 
     } else {
         // If The Record Of The Landlord Does Not Exists

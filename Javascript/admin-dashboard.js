@@ -425,3 +425,22 @@ function showInputInField(input) {
       }
     });
 }
+
+function submitDeleteAccountForm(form) {
+    let propertyOwner = document.getElementById(form);
+    
+    const proceed = confirm("Are You Sure You Want To Delete This Property Owners Account. This will erase everything about him/her as well as delete all the rentals he/she had uploaded");
+    if(proceed) {
+        let formData = $(propertyOwner).serialize(); // Serialize form data
+    
+        $.ajax({
+            type: 'POST',
+            url: '../Php/landlord-account-deleter.php', // PHP script to handle form submission
+            data: formData,
+            success: function(response) {
+                alert(response);
+            }
+        });
+    }
+    
+}
