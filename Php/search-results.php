@@ -285,7 +285,6 @@
                     $toNotBeDisplayed = 0;
 
                     for($i=0; $i<count($retrievedRentalID); $i++){
-                    
                         if($retrievedNumberOfSimilarUnits[$i] >= 1){
                             $rentalImages = explode(", ", $retrievedImageUrls[$i]);
                             $imageToDisplay = $rentalImages[0];
@@ -341,7 +340,7 @@
                             }
                             
                             echo'
-                            <div class="template" style="order: ' . ($i+1) . ';'; if($i>9){echo "display: none;";$toNotBeDisplayed++;} else {$toBeDisplayed++;} echo '">
+                            <div class="template" style="order: ' . ($i+1) . ';'; if($i>5){echo "display: none;";$toNotBeDisplayed++;} else {$toBeDisplayed++;} echo '">
                                 <div class="rental-div" id="rental-' . ($i+1) . '" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)" onclick="activateAnchor(event)">
                                     <div class="image" id="image' . ($i+1) . '">
                                         <img src="../Image_Data/' . $finalFolder. $imageToDisplay. '" alt="Rental-' . ($i+1) . '">              
@@ -399,13 +398,14 @@
                                         </form>
                                     </div>                            
                                 </div>
-                            </div>
-                            ';
+                            </div>';
                         }
-                    } if(($toNotBeDisplayed - $toBeDisplayed) > 0) {
+                    }
+                    if(($toNotBeDisplayed - $toBeDisplayed) > 0) {
                         echo '
                             <button style="order: '. count($retrievedRentalID).';" id="load-next-rentals" onclick="loadNextRentals()" onmouseenter="zoomDiv(this)" onmouseleave="unzoomDiv(this)">Load The Next Rentals</button> ';
                     }
+
                 } else {
                     echo '<div class="template-error">
                             <p>Sorry. No Rentals From ' . $location . ' Have Been Uploaded. Maybe Try Searching For Rentals In Another Location</p> 

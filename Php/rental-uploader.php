@@ -408,7 +408,7 @@
             case "Business Premise":
                 
                 $sqlquery = "INSERT INTO business_premises (Rental_ID, Rental_Name, Type_Of_Premise, Location, Google_Location, Image_Urls, Ammenities, Number_Of_Similar_Units, Number_Of_Units_Remaining) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 $stmt = mysqli_prepare($connectionInitialisation, $sqlquery);
                 

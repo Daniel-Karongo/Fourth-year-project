@@ -67,7 +67,7 @@
                     ?>
                     <p><?php echo "<span>Location: </span>" . $location; ?></p>
                     <?php if($googleLocation !== "") {echo "<p><span>Google Location: </span>" . $googleLocation . "</p>";}?>
-                    <p><?php echo "<span>Number Of Similar Units: </span>" . $numberOfSimilarUnits; ?></p>
+                    <p><?php echo "<span>Number Of Units Remaining: </span>" . $numberOfSimilarUnits; ?></p>
                     
                 </div>
                 <div class="description">

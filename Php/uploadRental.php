@@ -169,7 +169,7 @@
 
                     <div class="borehole">
                         <input type="checkbox"  name="borehole" id="borehole" value="Borehole">
-                        <label for="borehole"> Clean Tap Water/ Water Reserves (Tanks and/or Borehole)</label>
+                        <label for="borehole"> Borehole</label>
                     </div>
                     
                     <h5>Electricity</h5>
